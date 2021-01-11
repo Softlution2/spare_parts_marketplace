@@ -1,0 +1,24 @@
+{
+  "top_bar_text": "سوق السيارات الرائد عبر الإنترنت في إفريقيا",
+  "login": "تسجيل الدخول",
+  "register": "تسجيل",
+  "or": "أو",
+
+  "menu_buy_car": "شراء سيارة",
+  "menu_sell_car": "بيع السيارة",
+  "menu_insurance": "تأمين",
+  "menu_finance": "المالية",
+  "menu_more": "أكثر",
+  "menu_vin_check": "VIN التحقق من",
+  "menu_free_car_valuation": "تقييم مجاني للسيارة",
+  "menu_plate_recognition": "التعرف على اللوحة",
+  "menu_car_recognition": "التعرف على السيارة",
+  "menu_about": "حول",
+  "menu_contact": "اتصل",
+  "menu_my_profile": "ملفي",
+  "menu_my_listings": "القوائم الخاصة بي",
+  "menu_my_messages": "رسائلي",
+  "menu_my_favorites": "مفضلتي",
+  "menu_add_listing": "قائمة إضافة بلدي",
+  "menu_signout": "خروج"
+  }

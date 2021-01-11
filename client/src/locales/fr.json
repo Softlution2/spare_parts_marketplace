@@ -1,0 +1,24 @@
+{
+  "top_bar_text": "Le premier marché automobile en ligne en Afrique",
+  "login": "S'identifier",
+  "register": "S'inscrire",
+  "or": "ou",
+
+  "menu_buy_car": "Acheter une voiture",
+  "menu_sell_car": "Vendre une voiture",
+  "menu_insurance": "Assurance",
+  "menu_finance": "La finance",
+  "menu_more": "Plus",
+  "menu_vin_check": "Vérification VIN",
+  "menu_free_car_valuation": "Évaluation gratuite de la voiture",
+  "menu_plate_recognition": "Reconnaissance des plaques",
+  "menu_car_recognition": "Reconnaissance de voiture",
+  "menu_about": "À propos de",
+  "menu_contact": "Contact",
+  "menu_my_profile": "Mon profil",
+  "menu_my_listings": "Mes annonces",
+  "menu_my_messages": "Mes messages",
+  "menu_my_favorites": "Mes favoris",
+  "menu_add_listing": "Ajouter une liste",
+  "menu_signout": "Déconnexion"
+}

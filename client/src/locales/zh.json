@@ -1,0 +1,24 @@
+{
+  "top_bar_text": "非洲領先的在線汽車市場",
+  "login": "登錄",
+  "register": "寄存器",
+  "or": "要么",
+
+  "menu_buy_car": "買車",
+  "menu_sell_car": "賣車",
+  "menu_insurance": "保險",
+  "menu_finance": "金融",
+  "menu_more": "更多",
+  "menu_vin_check": "VIN檢查",
+  "menu_free_car_valuation": "免費汽車估價",
+  "menu_plate_recognition": "板塊識別",
+  "menu_car_recognition": "汽車識別",
+  "menu_about": "關於",
+  "menu_contact": "聯繫",
+  "menu_my_profile": "我的简历",
+  "menu_my_listings": "我的清单",
+  "menu_my_messages": "我的留言",
+  "menu_my_favorites": "我最喜爱的",
+  "menu_add_listing": "添加清单",
+  "menu_signout": "登出"
+}

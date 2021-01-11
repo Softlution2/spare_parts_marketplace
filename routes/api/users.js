@@ -1,0 +1,273 @@
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const router = express.Router();
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
+const formidable = require("formidable");
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const AWS = require('aws-sdk');
+const fs = require('fs');
+const crypto = require("crypto");
+const path = require('path');
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+});
+
+const twilioClient = require("twilio")(accountSid, authToken);
+
+// Load User model
+const User = require("../../models/User");
+
+router.post("/get-otp-by-email", (req, res) => {
+  let email = req.body.email;
+  twilioClient.verify
+    .services(process.env.TWILIO_SERVICE_SID)
+    .verifications.create({ to: email, channel: "email" })
+    .then((verification) => {
+      return res.json(verification);
+    })
+    .catch((error) => {
+      console.log(error);
+      return res
+        .status(400)
+        .json({ message: "Something went wrong! Please try again later" });
+    });
+});
+
+router.post("/get-otp-by-phone", (req, res) => {
+  let phone = req.body.phone;
+  twilioClient.verify
+    .services(process.env.TWILIO_SERVICE_SID)
+    .verifications.create({ to: phone, channel: "sms" })
+    .then((verification) => {
+      return res.json(verification);
+    })
+    .catch((error) => {
+      console.log(error);
+      return res
+        .status(400)
+        .json({ message: "Something went wrong! Please try again later" });
+    });
+});
+
+router.post("/verify-otp", (req, res) => {
+  let code = req.body.code;
+  let identify = req.body.identify;
+  twilioClient.verify
+    .services("VAf190aaf2ded6f5e90e4254a65be467a7")
+    .verificationChecks.create({ to: identify, code: code })
+    .then((verification_check) => {
+      if (verification_check.status === "approved") {
+        let query = identify.includes("+")
+          ? { phone: identify.replace("+", "") }
+          : { email: identify };
+        let errMsg = identify.includes("+")
+          ? "This phone number is already used."
+          : "This email address is already used.";
+        User.findOne(query).then((user) => {
+          if (user)
+            return res
+              .status(400)
+              .json({ message: errMsg });
+          return res.json({ message: "success" });
+        });
+      } else {
+        return res
+          .status(400)
+          .json({
+            message:
+              "Verification Failed. Please enter the code from your email",
+          });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return res
+        .status(400)
+        .json({
+          message: "Verification Failed. Please enter the code from your email",
+        });
+    });
+});
+
+router.post("/signup", async (req, res) => {
+  let avatar = null;
+  let obj = null;
+  const form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    obj = fields;
+  });
+
+  form.on("fileBegin", function (name, file) {
+    let currentTime = new Date().getTime();
+    file.path =
+      __dirname +
+      "/../../uploads/" +
+      currentTime +
+      "." +
+      file.name.split(".")[1];
+    avatar = currentTime + "." + file.name.split(".")[1];
+  });
+
+  form.on("file", function (name, file) {});
+
+  form.on("end", async function () {
+    let { email, method, user_name, location, password, phone } = obj;
+    let query = method === "email" ? { email: email } : { phone: phone };
+    let tempPhones = [];
+    if (method !== "email") tempPhones.push(phone);
+    if (avatar) {
+      const file = fs.readFileSync("uploads/" + avatar);
+      const rawBytes = await crypto.pseudoRandomBytes(16);
+      const fileName = rawBytes.toString('hex') + Date.now() + path.extname(avatar);
+      const params = {
+        Bucket: 'spare-parts-marketplace',
+        Key: fileName,
+        Body: file
+      };
+      const data = await s3.upload(params).promise();
+      fs.unlinkSync("uploads/" + avatar);
+      avatar = data.Location;
+    }
+
+    User.findOne(query).then((user) => {
+      if (user) {
+        return res.status(400).json({ message: "User Already Exists" });
+      } else {
+        const newUser = new User({
+          email: email,
+          name: user_name,
+          location: location,
+          avatar: avatar,
+          method: method,
+          phone: tempPhones,
+          password: password,
+        });
+        // Hash password before saving in database
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then((user) => res.json(user))
+              .catch((err) => res.status(400).json(err));
+          });
+        });
+      }
+    });
+  });
+});
+
+router.post("/login", (req, res) => {
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const method = req.body.method;
+  const password = req.body.password;
+  let query = method === "email" ? { email: email } : { phone: phone };
+  // Find user by email
+  User.findOne(query).then((user) => {
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check password
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // User matched
+        // Create JWT Payload
+        const payload = {
+          id: user.id,
+          name: user.name,
+        };
+
+        // Sign token
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          {
+            expiresIn: 9000, // 15 mins in seconds
+          },
+          async (err, token) => {
+            await User.findByIdAndUpdate(user.id, { $set : { 'last_login_date' : Date.now() } });
+            res.json({
+              user,
+              token: "Bearer " + token,
+            });
+          }
+        );
+      } else {
+        return res.status(400).json({ message: "Password incorrect" });
+      }
+    });
+  });
+});
+
+router.post("/check-account", (req, res) => {
+  let { method, email, phone } = req.body;
+  let query = method === "email" ? { email: email } : { phone: phone };
+  User.findOne(query).then((user) => {
+    if (!user) return res.json({ is_exist: false });
+    return res.json({ is_exist: true });
+  });
+});
+
+router.post("/update", (req, res) => {
+  let obj = null;
+  let avatar = null;
+  const form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    obj = fields;
+  });
+
+  form.on("fileBegin", function (name, file) {
+    let currentTime = new Date().getTime();
+    file.path =
+      __dirname +
+      "/../../uploads/" +
+      currentTime +
+      "." +
+      file.name.split(".")[1];
+    avatar = currentTime + "." + file.name.split(".")[1];
+  });
+
+  form.on("file", function (name, file) {});
+
+  form.on("end", function () {
+    let { user_id, email, name, location, phone } = obj;
+    phone = JSON.parse(phone);
+    let setQuery = {
+      $set: {
+        email,
+        name,
+        location,
+        phone,
+      }
+    };
+    if (avatar) {
+      setQuery = {
+        $set: {
+          email,
+          name,
+          location,
+          phone,
+          avatar
+        }
+      };
+    }
+    User.findByIdAndUpdate(
+      { _id: user_id },
+      setQuery,
+      async function (err, doc) {
+        let user = await User.findOne({ _id: user_id });
+        return res.json(user);
+      }
+    );
+  });
+});
+
+module.exports = router;
