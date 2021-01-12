@@ -1,6 +1,5 @@
 (function ($) {
   "use strict";
-  
   //chat
 	var chatAppTarget = $('.chat-window');
 	(function() {

@@ -1,5 +1,5 @@
 {
-  "top_bar_text": "The leading online automotive marketplace in ",
+  "top_bar_text": "UAE’s leading spare parts marketplace",
   "country_modal_header": "Choose your country",
 
   "login": "Login",
@@ -22,15 +22,12 @@
   "loading_listing": "Loading listing...",
   "data_not_found": "Data Not Found!",
   
-  "menu_buy_car": "Buy Car",
-  "menu_sell_car": "Sell Car",
-  "menu_insurance": "Insurance",
-  "menu_finance": "Finance",
+  "menu_buy_parts": "Buy Parts",
+  "menu_sell_parts": "Sell Parts",
   "menu_more": "More",
-  "menu_vin_check": "VIN Check",
-  "menu_free_car_valuation": "Free Car Valuation",
-  "menu_plate_recognition": "Plate Recognition",
-  "menu_car_recognition": "Car Recognition",
+  "menu_seller_news": "Seller - News",
+  "menu_how_it_works": "How it works",
+  "menu_payment": "Payment",
   "menu_about": "About",
   "menu_contact": "Contact",
   "menu_my_profile": "My Profile",

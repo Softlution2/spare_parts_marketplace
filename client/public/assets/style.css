@@ -7018,6 +7018,10 @@ p {
   background: transparent;
 }
 
+.menu-area.menu--light nav.mainmenu__menu {
+  position: unset;
+}
+
 .menu-area.menu--light .mainmenu__menu .navbar-nav > li {
   border-bottom: 4px solid transparent;
 }
@@ -7237,6 +7241,7 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .top-menu-area .menu-fullwidth .menu-right {
@@ -7524,6 +7529,60 @@ p {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   text-transform: capitalize;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega:hover .mega-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu {
+  background: white;
+  top: 65px;
+  left: 0;
+  margin-top: 3px;
+  position: absolute;
+  width: 100%;
+  padding: 15px;
+  display: none;
+  -webkit-transition-duration: 0.9s;
+       -o-transition-duration: 0.9s;
+          transition-duration: 0.9s;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list {
+  list-style: none;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list span {
+  display: block;
+  color: #ed0103;
+  font-weight: bolder;
+  font-size: 15px;
+  padding-bottom: 0.5rem;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li {
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li:before {
+  display: none;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li a {
+  color: #3c3c3c;
+  font-size: 12px;
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li a:hover {
+  color: #ed0103;
+  border-bottom: 1px solid #ed0103;
 }
 
 /* offcanvas menu */
@@ -9753,6 +9812,9 @@ p {
   }
   .top-menu-area .menu-fullwidth .menu-container .d_menu {
     padding-right: 2rem;
+  }
+  .top-menu-area .menu-fullwidth .menu-container .drop-mega .mega-menu {
+    display: none !important;
   }
   .top-menu-area .menu-fullwidth .logo-wrapper {
     position: absolute;

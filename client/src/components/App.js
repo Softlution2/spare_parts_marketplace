@@ -33,11 +33,10 @@ class App extends Component {
           <Route exact path="/" component={Index} />
           <Route path="/all-listings" component={AllListing} />
           <Route path="/buy-type-:tag" component={AllListing} />
-          <Route path="/buy-car-:make" component={AllListing} />
-          <Route path="/listing-details/buy-car-:info" component={ListingDetails} />
+          <Route path="/buy-parts-:make" component={AllListing} />
+          <Route path="/listing-details/buy-parts-:info" component={ListingDetails} />
           <Route path="/seller-listings/:id" component={SellerListings} />
-          <Route path="/sell-your-car" component={SellYourCar} />
-          <Route path="/car-finance" component={Finance} />
+          <Route path="/sell-your-parts" component={SellYourCar} />
           <Route path="/my-profile" component={MyProfile} />
           <Route path="/my-listing" component={MyListing} />
           <Route path="/my-favorites" component={MyFavorites} />

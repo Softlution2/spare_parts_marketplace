@@ -59,6 +59,11 @@
       .d_menu{
         padding-right: remy(30px);
       }
+      .drop-mega {
+        .mega-menu {
+          display: none !important;
+        }
+      }
     }
     .logo-wrapper{
       position: absolute;
