@@ -39,7 +39,7 @@ class Header extends Component {
                       <div className="logo logo-top">
                         <NavLink to="/">
                           <img
-                            src="/assets/img/logo.png"
+                            src="/assets/img/logo.svg"
                             alt="logoImage"
                             className="img-fluid"
                             width="200"

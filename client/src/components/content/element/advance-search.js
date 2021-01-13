@@ -31,7 +31,7 @@ class AdvSearch extends Component {
             <div className="row">
               <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <div className="search_title_area">
-                  <h2 className="title">{t("home_banner_text")} {getCountryCode().country}</h2>
+                  <h2 className="title">{t("home_banner_text")}</h2>
                 </div>
                 <form action={`/all-listings`} className="search_form">
                   <input

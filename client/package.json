@@ -57,6 +57,7 @@
     "react-awesome-modal": "^2.0.5",
     "react-chartjs-2": "^2.7.6",
     "react-confirm-alert": "^2.6.2",
+    "react-cookie-consent": "^6.2.1",
     "react-custom-scrollbars": "^4.2.1",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",

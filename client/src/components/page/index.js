@@ -2,6 +2,7 @@ import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from 'react-i18next'
+import CookieConsent, { Cookies } from "react-cookie-consent";
 
 import { SectionTitle } from "../content/element/section-title";
 import Header from "../layout/header";
@@ -12,10 +13,10 @@ import HowItWorks from "../content/element/how-it-works";
 import Promise from "../content/element/promise";
 import BrowseByType from "../content/element/carousel/browse-by-type";
 import BrowseByMake from "../content/element/carousel/browse-by-make";
+import Newsletter from "../content/element/newsletter";
 import Footer from "../layout/footer";
 
 import { GetAllListing } from "../../Store/action/listingActions";
-import { getCountryCode } from "../../utils";
 
 class Index extends Component {
   componentDidMount() {
@@ -37,7 +38,6 @@ class Index extends Component {
         {/* Promise section start */}
         <section className="promise-wrapper">
           <div className="container">
-            <SectionTitle title={`MYCAR.AFRICA ${t("home_promise")}`} />
             <div className="row">
               <Promise />
             </div>
@@ -49,8 +49,8 @@ class Index extends Component {
         <section className="listing-cards section-padding">
           <div className="container">
             <SectionTitle
-              title={`${t("home_latest_cars_title")} ${getCountryCode().country}`}
-              content={`${t("home_latest_cars_description")} ${getCountryCode().country}`}
+              title={`${t("home_spare_parts_best_sellers_title")}`}
+              content={`${t("home_spare_parts_best_sellers_desc")}`}
             />
             <div className="row">
               <div className="listing-cards-wrapper col-lg-12">
@@ -81,8 +81,8 @@ class Index extends Component {
         <section className="browse-type-wrapper section-padding">
           <div className="container">
             <SectionTitle
-              title={t("home_browse_by_type_title")} 
-              content={t("home_browse_by_type_content")} 
+              title={t("home_browse_by_category_title")} 
+              content={t("home_browse_by_category_content")} 
             />
             <div className="row">
               <BrowseByType />
@@ -105,7 +105,33 @@ class Index extends Component {
         </section>
         {/* Browse By Make section end */}
 
+        {/* Newsletter section start */}
+        <section className="newsletter section-padding">
+          <div className="container">
+            <SectionTitle
+              title="Subscribe to our news letter"
+              content="And benefit from our special offers"
+            />
+            <div className="row">
+              <Newsletter />
+            </div>
+          </div>
+        </section>
+        {/* Newsletter section end */}
+        <CookieConsent
+          location="bottom"
+          buttonText="Accept"
+          buttonClasses="accept-btn"
+          containerClasses="cookie-message"
+          cookieName="myAwesomeCookieName2"
+          style={{ background: "#2B373B" }}
+          expires={150}
+        >
+          The cookie settings on this website are set to 'allow all cookies' to give you the very best experience.
+          Please click Accept Cookies to continue to use the site
+        </CookieConsent>
         <Footer />
+        
       </Fragment>
     );
   }

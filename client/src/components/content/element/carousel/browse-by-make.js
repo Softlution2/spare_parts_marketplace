@@ -56,7 +56,7 @@ class BrowseByType extends Component {
                       <img src={`./assets/img/make-logos/${value._id.toLowerCase().replace(" ", "-")}.png`} alt="" />
                     </div>
                     <div className="type-action mb-3">
-                      <NavLink to={`/buy-car-${value._id.toLowerCase().replace(" ", "-")}`} className="btn btn-primary btn-md">
+                      <NavLink to={`/buy-parts-${value._id.toLowerCase().replace(" ", "-")}`} className="btn btn-primary btn-md">
                         {value._id}
                       </NavLink>
                     </div>

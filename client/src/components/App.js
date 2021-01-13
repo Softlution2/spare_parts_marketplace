@@ -12,9 +12,6 @@ import MyListing from "./page/my-listing";
 import MyFavorites from "./page/my-favorites";
 import MyCallbacks from "./page/my-callbacks";
 import Chats from "./page/chats";
-import VinCheck from "./page/vin-check";
-import CarRecognition from "./page/car-recognition";
-import CarPlateRecognition from "./page/car-plate-recognition";
 import AboutUs from "./page/about-us";
 import ContactUs from "./page/contact-us";
 import Privacy from "./page/privacy";
@@ -42,9 +39,6 @@ class App extends Component {
           <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-callbacks" component={MyCallbacks} />
           <Route path="/chats" component={Chats} />
-          <Route path="/car-vin-check" component={VinCheck} />
-          <Route path="/car-recognition" component={CarRecognition} />
-          <Route path="/car-plate-recognition" component={CarPlateRecognition} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contact" component={ContactUs} />
           <Route path="/terms" component={Terms} />

@@ -274,8 +274,10 @@ class OTPVerification extends Component {
           </button>
         </form>
         <p className="footer-text">
-          By doing this, i agree to MyCar.Africa's <a href="/terms">Terms</a>{" "}
-          and <a href="/privacy">Privacy Policy</a>
+          
+          By doing this, i agree to{" "}
+          <a href="/terms">Terms</a> and{" "}
+          <a href="/privacy">Privacy Policy</a>
         </p>
       </Fragment>
     );

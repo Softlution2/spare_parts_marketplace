@@ -19,7 +19,7 @@ class Thankyou extends Component {
         <PreHeader />
         <Header />
         <PageBanner title="Thank you!"/>
-        <div className="container">
+        <div className="container mb-5">
           <div className="row">
             <div className="col-lg-2">
 

@@ -16,7 +16,7 @@ class Footer extends Component {
               <div className="row">
                 <div className="col-lg-4 col-sm-6">
                   <div className="widget widget_pages">
-                    <h2 className="widget-title">MyCar.Africa</h2>
+                    <h2 className="widget-title"> Spare Parts Marketplace</h2>
                     <ul className="list-unstyled">
                       <li className="page-item">
                         <NavLink to="/about-us">{t("footer_menu_about_us")}</NavLink>
@@ -91,7 +91,7 @@ class Footer extends Component {
                 {/* ends: .col-lg-3 */}
                 <div className="col-lg-4 col-sm-6">
                   <div className="widget widget_text">
-                    <h2 className="widget-title">MyCar.Africa</h2>
+                    <h2 className="widget-title">Spare Parts Marketplace</h2>
                     <div className="textwidget">
                       <p>
                         {t("footer_description")}
@@ -112,17 +112,13 @@ class Footer extends Component {
                   <div className="footer-bottom--content">
                     <NavLink to="/" className="footer-logo">
                       <img
-                        src="/assets/img/logo.png"
+                        src="/assets/img/logo.svg"
                         alt="logoImage"
                         width="200"
                       />
                     </NavLink>
                     <p className="m-0 copy-text">
-                      © 2020 MyCar.Africa. Made with&nbsp;
-                      <span className="la la-heart-o" />&nbsp;by{" "}
-                      <NavLink onClick={noAction} to="#">
-                        AfriCar Group
-                      </NavLink>
+                    © 2021 Spare Parts Marketplace. All rights reserved.
                     </p>
                   </div>
                 </div>

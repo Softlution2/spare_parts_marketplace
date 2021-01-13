@@ -5680,6 +5680,7 @@ p {
 .author-info-area .user_pro_img_area img {
   -webkit-border-radius: 100%;
           border-radius: 100%;
+  width: 100%;
 }
 
 .author-info-area .user_pro_img_area .image-info {
@@ -6641,158 +6642,58 @@ p {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
-.vin-check-wrapper {
-  padding: 3rem 0;
-}
-
-.vin-check-wrapper .thumb-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.vin-check-wrapper .thumb-container .dz-thumb {
-  -webkit-border-radius: 2px;
-          border-radius: 2px;
-  border: 1px solid #eaeaea;
-  margin-bottom: 8px;
-  padding: 4px;
+.newsletter {
   text-align: center;
+  margin-bottom: 3rem;
 }
 
-.vin-check-wrapper .thumb-container .dz-thumb .dz-thumb-inner {
+.newsletter p {
+  margin: 0;
+}
+
+.newsletter form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-width: 0;
-  overflow: hidden;
-  width: 22rem;
-  height: 15em;
-  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+.newsletter form .email-input {
+  width: 100%;
   position: relative;
 }
 
-.vin-check-wrapper .thumb-container .dz-thumb .dz-thumb-inner img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.newsletter form .email-input:before {
+  font-family: 'Line Awesome Free';
+  font-weight: 900;
+  content: "\f0e0";
+  display: inline-block;
+  position: absolute;
+  top: 22px;
+  right: .5em;
+  margin-right: 0;
+  font-size: 1.4rem;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
-.vin-check-wrapper .language-markup {
-  background: #2d2d2d;
-  padding: 1em;
-  margin: .5em 0;
-  color: #ccc;
-  font-size: 1em;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.5;
-  -moz-tab-size: 4;
-    -o-tab-size: 4;
-       tab-size: 4;
-  -webkit-hyphens: none;
-      -ms-hyphens: none;
-          hyphens: none;
+.newsletter form .email-input input {
+  background: white;
+  -webkit-border-radius: 10px;
+          border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.car-finance-page {
-  padding: 4rem 0;
-}
-
-.car-finance-page .vehicle-loan-calculator {
-  -webkit-border-radius: 20px;
-          border-radius: 20px;
-  background-color: #f2f5fb;
-  padding: 50px 20px 70px;
-}
-
-.car-finance-page .vehicle-loan-calculator p.sub-title {
-  max-width: 730px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.car-finance-page .vehicle-loan-calculator form {
-  max-width: 586px;
-  margin: 0 auto;
-}
-
-.car-finance-page .vehicle-loan-calculator form label:after {
-  font-size: 15px;
-  content: "*";
-  color: #ed0103;
-}
-
-.car-finance-page .vehicle-loan-calculator form .input-group .input-group-prepend {
-  background-color: transparent;
-}
-
-.car-finance-page .vehicle-loan-calculator form .input-group .input-group-prepend .input-group-text {
-  color: #ed0103;
-  background-color: transparent;
-}
-
-.car-finance-page .vehicle-loan-calculator form .input-group .input-group-prepend .input-group-text i {
-  font-size: 1.6rem;
-}
-
-.car-finance-page .vehicle-loan-calculator .vehicle-loan-calculator-results {
-  max-width: 782px;
-  margin: 0 auto;
-  padding: 0 15px;
-  -webkit-border-radius: 20px;
-          border-radius: 20px;
-  border: solid 1px var(--primary);
-  background-color: #fff;
-}
-
-.car-finance-page .vehicle-loan-calculator .vehicle-loan-calculator-results .result-col {
-  text-align: center;
-}
-
-.car-finance-page .vehicle-loan-calculator .vehicle-loan-calculator-results .result-col h3 {
-  font-size: 19px;
-  font-weight: 600;
-  color: #222732;
-  margin-bottom: 8px;
-  margin-top: 30px;
-  text-align: center;
-}
-
-.car-finance-page .vehicle-loan-calculator .vehicle-loan-calculator-results .result-col h4 {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 36px;
-  text-align: center;
-}
-
-@media (min-width: 900px) {
-  .vehicle-loan-calculator-results {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .vehicle-loan-calculator-results .result-col {
-    width: calc(100% / 3);
-    padding: 0 35px;
-  }
+.newsletter form button {
+  -webkit-border-radius: 10px;
+          border-radius: 10px;
+  margin-left: 1.3rem;
 }
 
 /*****************************
@@ -6909,7 +6810,6 @@ p {
 
 .menu-area .top-menu-area .logo-top a {
   display: block;
-  padding: 19px 35px 19px 20px;
 }
 
 .menu-area .mainmenu__menu .navbar-nav > li.has_dropdown {
@@ -9752,6 +9652,54 @@ p {
   color: #ed0103;
   font-size: 5.06667rem;
   margin-bottom: 1rem;
+}
+
+.cookie-message {
+  bottom: 15px !important;
+  left: 15px !important;
+  width: 350px !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+}
+
+.cookie-message div:first-child {
+  -webkit-box-flex: 1 !important;
+      -ms-flex: 1 0 !important;
+          flex: 1 0 !important;
+  line-height: 24px;
+}
+
+.cookie-message div:nth-child(2) {
+  width: 100%;
+  padding-right: 20px;
+  text-align: right;
+}
+
+.cookie-message div:nth-child(2) .accept-btn {
+  color: #818181 !important;
+  font-weight: 600 !important;
+  letter-spacing: .05em !important;
+  position: relative !important;
+  border: 0 !important;
+  background: transparent !important;
+  outline: 0 !important;
+  -webkit-transition: all ease 0.4s;
+  -o-transition: all ease 0.4s;
+  transition: all ease 0.4s;
+}
+
+.cookie-message div:nth-child(2) .accept-btn:hover {
+  color: white !important;
+}
+
+.cookie-message div:nth-child(2) .accept-btn:after {
+  content: "✔";
+  position: absolute;
+  display: block;
+  right: -10px;
+  top: 5px;
 }
 
 /* Responsive CSS */

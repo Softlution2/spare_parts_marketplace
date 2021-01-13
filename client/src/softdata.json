@@ -424,7 +424,7 @@
     "logo": [
         {
             "light": "./assets/img/logo-white.png",            
-            "dark": "./assets/img/logo.png"
+            "dark": "./assets/img/logo.svg"
         }
     ]
 
