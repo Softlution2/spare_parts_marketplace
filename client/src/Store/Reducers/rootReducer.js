@@ -6,6 +6,7 @@ import loginReducer from './loginReducer';
 import signupReducer from './signupReducer';
 import sellingReducer from './sellingReducer';
 import chatReducer from './chatReducer';
+import newsReducer from './newsReducer';
 
 const rootReducer = combineReducers({
     list: listReducer,
@@ -15,5 +16,6 @@ const rootReducer = combineReducers({
     signup: signupReducer,
     selling: sellingReducer,
     chat: chatReducer,
+    news: newsReducer,
 });
 export default rootReducer;

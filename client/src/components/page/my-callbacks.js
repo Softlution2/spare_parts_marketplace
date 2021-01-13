@@ -54,7 +54,7 @@ class MyCallbacks extends Component {
                     {callbackList.length > 0 ? (
                         callbackList.map((call, index) => {
                             const link =
-                              "buy-car-" +
+                              "buy-parts-" +
                               stringToUrl(call.listing.make) +
                               "-" +
                               stringToUrl(call.listing.model) +

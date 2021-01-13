@@ -16,7 +16,11 @@ import AboutUs from "./page/about-us";
 import ContactUs from "./page/contact-us";
 import Privacy from "./page/privacy";
 import Terms from "./page/terms";
-import Finance from "./page/finance";
+import News from "./page/news";
+import NewsDetails from "./page/news-details";
+import Sellers from "./page/sellers";
+import SellerDetails from "./page/seller-details";
+import Faqs from "./page/faqs";
 import "../i18n";
 
 class App extends Component {
@@ -34,6 +38,11 @@ class App extends Component {
           <Route path="/listing-details/buy-parts-:info" component={ListingDetails} />
           <Route path="/seller-listings/:id" component={SellerListings} />
           <Route path="/sell-your-parts" component={SellYourCar} />
+          <Route path="/news" component={News} />
+          <Route path="/news-details:id" component={NewsDetails} />
+          <Route path="/sellers" component={Sellers} />
+          <Route path="/seller-details" component={SellerDetails} />
+
           <Route path="/my-profile" component={MyProfile} />
           <Route path="/my-listing" component={MyListing} />
           <Route path="/my-favorites" component={MyFavorites} />
@@ -42,6 +51,7 @@ class App extends Component {
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contact" component={ContactUs} />
           <Route path="/terms" component={Terms} />
+          <Route path="/faqs" component={Faqs} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/thankyou" component={Thankyou} />
         </Switch>

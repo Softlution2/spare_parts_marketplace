@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
+import { NavLink } from "react-router-dom";
 
 class Newsletter extends Component {
 
@@ -18,7 +19,7 @@ class Newsletter extends Component {
             By subscribing here you agree to receive our promotional offers.
           </p>
           <p>
-            Please verify our <a href="#!">privacy policy terms and condiions</a>
+            Please verify our <NavLink to="/privacy">privacy policy terms and conditions</NavLink>
           </p>
         </div>
       </Fragment>

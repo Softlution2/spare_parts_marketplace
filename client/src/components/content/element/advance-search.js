@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from 'react-i18next'
 
-import { getCountryCode } from "../../../utils";
-
 const noAction = (e) => e.preventDefault();
 
 class AdvSearch extends Component {
@@ -51,6 +49,9 @@ class AdvSearch extends Component {
                     </button>
                   </div>
                 </form>
+                <p className="search-bottom-text">
+                  Search by <a href="#!">vehicle make and mode</a>, or by <a href="#!">VIN number</a>
+                </p>
               </div>
             </div>
           </div>

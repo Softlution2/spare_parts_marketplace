@@ -35,16 +35,6 @@ class Index extends Component {
           <AdvSearch />
         </section>
 
-        {/* Promise section start */}
-        <section className="promise-wrapper">
-          <div className="container">
-            <div className="row">
-              <Promise />
-            </div>
-          </div>
-        </section>
-        {/* Promise section end */}
-
         {/* Listing section start */}
         <section className="listing-cards section-padding">
           <div className="container">
@@ -92,7 +82,7 @@ class Index extends Component {
         {/* Browse By Type section end */}
         
         {/* Browse By Make section start */}
-        <section className="browse-type-wrapper section-padding">
+        <section className="browse-type-wrapper section-padding mb-5">
           <div className="container">
             <SectionTitle
               title={t("home_browse_by_make_title")} 
@@ -104,6 +94,16 @@ class Index extends Component {
           </div>
         </section>
         {/* Browse By Make section end */}
+
+        {/* Promise section start */}
+        <section className="promise-wrapper">
+          <div className="container">
+            <div className="row">
+              <Promise />
+            </div>
+          </div>
+        </section>
+        {/* Promise section end */}
 
         {/* Newsletter section start */}
         <section className="newsletter section-padding">

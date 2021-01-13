@@ -169,10 +169,10 @@ class NavItem extends Component {
             <NavLink to="/sell-your-parts">{t('menu_sell_parts')}</NavLink>
           </li>
           <li>
-            <NavLink to="/sell-your-parts">{t('menu_seller')}</NavLink>
+            <NavLink to="/sellers">{t('menu_sellers')}</NavLink>
           </li>
           <li>
-            <NavLink to="/sell-your-parts">{t('menu_news')}</NavLink>
+            <NavLink to="/news">{t('menu_news')}</NavLink>
           </li>
           
           <li className="dropdown has_dropdown">

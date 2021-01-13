@@ -684,11 +684,12 @@
           color: $dark;
           display: block;
           &:before{
-            content: '\f2c2';
-            font-family: "LineAwesome";
+            content: "\f067";
+            font-family: 'Line Awesome Free';
             transition: $transition-base;
             margin-right: remy(6px);
             font-size: remy(14px);
+            font-weight: 900;
           }
         }
       }
@@ -697,7 +698,7 @@
       }
       &.selected{
         .faq-title a:before{
-          content: '\f28e';
+          content: "\f068";
         }
       }
     }

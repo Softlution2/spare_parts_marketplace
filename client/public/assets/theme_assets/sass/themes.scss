@@ -101,6 +101,15 @@
       }
     }
   }
+  .search-bottom-text {
+    text-align: center;
+    color: #bdbdbd;
+    margin-top: 0.5rem;
+    a {
+      color: #bdbdbd;
+      text-decoration: underline;
+    }
+  }
   .directory_home_category_area{
     margin-top: remy(33px);
     ul{
@@ -529,7 +538,9 @@
   border: 1px solid $border-color;
   margin-bottom: remy(30px);
   .atbd_author_avatar{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     img{
       border-radius: 100%;
     }

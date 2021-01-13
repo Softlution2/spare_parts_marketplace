@@ -88,16 +88,15 @@ class Header extends Component {
                                   data-toggle="modal"
                                   data-target="#login_modal"
                                 >
-                                  {t("login")}
+                                  <i className="la la-user"></i>
+                                  {/* {t("login")} */}
                                 </a>
-                                <span>{t("or")}</span>
                                 <a
                                   href=" "
                                   className="access-link"
-                                  data-toggle="modal"
-                                  data-target="#signup_modal"
                                 >
-                                  {t("register")}
+                                  <i className="la la-shopping-cart"></i>
+                                  {/* {t("register")} */}
                                 </a>
                               </li>
                             </ul>

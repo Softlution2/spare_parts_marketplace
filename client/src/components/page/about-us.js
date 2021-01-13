@@ -22,21 +22,21 @@ class AboutUs extends Component {
         <PageBanner title={t("about_title")} />
         <section className="section-padding-strict">
           <div className="container">
-            <SectionTitle title={t('about_mycar_africa')} content="" />
+            <SectionTitle title="ABOUT SPAREPARTS MARKETPLACE" content="" />
             <p>
-              CARRO is an automotive marketplace that offers a full-stack
+              Sparepartsmarketplace is an automotive marketplace that offers a full-stack
             service for all aspects of car ownership. By offering a
-            trustworthy and transparent experience, CARRO challenges the
+            trustworthy and transparent experience, Sparepartsmarketplace challenges the
             traditional way of buying and selling cars through a proprietary
             pricing algorithm.
             </p>
-            <p>Besides selling second-hand cars, CARRO
+            <p>Besides selling second-hand cars, Sparepartsmarketplace
             provides services that offer a car owner everything they need
-            throughout their car ownership journey. In 2019, CARRO introduced
+            throughout their car ownership journey. In 2019, Sparepartsmarketplace introduced
             the First Car Subscription Service in Singapore. The new service
             aims to provide Singaporeans with a commitment-free car ownership
             experience, unlike the traditional.</p>
-            <p> Carro’s technology-driven
+            <p> Sparepartsmarketplace’s technology-driven
             services leverage on innovation and technology to provide
             consumers with a seamless experience throughout. These include an
             in-house financing solution through its sister company Genie
@@ -44,8 +44,8 @@ class AboutUs extends Component {
             in-house car care workshop and Singapore’s first on-demand
             roadside recovery platform. </p>
             <h4 className="mb-4">Best Funded Automotive Marketplace</h4>
-            <p>Founded in 2015, CARRO is Southeast Asia’s largest automotive marketplace for pre-owned cars, with the company having expanded to Thailand and Indonesia in 2017. Carro’s expansion coincides with exponential year-on-year growth, recording over US$100 million worth of transactions in 2016, with figures doubling to over US$250 million in 2017 and again doubling to US$500 million in 2018.</p>
-            <p>In August 2019, CARRO closed their Series B funding round at US$90 million. The round was supported by notable names such as SoftBank Ventures Asia, EDBI Pte Ltd, Insignia Ventures Partners, B Capital Group and many more. Overall, CARRO has raised US$105 million since its inception. The funding has allowed the company to expand its presence across Southeast Asia and improve existing services in its automotive ecosystem.</p>
+            <p>Founded in 2015, Sparepartsmarketplace is Southeast Asia’s largest automotive marketplace for pre-owned cars, with the company having expanded to Thailand and Indonesia in 2017. Sparepartsmarketplace’s expansion coincides with exponential year-on-year growth, recording over US$100 million worth of transactions in 2016, with figures doubling to over US$250 million in 2017 and again doubling to US$500 million in 2018.</p>
+            <p>In August 2019, Sparepartsmarketplace closed their Series B funding round at US$90 million. The round was supported by notable names such as SoftBank Ventures Asia, EDBI Pte Ltd, Insignia Ventures Partners, B Capital Group and many more. Overall, Sparepartsmarketplace has raised US$105 million since its inception. The funding has allowed the company to expand its presence across Southeast Asia and improve existing services in its automotive ecosystem.</p>
           </div>
         </section>
         <section className="section-padding-strict">

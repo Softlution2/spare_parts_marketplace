@@ -36,7 +36,7 @@ class ListingCardGrid extends Component {
           const title = make + " " + model + " " + year + " " + version;
           const badge = moment.duration(moment().diff(moment(date))).asHours() <= 48 ? "new listing" : "";
           const link =
-            "buy-car-" +
+            "buy-parts-" +
             stringToUrl(make) +
             "-" +
             stringToUrl(model) +

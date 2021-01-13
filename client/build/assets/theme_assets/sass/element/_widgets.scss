@@ -647,9 +647,12 @@
       position: relative;
       padding-left: 18px;
       &:before{
+        content: "\f101";
         position: absolute;
-        content: '\f186';
-        font-family: "LineAwesome";
+        display: inline-block;
+        line-height: 1;
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
         left:0;
         top:2px;
         font-size: remy(12px);

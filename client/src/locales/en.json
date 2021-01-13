@@ -25,7 +25,7 @@
   "menu_buy_parts": "Buy Parts",
   "menu_sell_parts": "Sell Parts",
   "menu_more": "More",
-  "menu_seller": "Seller",
+  "menu_sellers": "Sellers",
   "menu_news": "News",
   "menu_how_it_works": "How it works",
   "menu_payment": "Payment",
@@ -44,7 +44,7 @@
 
   "home_banner_text": "Find spare parts in the UAE",
   "home_search_placeholder": "Find with spare part SKU or vehicle VIN...",
-  "home_search_button_text": "FIND YOU CAR",
+  "home_search_button_text": "FIND PARTS",
   "home_promise_card1_title": "WARRANTY",
   "home_promise_card1_description": "Enjoy a 1-year warranty when you purchase a car with us!",
   "home_promise_card2_title": "QUALITY CARS",

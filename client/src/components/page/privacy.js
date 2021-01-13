@@ -21,11 +21,11 @@ class Privacy extends Component {
         <PageBanner title="Privacy Policy" />
         <section className="section-padding-strict">
           <div className="container">
-            <h2 className="mb-3">AfriCarGroup Pty Ltd Terms of Service</h2>
+            <h2 className="mb-3">Sparepartsmarketplace Pty Ltd Terms of Service</h2>
             <h3>1. Terms</h3>
             <p>
               By accessing the website at{" "}
-              <a href="http://www.mycar.africa">http://www.mycar.africa</a>, you
+              <a href="http://www.website.com ">http://www.website.com </a>, you
               are agreeing to be bound by these terms of service, all applicable
               laws and regulations, and agree that you are responsible for
               compliance with any applicable local laws. If you do not agree
@@ -37,7 +37,7 @@ class Privacy extends Component {
             <ol type="a">
               <li>
                 Permission is granted to temporarily download one copy of the
-                materials (information or software) on AfriCarGroup Pty Ltd's
+                materials (information or software) on Sparepartsmarketplace Pty Ltd's
                 website for personal, non-commercial transitory viewing only.
                 This is the grant of a license, not a transfer of title, and
                 under this license you may not:
@@ -49,7 +49,7 @@ class Privacy extends Component {
                   </li>
                   <li>
                     attempt to decompile or reverse engineer any software
-                    contained on AfriCarGroup Pty Ltd's website;
+                    contained on Sparepartsmarketplace Pty Ltd's website;
                   </li>
                   <li>
                     remove any copyright or other proprietary notations from the
@@ -63,7 +63,7 @@ class Privacy extends Component {
               </li>
               <li>
                 This license shall automatically terminate if you violate any of
-                these restrictions and may be terminated by AfriCarGroup Pty Ltd
+                these restrictions and may be terminated by Sparepartsmarketplace Pty Ltd
                 at any time. Upon terminating your viewing of these materials or
                 upon the termination of this license, you must destroy any
                 downloaded materials in your possession whether in electronic or
@@ -73,8 +73,8 @@ class Privacy extends Component {
             <h3>3. Disclaimer</h3>
             <ol type="a">
               <li>
-                The materials on AfriCarGroup Pty Ltd's website are provided on
-                an 'as is' basis. AfriCarGroup Pty Ltd makes no warranties,
+                The materials on Sparepartsmarketplace Pty Ltd's website are provided on
+                an 'as is' basis. Sparepartsmarketplace Pty Ltd makes no warranties,
                 expressed or implied, and hereby disclaims and negates all other
                 warranties including, without limitation, implied warranties or
                 conditions of merchantability, fitness for a particular purpose,
@@ -82,7 +82,7 @@ class Privacy extends Component {
                 of rights.
               </li>
               <li>
-                Further, AfriCarGroup Pty Ltd does not warrant or make any
+                Further, Sparepartsmarketplace Pty Ltd does not warrant or make any
                 representations concerning the accuracy, likely results, or
                 reliability of the use of the materials on its website or
                 otherwise relating to such materials or on any sites linked to
@@ -91,11 +91,11 @@ class Privacy extends Component {
             </ol>
             <h3>4. Limitations</h3>
             <p>
-              In no event shall AfriCarGroup Pty Ltd or its suppliers be liable
+              In no event shall Sparepartsmarketplace Pty Ltd or its suppliers be liable
               for any damages (including, without limitation, damages for loss
               of data or profit, or due to business interruption) arising out of
-              the use or inability to use the materials on AfriCarGroup Pty
-              Ltd's website, even if AfriCarGroup Pty Ltd or a AfriCarGroup Pty
+              the use or inability to use the materials on Sparepartsmarketplace Pty
+              Ltd's website, even if Sparepartsmarketplace Pty Ltd or a Sparepartsmarketplace Pty
               Ltd authorized representative has been notified orally or in
               writing of the possibility of such damage. Because some
               jurisdictions do not allow limitations on implied warranties, or
@@ -104,25 +104,25 @@ class Privacy extends Component {
             </p>
             <h3>5. Accuracy of materials</h3>
             <p>
-              The materials appearing on AfriCarGroup Pty Ltd's website could
+              The materials appearing on Sparepartsmarketplace Pty Ltd's website could
               include technical, typographical, or photographic errors.
-              AfriCarGroup Pty Ltd does not warrant that any of the materials on
-              its website are accurate, complete or current. AfriCarGroup Pty
+              Sparepartsmarketplace Pty Ltd does not warrant that any of the materials on
+              its website are accurate, complete or current. Sparepartsmarketplace Pty
               Ltd may make changes to the materials contained on its website at
-              any time without notice. However AfriCarGroup Pty Ltd does not
+              any time without notice. However Sparepartsmarketplace Pty Ltd does not
               make any commitment to update the materials.
             </p>
             <h3>6. Links</h3>
             <p>
-              AfriCarGroup Pty Ltd has not reviewed all of the sites linked to
+              Sparepartsmarketplace Pty Ltd has not reviewed all of the sites linked to
               its website and is not responsible for the contents of any such
               linked site. The inclusion of any link does not imply endorsement
-              by AfriCarGroup Pty Ltd of the site. Use of any such linked
+              by Sparepartsmarketplace Pty Ltd of the site. Use of any such linked
               website is at the user's own risk.
             </p>
             <h3>7. Modifications</h3>
             <p>
-              AfriCarGroup Pty Ltd may revise these terms of service for its
+              Sparepartsmarketplace Pty Ltd may revise these terms of service for its
               website at any time without notice. By using this website you are
               agreeing to be bound by the then current version of these terms of
               service.

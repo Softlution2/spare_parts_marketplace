@@ -506,6 +506,9 @@
         margin-right: 0;
       }
       .access-link{
+        color: rgba($dark, 0.05);
+        font-size: 25px;
+        margin: 0 5px;
         &:hover{
           @extend .color-primary;
         }
