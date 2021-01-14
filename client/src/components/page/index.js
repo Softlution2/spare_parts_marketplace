@@ -11,7 +11,7 @@ import AdvSearch from "../content/element/advance-search";
 import CardListingGrid from "../content/element/card/card-listing-grid";
 import HowItWorks from "../content/element/how-it-works";
 import Promise from "../content/element/promise";
-import BrowseByType from "../content/element/carousel/browse-by-type";
+import BrowseByCategory from "../content/element/browse-by-category";
 import BrowseByMake from "../content/element/carousel/browse-by-make";
 import Newsletter from "../content/element/newsletter";
 import Footer from "../layout/footer";
@@ -68,15 +68,13 @@ class Index extends Component {
         {/* How It Works section end */}
 
         {/* Browse By Type section start */}
-        <section className="browse-type-wrapper section-padding">
+        <section className="browse-category-wrapper section-padding">
           <div className="container">
             <SectionTitle
               title={t("home_browse_by_category_title")} 
               content={t("home_browse_by_category_content")} 
             />
-            <div className="row">
-              <BrowseByType />
-            </div>
+            <BrowseByCategory />
           </div>
         </section>
         {/* Browse By Type section end */}

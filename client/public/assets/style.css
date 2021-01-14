@@ -9347,6 +9347,47 @@ p {
   font-weight: bolder;
 }
 
+.browse-category-wrapper .category-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.browse-category-wrapper .category-list .category-card-wrapper {
+  max-width: 20%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+          flex: 0 0 20%;
+  padding: 1rem;
+}
+
+.browse-category-wrapper .category-list .category-card-wrapper .category-card {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(149, 149, 149, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(149, 149, 149, 0.5);
+}
+
+.browse-category-wrapper .category-list .category-card-wrapper .category-card a {
+  color: #ed0103;
+  font-weight: bolder;
+  text-align: center;
+}
+
 .section-title {
   text-align: center;
   margin-bottom: 2rem;
@@ -10277,6 +10318,12 @@ p {
             flex: 0 0 100%;
     max-width: 100%;
   }
+  .browse-category-wrapper .category-list .category-card-wrapper {
+    max-width: 25%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -10341,6 +10388,12 @@ p {
   }
   .clients-logo-wrapper {
     padding-top: 4.66667rem;
+  }
+  .browse-category-wrapper .category-list .category-card-wrapper {
+    max-width: calc(100% / 3);
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 calc(100% / 3);
+            flex: 0 0 calc(100% / 3);
   }
 }
 
@@ -10438,6 +10491,12 @@ p {
     display: block;
     min-width: 13.33333rem;
   }
+  .browse-category-wrapper .category-list .category-card-wrapper {
+    max-width: 50%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+  }
 }
 
 @media (max-width: 400px) {
@@ -10471,6 +10530,12 @@ p {
   }
   .dashboard-nav .dashboard-nav-area .nav .nav-link {
     padding: 10px 0;
+  }
+  .browse-category-wrapper .category-list .category-card-wrapper {
+    max-width: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
   }
 }
 

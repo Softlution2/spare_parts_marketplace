@@ -211,6 +211,34 @@
   }
 }
 
+//borwse by category
+.browse-category-wrapper {
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    .category-card-wrapper {
+      max-width: 20%;
+      flex: 0 0 20%;
+      padding: 1rem;
+      .category-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        box-shadow: 0 2px 4px 0 rgba(149, 149, 149, 0.5);
+        a {
+          color: $primary;
+          font-weight: bolder;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
 //section title
 .section-title{
   text-align: center;

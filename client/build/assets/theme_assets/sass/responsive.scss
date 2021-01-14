@@ -203,6 +203,14 @@
       }
     }
   }
+  .browse-category-wrapper {
+    .category-list {
+      .category-card-wrapper {
+        max-width: 25%;
+        flex: 0 0 25%;
+      }
+    }
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -265,6 +273,14 @@
   }
   .clients-logo-wrapper{
     padding-top: remy(70px);
+  }
+  .browse-category-wrapper {
+    .category-list {
+      .category-card-wrapper {
+        max-width: calc(100% / 3);
+        flex: 0 0 calc(100% / 3);
+      }
+    }
   }
 }
 
@@ -363,6 +379,14 @@
     display: block;
     min-width: remy(200px);
   }
+  .browse-category-wrapper {
+    .category-list {
+      .category-card-wrapper {
+        max-width: 50%;
+        flex: 0 0 50%;
+      }
+    }
+  }
 }
 
 @media (max-width: 400px) {
@@ -396,6 +420,14 @@
       margin-top: 10px;
       .nav-link{
         padding: 10px 0;
+      }
+    }
+  }
+  .browse-category-wrapper {
+    .category-list {
+      .category-card-wrapper {
+        max-width: 100%;
+        flex: 0 0 100%;
       }
     }
   }

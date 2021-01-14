@@ -28,19 +28,6 @@ export const checkAuthenticated = token => {
   return date < data.exp;
 }
 
-export const getCountryCode = () => {
-  const full = window.location.host;
-  //window.location.host is subdomain.domain.com
-  const parts = full.split('.');
-  const subdomain = parts[0];
-  const index = countryCodes.findIndex(x => x.code === subdomain.toUpperCase());
-  if (index > -1) {
-    return {code: countryCodes[index].code.toLowerCase(), country: countryCodes[index].country};
-  }
-  else { 
-    return { code: 'www', country: 'Africa' };
-  }
-}
 
 export const getTimeSince = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000);
