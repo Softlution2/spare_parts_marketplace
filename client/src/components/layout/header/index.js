@@ -82,15 +82,12 @@ class Header extends Component {
                           {this.props.login === null && (
                             <ul className="d-flex list-unstyled align-items-center">
                               <li>
-                                <a
-                                  href=" "
+                                <NavLink
+                                  to="/register"
                                   className="access-link"
-                                  data-toggle="modal"
-                                  data-target="#login_modal"
                                 >
                                   <i className="la la-user"></i>
-                                  {/* {t("login")} */}
-                                </a>
+                                </NavLink>
                                 <a
                                   href=" "
                                   className="access-link"

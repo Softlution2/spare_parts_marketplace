@@ -4,29 +4,17 @@ export const Initialize = () => {
         type: 'SIGNUP_INITIALIZE',
     })
     return Promise.resolve()
-  }  
+  }
 }
 
-export const SetSignupStep = data => {
-  const step = data;
+export const SetAccountType = (data) => {
   return (dispatch, getState) => {  
     dispatch( {
-        type: 'SET_SIGNUP_STEP',
-        step
+      type: 'SET_ACCOUNT_TYPE',
+      data
     })
     return Promise.resolve()
-  }  
-}
-
-export const SetVerifyMethod = data => { 
-  const method = data;
-  return (dispatch, getState) => {  
-    dispatch( {
-        type: 'SET_VERIFY_METHOD',
-        method
-    })
-    return Promise.resolve()
-  }   
+  }
 }
 
 export const SetEmailAddress = data => {
@@ -51,6 +39,42 @@ export const SetPhoneNumber = data => {
   }
 }
 
+export const SetPassword = data => {
+  const method = data;
+  return (dispatch, getState) => {
+    dispatch( {
+      type: "SET_PASSWORD",
+      method
+    })
+    return Promise.resolve()
+  }
+}
+
+
+
+
+export const SetSignupStep = data => {
+  const step = data;
+  return (dispatch, getState) => {  
+    dispatch( {
+        type: 'SET_SIGNUP_STEP',
+        step
+    })
+    return Promise.resolve()
+  }  
+}
+
+export const SetVerifyMethod = data => { 
+  const method = data;
+  return (dispatch, getState) => {  
+    dispatch( {
+        type: 'SET_VERIFY_METHOD',
+        method
+    })
+    return Promise.resolve()
+  }   
+}
+
 export const SetVerifyPassed = data => {
   const method = data;
   return (dispatch, getState) => {
@@ -62,16 +86,6 @@ export const SetVerifyPassed = data => {
   }
 }
 
-export const SetPassword = data => {
-  const method = data;
-  return (dispatch, getState) => {
-    dispatch( {
-      type: "SET_PASSWORD",
-      method
-    })
-    return Promise.resolve()
-  }
-}
 
 export const SetDetails = data => {
   const method = data;

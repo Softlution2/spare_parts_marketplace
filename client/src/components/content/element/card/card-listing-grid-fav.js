@@ -47,8 +47,8 @@ class ListingCardGrid extends Component {
             "-" +
             stringToUrl(version) +
             "-" +
-            stringToUrl(user_id.location) +
-            "-" +
+            // stringToUrl(user_id.location) +
+            // "-" +
             reference_code;
           
           return (
@@ -117,7 +117,7 @@ class ListingCardGrid extends Component {
                     <div className="listing-meta">
                       <p>
                         <i className="la la-map-marker"></i>
-                        {user_id.location}
+                        {/* {user_id.location} */}
                       </p>
                       <p>
                         <i className="la la-calendar"></i>

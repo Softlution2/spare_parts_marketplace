@@ -109,6 +109,7 @@
     }
   }
 }
+
 .react-tel-input {
   .special-label {
     display: none !important;
@@ -163,5 +164,130 @@
     object-fit: cover;
     border: 3px solid $dark-blue;
     border-radius: 50%;
+  }
+}
+
+.registration-page {
+  margin: 3rem 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0,64,96,.2);
+  border-radius: 4px;
+  padding-bottom: 63px!important;
+  .register-by-seller, .register-by-buyer {
+  }
+  .separator-line {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+
+    >span {
+      position: relative;
+      padding: 5px 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgba(0,64,96,.2);
+      border-radius: 20px;
+      color: rgba(0,64,96,.48);
+      font-size: 14px;
+      line-height: 20px;
+      &:before, &:after {
+        position: absolute;
+        top: 50%;
+        display: block;
+        width: 10000px;
+        height: 1px;
+        background-color: rgba(0,64,96,.2);
+        content: '';
+        transform: translateY(-50%);
+      }
+      &:before {
+        right: 100%;
+      }
+      &:after {
+        left: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) { 
+  .registration-page {
+    position: relative;
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    h2 {
+      margin-bottom: 2rem;
+    }
+    .register-by-seller, .register-by-buyer {
+      width: 31.57895%!important;
+      padding-top: 98px!important;
+      padding-bottom: 104px!important;
+    }
+    .separator-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      align-items: center;
+      transform: translateX(-50%);  
+      margin-bottom: 0 !important;
+      >span {
+        &:before, &:after {
+          top: auto;
+          left: 50%;
+          width: 1px;
+          height: 10000px;
+          transform: translateX(-50%);
+        }
+        &:before {
+          right: auto;
+          bottom: 100%;
+        }
+        &:after {
+          top: 100%;
+          left: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and(max-width: 992px){
+  .registration-page {
+    .separator-line {
+      margin-top: 78px;
+    }
+  }
+}
+
+@media (min-width: 768px) { 
+  .registration-page {
+    padding-top: 98px;
+    .register-by-seller, .register-by-buyer {
+      width: 60%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .separator-line {
+      >span {
+        padding: 7px 17px;
+        font-size: 16px;
+        line-height: 24px;
+      }
+      margin-bottom: 78px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .registration-page {
+    padding: 0 !important;
+    section {
+      padding: 4rem;
+      text-align: center;
+    }
   }
 }

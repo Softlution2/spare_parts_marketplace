@@ -2103,6 +2103,145 @@ p {
           border-radius: 50%;
 }
 
+.registration-page {
+  margin: 3rem 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 64, 96, 0.2);
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  padding-bottom: 63px !important;
+}
+
+.registration-page .separator-line {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.registration-page .separator-line > span {
+  position: relative;
+  padding: 5px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 64, 96, 0.2);
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  color: rgba(0, 64, 96, 0.48);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.registration-page .separator-line > span:before, .registration-page .separator-line > span:after {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 10000px;
+  height: 1px;
+  background-color: rgba(0, 64, 96, 0.2);
+  content: '';
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.registration-page .separator-line > span:before {
+  right: 100%;
+}
+
+.registration-page .separator-line > span:after {
+  left: 100%;
+}
+
+@media (min-width: 992px) {
+  .registration-page {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .registration-page h2 {
+    margin-bottom: 2rem;
+  }
+  .registration-page .register-by-seller, .registration-page .register-by-buyer {
+    width: 31.57895% !important;
+    padding-top: 98px !important;
+    padding-bottom: 104px !important;
+  }
+  .registration-page .separator-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    margin-bottom: 0 !important;
+  }
+  .registration-page .separator-line > span:before, .registration-page .separator-line > span:after {
+    top: auto;
+    left: 50%;
+    width: 1px;
+    height: 10000px;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  .registration-page .separator-line > span:before {
+    right: auto;
+    bottom: 100%;
+  }
+  .registration-page .separator-line > span:after {
+    top: 100%;
+    left: 50%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .registration-page .separator-line {
+    margin-top: 78px;
+  }
+}
+
+@media (min-width: 768px) {
+  .registration-page {
+    padding-top: 98px;
+  }
+  .registration-page .register-by-seller, .registration-page .register-by-buyer {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .registration-page .separator-line {
+    margin-bottom: 78px;
+  }
+  .registration-page .separator-line > span {
+    padding: 7px 17px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .registration-page {
+    padding: 0 !important;
+  }
+  .registration-page section {
+    padding: 4rem;
+    text-align: center;
+  }
+}
+
 .sell-car-wrapper {
   padding-bottom: 4rem;
 }

@@ -21,6 +21,12 @@ import NewsDetails from "./page/news-details";
 import Sellers from "./page/sellers";
 import SellerDetails from "./page/seller-details";
 import Faqs from "./page/faqs";
+import Register from "./page/register/index";
+import RegisterSeller from "./page/register/register-seller";
+import RegisterBuyer from "./page/register/register-buyer";
+import VerifyEmail from "./page/register/verify-email";
+import VerifyPhone from "./page/register/verify-phone";
+import PasswordForm from "./page/register/password-form";
 import "../i18n";
 
 class App extends Component {
@@ -32,6 +38,13 @@ class App extends Component {
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={Index} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/register/seller" component={RegisterSeller} />
+          <Route path="/register/buyer" component={RegisterBuyer} />
+          <Route path="/register/verify-email" component={VerifyEmail} />
+          <Route path="/register/verify-phone" component={VerifyPhone} />
+          <Route path="/register/password" component={PasswordForm} />
+          
           <Route path="/all-listings" component={AllListing} />
           <Route path="/buy-type-:tag" component={AllListing} />
           <Route path="/buy-parts-:make" component={AllListing} />

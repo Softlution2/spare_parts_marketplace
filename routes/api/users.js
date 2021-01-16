@@ -94,6 +94,7 @@ router.post("/verify-otp", (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
+  let files = {};
   let avatar = null;
   let obj = null;
   const form = new formidable.IncomingForm();
@@ -102,6 +103,7 @@ router.post("/signup", async (req, res) => {
   });
 
   form.on("fileBegin", function (name, file) {
+    // console.log(name, file);
     let currentTime = new Date().getTime();
     file.path =
       __dirname +
@@ -109,42 +111,40 @@ router.post("/signup", async (req, res) => {
       currentTime +
       "." +
       file.name.split(".")[1];
-    avatar = currentTime + "." + file.name.split(".")[1];
+    files[name] = currentTime + "." + file.name.split(".")[1];
   });
 
   form.on("file", function (name, file) {});
 
   form.on("end", async function () {
-    let { email, method, user_name, location, password, phone } = obj;
-    let query = method === "email" ? { email: email } : { phone: phone };
-    let tempPhones = [];
-    if (method !== "email") tempPhones.push(phone);
-    if (avatar) {
-      const file = fs.readFileSync("uploads/" + avatar);
+    for (const key in files) {
+      const file = fs.readFileSync("uploads/" + files[key]);
       const rawBytes = await crypto.pseudoRandomBytes(16);
-      const fileName = rawBytes.toString('hex') + Date.now() + path.extname(avatar);
+      const fileName = rawBytes.toString('hex') + Date.now() + path.extname(files[key]);
       const params = {
         Bucket: 'spare-parts-marketplace',
         Key: fileName,
         Body: file
       };
       const data = await s3.upload(params).promise();
-      fs.unlinkSync("uploads/" + avatar);
-      avatar = data.Location;
+      fs.unlinkSync("uploads/" + files[key]);
+      files[key] = data.Location;
     }
+    let { email, phone, details, password, role } = obj;
+    details = JSON.parse(details);
+    details = { ...details, ...files };
 
-    User.findOne(query).then((user) => {
+    User.findOne({email}).then((user) => {
       if (user) {
         return res.status(400).json({ message: "User Already Exists" });
       } else {
         const newUser = new User({
-          email: email,
-          name: user_name,
-          location: location,
-          avatar: avatar,
-          method: method,
-          phone: tempPhones,
+          email,
+          phone,
+          details,
+          // avatar: avatar,
           password: password,
+          role
         });
         // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {

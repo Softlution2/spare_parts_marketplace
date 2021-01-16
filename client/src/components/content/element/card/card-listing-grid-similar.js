@@ -44,8 +44,8 @@ class ListingCardGrid extends Component {
             "-" +
             stringToUrl(version) +
             "-" +
-            stringToUrl(user_id.location) +
-            "-" +
+            // stringToUrl(user_id.location) +
+            // "-" +
             reference_code;
           
           return (

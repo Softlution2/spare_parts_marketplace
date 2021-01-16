@@ -1,13 +1,8 @@
-
 const initState = {
-  verifyMethod: null,
-  signupStep: 0,
-  verifyPassed: false,
+  accountType: null,
   email: "",
   phone: "",
   password: "",
-  name: "",
-  location: "",
   avatar: null,
 };
 
@@ -17,16 +12,9 @@ const SignupReducer = (state = initState, action) => {
         return {
           ...initState
         }
-      case 'SET_VERIFY_METHOD':
+      case 'SET_ACCOUNT_TYPE':
         return {
-          ...state,
-          verifyMethod: action.method,
-          success: true
-        }
-      case 'SET_SIGNUP_STEP':
-        return {
-          ...state,
-          signupStep: action.step,
+          accountType: action.data
         }
       case 'SET_EMAIL_ADDRESS':
         return {
@@ -37,11 +25,6 @@ const SignupReducer = (state = initState, action) => {
         return {
           ...state,
           phone: action.method,
-        }
-      case 'OTP_VERIFY_SUCCESS':
-        return {
-          ...state,
-          verifyPassed: action.method
         }
       case "SET_PASSWORD":
         return {
