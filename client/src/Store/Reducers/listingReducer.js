@@ -1,5 +1,6 @@
 // import initState1 from '../../softdata.json';
 const initState = {
+  homeListing: [],
   listing: [],
   favoriteListing: [],
   similarListing: [],
@@ -27,6 +28,16 @@ const initState = {
 
 const listingReducer = (state = initState, action) => {
   switch (action.type) {
+    case "GET_HOME_LISTING_SUCCESS":
+      return {
+        ...state,
+        homeListing: action.listing
+      };
+    case "GET_HOME_LISTING_FAILED":
+      return {
+        ...state,
+        homeListing: []
+      };
     case "INITIALIZE_SUCCESS":
       return {
         ...state,

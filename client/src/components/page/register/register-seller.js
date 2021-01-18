@@ -113,7 +113,7 @@ class RegisterSeller extends Component {
                   <div className="atbd_content_module__tittle_area">
                     <div className="atbd_area_title">
                       <h4>
-                        <span className="la la-user"></span>General Information
+                        <span className="la la-user"></span>Mandatory Information
                       </h4>
                     </div>
                   </div>
@@ -126,12 +126,12 @@ class RegisterSeller extends Component {
                         <div className="select-basic">
                           <select className="form-control" name="emirate" defaultValue={""} id="emirate" onChange={this.handleSelect}>
                             <option value="" disabled>Select Emirate</option>
-                            <option value="Dubai">Dubai</option>
-                            <option value="Sharjah">Sharjah</option>
                             <option value="Abu Dhabi">Abu Dhabi</option>
                             <option value="Ajman">Ajman</option>
+                            <option value="Dubai">Dubai</option>
                             <option value="Fujairah">Fujairah</option>
                             <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                            <option value="Sharjah">Sharjah</option>
                             <option value="Umm Al Quwain">Umm Al Quwain</option>
                           </select>
                         </div>

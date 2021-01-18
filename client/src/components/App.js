@@ -5,7 +5,6 @@ import Index from "./page/index";
 import AllListing from "./page/all-listing";
 import SellerListings from "./page/seller-listings";
 import ListingDetails from "./page/listing-details";
-import SellYourCar from "./page/sell-your-car";
 import Thankyou from "./page/thank-you";
 import MyProfile from "./page/my-profile";
 import MyListing from "./page/my-listing";
@@ -21,12 +20,14 @@ import NewsDetails from "./page/news-details";
 import Sellers from "./page/sellers";
 import SellerDetails from "./page/seller-details";
 import Faqs from "./page/faqs";
+
 import Register from "./page/register/index";
 import RegisterSeller from "./page/register/register-seller";
 import RegisterBuyer from "./page/register/register-buyer";
 import VerifyEmail from "./page/register/verify-email";
 import VerifyPhone from "./page/register/verify-phone";
 import PasswordForm from "./page/register/password-form";
+import AddParts from "./page/add-parts";
 import "../i18n";
 
 class App extends Component {
@@ -45,12 +46,13 @@ class App extends Component {
           <Route path="/register/verify-phone" component={VerifyPhone} />
           <Route path="/register/password" component={PasswordForm} />
           
+          <Route path="/sell-your-parts" component={AddParts} />
+          
           <Route path="/all-listings" component={AllListing} />
           <Route path="/buy-type-:tag" component={AllListing} />
           <Route path="/buy-parts-:make" component={AllListing} />
           <Route path="/listing-details/buy-parts-:info" component={ListingDetails} />
           <Route path="/seller-listings/:id" component={SellerListings} />
-          <Route path="/sell-your-parts" component={SellYourCar} />
           <Route path="/news" component={News} />
           <Route path="/news-details:id" component={NewsDetails} />
           <Route path="/sellers" component={Sellers} />

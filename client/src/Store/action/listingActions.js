@@ -1,5 +1,25 @@
 import axios from "axios";
 
+export const GetHomeListing = () => {
+  return (dispatch, getState) => {
+    axios
+      .get("/api/listing/get-home")
+      .then((res) => {
+        const listing = res.data;
+        dispatch({
+          type: "GET_HOME_LISTING_SUCCESS",
+          listing,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: "GET_HOME_LISTING_FAILED",
+        });
+      });
+  };
+};
+
 export const Initialize = (data) => {
   return (dispatch, getState) => {
     dispatch({

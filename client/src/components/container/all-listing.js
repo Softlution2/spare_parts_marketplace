@@ -13,7 +13,6 @@ import {
 } from "../content/element/filter/selection";
 import ColorBox from "../content/element/filter/color-box";
 import { numberWithCommas } from "../../utils";
-import { cartypes } from "../../constants";
 
 class Listing extends Component {
   constructor(props) {
@@ -319,14 +318,14 @@ class Listing extends Component {
                             <div id="collapseOne4" className="collapse" role="tabpanel" aria-labelledby="headingOne4"
                               data-parent="#filterAccordion">
                               <div className="card-body">
-                                <div className="form-group p-bottom-10">
+                                {/* <div className="form-group p-bottom-10">
                                   <ThumbOptionSelection
                                     options={cartypes}
                                     name="tags"
                                     activeOptions={searchQuery.tags ? searchQuery.tags : []}
                                     onChange={this.handleSelectionChange}
                                   />
-                                </div>
+                                </div> */}
                               </div>
                             </div>
                           </div>

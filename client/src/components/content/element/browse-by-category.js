@@ -16,7 +16,8 @@ class BrowseByCategory extends Component {
               <div className="category-card-wrapper" key={index}>
                 <div className="category-card">
                   <img src={category.img} />
-                  <NavLink to="/">{category.name}</NavLink>
+                  <NavLink to="/">{category.label}</NavLink>
+                  <span className="text-muted small text-center mt-3 font-weight-bold">12,543 car parts for sale</span>
                 </div>
               </div>
             )

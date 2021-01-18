@@ -8,19 +8,18 @@ import { SectionTitle } from "../content/element/section-title";
 import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import AdvSearch from "../content/element/advance-search";
-import CardListingGrid from "../content/element/card/card-listing-grid";
-import HowItWorks from "../content/element/how-it-works";
+import HomeListingGrid from "../content/element/card/home-listing-grid";
 import Promise from "../content/element/promise";
 import BrowseByCategory from "../content/element/browse-by-category";
 import BrowseByMake from "../content/element/carousel/browse-by-make";
 import Newsletter from "../content/element/newsletter";
 import Footer from "../layout/footer";
 
-import { GetAllListing } from "../../Store/action/listingActions";
+import { GetHomeListing } from "../../Store/action/listingActions";
 
 class Index extends Component {
   componentDidMount() {
-    this.props.getAllListing();
+    this.props.getHomeListing();
   }
   render() {
     const { t } = this.props;
@@ -35,6 +34,16 @@ class Index extends Component {
           <AdvSearch />
         </section>
 
+        {/* Promise section start */}
+        <section className="promise-wrapper">
+          <div className="container">
+            <div className="row">
+              <Promise />
+            </div>
+          </div>
+        </section>
+        {/* Promise section end */}
+
         {/* Listing section start */}
         <section className="listing-cards section-padding">
           <div className="container">
@@ -45,27 +54,13 @@ class Index extends Component {
             <div className="row">
               <div className="listing-cards-wrapper col-lg-12">
                 <div className="row">
-                  <CardListingGrid size={4} />
+                  <HomeListingGrid size={3} />
                 </div>
               </div>
             </div>
           </div>
         </section>
         {/* Listing section end */}
-
-        {/* How It Works section start */}
-        <section className="how-it-works-wrapper section-padding">
-          <div className="container">
-            <SectionTitle
-              title={t("home_how_it_works_title")}
-              content={t("home_how_it_works_description")}
-            />
-            <div className="row">
-              <HowItWorks />
-            </div>
-          </div>
-        </section>
-        {/* How It Works section end */}
 
         {/* Browse By Type section start */}
         <section className="browse-category-wrapper section-padding">
@@ -92,16 +87,6 @@ class Index extends Component {
           </div>
         </section>
         {/* Browse By Make section end */}
-
-        {/* Promise section start */}
-        <section className="promise-wrapper">
-          <div className="container">
-            <div className="row">
-              <Promise />
-            </div>
-          </div>
-        </section>
-        {/* Promise section end */}
 
         {/* Newsletter section start */}
         <section className="newsletter section-padding">
@@ -143,7 +128,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProp = (dispatch) => {
   return {
-    getAllListing: () => dispatch(GetAllListing()),
+    getHomeListing: () => dispatch(GetHomeListing()),
   };
 };
 

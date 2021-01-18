@@ -2242,168 +2242,8 @@ p {
   }
 }
 
-.sell-car-wrapper {
-  padding-bottom: 4rem;
-}
-
-.sell-car-wrapper .sell-car-header {
-  padding: 1.33333rem 0;
-  background-color: #193554;
-}
-
-.sell-car-wrapper .sell-car-header h4 {
-  color: white;
-}
-
-.sell-car-wrapper .sell-car-content {
-  padding: 2rem 0;
-}
-
-.sell-car-wrapper .sell-car-content .thumb-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.sell-car-wrapper .sell-car-content .thumb-container .dz-thumb {
-  -webkit-border-radius: 2px;
-          border-radius: 2px;
-  border: 1px solid #eaeaea;
-  padding: 4px;
-  margin: 10px;
-  text-align: center;
-}
-
-.sell-car-wrapper .sell-car-content .thumb-container .dz-thumb.featured-car {
-  border: 3px solid #ed0103;
-}
-
-.sell-car-wrapper .sell-car-content .thumb-container .dz-thumb .dz-thumb-inner {
-  cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  min-width: 0;
-  overflow: hidden;
-  width: 15rem;
-  height: 11rem;
-  max-width: 100%;
-  position: relative;
-}
-
-.sell-car-wrapper .sell-car-content .thumb-container .dz-thumb .dz-thumb-inner img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.sell-car-wrapper .sell-car-content .thumb-container .dz-thumb .dz-thumb-inner .photo-remove-action {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-}
-
-.sell-car-wrapper .sell-car-content #user-details-form .react-tel-input .special-label {
-  display: none;
-}
-
-.sell-car-wrapper .sell-car-content #user-details-form .react-tel-input .form-control {
-  width: 100%;
-  -webkit-border-radius: 0.2rem !important;
-          border-radius: 0.2rem !important;
-}
-
-.sell-car-wrapper .sell-car-content #user-details-form .react-tel-input .form-control:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border-color: rgba(39, 43, 65, 0.35);
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form {
-  text-align: center;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form .auth-types {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form .auth-types .type-item {
-  cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border: 2px solid rgba(25, 53, 84, 0.2);
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
-  padding: .6rem 1.5rem;
-  margin: 0 1rem;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #193554;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form .auth-types .type-item:hover, .sell-car-wrapper .sell-car-content .selling-auth-form .auth-types .type-item.active {
-  border-color: rgba(25, 53, 84, 0.9);
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form .auth-types .type-item i {
-  font-size: 50px;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form .input-wrapper {
-  position: relative;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form .input-wrapper i {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  font-size: 20px;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form button.btn-continue {
-  color: white;
-  background-color: #193554;
-  padding: 0 5rem;
-}
-
-.sell-car-wrapper .sell-car-content .selling-auth-form button.btn-continue:focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(25, 53, 84, 0.25);
-          box-shadow: 0 0 0 0.2rem rgba(25, 53, 84, 0.25);
-}
-
-.sell-car-wrapper .sell-car-content .form-control.error {
-  border-color: rgba(237, 1, 3, 0.3) !important;
-}
-
-.sell-car-wrapper .sell-car-content .react-select.error .react-select__control {
-  border-color: rgba(237, 1, 3, 0.3) !important;
-}
-
-.sell-car-wrapper .sell-car-footer {
-  text-align: center;
+.sell-part-wrapper {
+  padding: 4rem 0;
 }
 
 .thankyou-text h2 {
@@ -9415,7 +9255,7 @@ p {
 }
 
 .promise-wrapper, .promise-wrapper--light {
-  background-color: #193554;
+  background-color: #9a872a;
   padding: 3rem 0;
 }
 
@@ -9444,14 +9284,15 @@ p {
 }
 
 .promise-wrapper .item .title, .promise-wrapper--light .item .title {
-  color: #f7cd2d;
+  color: #193554;
+  text-align: center;
   font-weight: bolder;
-  font-size: 1.33333rem;
+  font-size: 1rem;
 }
 
 .promise-wrapper .item .message, .promise-wrapper--light .item .message {
+  color: #193554;
   font-size: 15px;
-  color: #e8e8e8;
   letter-spacing: -.5px;
   text-align: center;
   line-height: 24px;
@@ -9471,19 +9312,6 @@ p {
 
 .promise-wrapper--light .item .message {
   color: inherit;
-}
-
-.how-it-works-wrapper .item {
-  text-align: center;
-}
-
-.how-it-works-wrapper .item img {
-  width: 100%;
-}
-
-.how-it-works-wrapper .item .title {
-  color: #193554;
-  font-weight: bolder;
 }
 
 .browse-category-wrapper .category-list {

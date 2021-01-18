@@ -151,7 +151,7 @@
 
 //promise area
 .promise-wrapper, .promise-wrapper--light {
-  background-color: $dark-blue;
+  background-color: #9a872a;
   padding: 3rem 0;
   .section-title h2 {
     color: white;
@@ -169,13 +169,14 @@
       }
     }
     .title {
-      color: $yellow;
+      color: $dark-blue;
+      text-align: center;
       font-weight: bolder;
-      font-size: remy(20px);
+      font-size: remy(15px);
     }
     .message {
+      color: $dark-blue;
       font-size: 15px;
-      color: #e8e8e8;
       letter-spacing: -.5px;
       text-align: center;
       line-height: 24px;
@@ -193,20 +194,6 @@
     }
     .message {
       color: inherit;
-    }
-  }
-}
-
-//how it works area
-.how-it-works-wrapper {
-  .item {
-    text-align: center;
-    img {
-      width: 100%;
-    }
-    .title {
-      color: $dark-blue;
-      font-weight: bolder;
     }
   }
 }

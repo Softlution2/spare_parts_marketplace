@@ -57,7 +57,7 @@ router.post("/verify-otp", (req, res) => {
   let code = req.body.code;
   let identify = req.body.identify;
   twilioClient.verify
-    .services("VAf190aaf2ded6f5e90e4254a65be467a7")
+    .services(process.env.TWILIO_SERVICE_SID)
     .verificationChecks.create({ to: identify, code: code })
     .then((verification_check) => {
       if (verification_check.status === "approved") {

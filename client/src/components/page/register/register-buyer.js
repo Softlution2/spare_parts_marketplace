@@ -18,7 +18,6 @@ class RegisterBuyer extends Component {
     this.state = {
       emirate: null,
       garage_type: null,
-      garage_category: null,
       garage_name: null,
       garage_address: null,
       opening_hours: null,
@@ -41,23 +40,23 @@ class RegisterBuyer extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.signup.accountType) {
-      this.props.history.push("/register");
-      return;
-    }
-    if (!this.props.signup.email) {
-      this.props.history.push("/register/verify-email");
-      return;
-    }
-    if (!this.props.signup.phone)
-    {
-      this.props.history.push("/register/verify-phone");
-      return;
-    }
-    if (!this.props.signup.password) {
-      this.props.history.push("/register/password");
-      return;
-    }
+    // if (!this.props.signup.accountType) {
+    //   this.props.history.push("/register");
+    //   return;
+    // }
+    // if (!this.props.signup.email) {
+    //   this.props.history.push("/register/verify-email");
+    //   return;
+    // }
+    // if (!this.props.signup.phone)
+    // {
+    //   this.props.history.push("/register/verify-phone");
+    //   return;
+    // }
+    // if (!this.props.signup.password) {
+    //   this.props.history.push("/register/password");
+    //   return;
+    // }
   }
 
   handleSelect(e) {
@@ -84,7 +83,6 @@ class RegisterBuyer extends Component {
       const details = JSON.stringify({
         emirate: this.state.emirate,
         garage_type: this.state.garage_type,
-        garage_category: this.state.garage_category,
         garage_name: this.state.garage_name,
         opening_hours: this.state.opening_hours,
         closing_hours: this.state.closing_hours,
@@ -135,7 +133,7 @@ class RegisterBuyer extends Component {
                   <div className="atbd_content_module__tittle_area">
                     <div className="atbd_area_title">
                       <h4>
-                        <span className="la la-user"></span>General Information
+                        <span className="la la-user"></span>Mandatory Information
                       </h4>
                     </div>
                   </div>
@@ -148,12 +146,12 @@ class RegisterBuyer extends Component {
                         <div className="select-basic">
                           <select className="form-control" name="emirate" defaultValue={""} id="emirate" onChange={this.handleSelect}>
                             <option value="" disabled>Select Emirate</option>
-                            <option value="Dubai">Dubai</option>
-                            <option value="Sharjah">Sharjah</option>
                             <option value="Abu Dhabi">Abu Dhabi</option>
                             <option value="Ajman">Ajman</option>
+                            <option value="Dubai">Dubai</option>
                             <option value="Fujairah">Fujairah</option>
                             <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                            <option value="Sharjah">Sharjah</option>
                             <option value="Umm Al Quwain">Umm Al Quwain</option>
                           </select>
                         </div>
@@ -188,28 +186,6 @@ class RegisterBuyer extends Component {
                           {this.validator.message(
                             "garage_type",
                             this.state.garage_type,
-                            `required`
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="garage-category" className="form-label">
-                          Garage Category
-                        </label>
-                        <div className="select-basic">
-                          <select className="form-control" name="garage_category" defaultValue={""} id="garage-category" onChange={this.handleSelect}>
-                            <option value="" disabled>Select Garage Category</option>
-                            <option value="Rating 1-2">Rating 1-2</option>
-                            <option value="Rating 3-4">Rating 3-4</option>
-                            <option value="Rating 5-7">Rating 5-7</option>
-                            <option value="Rating 8-10">Rating 8-10</option>
-                          </select>
-                        </div>
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "garage_category",
-                            this.state.garage_category,
                             `required`
                           )}
                         </div>
@@ -323,6 +299,69 @@ class RegisterBuyer extends Component {
                       </div>
 
                       <div className="form-group">
+                        <label htmlFor="owner-manager-name" className="form-label">
+                          Owner/Manager Name
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="owner-manager-name"
+                          placeholder="Enter Name"
+                          value={this.state.owner_manager_name || ""}
+                          name="owner_manager_name"
+                          onChange={this.handleInput}
+                          required
+                        />
+                        <div className="text-danger">
+                          {this.validator.message(
+                            "owner_manager_name",
+                            this.state.owner_manager_name,
+                            `required`
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="goods-receiver-name" className="form-label">
+                          Name of Goods Receiver
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="goods-receiver-name"
+                          placeholder="Enter Name"
+                          value={this.state.goods_receiver_name || ""}
+                          name="goods_receiver_name"
+                          onChange={this.handleInput}
+                          required
+                        />
+                        <div className="text-danger">
+                          {this.validator.message(
+                            "goods_receiver_name",
+                            this.state.goods_receiver_name,
+                            `required`
+                          )}
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  {/*<!-- ends: .atbdb_content_module_contents -->*/}
+                </div>
+                {/*<!-- ends: .atbd_content_module -->*/}
+              </div>
+              {/*<!-- ends: .col-lg-10 -->*/}
+              
+              <div className="col-lg-10 offset-lg-1">
+                <div className="atbd_content_module">
+                  <div className="atbd_content_module__tittle_area">
+                    <div className="atbd_area_title">
+                      <h4>
+                        <span className="la la-user"></span>Optional Information
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="atbdb_content_module_contents mb-5">
+                      <div className="form-group">
                         <label htmlFor="vat-reg-no" className="form-label">
                           VAT Registration No
                         </label>
@@ -351,29 +390,6 @@ class RegisterBuyer extends Component {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="owner-manager-name" className="form-label">
-                          Owner/Manager Name
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="owner-manager-name"
-                          placeholder="Enter Name"
-                          value={this.state.owner_manager_name || ""}
-                          name="owner_manager_name"
-                          onChange={this.handleInput}
-                          required
-                        />
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "owner_manager_name",
-                            this.state.owner_manager_name,
-                            `required`
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="form-group">
                         <label htmlFor="owner-manager-emirates-id" className="form-label">
                           Owner/Manager Emirates ID / Passport No
                         </label>
@@ -397,28 +413,6 @@ class RegisterBuyer extends Component {
                         />
                       </div>
 
-                      <div className="form-group">
-                        <label htmlFor="goods-receiver-name" className="form-label">
-                          Name of Goods Receiver
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="goods-receiver-name"
-                          placeholder="Enter Name"
-                          value={this.state.goods_receiver_name || ""}
-                          name="goods_receiver_name"
-                          onChange={this.handleInput}
-                          required
-                        />
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "goods_receiver_name",
-                            this.state.goods_receiver_name,
-                            `required`
-                          )}
-                        </div>
-                      </div>
                       <div className="atbd_term_and_condition_area custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
                         <input
                           type="checkbox"
@@ -449,13 +443,9 @@ class RegisterBuyer extends Component {
                         </button>
                       </div>
                       
-                    </form>
                   </div>
-                  {/*<!-- ends: .atbdb_content_module_contents -->*/}
                 </div>
-                {/*<!-- ends: .atbd_content_module -->*/}
               </div>
-              {/*<!-- ends: .col-lg-10 -->*/}
             </div>
           </div>
         </section>

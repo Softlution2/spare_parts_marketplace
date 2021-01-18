@@ -25,7 +25,6 @@ class InputDropdown extends Component {
 
   render() {
     let { options, m_name } = this.props;
-    console.log()
     let { currentOption } = this.state;
     return (
       <div className="input-dropdown">
