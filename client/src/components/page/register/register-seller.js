@@ -2,6 +2,7 @@ import React, { Fragment, Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { NavLink } from 'react-router-dom'
 import axios from "axios";
 import Header from "../../layout/header";
 import PreHeader from "../../layout/pre-header";
@@ -16,20 +17,10 @@ class RegisterSeller extends Component {
     super(props);
     this.state = {
       emirate: null,
-      garage_type: null,
-      garage_category: null,
-      garage_name: null,
-      garage_address: null,
-      opening_hours: null,
-      closing_hours: null,
+      company_name: null,
+      company_address: null,
       trade_license_no: null,
       trade_license_upload: null,
-      vat_registration_no: null,
-      vat_certification_upload: null,
-      owner_manager_name: null,
-      owner_manager_emirates_id: null,
-      emirates_id: null,
-      goods_receiver_name: null,
       submitLoading: false,
     };
     this.validator = new SimpleReactValidator();
@@ -79,27 +70,15 @@ class RegisterSeller extends Component {
       formData.append("email", this.props.signup.email);
       formData.append("phone", this.props.signup.phone);
       console.log(this.props.signup);
-      formData.append("role", "SELLER");
+      formData.append("role", "BUYER");
       const details = JSON.stringify({
         emirate: this.state.emirate,
-        garage_type: this.state.garage_type,
-        garage_category: this.state.garage_category,
-        garage_name: this.state.garage_name,
-        opening_hours: this.state.opening_hours,
-        closing_hours: this.state.closing_hours,
+        company_address: this.state.company_address,
+        company_name: this.state.company_name,
         trade_license_no: this.state.trade_license_no,
-        vat_registration_no: this.state.vat_registration_no,
-        owner_manager_name: this.state.owner_manager_name,
-        goods_receiver_name: this.state.goods_receiver_name,
       });
       formData.append("details", details);
       formData.append("trade_license_upload", this.state.trade_license_upload);
-      if (this.state.vat_certification_upload)
-        formData.append("vat_certification_upload", this.state.vat_certification_upload);
-      if (this.state.owner_manager_emirates_id)
-        formData.append("owner_manager_emirates_id", this.state.owner_manager_emirates_id);
-      if (this.state.emirates_id)
-        formData.append("emirates_id", this.state.emirates_id);
       axios.post(`/api/users/signup`, formData)
       .then((res) => {
         this.setState({submitLoading: false});
@@ -107,8 +86,8 @@ class RegisterSeller extends Component {
         window.location.href = "/";
       })
       .catch((err) => {
-        console.log(err);
         this.setState({submitLoading: false});
+        console.log(err);
         // this.setState({errMsg: err.response.data.message});
       });
     } else {
@@ -124,7 +103,7 @@ class RegisterSeller extends Component {
       <Fragment>
         <PreHeader />
         <Header />
-        <PageBanner title="CREATE AN ACCOUNT" />
+        <PageBanner title="CREATE A SELLER ACCOUNT" />
 
         <section className="add-listing-wrapper border-bottom section-bg section-padding-strict">
           <div className="container">
@@ -164,116 +143,46 @@ class RegisterSeller extends Component {
                           )}
                         </div>
                       </div>
-                      <div className="form-group">
-                        <label htmlFor="garage-address" className="form-label">
-                          Garage Address
-                        </label>
-                        <SearchLocationInput />
-                      </div>
-                      
-                      <div className="form-group">
-                        <label htmlFor="garage-type" className="form-label">
-                          Garage Type
-                        </label>
-                        <div className="select-basic">
-                          <select className="form-control" name="garage_type" defaultValue={""}  id="garage-type" onChange={this.handleSelect}>
-                            <option value="" disabled>Select Garage Type</option>
-                            <option value="Authorized Garages">Authorized Garages</option>
-                            <option value="Gained/Third-party Garages">Gained/Third-party Garages</option>
-                            <option value="Independent Mom & Pop Garages">Independent Mom & Pop Garages</option>
-                          </select>
-                        </div>
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "garage_type",
-                            this.state.garage_type,
-                            `required`
-                          )}
-                        </div>
-                      </div>
 
                       <div className="form-group">
-                        <label htmlFor="garage-category" className="form-label">
-                          Garage Category
-                        </label>
-                        <div className="select-basic">
-                          <select className="form-control" name="garage_category" defaultValue={""} id="garage-category" onChange={this.handleSelect}>
-                            <option value="" disabled>Select Garage Category</option>
-                            <option value="Rating 1-2">Rating 1-2</option>
-                            <option value="Rating 3-4">Rating 3-4</option>
-                            <option value="Rating 5-7">Rating 5-7</option>
-                            <option value="Rating 8-10">Rating 8-10</option>
-                          </select>
-                        </div>
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "garage_category",
-                            this.state.garage_category,
-                            `required`
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="garage-name" className="form-label">
-                          Garage Name
+                        <label htmlFor="company-name" className="form-label">
+                          Company Name
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="garage-name"
-                          placeholder="Enter Garage Name"
-                          value={this.state.garage_name || ""}
-                          name="garage_name"
+                          id="company-name"
+                          placeholder="Enter Company Name"
+                          value={this.state.company_name || ""}
+                          name="company_name"
                           onChange={this.handleInput}
                           required
                         />
                         <div className="text-danger">
                           {this.validator.message(
-                            "garage_name",
-                            this.state.garage_name,
+                            "company_name",
+                            this.state.company_name,
                             `required`
                           )}
                         </div>
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="opening-hours" className="form-label">
-                          Opening Hours
+                        <label htmlFor="company-address" className="form-label">
+                          Company Address
                         </label>
                         <input
-                          type="time"
-                          id="opening-hours"
-                          className="form-control directory_field"
-                          value={this.state.opening_hours || ""}
-                          name="opening_hours"
+                          type="text"
+                          id="company-address"
+                          className="form-control"
+                          value={this.state.company_address || ""}
+                          name="company_address"
                           onChange={this.handleInput}
                         />
                         <div className="text-danger">
                           {this.validator.message(
-                            "opening_hours",
-                            this.state.opening_hours,
-                            `required`
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="closing-hours" className="form-label">
-                          Closing Hours
-                        </label>
-                        <input
-                          type="time"
-                          id="closing-hours"
-                          className="form-control directory_field"
-                          value={this.state.closing_hours || ""}
-                          name="closing_hours"
-                          onChange={this.handleInput}
-                        />
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "closing_hours",
-                            this.state.closing_hours,
+                            "company_address",
+                            this.state.company_address,
                             `required`
                           )}
                         </div>
@@ -320,104 +229,7 @@ class RegisterSeller extends Component {
                           )}
                         </div>
                       </div>
-
-                      <div className="form-group">
-                        <label htmlFor="vat-reg-no" className="form-label">
-                          VAT Registration No
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="vat-reg-no"
-                          placeholder="Enter Registration No"
-                          value={this.state.vat_registration_no || ""}
-                          name="vat_registration_no"
-                          onChange={this.handleInput}
-                          required
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="vat-cretificate-upload" className="form-label">
-                          VAT Certificate Upload
-                        </label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          id="vat-cretificate-upload"
-                          onChange={(e) => this.setSelectedFile(e.target.files[0], "vat_certification_upload")}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="owner-manager-name" className="form-label">
-                          Owner/Manager Name
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="owner-manager-name"
-                          placeholder="Enter Name"
-                          value={this.state.owner_manager_name || ""}
-                          name="owner_manager_name"
-                          onChange={this.handleInput}
-                          required
-                        />
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "owner_manager_name",
-                            this.state.owner_manager_name,
-                            `required`
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="owner-manager-emirates-id" className="form-label">
-                          Owner/Manager Emirates ID / Passport No
-                        </label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          id="owner-manager-emirates-id"
-                          onChange={(e) => this.setSelectedFile(e.target.files[0], "owner_manager_emirates_id")}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="emirates-id-upload" className="form-label">
-                          Emirates ID Upload
-                        </label>
-                        <input
-                          type="file"
-                          className="form-control"
-                          id="emirates-id-upload"
-                          onChange={(e) => this.setSelectedFile(e.target.files[0], "emirates_id")}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="goods-receiver-name" className="form-label">
-                          Name of Goods Receiver
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="goods-receiver-name"
-                          placeholder="Enter Name"
-                          value={this.state.goods_receiver_name || ""}
-                          name="goods_receiver_name"
-                          onChange={this.handleInput}
-                          required
-                        />
-                        <div className="text-danger">
-                          {this.validator.message(
-                            "goods_receiver_name",
-                            this.state.goods_receiver_name,
-                            `required`
-                          )}
-                        </div>
-                      </div>
+                      
                       <div className="atbd_term_and_condition_area custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
                         <input
                           type="checkbox"
@@ -431,9 +243,9 @@ class RegisterSeller extends Component {
                           className="not_empty custom-control-label"
                         >
                           I Agree with all{" "}
-                          <a href=" " id="listing_t_c">
+                          <NavLink to="/terms">
                             Terms & Conditions
-                          </a>
+                          </NavLink>
                         </label>
                       </div>
                       <div className="btn_wrap list_submit m-top-25">
@@ -443,7 +255,7 @@ class RegisterSeller extends Component {
                           className="btn btn-primary btn-lg listing_submit_btn"
                           onClick={this.handleSubmit}
                         >
-                          {this.state.submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
+                          {this.state.  submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
                           Submit
                         </button>
                       </div>
@@ -476,4 +288,3 @@ const mapDispatchToProp = (dispatch) => {
   };
 };
 export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProp))(RegisterSeller);
-

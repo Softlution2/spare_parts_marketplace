@@ -94,7 +94,7 @@ class VerifyEmail extends Component {
       <Fragment>
         <PreHeader />
         <Header />
-        <PageBanner title="CREATE AN ACCOUNT" />
+        <PageBanner title={`CREATE A ${this.props.signup.accountType} ACCOUNT`} />
         <section className="verify-email-page section-padding-strict mb-5">
           <div className="container">
             <p className="text-center">Please verify your email with One Time Password!</p>

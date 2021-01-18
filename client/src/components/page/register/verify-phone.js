@@ -132,7 +132,7 @@ class VerifyPhone extends Component {
       <Fragment>
         <PreHeader />
         <Header />
-        <PageBanner title="CREATE AN ACCOUNT" />
+        <PageBanner title={`CREATE A ${this.props.signup.accountType} ACCOUNT`} />
         <section className="verify-phone-page section-padding-strict mb-5">
           <div className="container">
             <p className="text-center">Please verify your phone number with One Time Password!</p>

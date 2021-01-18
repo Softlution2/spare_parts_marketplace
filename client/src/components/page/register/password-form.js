@@ -69,10 +69,10 @@ class PasswordForm extends Component {
       <Fragment>
         <PreHeader />
         <Header />
-        <PageBanner title="CREATE AN ACCOUNT" />
+        <PageBanner title={`CREATE A ${this.props.signup.accountType} ACCOUNT`} />
         <section className="password-form section-padding-strict mb-5">
           <div className="container">
-            <p className="text-center">Please put your password!</p>
+            <p className="text-center">Please choose your password!</p>
             <form action="/" id="signup-form">
               <div className="form-group">
                 <input
