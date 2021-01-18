@@ -97,7 +97,7 @@ class VerifyEmail extends Component {
         <PageBanner title={`CREATE A ${this.props.signup.accountType} ACCOUNT`} />
         <section className="verify-email-page section-padding-strict mb-5">
           <div className="container">
-            <p className="text-center">Please verify your email with One Time Password!</p>
+            <p className="text-center">Please verify your email with One Time Password</p>
             <form action="/">
               <div className="form-group">
                 <input type="email" name="email" className="form-control" placeholder="Email" onChange={this.handleChangeInput} />

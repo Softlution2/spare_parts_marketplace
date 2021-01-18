@@ -672,10 +672,9 @@ class Listing extends Component {
                           <ListingCardGrid size={3} />
                         </Fragment>
                       ) : (
-                        <div className="col-lg-12">
-                          <div className="alert alert-warning" role="alert">
-                            Data Not found!
-                          </div>
+                        <div className="col-lg-12 text-center">
+                          <p className="display-4"><span className="text-primary display-3 font-weight-bolder">Sorry</span>, we can't find <br />any spare parts for your search</p>
+                          <img src="/assets/img/no_results.jpg" width="60%" className="mt-4"></img>
                         </div>
                       )}
                     </div>

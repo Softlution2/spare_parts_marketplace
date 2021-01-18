@@ -24,7 +24,7 @@ class InputDropdown extends Component {
   }
 
   render() {
-    let { options, m_name } = this.props;
+    let { m_name } = this.props;
     let { currentOption } = this.state;
     return (
       <div className="input-dropdown">
@@ -39,26 +39,9 @@ class InputDropdown extends Component {
             href="#!"
             className="dropdown-toggle"
             type="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
           >
             {currentOption}
           </a>
-          <div
-            className="dropdown-menu dropdown-menu-right"
-            aria-labelledby="dropdownMenuButton"
-          >
-            {
-              options && options.map((option, index) => {
-                return (
-                  <a className="dropdown-item" key={index} href="#!" onClick={(e) => this.setOption(e, option)}>
-                    {option}
-                  </a>
-                )
-              })
-            }
-          </div>
         </div>
       </div>
     );

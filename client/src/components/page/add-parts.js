@@ -15,14 +15,14 @@ import { PageBanner } from "../content/element/page-banner";
 import InputDropdown from "../content/element/input-dropdown";
 import { categories, subCategories } from "../../constants";
 
-const currencies = ["USD", "AUD", "CAD", "RMB", "INR"];
+// const currencies = ["USD", "AED"];
 
 class AddParts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       price: 0,
-      currency: "AUD",
+      currency: "AED",
       quantity: 0,
       pic: null,
       category: null,
@@ -138,7 +138,7 @@ class AddParts extends Component {
                       style={{ display: "none" }}
                       onChange={this.uploadPic}
                     />
-                    <label htmlFor="customUpload" className="btn btn-sm btn-secondary mt-3" onClick={this.openFileDlg}>Upload Picture</label>
+                    <label htmlFor="customUpload" className="btn btn-sm btn-primary mt-3" onClick={this.openFileDlg}>Upload Picture</label>
                   </div>
                   <div className="text-danger">
                     {this.validator.message(
@@ -239,12 +239,12 @@ class AddParts extends Component {
                 <div className="col-md-6">
                   <label>Price:</label>
                   <InputDropdown
-                    options={currencies}
+                    // options={}
                     m_name="price"
                     o_name="currency"
                     handleChangeNumeric={this.handleChangeNumeric}
                     handleOptionChange={this.handleUnitOptionChange}
-                    defaultOption="AUD"
+                    defaultOption="AED"
                     value={this.state.price}
                   />
                   <div className="text-danger">
@@ -291,7 +291,7 @@ class AddParts extends Component {
                   onClick={this.handleSubmit}
                 >
                   {this.state.submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
-                  Submit
+                  Add your listing
                 </button>
               </div>
             </form>

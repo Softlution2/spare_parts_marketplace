@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import Index from "./page/index";
 import AllListing from "./page/all-listing";
@@ -30,6 +35,27 @@ import PasswordForm from "./page/register/password-form";
 import AddParts from "./page/add-parts";
 import "../i18n";
 
+const PrivateRoute = ({ component: Component, roles, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        const currentUser = JSON.parse(localStorage.getItem("login"));
+        if (!currentUser || currentUser.role !== "SELLER") {
+          // localStorage.clear();
+          return (
+            <Redirect
+              to={{ pathname: "/register", state: { from: props.location } }}
+            />
+          );
+        }
+        // authorised so return component
+        return <Component {...props} />;
+      }}
+    />
+  )
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +72,10 @@ class App extends Component {
           <Route path="/register/verify-phone" component={VerifyPhone} />
           <Route path="/register/password" component={PasswordForm} />
           
-          <Route path="/sell-your-parts" component={AddParts} />
+          <PrivateRoute
+            path="/sell-your-parts"
+            component={AddParts}
+          />
           
           <Route path="/all-listings" component={AllListing} />
           <Route path="/buy-type-:tag" component={AllListing} />

@@ -135,7 +135,7 @@ class VerifyPhone extends Component {
         <PageBanner title={`CREATE A ${this.props.signup.accountType} ACCOUNT`} />
         <section className="verify-phone-page section-padding-strict mb-5">
           <div className="container">
-            <p className="text-center">Please verify your phone number with One Time Password!</p>
+            <p className="text-center">Please verify your phone number with One Time Password</p>
             <form action="/">
               <div className="form-group">
                   
