@@ -69,7 +69,7 @@ class HomeListingGrid extends Component {
                       <NavLink to={`/buy-spare-parts/${link}`}>{title}</NavLink>
                     </h4>
                     <div className="price-group">
-                      <span className="symbol mr-1">{currency}</span>
+                      <span className="symbol mr-1">AED</span>
                       <span className="price">{numberWithCommas(price)}</span>
                     </div>
                   </div>

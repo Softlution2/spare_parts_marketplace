@@ -21,6 +21,8 @@ class AddParts extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      makeList: [],
+      modelList: [],
       price: 0,
       currency: "AED",
       quantity: 0,
@@ -32,7 +34,9 @@ class AddParts extends Component {
       partBrand: null,
       partSKU: null,
       description: null,
-      submitLoading: false
+      submitLoading: false,
+      makes: [],
+      models: [],
     };
     this.validator = new SimpleReactValidator();
     this.handleChangeNumeric = this.handleChangeNumeric.bind(this);
@@ -43,6 +47,47 @@ class AddParts extends Component {
     this.handleChangeSubCategory = this.handleChangeSubCategory.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleChangeMake = this.handleChangeMake.bind(this);
+    this.handleChangeModel = this.handleChangeModel.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get("/api/listing/get-makes")
+      .then((res) => {
+        const list = res.data.map((data) => {
+          return { label: data.name, value: data.id_car_make }
+        });
+        this.setState({makeList: list});
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  }
+
+  handleChangeMake(options) {
+    if (!options) { this.setState({makes: null}); return; }
+    const makes = options.map((o) => {
+      return o.value;
+    });
+    this.setState({makes});
+    axios.post("api/listing/get-models", { makes })
+      .then((res) => {
+        const list = res.data.map((data) => {
+          return { label: data.name, value: data.id_car_model }
+        });
+        this.setState({modelList: list});
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  }
+
+  handleChangeModel(options) {
+    if (!options) { this.setState({models: null}); return; }
+    const models = options.map((o) => {
+      return o.value;
+    });
+    this.setState({models});
   }
 
   handleChangeNumeric(name, value) {
@@ -81,6 +126,7 @@ class AddParts extends Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     if (this.validator.allValid()) {
       this.setState({submitLoading: true});
       let formData = new FormData();
@@ -148,7 +194,6 @@ class AddParts extends Component {
                     )}
                   </div>
               </div>
-
               <div className="form-group row">
                 <div className="col-md-6">
                   <label>Category</label>
@@ -237,6 +282,46 @@ class AddParts extends Component {
               </div>
               <div className="form-group row">
                 <div className="col-md-6">
+                  <label>Make:</label>
+                  <Select
+                    className={`react-select`}
+                    classNamePrefix="react-select"
+                    placeholder="Choose..."
+                    name="make"
+                    onChange={this.handleChangeMake}
+                    options={this.state.makeList}
+                    isMulti={true}
+                  />
+                  <div className="text-danger">
+                    {this.validator.message(
+                      "makes",
+                      this.state.makes,
+                      `required`
+                    )}
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <label>Model:</label>
+                  <Select
+                    className={`react-select`}
+                    classNamePrefix="react-select"
+                    placeholder="Choose..."
+                    name="model"
+                    onChange={this.handleChangeModel}
+                    options={this.state.modelList}
+                    isMulti={true}
+                  />
+                  <div className="text-danger">
+                    {this.validator.message(
+                      "models",
+                      this.state.models,
+                      `required`
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="form-group row">
+                <div className="col-md-6">
                   <label>Price:</label>
                   <InputDropdown
                     // options={}
@@ -275,13 +360,13 @@ class AddParts extends Component {
               <div className="form-group">
                 <label>Description:</label>
                 <textarea className="form-control" name="description" rows={5} onChange={this.handleInput}></textarea>
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "description",
-                      this.state.description,
-                      `required`
-                    )}
-                  </div>
+                <div className="text-danger">
+                  {this.validator.message(
+                    "description",
+                    this.state.description,
+                    `required`
+                  )}
+                </div>
               </div>
               <div className="form-group mt-5 text-center">
                 <button

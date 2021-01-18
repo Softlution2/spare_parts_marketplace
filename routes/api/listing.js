@@ -12,6 +12,9 @@ const s3 = new AWS.S3({
 });
 
 const Listing = require("../../models/Listing");
+const CarMake = require("../../models/CarMake");
+const CarModel = require("../../models/CarModel");
+
 const {ObjectId} = require('mongodb'); // or ObjectID 
 
 router.post("/new", async (req, res) => {
@@ -61,6 +64,27 @@ router.post("/new", async (req, res) => {
 
 router.get("/get-home", (req, res) => {
   Listing.find({}).populate("user").exec(function(err, docs) {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({message: "Something went wrong!"});
+    }
+    return res.json(docs);
+  });
+});
+
+router.get("/get-makes", (req, res) => {
+  CarMake.find({}, function (err, docs) {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({message: "Something went wrong!"});
+    }
+    return res.json(docs);
+  });
+});
+
+router.post("/get-models", (req, res) => {
+  const { makes } = req.body;
+  CarModel.find({ id_car_make: { $in: makes } }, function (err, docs) {
     if (err) {
       console.log(err);
       return res.status(400).json({message: "Something went wrong!"});

@@ -151,8 +151,8 @@
 
 //promise area
 .promise-wrapper, .promise-wrapper--light {
-  background-color: #9a872a;
-  padding: 3rem 0;
+  background-color: #ffcc33;
+  padding: 1.5rem 0 0 0;
   .section-title h2 {
     color: white;
     text-transform: uppercase;
@@ -164,18 +164,18 @@
     align-items: center;
     .icon-img {
       img {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        height: auto;
       }
     }
     .title {
-      color: $dark-blue;
+      color: #1e3255;
       text-align: center;
       font-weight: bolder;
       font-size: remy(15px);
     }
     .message {
-      color: $dark-blue;
+      color: #1e3255;
       font-size: 15px;
       letter-spacing: -.5px;
       text-align: center;

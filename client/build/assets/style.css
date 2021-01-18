@@ -9255,8 +9255,8 @@ p {
 }
 
 .promise-wrapper, .promise-wrapper--light {
-  background-color: #9a872a;
-  padding: 3rem 0;
+  background-color: #ffcc33;
+  padding: 1.5rem 0 0 0;
 }
 
 .promise-wrapper .section-title h2, .promise-wrapper--light .section-title h2 {
@@ -9279,19 +9279,19 @@ p {
 }
 
 .promise-wrapper .item .icon-img img, .promise-wrapper--light .item .icon-img img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: auto;
 }
 
 .promise-wrapper .item .title, .promise-wrapper--light .item .title {
-  color: #193554;
+  color: #1e3255;
   text-align: center;
   font-weight: bolder;
   font-size: 1rem;
 }
 
 .promise-wrapper .item .message, .promise-wrapper--light .item .message {
-  color: #193554;
+  color: #1e3255;
   font-size: 15px;
   letter-spacing: -.5px;
   text-align: center;

@@ -75,7 +75,7 @@ class Index extends Component {
         {/* Browse By Type section end */}
         
         {/* Browse By Make section start */}
-        <section className="browse-type-wrapper section-padding mb-5">
+        <section className="browse-category-wrapper section-padding">
           <div className="container">
             <SectionTitle
               title={t("home_browse_by_make_title")} 
