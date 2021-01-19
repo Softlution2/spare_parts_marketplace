@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
+import CookieConsent from "react-cookie-consent";
 import LogIn from "../../content/element/modal/signIn";
-import Register from "../../content/element/modal/signUp";
+
 const noAction = (e) => e.preventDefault();
 
 class Footer extends Component {
@@ -158,8 +159,20 @@ class Footer extends Component {
           </div>
           {/* ends: .footer-bottom */}
         </footer>
+        
+        <CookieConsent
+          location="bottom"
+          buttonText="Accept"
+          buttonClasses="accept-btn"
+          containerClasses="cookie-message"
+          cookieName="myAwesomeCookieName2"
+          style={{ background: "#2B373B" }}
+          expires={150}
+        >
+          The cookie settings on this website are set to 'allow all cookies' to give you the very best experience.
+          Please click Accept Cookies to continue to use the site
+        </CookieConsent>
         {/* ends: .footer */}
-        <Register />
         <LogIn />
       </Fragment>
     );

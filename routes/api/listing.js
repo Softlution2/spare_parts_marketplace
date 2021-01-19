@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const formidable = require("formidable");
-const AWS = require('aws-sdk');
-const fs = require('fs');
+const AWS = require("aws-sdk");
+const fs = require("fs");
 const crypto = require("crypto");
-const path = require('path');
+const path = require("path");
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -15,14 +15,14 @@ const Listing = require("../../models/Listing");
 const CarMake = require("../../models/CarMake");
 const CarModel = require("../../models/CarModel");
 
-const {ObjectId} = require('mongodb'); // or ObjectID 
+const { ObjectId } = require("mongodb"); // or ObjectID
 
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
   const { search, make } = req.body;
   if (search && search !== null) {
-    findQuery['$text'] = {
-      $search: search
+    findQuery["$text"] = {
+      $search: search,
     };
   }
   // if (make && make !== null) {
@@ -33,40 +33,40 @@ router.post("/initialize", async (req, res) => {
   let listings, maxPrice, minPrice, makeList, modelList, brandList;
   try {
     listings = await Listing.find(findQuery).sort("-date").populate("user_id");
-  } catch(err) {
+  } catch (err) {
     listing = [];
   }
-  
+
   try {
     maxPrice = (await Listing.findOne({}).sort("-price")).price;
-  } catch(err) {
+  } catch (err) {
     maxPrice = 0;
   }
-  
+
   try {
     minPrice = (await Listing.findOne({}).sort("price")).price;
-  } catch(err) {
+  } catch (err) {
     minPrice = 0;
   }
-  
+
   try {
     makeIds = await Listing.distinct("makes");
-    makeList = await CarMake.find({_id: { $in: makeIds }});
-  } catch(err) {
+    makeList = await CarMake.find({ _id: { $in: makeIds } });
+  } catch (err) {
     makeList = [];
   }
-  
+
   try {
     modelIds = await Listing.distinct("models");
-    modelList = await CarModel.find({_id: { $in: modelIds }});
-  } catch(err) {
+    modelList = await CarModel.find({ _id: { $in: modelIds } });
+  } catch (err) {
     modelList = [];
   }
 
   try {
     brandList = await Listing.distinct("partBrand");
-  } catch(err) {
-    brandList= [];
+  } catch (err) {
+    brandList = [];
   }
 
   return res.json({
@@ -75,7 +75,7 @@ router.post("/initialize", async (req, res) => {
     minPrice,
     makeList,
     modelList,
-    brandList
+    brandList,
   });
 });
 
@@ -104,18 +104,18 @@ router.post("/new", async (req, res) => {
   form.on("end", async function () {
     const file = fs.readFileSync("uploads/" + pic);
     const rawBytes = await crypto.pseudoRandomBytes(16);
-    const fileName = rawBytes.toString('hex') + Date.now() + path.extname(pic);
+    const fileName = rawBytes.toString("hex") + Date.now() + path.extname(pic);
     const params = {
-      Bucket: 'spare-parts-marketplace',
+      Bucket: "spare-parts-marketplace",
       Key: fileName,
-      Body: file
+      Body: file,
     };
     let data = null;
     try {
       data = await s3.upload(params).promise();
     } catch (err) {
       console.log(err);
-      return res.status(400).json({message: "Something went wrong!"})
+      return res.status(400).json({ message: "Something went wrong!" });
     }
     fs.unlinkSync("uploads/" + pic);
     pic = data.Location;
@@ -126,27 +126,35 @@ router.post("/new", async (req, res) => {
       makes: JSON.parse(obj.makes),
       models: JSON.parse(obj.models),
     });
-    newListing.save()
-    .then((listing) => { return res.json(listing); })
-    .catch((err) => { console.log(err); return res.status(400).json({message: "Something went wrong!"}) });
+    newListing
+      .save()
+      .then((listing) => {
+        return res.json(listing);
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(400).json({ message: "Something went wrong!" });
+      });
   });
 });
 
 router.get("/get-home", (req, res) => {
-  Listing.find({}).populate("user").exec(function(err, docs) {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({message: "Something went wrong!"});
-    }
-    return res.json(docs);
-  });
+  Listing.find({})
+    .populate("user")
+    .exec(function (err, docs) {
+      if (err) {
+        console.log(err);
+        return res.status(400).json({ message: "Something went wrong!" });
+      }
+      return res.json(docs);
+    });
 });
 
 router.get("/get-makes", (req, res) => {
   CarMake.find({}, function (err, docs) {
     if (err) {
       console.log(err);
-      return res.status(400).json({message: "Something went wrong!"});
+      return res.status(400).json({ message: "Something went wrong!" });
     }
     return res.json(docs);
   });
@@ -157,7 +165,7 @@ router.post("/get-models", (req, res) => {
   CarModel.find({ id_car_make: { $in: makes } }, function (err, docs) {
     if (err) {
       console.log(err);
-      return res.status(400).json({message: "Something went wrong!"});
+      return res.status(400).json({ message: "Something went wrong!" });
     }
     return res.json(docs);
   });
@@ -200,7 +208,9 @@ router.post("/search", async (req, res) => {
   }
   const { sortBy } = query;
   try {
-    const listings = await Listing.find(findQuery).sort(sortBy).populate("user");
+    const listings = await Listing.find(findQuery)
+      .sort(sortBy)
+      .populate("user");
     return res.json({ listings });
   } catch (err) {
     console.log(err);
@@ -208,17 +218,41 @@ router.post("/search", async (req, res) => {
   }
 });
 
-
 router.get("/get", async (req, res) => {
   try {
-    let listing = await Listing.findOne({ _id: req.query._id }).populate("user");
+    let listing = await Listing.findOne({ _id: req.query._id }).populate(
+      "user"
+    );
     // let similarListing = await Car.find({ make: doc.make, _id: {'$ne':doc._id } }).populate("user_id").sort("-date").limit(6);
     // let userListings = await Car.count({ user_id: doc.user_id })
-    return res.json({listing});
+    return res.json({ listing });
   } catch (err) {
     console.log(err);
     return res.status(400).json({ message: "Something went wrong!" });
   }
+});
+
+router.get("/get-count-by-category", (req, res) => {
+  const aggregatorOpts = [
+    {
+      $group: {
+        _id: "$category",
+        count: { $sum: 1 },
+      },
+    },
+  ];
+
+  Listing.aggregate(aggregatorOpts).exec(function (err, docs) {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({message: "Something went wrong!"});
+    }
+    let results = {};
+    docs.map((doc) => {
+      results[doc._id] = doc.count;
+    });
+    return res.json(results);
+  });
 });
 
 module.exports = router;

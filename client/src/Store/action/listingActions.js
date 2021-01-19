@@ -2,6 +2,10 @@ import axios from "axios";
 
 export const GetHomeListing = () => {
   return (dispatch, getState) => {
+    dispatch({
+      type: "SET_LOADING",
+      data: true,
+    });
     axios
       .get("/api/listing/get-home")
       .then((res) => {

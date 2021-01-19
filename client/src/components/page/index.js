@@ -2,7 +2,6 @@ import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from 'react-i18next'
-import CookieConsent, { Cookies } from "react-cookie-consent";
 
 import { SectionTitle } from "../content/element/section-title";
 import Header from "../layout/header";
@@ -11,15 +10,12 @@ import AdvSearch from "../content/element/advance-search";
 import HomeListingGrid from "../content/element/card/home-listing-grid";
 import Promise from "../content/element/promise";
 import BrowseByCategory from "../content/element/browse-by-category";
-import BrowseByMake from "../content/element/carousel/browse-by-make";
+import BrowseByMake from "../content/element/browse-by-make";
 import Newsletter from "../content/element/newsletter";
 import Footer from "../layout/footer";
 
-import { GetHomeListing } from "../../Store/action/listingActions";
-
 class Index extends Component {
   componentDidMount() {
-    this.props.getHomeListing();
   }
   render() {
     const { t } = this.props;
@@ -101,18 +97,6 @@ class Index extends Component {
           </div>
         </section>
         {/* Newsletter section end */}
-        <CookieConsent
-          location="bottom"
-          buttonText="Accept"
-          buttonClasses="accept-btn"
-          containerClasses="cookie-message"
-          cookieName="myAwesomeCookieName2"
-          style={{ background: "#2B373B" }}
-          expires={150}
-        >
-          The cookie settings on this website are set to 'allow all cookies' to give you the very best experience.
-          Please click Accept Cookies to continue to use the site
-        </CookieConsent>
         <Footer />
         
       </Fragment>
@@ -128,7 +112,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProp = (dispatch) => {
   return {
-    getHomeListing: () => dispatch(GetHomeListing()),
   };
 };
 

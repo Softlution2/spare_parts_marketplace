@@ -35,7 +35,8 @@ const listingReducer = (state = initState, action) => {
     case "GET_HOME_LISTING_SUCCESS":
       return {
         ...state,
-        homeListing: action.listing
+        homeListing: action.listing,
+        isLoading: false,
       };
     case "GET_HOME_LISTING_FAILED":
       return {

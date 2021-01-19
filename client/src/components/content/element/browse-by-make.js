@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from "axios";
 
 const makeList = [
   "toyota", "infiniti", "nissan", "mazda", "isuzu", "lexus", "honda", "subaru", "suzuki", "mitsubishi"
@@ -11,9 +10,6 @@ class BrowseByMake extends Component {
     super(props);
     this.state = {
     }
-  }
-
-  componentDidMount() {
   }
 
   render() {
