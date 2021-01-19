@@ -1196,7 +1196,7 @@
   color: #903af9;
 }
 
-.bg-secondary, .menu-area .author__notification_area ul li .notification_count.purch, .author__access_area ul li .author-info ul li a:hover, .price-range .ui-slider-horizontal .ui-slider-range, .range-slider .ui-slider-horizontal .ui-slider-range {
+.bg-secondary, .menu-area .author__notification_area ul li .notification_count.purch, .author__access_area ul li .author-info ul li a:hover, .range-slider .ui-slider-horizontal .ui-slider-range {
   background: #903af9;
 }
 
@@ -4511,6 +4511,7 @@ p {
 /* single listing details styles */
 .atbd_content_module {
   background: #fff;
+  margin-bottom: 2rem;
 }
 
 .atbd_content_module:last-child {
@@ -4843,45 +4844,6 @@ p {
   margin-right: 10px;
 }
 
-.atbd_listing_features .vehicle-info-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.atbd_listing_features .vehicle-info-group .vehicle-info-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 25%;
-          flex: 0 0 25%;
-  max-width: 25%;
-  margin-bottom: 2rem;
-}
-
-.atbd_listing_features .vehicle-info-group .vehicle-info-item span {
-  width: 100%;
-  font-weight: bolder;
-}
-
-.atbd_listing_features .vehicle-info-group .vehicle-info-item span.key {
-  font-size: 0.8rem;
-  margin-bottom: 0.5rem;
-}
-
-.atbd_listing_features .vehicle-info-group .vehicle-info-item span.value {
-  font-size: 1.1rem;
-  color: #193554;
-  word-break: break-word;
-}
-
 .atbd_listing__inspection_box .inspection-navs > ul {
   border: none;
   display: -webkit-box;
@@ -4949,6 +4911,50 @@ p {
 .atbd_listing__inspection_box .inspection-navs > ul li .name .badge {
   margin-left: 0.4rem;
   font-size: 1rem;
+}
+
+.atbd_listing_features .atbdb_content_module_contents {
+  margin-top: -2rem;
+}
+
+.atbd_listing_features .features-table {
+  margin: 0;
+  padding: 0;
+}
+
+.atbd_listing_features .features-table li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #e3e6ef;
+}
+
+.atbd_listing_features .features-table li div {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.atbd_listing_features .features-table li div p {
+  margin: 0;
+}
+
+.atbd_listing_features .features-table li .atbd_custom_field_title {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.atbd_listing_features .features-table li .atbd_custom_field_title p {
+  font-weight: 700;
+  color: #272b41;
+}
+
+.atbd_listing_features .features-table li .atbd_custom_field_content {
+  padding-left: 1.33333rem;
+  border-left: 1px solid #e3e6ef;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 .atbdb_content_module_contents .video-wrapper figure {
@@ -7760,18 +7766,50 @@ p {
   margin-top: 3px;
   position: absolute;
   width: 100%;
-  padding: 15px;
   display: none;
   -webkit-transition-duration: 0.9s;
        -o-transition-duration: 0.9s;
           transition-duration: 0.9s;
 }
 
-.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list {
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .side-menu {
+  width: 300px;
+  background: #e9ecef;
+  padding: 20px 0 20px 20px;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .side-menu ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .side-menu ul li {
+  padding: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .side-menu ul li:before {
+  display: none;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .side-menu ul li.active {
+  background: white;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .side-menu ul li:hover {
+  background: white;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list {
+  padding: 20px;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list {
   list-style: none;
 }
 
-.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list span {
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list span {
   display: block;
   color: #ed0103;
   font-weight: bolder;
@@ -7779,16 +7817,16 @@ p {
   padding-bottom: 0.5rem;
 }
 
-.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li {
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li {
   font-size: 12px;
-  padding: 2px 0;
+  padding: 12px 0;
 }
 
-.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li:before {
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li:before {
   display: none;
 }
 
-.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li a {
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li a {
   color: #3c3c3c;
   font-size: 12px;
   -webkit-transition: all ease 0.5s;
@@ -7796,7 +7834,7 @@ p {
   transition: all ease 0.5s;
 }
 
-.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .category-list li a:hover {
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li a:hover {
   color: #ed0103;
   border-bottom: 1px solid #ed0103;
 }
@@ -8631,50 +8669,12 @@ p {
 }
 
 /* range slider */
-.price-range p {
-  color: #9299b8;
+.price-range p, .price-range span {
+  color: #495057 !important;
 }
 
-.price-range .ui-slider-horizontal {
-  background: #e3e6ef;
-  height: 4px;
-  -webkit-border-radius: 1.66667rem;
-          border-radius: 1.66667rem;
-}
-
-.price-range .ui-slider-horizontal .ui-slider-handle {
-  background: #fff;
-  border: 0.26667rem solid #903af9;
-  -webkit-border-radius: 20rem;
-          border-radius: 20rem;
-  cursor: pointer;
-  outline: 0;
-  top: -7px;
-  margin-left: 0;
-}
-
-.price-range .amount-two {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-top: 1.33333rem;
-}
-
-.price-range .amount-two span {
-  line-height: 2.66667rem;
-  min-width: 6.66667rem;
-  display: inline-block;
-  border: 1px solid #e3e6ef;
-  text-align: center;
-  font-size: 1.06667rem;
-  color: #5d658c;
-  font-weight: 500;
+.price-range .rc-slider-handle {
+  border: solid 2px #ed0103;
 }
 
 /* slider range */

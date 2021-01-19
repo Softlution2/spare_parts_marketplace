@@ -34,15 +34,18 @@ export const Initialize = (data) => {
           maxPrice,
           minPrice,
           makeList,
-          modelList
+          modelList,
+          brandList
         } = res.data;
+        let newBrandList = brandList.map((b) => { return { name: b } });
         dispatch({
           type: "INITIALIZE_SUCCESS",
           listings,
           maxPrice,
           minPrice,
           makeList,
-          modelList
+          modelList,
+          brandList: newBrandList
         });
       })
       .catch((err) => {

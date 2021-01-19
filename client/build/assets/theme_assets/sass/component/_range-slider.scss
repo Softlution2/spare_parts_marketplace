@@ -1,43 +1,13 @@
 /* range slider */
 .price-range{
-  p{
-    color: $text-light;
+  p, span {
+    color: #495057 !important;
   }
   .amount, .amount-four{
     @extend .color-secondary;
   }
-  .ui-slider-horizontal{
-    background: $border-color;
-    height: 4px;
-    border-radius: remy(25px);
-    .ui-slider-range{
-      @extend .bg-secondary;
-    }
-    .ui-slider-handle{
-      background: #fff;
-      border: remy(4px) solid $secondary;
-      border-radius: remy(300px);
-      cursor: pointer;
-      outline: 0;
-      top: -7px;
-      margin-left: 0;
-    }
-  }
-  .amount-two{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: remy(20px);
-    span{
-      line-height: remy(40px);
-      min-width: remy(100px);
-      display: inline-block;
-      border: 1px solid $border-color;
-      text-align: center;
-      font-size: remy(16px);
-      color: $text-grey1;
-      font-weight: 500;
-    }
+  .rc-slider-handle {
+    border: solid 2px $primary;
   }
 }
 /* slider range */

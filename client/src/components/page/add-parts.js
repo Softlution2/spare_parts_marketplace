@@ -223,13 +223,6 @@ class AddParts extends Component {
                     onChange={(option) => this.handleChangeSubCategory(option)}
                     options={this.state.category && subCategories[this.state.category] ? subCategories[this.state.category] : []}
                   />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "subCategory",
-                      this.state.subCategory,
-                      `required`
-                    )}
-                  </div>
                 </div>
               </div>
               <div className="form-group row">

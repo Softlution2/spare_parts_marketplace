@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { CrossStorageClient } from "cross-storage";
-import { withTranslation } from 'react-i18next'
-import equal from 'fast-deep-equal'
+import { withTranslation } from "react-i18next";
+import equal from "fast-deep-equal";
 import NavItem from "../navbar/navItem";
 
 import { LogOut } from "../../../Store/action/logoutAction";
@@ -14,16 +14,14 @@ import { getDomain } from "../../../utils";
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
-  componentDidMount() {
-  }
+  componentDidMount() {}
   render() {
     const logOut = (e) => {
       e.preventDefault();
       this.props.logOutdata(null);
-      window.location.href= "/";
+      window.location.href = "/";
     };
     const { t } = this.props;
 
@@ -76,140 +74,141 @@ class Header extends Component {
                       </div>
                     </div>
                     <div className="menu-right order-lg-2 order-sm-2">
-                      {
-                        window.location.pathname !== '/' && (
-                          <div className="search-wrapper">
-                            <div className="nav_right_module search_module">
-                                <span className="icon-left" id="basic-addon9"><i className="la la-search"></i></span>
-                                <div className="search_area">
-                                    <form action="/all-listings">
-                                        <div className="input-group input-group-light">
-                                            <input type="text" name="search" className="form-control search_field top-search-field" placeholder="What are you looking for?" autoComplete="off" />
-                                        </div>
-                                    </form>
+                      {window.location.pathname !== "/" && (
+                        <div className="search-wrapper">
+                          <div className="nav_right_module search_module">
+                            <span className="icon-left" id="basic-addon9">
+                              <i className="la la-search"></i>
+                            </span>
+                            <div className="search_area">
+                              <form action="/all-listings">
+                                <div className="input-group input-group-light">
+                                  <input
+                                    type="text"
+                                    name="search"
+                                    className="form-control search_field top-search-field"
+                                    placeholder="What are you looking for?"
+                                    autoComplete="off"
+                                  />
                                 </div>
+                              </form>
                             </div>
                           </div>
-                        )
-                      }
-                      {
-                        this.props.login === null && (
-                          <div className="author-area">
-                            <div className="author__access_area">
-                              <ul className="d-flex list-unstyled align-items-center">
-                                <li>
-                                  <a
-                                    href=" "
-                                    className="access-link"
-                                    data-toggle="modal"
-                                    data-target="#login_modal"
-                                  >
-                                    {t("login")}
-                                  </a>
-                                  <span>{t("or")}</span>
-                                  <NavLink
-                                    to="/register"
-                                    className="access-link"
-                                  >
-                                    {t("register")}
-                                  </NavLink>
-                                </li>
-                              </ul>
-                            </div>
+                        </div>
+                      )}
+                      {this.props.login === null && (
+                        <div className="author-area">
+                          <div className="author__access_area">
+                            <ul className="d-flex list-unstyled align-items-center">
+                              <li>
+                                <a
+                                  href=" "
+                                  className="access-link"
+                                  data-toggle="modal"
+                                  data-target="#login_modal"
+                                >
+                                  {t("login")}
+                                </a>
+                                <span>{t("or")}</span>
+                                <NavLink to="/register" className="access-link">
+                                  {t("register")}
+                                </NavLink>
+                              </li>
+                            </ul>
                           </div>
-                        )
-                      }
+                        </div>
+                      )}
 
-                      {
-                        this.props.login !== null && (
-                          <div className={"offcanvas-menu"}>
-                            <a href="#!" className="offcanvas-menu__user">
-                              { this.props.chat.unreadMsgCnt > 0 && ( <span className="badge unread-msg">{this.props.chat.unreadMsgCnt}</span> ) }
-                              <i className="la la-bars"></i>
-                              { 
-                                this.props.login.avatar ? (
-                                  <img
-                                    src={`${this.props.login.avatar}`}
-                                    alt="AvatarImage"
-                                    className="rounded-circle"
-                                    width="50"
-                                    height="50"
-                                  />
-                                ) : (
-                                  <i className="la la-user"></i>
-                                )
-                              }
-                            </a>
-                            <div className="offcanvas-menu__contents">
-                              <a href=" " className="offcanvas-menu__close">
-                                <i className="la la-times-circle"></i>
-                              </a>
-                              <div className="author-avatar">
-                              {
-                                this.props.login.avatar ? (
-                                  <img
-                                    src={`${this.props.login.avatar}`}
-                                    alt="AvatarImage"
-                                    className="rounded-circle"
-                                  />
-                                ) : (
-                                  <img
-                                    className="rounded-circle"
-                                    src={`/assets/img/avatar.png`}
-                                    alt="AvatarImage"
-                                  />
-                                )
-                              }
-                              <span className="d-inline-block w-100 font-weight-bold mb-1">
-                                <i className="la la-map-marker"></i> {this.props.login.details.garage_address}
+                      {this.props.login !== null && (
+                        <div className={"offcanvas-menu"}>
+                          <a href="#!" className="offcanvas-menu__user">
+                            {this.props.chat.unreadMsgCnt > 0 && (
+                              <span className="badge unread-msg">
+                                {this.props.chat.unreadMsgCnt}
                               </span>
-                              <p className="font-weight-bold">239 spare parts</p>
-                              <span className="author-rating">4.5<i className="la la-star"></i></span>
-                              </div>
-                              <ul className="list-unstyled">
-                                <li className="group-title">
-                                  Your Account
-                                </li>
-                                <li>
-                                  <NavLink to="/">Dashboard</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/my-profile">Profile</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/settings">Settings</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/faq">Help</NavLink>
-                                </li>
-                                <li className="group-title">
-                                  Your Inventory
-                                </li>
-                                <li>
-                                  <NavLink to="/all-listing">Listings</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/sell-your-parts">Add New</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/discussion">Discussion</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/my-callbacks">Callbacks</NavLink>
-                                </li>
-                                <li className="group-title">
-                                  Your Orders
-                                </li>
-                                <li>
-                                  <NavLink to="/orders">Orders</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/deliveries">Deliveries</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/payments">Payments</NavLink>
-                                </li>
-                                {/* <li>
+                            )}
+                            <i className="la la-bars"></i>
+                            {this.props.login.avatar ? (
+                              <img
+                                src={`${this.props.login.avatar}`}
+                                alt="AvatarImage"
+                                className="rounded-circle"
+                                width="50"
+                                height="50"
+                              />
+                            ) : (
+                              <i className="la la-user"></i>
+                            )}
+                          </a>
+                          <div className="offcanvas-menu__contents">
+                            <a href=" " className="offcanvas-menu__close">
+                              <i className="la la-times-circle"></i>
+                            </a>
+                            <div className="author-avatar">
+                              {this.props.login.avatar ? (
+                                <img
+                                  src={`${this.props.login.avatar}`}
+                                  alt="AvatarImage"
+                                  className="rounded-circle"
+                                />
+                              ) : (
+                                <img
+                                  className="rounded-circle"
+                                  src={`/assets/img/avatar.png`}
+                                  alt="AvatarImage"
+                                />
+                              )}
+                              <span className="d-inline-block w-100 font-weight-bold mb-1">
+                                <i className="la la-map-marker"></i>{" "}
+                                {this.props.login.role === "BUYER"
+                                  ? this.props.login.details.garage_address
+                                  : this.props.login.details.company_address}
+                              </span>
+                              <p className="font-weight-bold">
+                                239 spare parts
+                              </p>
+                              <span className="author-rating">
+                                4.5<i className="la la-star"></i>
+                              </span>
+                            </div>
+                            <ul className="list-unstyled">
+                              <li className="group-title">Your Account</li>
+                              <li>
+                                <NavLink to="/">Dashboard</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/my-profile">Profile</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/settings">Settings</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/faq">Help</NavLink>
+                              </li>
+                              <li className="group-title">Your Inventory</li>
+                              <li>
+                                <NavLink to="/all-listing">Listings</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/sell-your-parts">Add New</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/discussion">Discussion</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/my-callbacks">Callbacks</NavLink>
+                              </li>
+                              <li className="group-title">Your Orders</li>
+                              <li>
+                                <NavLink to="/orders">Orders</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/deliveries">Deliveries</NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/payments">Payments</NavLink>
+                              </li>
+                              {/* <li>
                                   <NavLink to="/chats" className="d-flex align-items-center">{t("menu_my_messages")}
                                     { this.props.chat.unreadMsgCnt > 0 && ( <span className="badge unread-msg badge-primary ml-2">{this.props.chat.unreadMsgCnt}</span> ) }
                                   </NavLink>
@@ -223,18 +222,17 @@ class Header extends Component {
                                 <li>
                                   <NavLink to="/sell-your-car">{t("menu_add_listing")}</NavLink>
                                 </li> */}
-                                <li className="log-out">
-                                  <NavLink to=" " onClick={logOut}>
-                                    <i className="la la-power-off mr-2"></i>
-                                    {t("menu_signout")}
-                                  </NavLink>
-                                </li>
-                              </ul>
-                            </div>
-                            {/*<!-- ends: .author-info -->*/}
+                              <li className="log-out">
+                                <NavLink to=" " onClick={logOut}>
+                                  <i className="la la-power-off mr-2"></i>
+                                  {t("menu_signout")}
+                                </NavLink>
+                              </li>
+                            </ul>
                           </div>
-                        )
-                      }
+                          {/*<!-- ends: .author-info -->*/}
+                        </div>
+                      )}
                     </div>
                     {/*<!-- ends: .menu-right -->*/}
                   </div>
@@ -259,7 +257,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProp = (dispatch) => {
   return {
     logOutdata: (login) => dispatch(LogOut(login)),
-    loginAction: (login) => dispatch(LogInAc(login))
+    loginAction: (login) => dispatch(LogInAc(login)),
   };
 };
-export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProp))(Header);
+export default compose(
+  withTranslation(),
+  connect(mapStateToProps, mapDispatchToProp)
+)(Header);

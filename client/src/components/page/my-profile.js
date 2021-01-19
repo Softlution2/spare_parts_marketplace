@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import Modal from "react-awesome-modal";

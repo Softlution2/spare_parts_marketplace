@@ -223,6 +223,7 @@
 /* single listing details styles */
 .atbd_content_module{
   background: #fff;
+  margin-bottom: 2rem;
   &:last-child{
     margin-bottom: 0;
   }
@@ -481,32 +482,6 @@
   }
 }
 
-.atbd_listing_features{
-  .vehicle-info-group {
-    display: flex;
-    flex-wrap: wrap;
-    .vehicle-info-item {
-      display: flex;
-      flex-direction: column;
-      flex: 0 0 25%;
-      max-width: 25%;
-      margin-bottom: 2rem;
-      span {
-        width: 100%;
-        font-weight: bolder;
-        &.key {
-          font-size: 0.8rem;
-          margin-bottom: 0.5rem;
-        }
-        &.value {
-          font-size: 1.1rem;
-          color: $dark-blue;
-          word-break: break-word;
-        }
-      }
-    }
-  }
-}
 
 .atbd_listing__inspection_box {
   .inspection-navs {
@@ -563,6 +538,39 @@
             font-size: remy(15px);
           }
         }
+      }
+    }
+  }
+}
+
+.atbd_listing_features{
+  .atbdb_content_module_contents{
+    margin-top: remy(-30px);
+  }
+  .features-table{
+    margin: 0;
+    padding: 0;
+    li{
+      display: flex;
+      border-bottom: 1px solid $border-color;
+      div{
+        padding-top: remy(15px);
+        padding-bottom: remy(15px);
+        p{
+          margin: 0;
+        }
+      }
+      .atbd_custom_field_title{
+        flex: 1;
+        p{
+          font-weight: 700;
+          color: $dark;
+        }
+      }
+      .atbd_custom_field_content{
+        padding-left: remy(20px);
+        border-left: 1px solid $border-color;
+        flex: 2;
       }
     }
   }

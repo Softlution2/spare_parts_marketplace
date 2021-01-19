@@ -30,7 +30,7 @@ router.post("/initialize", async (req, res) => {
   //   const re = new RegExp(`\^${makeStr}$`, 'i');
   //   findQuery['make'] = re;
   // }
-  let listings, maxPrice, minPrice, makeList, modelList;
+  let listings, maxPrice, minPrice, makeList, modelList, brandList;
   try {
     listings = await Listing.find(findQuery).sort("-date").populate("user_id");
   } catch(err) {
@@ -63,12 +63,19 @@ router.post("/initialize", async (req, res) => {
     modelList = [];
   }
 
+  try {
+    brandList = await Listing.distinct("partBrand");
+  } catch(err) {
+    brandList= [];
+  }
+
   return res.json({
     listings,
     maxPrice,
     minPrice,
     makeList,
     modelList,
+    brandList
   });
 });
 
@@ -180,6 +187,12 @@ router.post("/search", async (req, res) => {
       $in: modelIds,
     };
   }
+  if (query.brand && query.brand.length !== 0) {
+    const brands = query.brand.map((b) => b.name);
+    findQuery["partBrand"] = {
+      $in: brands,
+    };
+  }
   if (query.string) {
     findQuery["$text"] = {
       $search: query.string,
@@ -189,6 +202,19 @@ router.post("/search", async (req, res) => {
   try {
     const listings = await Listing.find(findQuery).sort(sortBy).populate("user");
     return res.json({ listings });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ message: "Something went wrong!" });
+  }
+});
+
+
+router.get("/get", async (req, res) => {
+  try {
+    let listing = await Listing.findOne({ _id: req.query._id }).populate("user");
+    // let similarListing = await Car.find({ make: doc.make, _id: {'$ne':doc._id } }).populate("user_id").sort("-date").limit(6);
+    // let userListings = await Car.count({ user_id: doc.user_id })
+    return res.json({listing});
   } catch (err) {
     console.log(err);
     return res.status(400).json({ message: "Something went wrong!" });

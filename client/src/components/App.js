@@ -82,9 +82,11 @@ class App extends Component {
           />
           
           <Route path="/all-listings" component={AllListing} />
+          <Route path="/buy-spare-parts/:info" component={ListingDetails} />
+
           <Route path="/buy-type-:tag" component={AllListing} />
           <Route path="/buy-parts-:make" component={AllListing} />
-          <Route path="/listing-details/buy-parts-:info" component={ListingDetails} />
+
           <Route path="/seller-listings/:id" component={SellerListings} />
           <Route path="/news" component={News} />
           <Route path="/news-details:id" component={NewsDetails} />

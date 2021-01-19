@@ -28,6 +28,7 @@ class RegisterSeller extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setSelectedFile = this.setSelectedFile.bind(this);
+    this.setAddress = this.setAddress.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,10 @@ class RegisterSeller extends Component {
       this.props.history.push("/register/password");
       return;
     }
+  }
+
+  setAddress(address) {
+    this.setState({company_address: address});
   }
 
   handleSelect(e) {
@@ -165,19 +170,11 @@ class RegisterSeller extends Component {
                           )}
                         </div>
                       </div>
-
                       <div className="form-group">
                         <label htmlFor="company-address" className="form-label">
                           Company Address
                         </label>
-                        <input
-                          type="text"
-                          id="company-address"
-                          className="form-control"
-                          value={this.state.company_address || ""}
-                          name="company_address"
-                          onChange={this.handleInput}
-                        />
+                        <SearchLocationInput setAddress={this.setAddress} />
                         <div className="text-danger">
                           {this.validator.message(
                             "company_address",

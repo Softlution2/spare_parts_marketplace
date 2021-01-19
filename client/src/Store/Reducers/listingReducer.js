@@ -6,6 +6,7 @@ const initState = {
   minPrice: 0,
   makeList: [],
   modelList: [],
+  brandList: [],
   isLoading: false,
   searchQuery: {
     string: "",
@@ -24,6 +25,7 @@ const listingReducer = (state = initState, action) => {
         minPrice: action.minPrice,
         makeList: action.makeList,
         modelList: action.modelList,
+        brandList: action.brandList,
         isLoading: false,
       };
     case "INITIALIZE_FAILED":
