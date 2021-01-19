@@ -69,8 +69,7 @@ class RegisterSeller extends Component {
       formData.append("password", this.props.signup.password);
       formData.append("email", this.props.signup.email);
       formData.append("phone", this.props.signup.phone);
-      console.log(this.props.signup);
-      formData.append("role", "BUYER");
+      formData.append("role", "SELLER");
       const details = JSON.stringify({
         emirate: this.state.emirate,
         company_address: this.state.company_address,

@@ -160,16 +160,56 @@ class Header extends Component {
                                   />
                                 )
                               }
-                              <span className="text-primary font-weight-bold d-inline-block w-100">{this.props.login.name}</span>
+                              <span className="d-inline-block w-100 font-weight-bold mb-1">
+                                <i className="la la-map-marker"></i> {this.props.login.details.garage_address}
+                              </span>
+                              <p className="font-weight-bold">239 spare parts</p>
+                              <span className="author-rating">4.5<i className="la la-star"></i></span>
                               </div>
                               <ul className="list-unstyled">
-                                <li>
-                                  <NavLink to="/my-profile">{t("menu_my_profile")}</NavLink>
+                                <li className="group-title">
+                                  Your Account
                                 </li>
                                 <li>
-                                  <NavLink to="/my-listing">{t("menu_my_listings")}</NavLink>
+                                  <NavLink to="/">Dashboard</NavLink>
                                 </li>
                                 <li>
+                                  <NavLink to="/my-profile">Profile</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/settings">Settings</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/faq">Help</NavLink>
+                                </li>
+                                <li className="group-title">
+                                  Your Inventory
+                                </li>
+                                <li>
+                                  <NavLink to="/all-listing">Listings</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/sell-your-parts">Add New</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/discussion">Discussion</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/my-callbacks">Callbacks</NavLink>
+                                </li>
+                                <li className="group-title">
+                                  Your Orders
+                                </li>
+                                <li>
+                                  <NavLink to="/orders">Orders</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/deliveries">Deliveries</NavLink>
+                                </li>
+                                <li>
+                                  <NavLink to="/payments">Payments</NavLink>
+                                </li>
+                                {/* <li>
                                   <NavLink to="/chats" className="d-flex align-items-center">{t("menu_my_messages")}
                                     { this.props.chat.unreadMsgCnt > 0 && ( <span className="badge unread-msg badge-primary ml-2">{this.props.chat.unreadMsgCnt}</span> ) }
                                   </NavLink>
@@ -182,9 +222,12 @@ class Header extends Component {
                                 </li>
                                 <li>
                                   <NavLink to="/sell-your-car">{t("menu_add_listing")}</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to=" " onClick={logOut}>{t("menu_signout")}</NavLink>
+                                </li> */}
+                                <li className="log-out">
+                                  <NavLink to=" " onClick={logOut}>
+                                    <i className="la la-power-off mr-2"></i>
+                                    {t("menu_signout")}
+                                  </NavLink>
                                 </li>
                               </ul>
                             </div>

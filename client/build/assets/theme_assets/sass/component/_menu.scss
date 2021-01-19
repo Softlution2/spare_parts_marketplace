@@ -707,23 +707,48 @@
     }
     .author-avatar{
       text-align: center;
-      border-bottom: 1px solid $border-color;
-      padding: remy(15px) 0;
-      margin-bottom: remy(15px);
+      padding: remy(15px) 0 0;
       img {
         width: 80%;
         height: auto;
         object-fit: cover;
         margin-bottom: 1rem;
       }
+      
+      .author-rating {
+        line-height: 2.66667rem;
+        color: #fff;
+        border-radius: 3px;
+        margin-right: .66667rem;
+        background: $success;
+        padding: .5rem .7rem;
+      }
     }
     ul{
       li{
+        &.group-title {
+          background: $gray-500;
+          text-align: center;
+          color: white;
+          padding: .3333rem 0;
+          margin: 1rem -25px;
+        }
+        &.log-out {
+          border: 1px solid $primary;
+          border-radius: 5px;
+          margin-top: 2rem;
+          text-align: center;
+          a {
+            font-weight: bolder;
+            color: $primary;
+          }
+        }
         a{
           display: block;
           padding: 8px remy(10px);
           border-radius: 3px;
           color: $text-grey1;
+          transition: none !important;
           &:hover{
             @extend .bg-primary;
             color: #fff;
