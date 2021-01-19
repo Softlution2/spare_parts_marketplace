@@ -253,6 +253,7 @@
   .atbdb_content_module_contents{
     padding: remy(30px);
   }
+
 }
 
 .directory_listiing_detail_area{
@@ -377,17 +378,6 @@
           }
         }
       }
-    }
-  }
-  .car-info__footer {
-    i {
-      font-size: 1.5rem;
-      margin-right: remy(10px);
-    }
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 }
@@ -908,6 +898,34 @@
     }
     #atbdp_review_form_submit{
       margin-top: remy(7px);
+    }
+  }
+}
+.atbd_widget_contact {
+  margin-top: 2rem;
+  a, button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size: 25px;
+      margin-right: .6rem;
+    }
+  }
+}
+.seller_info_widget {
+  .atbd_avatar_wrapper {
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 1rem;
+    .atbd_review_avatar {
+      margin-right: 0;
+    }
+    .atbd_name_location {
+      text-align: center;
+      p {
+        margin-bottom: .2rem;
+      }
     }
   }
 }

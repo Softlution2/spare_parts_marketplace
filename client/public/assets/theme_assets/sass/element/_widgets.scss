@@ -60,9 +60,17 @@
   .atbd_widget_title{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: remy(20px) remy(32px) remy(20px) remy(26px);
+    flex-direction: column;
+    align-items: flex-start !important;
+    padding: 0 0 remy(20px) 0;
     border-bottom: 1px solid $border-color;
+    h4 {
+      margin-left: remy(24px);
+      padding-top: remy(20px);
+    }
+    button {
+      line-height: 4;
+    }
   }
 }
 .atbd_widget{

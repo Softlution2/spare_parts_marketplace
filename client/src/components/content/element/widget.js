@@ -8,7 +8,7 @@ export class SellerInfo extends Component {
     const { seller,postDate } = this.props;
     return (
       <Fragment>
-        <div className="widget-body atbd_author_info_widget">
+        <div className="widget-body atbd_author_info_widget seller_info_widget">
           <div className="atbd_avatar_wrapper">
             <div className="atbd_review_avatar">
               {
@@ -19,15 +19,21 @@ export class SellerInfo extends Component {
                 )
               }
             </div>
-            <div className="atbd_name_time">
+            <div className="atbd_name_location">
               <h4>
                 {seller.details.company_name}{" "}
               </h4>
-              <span className="review_time">Posted {postDate} ago</span>
+              <p>
+                <i className="la la-map-marker"></i>
+                {seller.details.company_address}
+              </p>
+              <p>239 spare parts</p>
+              <span className="author-rating">4.5<i className="la la-star"></i></span>
+              {/* <span className="review_time">Posted {postDate} ago</span> */}
             </div>
           </div>
           {/* <!-- ends: .atbd_avatar_wrapper --> */}
-          <div className="atbd_widget_contact_info">
+          {/* <div className="atbd_widget_contact_info">
             <ul>
               <li>
                 <span className="la la-map-marker"></span>
@@ -42,15 +48,15 @@ export class SellerInfo extends Component {
                 <span className="atbd_info">{seller.email}</span>
               </li>
             </ul>
-          </div>
+          </div> */}
           {/* <!-- ends: .atbd_widget_contact_info --> */}
-          <div className="atbd_social_wrap">
+          {/* <div className="atbd_social_wrap">
             <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-facebook-f"></span></NavLink></p>
             <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-twitter"></span></NavLink></p>
             <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-google-plus-g"></span></NavLink></p>
             <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-linkedin-in"></span></NavLink></p>
             <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-dribbble"></span></NavLink></p>
-          </div>
+          </div> */}
         </div>
       </Fragment>
     );

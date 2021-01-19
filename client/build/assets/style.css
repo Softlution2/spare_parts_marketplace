@@ -3350,11 +3350,24 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 1.33333rem 2.13333rem 1.33333rem 1.73333rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start !important;
+      -ms-flex-align: start !important;
+          align-items: flex-start !important;
+  padding: 0 0 1.33333rem 0;
   border-bottom: 1px solid #e3e6ef;
+}
+
+.widget-card .atbd_widget_title h4 {
+  margin-left: 1.6rem;
+  padding-top: 1.33333rem;
+}
+
+.widget-card .atbd_widget_title button {
+  line-height: 4;
 }
 
 .atbd_widget {
@@ -4710,23 +4723,6 @@ p {
   margin-right: 0.66667rem;
 }
 
-.car-info .car-info__footer i {
-  font-size: 1.5rem;
-  margin-right: 0.66667rem;
-}
-
-.car-info .car-info__footer button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .atbd_listing_gallery .detail_main_area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5349,6 +5345,50 @@ p {
 
 .atbd_review_form #atbdp_review_form #atbdp_review_form_submit {
   margin-top: 0.46667rem;
+}
+
+.atbd_widget_contact {
+  margin-top: 2rem;
+}
+
+.atbd_widget_contact a, .atbd_widget_contact button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.atbd_widget_contact a i, .atbd_widget_contact button i {
+  font-size: 25px;
+  margin-right: .6rem;
+}
+
+.seller_info_widget .atbd_avatar_wrapper {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.seller_info_widget .atbd_avatar_wrapper .atbd_review_avatar {
+  margin-right: 0;
+}
+
+.seller_info_widget .atbd_avatar_wrapper .atbd_name_location {
+  text-align: center;
+}
+
+.seller_info_widget .atbd_avatar_wrapper .atbd_name_location p {
+  margin-bottom: .2rem;
 }
 
 .search-area .form-group {
@@ -7939,16 +7979,6 @@ p {
   margin-bottom: 1rem;
 }
 
-.offcanvas-menu .offcanvas-menu__contents .author-avatar .author-rating {
-  line-height: 2.66667rem;
-  color: #fff;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
-  margin-right: .66667rem;
-  background: #32cc6f;
-  padding: .5rem .7rem;
-}
-
 .offcanvas-menu .offcanvas-menu__contents ul li.group-title {
   background: #adb5bd;
   text-align: center;
@@ -8590,6 +8620,10 @@ p {
 }
 
 /* breadcrumb css */
+.breadcrumb-content {
+  padding: 2rem 0;
+}
+
 .header-breadcrumb .breadcrumb-wrapper {
   padding: 4.33333rem 0;
 }
@@ -10096,6 +10130,16 @@ p {
   display: block;
   right: -10px;
   top: 5px;
+}
+
+.author-rating {
+  line-height: 2.66667rem;
+  color: #fff;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  margin-right: .66667rem;
+  background: #32cc6f;
+  padding: .5rem .7rem;
 }
 
 /* Responsive CSS */
