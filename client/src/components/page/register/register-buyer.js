@@ -41,23 +41,23 @@ class RegisterBuyer extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.signup.accountType) {
-      this.props.history.push("/register");
-      return;
-    }
-    if (!this.props.signup.email) {
-      this.props.history.push("/register/verify-email");
-      return;
-    }
-    if (!this.props.signup.phone)
-    {
-      this.props.history.push("/register/verify-phone");
-      return;
-    }
-    if (!this.props.signup.password) {
-      this.props.history.push("/register/password");
-      return;
-    }
+    // if (!this.props.signup.accountType) {
+    //   this.props.history.push("/register");
+    //   return;
+    // }
+    // if (!this.props.signup.email) {
+    //   this.props.history.push("/register/verify-email");
+    //   return;
+    // }
+    // if (!this.props.signup.phone)
+    // {
+    //   this.props.history.push("/register/verify-phone");
+    //   return;
+    // }
+    // if (!this.props.signup.password) {
+    //   this.props.history.push("/register/password");
+    //   return;
+    // }
   }
   setAddress(address) {
     this.setState({garage_address: address});
