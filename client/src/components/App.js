@@ -34,6 +34,8 @@ import News from "./page/news";
 import NewsDetails from "./page/news-details";
 import Sellers from "./page/sellers";
 import SellerDetails from "./page/seller-details";
+import BecomeBuyer from "./page/become-buyer";
+import BecomeSeller from "./page/become-seller";
 
 import "../i18n";
 
@@ -97,6 +99,8 @@ class App extends Component {
 
           <Route path="/how-it-works" component={HowItWorks} />
           <Route path="/about-us" component={AboutUs} />
+          <Route path="/become-buyer" component={BecomeBuyer} />
+          <Route path="/become-seller" component={BecomeSeller} />
           <Route path="/contact" component={ContactUs} />
           <Route path="/terms" component={Terms} />
           <Route path="/faqs" component={Faqs} />

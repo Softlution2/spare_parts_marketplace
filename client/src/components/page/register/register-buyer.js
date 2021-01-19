@@ -37,26 +37,30 @@ class RegisterBuyer extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setSelectedFile = this.setSelectedFile.bind(this);
+    this.setAddress = this.setAddress.bind(this);
   }
 
   componentDidMount() {
-    // if (!this.props.signup.accountType) {
-    //   this.props.history.push("/register");
-    //   return;
-    // }
-    // if (!this.props.signup.email) {
-    //   this.props.history.push("/register/verify-email");
-    //   return;
-    // }
-    // if (!this.props.signup.phone)
-    // {
-    //   this.props.history.push("/register/verify-phone");
-    //   return;
-    // }
-    // if (!this.props.signup.password) {
-    //   this.props.history.push("/register/password");
-    //   return;
-    // }
+    if (!this.props.signup.accountType) {
+      this.props.history.push("/register");
+      return;
+    }
+    if (!this.props.signup.email) {
+      this.props.history.push("/register/verify-email");
+      return;
+    }
+    if (!this.props.signup.phone)
+    {
+      this.props.history.push("/register/verify-phone");
+      return;
+    }
+    if (!this.props.signup.password) {
+      this.props.history.push("/register/password");
+      return;
+    }
+  }
+  setAddress(address) {
+    this.setState({garage_address: address});
   }
 
   handleSelect(e) {
@@ -84,6 +88,7 @@ class RegisterBuyer extends Component {
         emirate: this.state.emirate,
         garage_type: this.state.garage_type,
         garage_name: this.state.garage_name,
+        garage_address: this.state.garage_address,
         opening_hours: this.state.opening_hours,
         closing_hours: this.state.closing_hours,
         trade_license_no: this.state.trade_license_no,
@@ -167,7 +172,14 @@ class RegisterBuyer extends Component {
                         <label htmlFor="garage-address" className="form-label">
                           Garage Address
                         </label>
-                        <SearchLocationInput />
+                        <SearchLocationInput setAddress={this.setAddress} />
+                        <div className="text-danger">
+                          {this.validator.message(
+                            "garage_address",
+                            this.state.garage_address,
+                            `required`
+                          )}
+                        </div>
                       </div>
                       
                       <div className="form-group">

@@ -7471,9 +7471,8 @@ p {
 }
 
 .search-wrapper {
-  margin-right: 2rem;
   position: relative;
-  min-width: 10rem;
+  min-width: 30rem;
 }
 
 .search-wrapper .search_module {
