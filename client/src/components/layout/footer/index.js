@@ -14,7 +14,7 @@ class Footer extends Component {
           <div className="footer-top p-bottom-25">
             <div className="container">
               <div className="row">
-                <div className="col-lg-4 col-sm-6">
+                <div className="col-lg-3 col-sm-6">
                   <div className="widget widget_pages">
                     <h2 className="widget-title"> Spare Parts Marketplace</h2>
                     <ul className="list-unstyled">
@@ -40,56 +40,87 @@ class Footer extends Component {
                 </div>
                 {/* ends: .col-lg-3 */}
                 
-                <div className="col-lg-4 col-sm-6">
+                <div className="col-lg-3 col-sm-6">
                   <div className="widget widget_social">
                     <h2 className="widget-title">{t("footer_connect_us")}</h2>
                     <ul className="list-unstyled social-list">
                       <li>
                         <a href="mailto:support@mycar.africa">
-                          <span className="mail">
-                            <i className="la la-envelope" />
-                          </span>{" "}
-                          Contact
+                          <span>
+                            <img src="/assets/img/footer_social_icons/whatsapp.png" width="30" />
+                          </span>
+                          Whatsapp
                         </a>
                       </li>
                       <li>
                         <NavLink onClick={noAction} to="/twitter">
-                          <span className="twitter">
-                            <i className="fab fa-twitter" />
-                          </span>{" "}
-                          Twitter
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink onClick={noAction} to="/facebook">
-                          <span className="facebook">
-                            <i className="fab fa-facebook-f" />
-                          </span>{" "}
+                          <span>
+                            <img src="/assets/img/footer_social_icons/facebook.png" width="30" />
+                          </span>
                           Facebook
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink onClick={noAction} to="/instagram">
-                          <span className="instagram">
-                            <i className="fab fa-instagram" />
-                          </span>{" "}
+                        <NavLink onClick={noAction} to="/facebook">
+                          <span>
+                            <img src="/assets/img/footer_social_icons/instagram.png" width="30" />
+                          </span>
                           Instagram
                         </NavLink>
                       </li>
                       <li>
+                        <NavLink onClick={noAction} to="/instagram">
+                          <span>
+                            <img src="/assets/img/footer_social_icons/twitter.png" width="30" />
+                          </span>
+                          Twitter
+                        </NavLink>
+                      </li>
+                      <li>
                         <NavLink onClick={noAction} to="/gplus">
-                          <span className="gplus">
-                            <i className="fab fa-google-plus-g" />
-                          </span>{" "}
-                          Google+
+                          <span>
+                            <img src="/assets/img/footer_social_icons/telegram.png" width="30" />
+                          </span>
+                          Telegram
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink onClick={noAction} to="/gplus">
+                          <span>
+                            <img src="/assets/img/footer_social_icons/wechat.png" width="30" />
+                          </span>
+                          Wechat
                         </NavLink>
                       </li>
                     </ul>
                   </div>
                   {/* ends: .widget */}
                 </div>
+                
                 {/* ends: .col-lg-3 */}
-                <div className="col-lg-4 col-sm-6">
+                <div className="col-lg-3 col-sm-6">
+                <div className="widget widget_pages">
+                    <h2 className="widget-title">Sections</h2>
+                    <ul className="list-unstyled">
+                      <li className="page-item">
+                        <NavLink to="/how-it-works">How it Works</NavLink>
+                      </li>
+                      <li className="page-item">
+                        <NavLink to="/buy-parts">Buy Parts</NavLink>
+                      </li>
+                      <li className="page-item">
+                        <NavLink to="/faqs">Become a Buyer</NavLink>
+                      </li>
+                      <li className="page-item">
+                        <NavLink to="/terms">Become a Seller</NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                  {/* ends: .widget */}
+                </div>
+                {/* ends: .col-lg-3 */}
+                
+                <div className="col-lg-3 col-sm-6">
                   <div className="widget widget_text">
                     <h2 className="widget-title">Spare Parts Marketplace</h2>
                     <div className="textwidget">
@@ -100,7 +131,7 @@ class Footer extends Component {
                   </div>
                   {/* ends: .widget */}
                 </div>
-                {/* ends: .col-lg-3 */}
+
               </div>
             </div>
           </div>

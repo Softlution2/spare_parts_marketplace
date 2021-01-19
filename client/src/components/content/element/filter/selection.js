@@ -13,33 +13,10 @@ export class OptionSelection extends Component {
   }
 
   componentDidMount() {
-    
-    const { options } = this.props;
-    const { activeOptions } = this.props;
-    if (options.length > 0 && activeOptions.length > 0) {
-      const lowerOptions = options.map((option) => { return option.toLowerCase() });
-      let { currentOptions } = this.state;
-      currentOptions = activeOptions.map((option) => {
-        const lowerIndex = lowerOptions.indexOf(option);
-        if (lowerIndex !== -1) return options[lowerIndex];
-        return option;
-      });
-      this.setState({currentOptions});
-    }
   }
 
   componentDidUpdate(prevProps) {
     if (!equal(prevProps.activeOptions, this.props.activeOptions) || !equal(prevProps.options, this.props.options)) {
-      const { options } = this.props;
-      const { activeOptions } = this.props;
-      const lowerOptions = options.map((option) => { return option.toLowerCase() });
-      let { currentOptions } = this.state;
-      currentOptions = activeOptions.map((option) => {
-        const lowerIndex = lowerOptions.indexOf(option);
-        if (lowerIndex !== -1) return options[lowerIndex];
-        return option;
-      });
-      this.setState({currentOptions});
     }
   }
 
@@ -71,7 +48,7 @@ export class OptionSelection extends Component {
                 }
               >
                 <span onClick={(e) => this.handleClickOption(e, option)}>
-                  {option}
+                  {option.name}
                 </span>
               </div>
             );

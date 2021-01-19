@@ -39,14 +39,10 @@ class AllListing extends Component {
       string: "",
       priceRange: null,
       make: [],
-      year: null,
-      mileage: null,
-      transmission: null,
-      color: null,
-      tags: [],
+      model: [],
       sortBy: {date: -1}
     };
-    let customQuery = {tag: "", search: ""};
+    let customQuery = { search: "" };
     if (params.search) {
       customQuery.search = params.search;
       searchQuery.string = params.search;
@@ -54,10 +50,6 @@ class AllListing extends Component {
     if (this.props.match.params.make) {
       customQuery.make = this.props.match.params.make;
       searchQuery.make = [this.props.match.params.make.replace("-", " ")];
-    }
-    if (this.props.match.params.tag) {
-      customQuery.tag = this.props.match.params.tag;
-      searchQuery.tags = [this.props.match.params.tag];
     }
     this.props.setSearchQuery(searchQuery);
     this.props.initializeListing(customQuery);

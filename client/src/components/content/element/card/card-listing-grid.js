@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
 
 import { SetFavouriteListing } from "../../../../Store/action/listingActions";
-import { numberWithCommas, stringToUrl, getTimeSince } from "../../../../utils";
+import { numberWithCommas, stringToUrl } from "../../../../utils";
 
-class ListingCardGrid extends Component {
+class CardListingGrid extends Component {
   render() {
     const { login, size } = this.props;
     const listings = this.props.list.listing;
@@ -17,71 +16,33 @@ class ListingCardGrid extends Component {
       <Fragment>
         { !isLoading && listings.map((value, index) => {
           const {
-            featured_photo,
-            make,
-            model,
-            year,
-            version,
-            mileage,
-            unit,
+            pic,
+            partName,
+            partSKU,
             price,
-            currency,
-            transmission,
             _id,
-            reference_code,
-            user_id,
-            favourite_users,
             date,
           } = value;
-          const title = make + " " + model + " " + year + " " + version;
+          const title = `${partName}`;
           const badge = moment.duration(moment().diff(moment(date))).asHours() <= 48 ? "new listing" : "";
           const link =
-            "buy-parts-" +
-            stringToUrl(make) +
+            stringToUrl(partName) +
             "-" +
-            stringToUrl(model) +
+            stringToUrl(partSKU) +
             "-" +
-            stringToUrl(year) +
-            "-" +
-            stringToUrl(version) +
-            "-" +
-            // stringToUrl(user_id.location) +
-            // "-" +
-            reference_code;
+            _id;
           return (
             <div className={className} key={index}>
               <div className="atbd_single_listing ">
                 <article className="atbd_single_listing_wrapper">
                   <figure className="atbd_listing_thumbnail_area">
                     <div className="atbd_listing_image">
-                      <NavLink to={`/listing-details/${link}`}>
+                      <NavLink to={`/buy-spare-parts/${link}`}>
                         <img
-                          src={`${featured_photo}`}
-                          alt="listingimage"
+                          src={`${pic}`}
+                          alt="Listing Image"
                         />
                       </NavLink>
-                    </div>
-                    <div className="atbd_author atbd_author--thumb">
-                      <a
-                        href=" "
-                        onClick={(e) => this.props.setFavouriteListing(e, _id)}
-                        className={
-                          login && favourite_users.includes(login._id)
-                            ? "active"
-                            : ""
-                        }
-                        data-tip
-                        data-for='loginWarning'
-                      >
-                        <i className="la-heart la"></i>
-                      </a>
-                      {
-                        !login && (
-                          <ReactTooltip id='loginWarning' type='error' effect='solid'>
-                            <span>Please login first</span>
-                          </ReactTooltip>
-                        )
-                      }
                     </div>
                     <div className="atbd_thumbnail_overlay_content">
                       <ul className="atbd_upper_badge">
@@ -99,27 +60,11 @@ class ListingCardGrid extends Component {
                   </figure>
                   <div className="atbd_listing_info">
                     <h4 className="atbd_listing_title">
-                      <NavLink to={`/listing-details/${link}`}>{title}</NavLink>
+                      <NavLink to={`/buy-spare-parts/${link}`}>{title}</NavLink>
                     </h4>
                     <div className="price-group">
+                      <span className="symbol mr-1">AED</span>
                       <span className="price">{numberWithCommas(price)}</span>
-                      <span className="symbol mr-1">{currency}</span>
-                    </div>
-                    <div className="vehicle-group">
-                      <span className="mileage">
-                        {numberWithCommas(mileage)}{unit === 'Kilometers' ? 'Km' : "M"}
-                      </span>
-                      <span className="transmission">{transmission}</span>
-                    </div>
-                    <div className="listing-meta">
-                      <p>
-                        <i className="la la-map-marker"></i>
-                        {/* {user_id.location} */}
-                      </p>
-                      <p>
-                        <i className="la la-calendar"></i>
-                        {getTimeSince(new Date(date))} ago
-                      </p>
                     </div>
                   </div>
                 </article>
@@ -145,4 +90,4 @@ const mapDispatchToProp = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProp)(ListingCardGrid);
+export default connect(mapStateToProps, mapDispatchToProp)(CardListingGrid);

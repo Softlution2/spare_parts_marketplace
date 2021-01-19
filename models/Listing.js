@@ -52,6 +52,12 @@ const ListingSchema = new Schema({
     type: Number,
     required: true,
   },
+  makes: [
+    { type : Schema.Types.ObjectId, ref: 'car_makes' },
+  ],
+  models: [
+    { type : Schema.Types.ObjectId, ref: 'car_models' },
+  ],
   date: {
     type: Date,
     default: Date.now,

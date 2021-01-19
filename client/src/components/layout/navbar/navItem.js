@@ -181,8 +181,9 @@ class NavItem extends Component {
             </a>
             <ul className="dropdown-menu" aria-labelledby="drop1">
               <li><NavLink to="/how-it-works">{t('menu_how_it_works')}</NavLink></li>
-              <li><NavLink to="/about">{t('menu_about')}</NavLink></li>
-              <li><NavLink to="/payment">{t('menu_payment')}</NavLink></li>
+              <li><NavLink to="/about-us">{t('menu_about')}</NavLink></li>
+              <li><NavLink to="/become-buyer">{t('menu_become_buyer')}</NavLink></li>
+              <li><NavLink to="/become-seller">{t('menu_become_seller')}</NavLink></li>
               <li><NavLink to="/contact">{t('menu_contact')}</NavLink></li>
               {/* <!-- dropdowns example --> */}                            
             </ul>

@@ -239,31 +239,18 @@
     .search-wrapper{
       .search_module{
         .icon-left{
-          color: #fff;
+          color: $dark;
         }
         .search_area{
           form{
             .input-group{
               .form-control{
-                color: #fff;
+                border-color: rgba($dark, 0.1);
+                background: #fff;
+                color: $dark;
                 &::placeholder{
-                  color: rgba(#fff, 0.5);
+                  color: $light-gray;
                 }
-              }
-            }
-          }
-        }
-        &.active{
-          .icon-left{
-            color: $dark;
-          }
-          .search_area{
-            form .input-group .form-control{
-              border-color: rgba($dark, 0.1);
-              background: #fff;
-              color: $dark;
-              &::placeholder{
-                color: $light-gray;
               }
             }
           }
@@ -393,7 +380,7 @@
 .search-wrapper{
   margin-right: remy(30px);
   position: relative;
-  min-width: remy(350px);
+  min-width: 10rem;
   .search_module{
     position: relative;
     .icon-left{
@@ -507,7 +494,7 @@
       }
       .access-link{
         color: rgba($dark, 0.05);
-        font-size: 25px;
+        font-size: 15px;
         margin: 0 5px;
         &:hover{
           @extend .color-primary;
@@ -655,6 +642,7 @@
 
 /* offcanvas menu */
 .offcanvas-menu{
+  margin-left: 20px;
   position: relative;
   .offcanvas-menu__user{
     // @extend .bg-primary;

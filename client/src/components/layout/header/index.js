@@ -76,31 +76,46 @@ class Header extends Component {
                       </div>
                     </div>
                     <div className="menu-right order-lg-2 order-sm-2">
-                      {/*<!-- start .author-area -->*/}
-                      <div className="author-area">
-                        <div className="author__access_area">
-                          {this.props.login === null && (
-                            <ul className="d-flex list-unstyled align-items-center">
-                              <li>
-                                <NavLink
-                                  to="/register"
-                                  className="access-link"
-                                >
-                                  <i className="la la-user"></i>
-                                </NavLink>
-                                <a
-                                  href=" "
-                                  className="access-link"
-                                >
-                                  <i className="la la-shopping-cart"></i>
-                                  {/* {t("register")} */}
-                                </a>
-                              </li>
-                            </ul>
-                          )}
+                      <div className="search-wrapper">
+                        <div className="nav_right_module search_module">
+                            <span className="icon-left" id="basic-addon9"><i className="la la-search"></i></span>
+                            <div className="search_area">
+                                <form action="/">
+                                    <div className="input-group input-group-light">
+                                        <input type="text" className="form-control search_field top-search-field" placeholder="What are you looking for?" autoComplete="off" />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                       </div>
-                      {/*<!-- end .author-area -->*/}
+                      {
+                        this.props.login === null && (
+                          <div className="author-area">
+                            <div className="author__access_area">
+                              <ul className="d-flex list-unstyled align-items-center">
+                                <li>
+                                  <a
+                                    href=" "
+                                    className="access-link"
+                                    data-toggle="modal"
+                                    data-target="#login_modal"
+                                  >
+                                    {t("login")}
+                                  </a>
+                                  <span>{t("or")}</span>
+                                  <NavLink
+                                    to="/register"
+                                    className="access-link"
+                                  >
+                                    {t("register")}
+                                  </NavLink>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        )
+                      }
+
                       {
                         this.props.login !== null && (
                           <div className={"offcanvas-menu"}>

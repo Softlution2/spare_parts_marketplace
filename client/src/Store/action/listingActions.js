@@ -33,26 +33,16 @@ export const Initialize = (data) => {
           listings,
           maxPrice,
           minPrice,
-          maxMileage,
-          minMileage,
-          maxYear,
-          minYear,
           makeList,
-          transmissionList,
-          colorList,
+          modelList
         } = res.data;
         dispatch({
           type: "INITIALIZE_SUCCESS",
           listings,
           maxPrice,
           minPrice,
-          maxMileage,
-          minMileage,
-          maxYear,
-          minYear,
           makeList,
-          transmissionList,
-          colorList,
+          modelList
         });
       })
       .catch((err) => {

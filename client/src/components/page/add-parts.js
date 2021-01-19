@@ -55,7 +55,7 @@ class AddParts extends Component {
     axios.get("/api/listing/get-makes")
       .then((res) => {
         const list = res.data.map((data) => {
-          return { label: data.name, value: data.id_car_make }
+          return { label: data.name, value: data.id_car_make, _id: data._id }
         });
         this.setState({makeList: list});
       })
@@ -66,16 +66,16 @@ class AddParts extends Component {
 
   handleChangeMake(options) {
     if (!options) { this.setState({makes: null}); return; }
-    const makes = options.map((o) => {
+    const make_ids = options.map((o) => {
       return o.value;
     });
-    this.setState({makes});
-    axios.post("api/listing/get-models", { makes })
+    axios.post("api/listing/get-models", { makes: make_ids })
       .then((res) => {
         const list = res.data.map((data) => {
-          return { label: data.name, value: data.id_car_model }
+          return { label: data.name, value: data.id_car_model, _id: data._id }
         });
-        this.setState({modelList: list});
+        const makes = options.map((o) => o._id);
+        this.setState({modelList: list, makes});
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -84,9 +84,7 @@ class AddParts extends Component {
 
   handleChangeModel(options) {
     if (!options) { this.setState({models: null}); return; }
-    const models = options.map((o) => {
-      return o.value;
-    });
+    const models = options.map((o) => o._id);
     this.setState({models});
   }
 
@@ -142,6 +140,8 @@ class AddParts extends Component {
       formData.append("partBrand", this.state.partBrand);
       formData.append("description", this.state.description);
       formData.append("user", this.props.login._id);
+      formData.append("makes", JSON.stringify(this.state.makes));
+      formData.append("models", JSON.stringify(this.state.models));
       axios.post(`/api/listing/new`, formData)
       .then((res) => {
         this.setState({submitLoading: false});
@@ -150,7 +150,7 @@ class AddParts extends Component {
       .catch((err) => {
         console.log(err);
         this.setState({submitLoading: false});
-        this.props.history.push("/");
+        // this.props.history.push("/");
         // this.setState({errMsg: err.response.data.message});
       });
     } else {

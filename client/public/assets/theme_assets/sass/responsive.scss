@@ -72,6 +72,11 @@
       border: 0 none;
       z-index: 1;
     }
+    .menu-right {
+      .search-wrapper {
+        display: none;
+      }
+    }
   }
   .offcanvas-menu{
     display: block !important;

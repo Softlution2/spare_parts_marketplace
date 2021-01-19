@@ -7295,52 +7295,28 @@ p {
 }
 
 .menu-area.menu--light .search-wrapper .search_module .icon-left {
-  color: #fff;
-}
-
-.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control {
-  color: #fff;
-}
-
-.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.menu-area.menu--light .search-wrapper .search_module.active .icon-left {
   color: #272b41;
 }
 
-.menu-area.menu--light .search-wrapper .search_module.active .search_area form .input-group .form-control {
+.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control {
   border-color: rgba(39, 43, 65, 0.1);
   background: #fff;
   color: #272b41;
 }
 
-.menu-area.menu--light .search-wrapper .search_module.active .search_area form .input-group .form-control::-webkit-input-placeholder {
+.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::-webkit-input-placeholder {
   color: #9299b8;
 }
 
-.menu-area.menu--light .search-wrapper .search_module.active .search_area form .input-group .form-control::-moz-placeholder {
+.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::-moz-placeholder {
   color: #9299b8;
 }
 
-.menu-area.menu--light .search-wrapper .search_module.active .search_area form .input-group .form-control::-ms-input-placeholder {
+.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::-ms-input-placeholder {
   color: #9299b8;
 }
 
-.menu-area.menu--light .search-wrapper .search_module.active .search_area form .input-group .form-control::placeholder {
+.menu-area.menu--light .search-wrapper .search_module .search_area form .input-group .form-control::placeholder {
   color: #9299b8;
 }
 
@@ -7497,7 +7473,7 @@ p {
 .search-wrapper {
   margin-right: 2rem;
   position: relative;
-  min-width: 23.33333rem;
+  min-width: 10rem;
 }
 
 .search-wrapper .search_module {
@@ -7667,7 +7643,7 @@ p {
 
 .author__access_area ul li .access-link {
   color: rgba(39, 43, 65, 0.05);
-  font-size: 25px;
+  font-size: 15px;
   margin: 0 5px;
 }
 
@@ -7828,6 +7804,7 @@ p {
 
 /* offcanvas menu */
 .offcanvas-menu {
+  margin-left: 20px;
   position: relative;
 }
 
@@ -10160,6 +10137,9 @@ p {
             transform: translateX(-50%);
     border: 0 none;
     z-index: 1;
+  }
+  .top-menu-area .menu-fullwidth .menu-right .search-wrapper {
+    display: none;
   }
   .offcanvas-menu {
     display: block !important;

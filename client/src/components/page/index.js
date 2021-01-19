@@ -92,7 +92,7 @@ class Index extends Component {
         <section className="newsletter section-padding">
           <div className="container">
             <SectionTitle
-              title="Subscribe to our news letter"
+              title="NEWSLETTER"
               content="And benefit from our special offers"
             />
             <div className="row">

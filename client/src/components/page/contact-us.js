@@ -27,9 +27,9 @@ class ContactUs extends Component {
                   <div className="card-body">
                     <i className="la la-map-marker"></i>
                     <h3 className="mb-4">Visit US</h3>
-                    <p>CARRO Lounge</p>
-                    <p>28 Sin Ming Lane, #01-134</p>
-                    <p>Singapore, 573972</p>
+                    <p>Spare Parts Marketplace</p>
+                    <p>Dubai</p>
+                    <p>United Arab Emirates</p>
                   </div>
                 </div>
               </div>
@@ -38,8 +38,8 @@ class ContactUs extends Component {
                   <div className="card-body">
                     <i className="la la-phone"></i>
                     <h3 className="mb-4 mt-2">Contact Us</h3>
-                    <p>Office: (65) 6714 6652</p>
-                    <p>Email: mycarhero@n.CARRO.sg</p>
+                    <p>Office: +971 24 24 24 24</p>
+                    <p>Email: sparepartsmarketplace email</p>
                   </div>
                 </div>
               </div>

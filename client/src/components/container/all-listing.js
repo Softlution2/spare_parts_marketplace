@@ -27,11 +27,8 @@ class Listing extends Component {
         string: "",
         priceRange: null,
         make: null,
+        model: null,
         year: null,
-        mileage: null,
-        transmission: null,
-        color: null,
-        tags: [],
         sortBy: {date: -1}
       },
     };
@@ -89,11 +86,7 @@ class Listing extends Component {
       string: "",
       priceRange: null,
       make: null,
-      year: null,
-      mileage: null,
-      transmission: null,
-      color: null,
-      tags: [],
+      model: null,
       sortBy: {date: -1}
     };
     this.setState({ searchQuery: initQuery });
@@ -144,7 +137,7 @@ class Listing extends Component {
     // sorting end
     const { searchQuery, orderText } = this.state;
     const { listing } = this.props.list;
-    const { maxPrice, minPrice, maxMileage, minMileage, maxYear, minYear, makeList, transmissionList } = this.props.list;
+    const { maxPrice, minPrice, makeList, modelList } = this.props.list;
     const { t } = this.props;
     return (
       <Fragment>
@@ -161,7 +154,7 @@ class Listing extends Component {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder={t("all_listings_search_placeholder")}
+                        placeholder="Find spare part SKU or vehicle VIN..."
                         autoComplete="off"
                         value={searchQuery.string || ""}
                         onChange={this.handleSearchChange}
@@ -178,7 +171,7 @@ class Listing extends Component {
                       onClick={this.searchAction}
                     >
                       <i className="las la-search"></i>
-                      {t("all_listings_search_button")}
+                      FIND PARTS
                     </button>
                     {/* <!-- Orderby dropdown --> */}
                   </div>
@@ -304,230 +297,39 @@ class Listing extends Component {
                               </div>
                             </div>
                           </div>
-
-                          <div className="card">
-                            <div className="card-header" role="tab" id="headingOne4">
-                              <a data-toggle="collapse" data-parent="#filterAccordion" href="#collapseOne4" aria-expanded="true"
-                                aria-controls="collapseOne4" className="collapsed">
-                                <span className="mb-0">
-                                  {t("all_listings_body_type")}
-                                </span>
-                                <i className="la la-angle-down"></i>
-                              </a>
-                            </div>
-                            <div id="collapseOne4" className="collapse" role="tabpanel" aria-labelledby="headingOne4"
-                              data-parent="#filterAccordion">
-                              <div className="card-body">
-                                {/* <div className="form-group p-bottom-10">
-                                  <ThumbOptionSelection
-                                    options={cartypes}
-                                    name="tags"
-                                    activeOptions={searchQuery.tags ? searchQuery.tags : []}
-                                    onChange={this.handleSelectionChange}
-                                  />
-                                </div> */}
-                              </div>
-                            </div>
-                          </div>
-
+                          
                           <div className="card">
                             <div
                               className="card-header"
                               role="tab"
-                              id="headingOne5"
+                              id="headingOne4"
                             >
                               <a
                                 data-toggle="collapse"
                                 data-parent="#filterAccordion"
-                                href="#collapseOne5"
+                                href="#collapseOne4"
                                 aria-expanded="true"
-                                aria-controls="collapseOne5"
+                                aria-controls="collapseOne4"
                                 className="collapsed"
                               >
-                                <span className="mb-0">{t("year")}</span>
+                                <span className="mb-0">{t("model")}</span>
                                 <i className="la la-angle-down"></i>
                               </a>
                             </div>
                             <div
-                              id="collapseOne5"
+                              id="collapseOne4"
                               className="collapse"
                               role="tabpanel"
-                              aria-labelledby="headingOne5"
-                              data-parent="#filterAccordion"
-                            >
-                              <div className="card-body">
-                                <div className="form-group p-bottom-10">
-                                  <div className="price-range rs-primary">
-                                    <p className="d-flex justify-content-between">
-                                      <span className="amount">
-                                        {searchQuery.year
-                                          ? `${searchQuery.year[0]} - ${searchQuery.year[1]}`
-                                          : `${minYear} - ${maxYear}`}
-                                      </span>
-                                    </p>
-                                    <Range
-                                      min={minYear}
-                                      max={maxYear}
-                                      defaultValue={[minYear, maxYear]}
-                                      value={
-                                        searchQuery.year
-                                          ? searchQuery.year
-                                          : [minYear, maxYear]
-                                      }
-                                      onChange={(values) =>
-                                        this.handleSliderChange(values, "year")
-                                      }
-                                      onAfterChange={
-                                        this.handleSliderAfterChange
-                                      }
-                                    />
-                                  </div>
-                                  {/*<!-- ends: .price-range -->*/}
-                                </div>
-                                {/*<!-- ends: .form-group -->*/}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="card">
-                            <div
-                              className="card-header"
-                              role="tab"
-                              id="headingOne6"
-                            >
-                              <a
-                                data-toggle="collapse"
-                                data-parent="#filterAccordion"
-                                href="#collapseOne6"
-                                aria-expanded="true"
-                                aria-controls="collapseOne6"
-                                className="collapsed"
-                              >
-                                <span className="mb-0">{t("mileage")}</span>
-                                <i className="la la-angle-down"></i>
-                              </a>
-                            </div>
-                            <div
-                              id="collapseOne6"
-                              className="collapse"
-                              role="tabpanel"
-                              aria-labelledby="headingOne6"
-                              data-parent="#filterAccordion"
-                            >
-                              <div className="card-body">
-                                <div className="form-group p-bottom-10">
-                                  <div className="price-range rs-primary">
-                                    <p className="d-flex justify-content-between">
-                                      <span className="amount">
-                                        {searchQuery.mileage
-                                          ? `${numberWithCommas(searchQuery.mileage[0])} - ${numberWithCommas(searchQuery.mileage[1])}`
-                                          : `${numberWithCommas(minMileage)} - ${numberWithCommas(maxMileage)}`}
-                                      </span>
-                                    </p>
-                                    <Range
-                                      min={minMileage}
-                                      max={maxMileage}
-                                      defaultValue={[minMileage, maxMileage]}
-                                      value={
-                                        searchQuery.mileage
-                                          ? searchQuery.mileage
-                                          : [minMileage, maxMileage]
-                                      }
-                                      onChange={(values) =>
-                                        this.handleSliderChange(
-                                          values,
-                                          "mileage"
-                                        )
-                                      }
-                                      onAfterChange={
-                                        this.handleSliderAfterChange
-                                      }
-                                    />
-                                  </div>
-                                  {/*<!-- ends: .price-range -->*/}
-                                </div>
-                                {/*<!-- ends: .form-group -->*/}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="card">
-                            <div
-                              className="card-header"
-                              role="tab"
-                              id="headingOne7"
-                            >
-                              <a
-                                data-toggle="collapse"
-                                data-parent="#filterAccordion"
-                                href="#collapseOne7"
-                                aria-expanded="true"
-                                aria-controls="collapseOne7"
-                                className="collapsed"
-                              >
-                                <span className="mb-0">{t("transmission")}</span>
-                                <i className="la la-angle-down"></i>
-                              </a>
-                            </div>
-                            <div
-                              id="collapseOne7"
-                              className="collapse"
-                              role="tabpanel"
-                              aria-labelledby="headingOne7"
+                              aria-labelledby="headingOne4"
                               data-parent="#filterAccordion"
                             >
                               <div className="card-body">
                                 <div className="form-group p-bottom-10">
                                   <OptionSelection
-                                    options={transmissionList}
-                                    name="transmission"
+                                    options={modelList}
+                                    name="model"
                                     activeOptions={
-                                      searchQuery.transmission
-                                        ? searchQuery.transmission
-                                        : []
-                                    }
-                                    onChange={this.handleSelectionChange}
-                                  />
-                                </div>
-                                {/*<!-- ends: .form-group -->*/}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="card">
-                            <div
-                              className="card-header"
-                              role="tab"
-                              id="headingOne8"
-                            >
-                              <a
-                                data-toggle="collapse"
-                                data-parent="#filterAccordion"
-                                href="#collapseOne8"
-                                aria-expanded="true"
-                                aria-controls="collapseOne8"
-                                className="collapsed"
-                              >
-                                <span className="mb-0">{t("color")}</span>
-                                <i className="la la-angle-down"></i>
-                              </a>
-                            </div>
-                            <div
-                              id="collapseOne8"
-                              className="collapse"
-                              role="tabpanel"
-                              aria-labelledby="headingOne8"
-                              data-parent="#filterAccordion"
-                            >
-                              <div className="card-body">
-                                <div className="form-group p-bottom-10">
-                                  <ColorBox
-                                    name="colors"
-                                    colorList={this.props.list.colorList}
-                                    activeColors={
-                                      searchQuery.colors
-                                        ? searchQuery.colors
-                                        : []
+                                      searchQuery.model ? searchQuery.model : []
                                     }
                                     onChange={this.handleSelectionChange}
                                   />

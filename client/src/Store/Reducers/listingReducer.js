@@ -2,32 +2,34 @@
 const initState = {
   homeListing: [],
   listing: [],
-  favoriteListing: [],
-  similarListing: [],
   maxPrice: 0,
   minPrice: 0,
-  maxMileage: 0,
-  minMileage: 0,
   makeList: [],
-  minYear: 2000,
-  maxYear: 2020,
-  transmissionList: [],
-  colorList: [],
+  modelList: [],
   isLoading: false,
   searchQuery: {
     string: "",
     priceRange: null,
     make: null,
-    year: null,
-    mileage: null,
-    transmission: null,
-    color: null,
-    tags: [],
   },
 };
 
 const listingReducer = (state = initState, action) => {
   switch (action.type) {
+    case "INITIALIZE_SUCCESS":
+      return {
+        ...state,
+        listing: action.listings,
+        maxPrice: action.maxPrice,
+        minPrice: action.minPrice,
+        makeList: action.makeList,
+        modelList: action.modelList,
+        isLoading: false,
+      };
+    case "INITIALIZE_FAILED":
+      return {
+        ...initState,
+      };
     case "GET_HOME_LISTING_SUCCESS":
       return {
         ...state,
@@ -37,25 +39,6 @@ const listingReducer = (state = initState, action) => {
       return {
         ...state,
         homeListing: []
-      };
-    case "INITIALIZE_SUCCESS":
-      return {
-        ...state,
-        listing: action.listings,
-        maxPrice: action.maxPrice,
-        minPrice: action.minPrice,
-        maxMileage: action.maxMileage,
-        minMileage: action.minMileage,
-        maxYear: action.maxYear,
-        minYear: action.minYear,
-        transmissionList: action.transmissionList,
-        makeList: action.makeList,
-        colorList: action.colorList,
-        isLoading: false,
-      };
-    case "INITIALIZE_FAILED":
-      return {
-        ...initState,
       };
     case "GET_MY_LISTING_SUCCESS":
       return {

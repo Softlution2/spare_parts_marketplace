@@ -6,8 +6,6 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import Index from "./page/index";
-import AllListing from "./page/all-listing";
 import SellerListings from "./page/seller-listings";
 import ListingDetails from "./page/listing-details";
 import Thankyou from "./page/thank-you";
@@ -16,16 +14,9 @@ import MyListing from "./page/my-listing";
 import MyFavorites from "./page/my-favorites";
 import MyCallbacks from "./page/my-callbacks";
 import Chats from "./page/chats";
-import AboutUs from "./page/about-us";
-import ContactUs from "./page/contact-us";
-import Privacy from "./page/privacy";
-import Terms from "./page/terms";
-import News from "./page/news";
-import NewsDetails from "./page/news-details";
-import Sellers from "./page/sellers";
-import SellerDetails from "./page/seller-details";
-import Faqs from "./page/faqs";
 
+import Index from "./page/index";
+import AllListing from "./page/all-listing";
 import Register from "./page/register/index";
 import RegisterSeller from "./page/register/register-seller";
 import RegisterBuyer from "./page/register/register-buyer";
@@ -33,6 +24,17 @@ import VerifyEmail from "./page/register/verify-email";
 import VerifyPhone from "./page/register/verify-phone";
 import PasswordForm from "./page/register/password-form";
 import AddParts from "./page/add-parts";
+import HowItWorks from "./page/how-it-works";
+import AboutUs from "./page/about-us";
+import ContactUs from "./page/contact-us";
+import Faqs from "./page/faqs";
+import Privacy from "./page/privacy";
+import Terms from "./page/terms";
+import News from "./page/news";
+import NewsDetails from "./page/news-details";
+import Sellers from "./page/sellers";
+import SellerDetails from "./page/seller-details";
+
 import "../i18n";
 
 const PrivateRoute = ({ component: Component, roles, ...rest }) => {
@@ -92,6 +94,8 @@ class App extends Component {
           <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-callbacks" component={MyCallbacks} />
           <Route path="/chats" component={Chats} />
+
+          <Route path="/how-it-works" component={HowItWorks} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contact" component={ContactUs} />
           <Route path="/terms" component={Terms} />
