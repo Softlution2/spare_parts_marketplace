@@ -58,6 +58,8 @@ class SellerDetails extends Component {
                         : (
                           <img
                             src={this.state.seller.avatar || "/assets/img/avatar.png"}
+                            width={120}
+                            height={120}
                             alt="AuthorImage"
                           />
                         )
