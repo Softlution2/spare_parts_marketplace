@@ -5,8 +5,6 @@ import SearchLocationInput from "../../../common/SearchLocationInput";
 import SimpleReactValidator from "simple-react-validator";
 import { UpdateUserInfo } from "../../../../Store/action/loginActions";
 
-const noAction = (e) => e.preventDefault();
-
 class BuyerProfile extends Component {
   constructor(props) {
     super(props);

@@ -57,7 +57,7 @@ class SellerDetails extends Component {
                       !this.state.seller ? ( <Skeleton circle={true} width={120} height={120} /> )
                         : (
                           <img
-                            src={this.state.seller.avatar || "/assets/image/avatar.png"}
+                            src={this.state.seller.avatar || "/assets/img/avatar.png"}
                             alt="AuthorImage"
                           />
                         )
