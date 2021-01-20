@@ -49,7 +49,6 @@ class AllListing extends Component {
 
     if (this.props.match.path === "/car-parts/:make" && this.props.match.params.make)
       filterQuery.make = this.props.match.params.make.replace("-", " ");
-    console.log(filterQuery);
     this.props.initializeListing(filterQuery);
   }
 

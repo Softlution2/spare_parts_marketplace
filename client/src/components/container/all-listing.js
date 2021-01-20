@@ -43,8 +43,8 @@ class Listing extends Component {
     this.setState({ searchQuery: this.props.list.searchQuery });
   }
 
-  componentDidUpdate() {
-    if (!equal(this.state.searchQuery, this.props.list.searchQuery)) {
+  componentDidUpdate(prevProps) {
+    if (!equal(prevProps.list.searchQuery, this.props.list.searchQuery)) {
       this.setState({ searchQuery: this.props.list.searchQuery });
     }
   }

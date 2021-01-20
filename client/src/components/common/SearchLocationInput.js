@@ -45,6 +45,8 @@ function SearchLocationInput({setAddress, defaultValue}) {
   const handlePlaceSelect = async () => {
     const addressObject = autoComplete.getPlace();
     const query = addressObject.formatted_address;
+    // const addressComponents = addressObject.address_components;
+    // const localAddress = addressComponents.filter(e => e.types.includes("locality"))[0];
     setQuery(query);
     setAddress(query);
   }

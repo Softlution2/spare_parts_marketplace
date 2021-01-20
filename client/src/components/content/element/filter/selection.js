@@ -16,8 +16,9 @@ export class OptionSelection extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!equal(prevProps.activeOptions, this.props.activeOptions) || !equal(prevProps.options, this.props.options)) 
+    if (!equal(this.state.currentOptions, this.props.activeOptions) || !equal(prevProps.options, this.props.options)) {
       this.setState({currentOptions: this.props.activeOptions});
+    }
   }
 
   handleClickOption(e, option) {

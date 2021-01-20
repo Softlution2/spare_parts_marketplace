@@ -160,9 +160,7 @@ class Header extends Component {
                               )}
                               <span className="d-inline-block w-100 font-weight-bold mb-1">
                                 <i className="la la-map-marker"></i>{" "}
-                                {this.props.login.role === "BUYER"
-                                  ? this.props.login.details.garage_address
-                                  : this.props.login.details.company_address}
+                                { this.props.login.details.emirate }
                               </span>
                               {
                                 this.props.login.role === "SELLER" && (
