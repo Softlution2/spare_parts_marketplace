@@ -8,7 +8,7 @@ import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
 import { PageBanner } from "../content/element/page-banner";
-import ListingCardGrid from "../content/element/card/card-listing-grid-fav";
+// import ListingCardGrid from "../content/element/card/card-listing-grid-fav";
 
 import { GetMyFavorites } from "../../Store/action/listingActions";
 
@@ -42,7 +42,7 @@ class MyFavorites extends Component {
                   <div className="row">
                     {favoriteListing.length ? (
                       <Fragment>
-                        <ListingCardGrid size={4} />
+                        {/* <ListingCardGrid size={4} /> */}
                       </Fragment>
                     ) : (
                       <div className="col-lg-12">

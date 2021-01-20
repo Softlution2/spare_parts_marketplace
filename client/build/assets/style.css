@@ -1772,7 +1772,7 @@ p {
 }
 
 .section-padding {
-  padding: 5.33333rem 6.66667rem 0;
+  padding: 3.33333rem 6.66667rem 0;
 }
 
 .section-padding-two {
@@ -8718,7 +8718,21 @@ p {
 }
 
 .price-range .rc-slider-handle {
-  border: solid 2px #ed0103;
+  border-color: #ed0103 !important;
+}
+
+.price-range .rc-slider-handle:focus, .price-range .rc-slider-handle:hover {
+  border-color: #ed0103;
+}
+
+.price-range .rc-slider-handle.rc-slider-handle-dragging {
+  border-color: #ed0103 !important;
+  -webkit-box-shadow: 0 0 0 5px rgba(237, 1, 3, 0.4) !important;
+          box-shadow: 0 0 0 5px rgba(237, 1, 3, 0.4) !important;
+}
+
+.price-range .rc-slider-track {
+  background-color: #dee2e6;
 }
 
 /* slider range */

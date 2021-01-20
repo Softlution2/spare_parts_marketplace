@@ -18,8 +18,10 @@ const initState = {
 const listingReducer = (state = initState, action) => {
   switch (action.type) {
     case "INITIALIZE_SUCCESS":
+      console.log(action.searchQuery);
       return {
         ...state,
+        searchQuery: action.searchQuery,
         listing: action.listings,
         maxPrice: action.maxPrice,
         minPrice: action.minPrice,

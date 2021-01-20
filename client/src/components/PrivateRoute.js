@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { CrossStorageClient } from "cross-storage";
+import { BrowserRouter as Route } from "react-router-dom";
 import { LogOut } from "../Store/action/logoutAction";
 import { LogInAc } from "../Store/action/loginActions";
-import { checkAuthenticated, getDomain } from "../utils";
-import equal from 'fast-deep-equal'
+import { checkAuthenticated } from "../utils";
 
 const PrivateRoute = ({ component: Component, login, logOutdata, loginAction, ...rest }) => {
   return (

@@ -5,6 +5,8 @@ import { withTranslation } from 'react-i18next';
 import NumberFormat from 'react-number-format';
 import Select from "react-select";
 import SimpleReactValidator from "simple-react-validator";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
 
 import { SectionTitle } from "../content/element/section-title";
@@ -14,8 +16,6 @@ import Footer from "../layout/footer";
 import { PageBanner } from "../content/element/page-banner";
 import InputDropdown from "../content/element/input-dropdown";
 import { categories, subCategories } from "../../constants";
-
-// const currencies = ["USD", "AED"];
 
 class AddParts extends Component {
   constructor(props) {
@@ -49,6 +49,7 @@ class AddParts extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleChangeMake = this.handleChangeMake.bind(this);
     this.handleChangeModel = this.handleChangeModel.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   componentDidMount() {
@@ -122,6 +123,12 @@ class AddParts extends Component {
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   }
+
+  handleDescriptionChange(val) {
+    this.setState({
+      description: val,
+    });
+  };
 
   handleSubmit(e) {
     e.preventDefault();
@@ -352,7 +359,7 @@ class AddParts extends Component {
               </div>
               <div className="form-group">
                 <label>Description:</label>
-                <textarea className="form-control" name="description" rows={5} onChange={this.handleInput}></textarea>
+                <ReactQuill theme="snow" value={this.state.description} onChange={this.handleDescriptionChange}/>
                 <div className="text-danger">
                   {this.validator.message(
                     "description",

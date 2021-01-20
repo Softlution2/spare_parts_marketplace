@@ -45,6 +45,7 @@ class Listing extends Component {
 
   componentDidUpdate(prevProps) {
     if (!equal(prevProps.list.searchQuery, this.props.list.searchQuery)) {
+      console.log(this.props.list.searchQuery);
       this.setState({searchQuery: this.props.list.searchQuery});
     }
   }
@@ -217,8 +218,8 @@ class Listing extends Component {
                                     <p className="d-flex justify-content-between">
                                       <span className="amount">
                                         {searchQuery.priceRange
-                                          ? `${numberWithCommas(searchQuery.priceRange[0])}$ - ${numberWithCommas(searchQuery.priceRange[1])}$`
-                                          : `${numberWithCommas(minPrice)}$ - ${numberWithCommas(maxPrice)}$`}
+                                          ? `${numberWithCommas(searchQuery.priceRange[0])}AED - ${numberWithCommas(searchQuery.priceRange[1])}AED`
+                                          : `${numberWithCommas(minPrice)}AED - ${numberWithCommas(maxPrice)}AED`}
                                       </span>
                                     </p>
                                     <Range

@@ -22,6 +22,7 @@ class RegisterSeller extends Component {
       trade_license_no: null,
       trade_license_upload: null,
       submitLoading: false,
+      acceptTerms: false,
     };
     this.validator = new SimpleReactValidator();
     this.handleSelect = this.handleSelect.bind(this);
@@ -29,6 +30,7 @@ class RegisterSeller extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setSelectedFile = this.setSelectedFile.bind(this);
     this.setAddress = this.setAddress.bind(this);
+    this.acceptTerms = this.acceptTerms.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +67,9 @@ class RegisterSeller extends Component {
   }
   setSelectedFile(file, name) {
     this.setState({[name]: file});
+  }
+  acceptTerms(e) {
+    this.setState({acceptTerms: e.target.checked});
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -233,16 +238,24 @@ class RegisterSeller extends Component {
                           name="listing_t"
                           value="1"
                           id="listing_t"
+                          onChange={this.acceptTerms}
                         />
                         <label
                           htmlFor="listing_t"
                           className="not_empty custom-control-label"
                         >
                           I Agree with all{" "}
-                          <NavLink to="/terms">
+                          <a href="/terms" target="_blank">
                             Terms & Conditions
-                          </NavLink>
+                          </a>
                         </label>
+                        <div className="text-danger">
+                          {this.validator.message(
+                            "Terms and Conditions",
+                            this.state.acceptTerms,
+                            `accepted`
+                          )}
+                        </div>
                       </div>
                       <div className="btn_wrap list_submit m-top-25">
                         <button

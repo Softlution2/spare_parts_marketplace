@@ -187,11 +187,10 @@ router.post("/login", (req, res) => {
             expiresIn: 9000, // 15 mins in seconds
           },
           async (err, token) => {
-            await User.findByIdAndUpdate(user.id, {
-              $set: { last_login_date: Date.now() },
-            });
+            const listing_count = await Listing.count({user: user.id});
+            const loginUser = { ...user._doc, listing_count };
             res.json({
-              user,
+              user: loginUser,
               token: "Bearer " + token,
             });
           }

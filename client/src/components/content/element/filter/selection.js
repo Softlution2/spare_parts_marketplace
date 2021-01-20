@@ -7,7 +7,7 @@ export class OptionSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentOptions: [],
+      currentOptions: this.props.activeOptions,
     }
     this.handleClickOption = this.handleClickOption.bind(this);
   }
@@ -17,6 +17,7 @@ export class OptionSelection extends Component {
 
   componentDidUpdate(prevProps) {
     if (!equal(prevProps.activeOptions, this.props.activeOptions) || !equal(prevProps.options, this.props.options)) {
+      this.setState({currentOptions: this.props.activeOptions});
     }
   }
 

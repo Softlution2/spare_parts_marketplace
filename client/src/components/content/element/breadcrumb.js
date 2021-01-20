@@ -210,12 +210,12 @@ export class BreadcrumbCategory extends Component {
           <div className="bg_image_holder">
             <img src="/assets/img/intro.jpg" alt="" />
           </div>
-          <div className="breadcrumb-content content_above">
+          <div className="breadcrumb-content content_above py-3">
             <div className="container">
               <div className="row">
-                <div className="col-lg-6 text-left">
+                <div className="col-lg-6">
                   <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
+                    <ol className="breadcrumb justify-content-start">
                       <li className="breadcrumb-item">
                         <NavLink to="/">{category}</NavLink>
                       </li>
@@ -231,7 +231,9 @@ export class BreadcrumbCategory extends Component {
                 <div className="col-lg-6 text-right">
                   <p className="text-white mb-0">
                     <span className="mr-2">NEED HELP? ASK OUR SUPPORT</span>
-                    <i className="la la-question"></i>
+                    <a href="#!">
+                      <img src="/assets/img/support-icon.png"></img>
+                    </a>
                   </p>
                 </div>
               </div>

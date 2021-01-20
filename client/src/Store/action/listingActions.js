@@ -34,6 +34,7 @@ export const Initialize = (data) => {
       .post(`/api/listing/initialize`, {...data})
       .then((res) => {
         const {
+          searchQuery,
           listings,
           maxPrice,
           minPrice,
@@ -44,6 +45,7 @@ export const Initialize = (data) => {
         let newBrandList = brandList.map((b) => { return { name: b } });
         dispatch({
           type: "INITIALIZE_SUCCESS",
+          searchQuery,
           listings,
           maxPrice,
           minPrice,

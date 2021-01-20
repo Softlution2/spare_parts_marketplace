@@ -164,9 +164,13 @@ class Header extends Component {
                                   ? this.props.login.details.garage_address
                                   : this.props.login.details.company_address}
                               </span>
-                              <p className="font-weight-bold">
-                                239 spare parts
-                              </p>
+                              {
+                                this.props.login.role === "SELLER" && (
+                                  <p className="font-weight-bold">
+                                    {this.props.login.listing_count} spare parts
+                                  </p>
+                                )
+                              }
                               <span className="author-rating">
                                 4.5<i className="la la-star"></i>
                               </span>
@@ -208,20 +212,6 @@ class Header extends Component {
                               <li>
                                 <NavLink to="/payments">Payments</NavLink>
                               </li>
-                              {/* <li>
-                                  <NavLink to="/chats" className="d-flex align-items-center">{t("menu_my_messages")}
-                                    { this.props.chat.unreadMsgCnt > 0 && ( <span className="badge unread-msg badge-primary ml-2">{this.props.chat.unreadMsgCnt}</span> ) }
-                                  </NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/my-favorites">{t("menu_my_favorites")}</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/my-callbacks">{t("menu_my_callbacks")}</NavLink>
-                                </li>
-                                <li>
-                                  <NavLink to="/sell-your-car">{t("menu_add_listing")}</NavLink>
-                                </li> */}
                               <li className="log-out">
                                 <NavLink to=" " onClick={logOut}>
                                   <i className="la la-power-off mr-2"></i>

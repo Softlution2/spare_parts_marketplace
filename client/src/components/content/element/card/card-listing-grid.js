@@ -28,16 +28,14 @@ class CardListingGrid extends Component {
           const link =
             stringToUrl(partName) +
             "-" +
-            stringToUrl(partSKU) +
-            "-" +
-            _id;
+            stringToUrl(partSKU);
           return (
             <div className={className} key={index}>
               <div className="atbd_single_listing ">
                 <article className="atbd_single_listing_wrapper">
                   <figure className="atbd_listing_thumbnail_area">
                     <div className="atbd_listing_image">
-                      <NavLink to={`/buy-spare-parts/${link}`}>
+                      <NavLink to={`/spare-part-details/${link}`}>
                         <img
                           src={`${pic}`}
                           alt="Listing Image"
@@ -60,7 +58,7 @@ class CardListingGrid extends Component {
                   </figure>
                   <div className="atbd_listing_info">
                     <h4 className="atbd_listing_title">
-                      <NavLink to={`/buy-spare-parts/${link}`}>{title}</NavLink>
+                      <NavLink to={`/spare-part-details/${link}`}>{title}</NavLink>
                     </h4>
                     <div className="price-group">
                       <span className="symbol mr-1">AED</span>

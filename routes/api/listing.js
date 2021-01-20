@@ -19,17 +19,27 @@ const { ObjectId } = require("mongodb"); // or ObjectID
 
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
+  let searchQuery = {
+    string: "",
+    priceRange: null,
+    make: [],
+    model: [],
+    sortBy: {date: -1}
+  }
   const { search, make } = req.body;
   if (search && search !== null) {
+    searchQuery.string = search;
     findQuery["$text"] = {
       $search: search,
     };
   }
-  // if (make && make !== null) {
-  //   let makeStr = make.replace("-", " ");
-  //   const re = new RegExp(`\^${makeStr}$`, 'i');
-  //   findQuery['make'] = re;
-  // }
+  if (make && make !== null) {
+    let makeStr = make.replace("-", "");
+    const re = new RegExp(`\^${makeStr}$`, 'i');
+    const makeDoc = await CarMake.findOne({name: re});
+    searchQuery.make = [makeDoc];
+    findQuery['makes'] = { $in: [makeDoc._id] };
+  }
   let listings, maxPrice, minPrice, makeList, modelList, brandList;
   try {
     listings = await Listing.find(findQuery).sort("-date").populate("user_id");
@@ -70,6 +80,7 @@ router.post("/initialize", async (req, res) => {
   }
 
   return res.json({
+    searchQuery,
     listings,
     maxPrice,
     minPrice,
@@ -220,7 +231,10 @@ router.post("/search", async (req, res) => {
 
 router.get("/get", async (req, res) => {
   try {
-    let listing = await Listing.findOne({ _id: req.query._id }).populate(
+    
+    const sku = req.query.sku;
+    const reSKU = new RegExp(`\^${sku}$`, 'i');
+    let listing = await Listing.findOne({ partSKU: reSKU }).populate(
       "user"
     );
     // let similarListing = await Car.find({ make: doc.make, _id: {'$ne':doc._id } }).populate("user_id").sort("-date").limit(6);

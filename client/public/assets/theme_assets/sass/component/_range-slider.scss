@@ -7,7 +7,17 @@
     @extend .color-secondary;
   }
   .rc-slider-handle {
-    border: solid 2px $primary;
+    border-color: $primary !important;
+    &:focus, &:hover {
+      border-color: $primary;
+    }
+    &.rc-slider-handle-dragging {
+      border-color: $primary !important;
+      box-shadow: 0 0 0 5px rgba($primary, 0.4) !important;
+    }
+  }
+  .rc-slider-track {
+    background-color: $gray-300;
   }
 }
 /* slider range */

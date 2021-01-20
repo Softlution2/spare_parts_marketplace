@@ -63,14 +63,14 @@ class SellerListingGrid extends Component {
                 ? "new listing"
                 : "";
             const link =
-              stringToUrl(partName) + "-" + stringToUrl(partSKU) + "-" + _id;
+              stringToUrl(partName) + "-" + stringToUrl(partSKU);
             return (
               <div className="col-lg-6 col-xl-3 col-sm-6 col-md-4" key={index}>
                 <div className="atbd_single_listing ">
                   <article className="atbd_single_listing_wrapper">
                     <figure className="atbd_listing_thumbnail_area">
                       <div className="atbd_listing_image">
-                        <NavLink to={`/buy-spare-parts/${link}`}>
+                        <NavLink to={`/spare-part-details/${link}`}>
                           <img src={`${pic}`} alt="Listing Image" />
                         </NavLink>
                       </div>

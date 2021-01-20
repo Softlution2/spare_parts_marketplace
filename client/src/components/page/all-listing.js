@@ -22,8 +22,9 @@ class AllListing extends Component {
   }
 
   componentDidMount() {
-    this.setState({locationPath: this.props.location.pathname});
-    this.initialize();
+    this.setState({locationPath: this.props.location.pathname}, () => {
+      this.initialize();
+    });
   }
 
   componentDidUpdate() {
@@ -45,13 +46,13 @@ class AllListing extends Component {
     let customQuery = { search: "" };
     if (params.search) {
       customQuery.search = params.search;
-      searchQuery.string = params.search;
+      // searchQuery.string = params.search;
     }
     if (this.props.match.params.make) {
       customQuery.make = this.props.match.params.make;
-      searchQuery.make = [this.props.match.params.make.replace("-", " ")];
+      // searchQuery.make = [this.props.match.params.make.replace("-", " ")];
     }
-    this.props.setSearchQuery(searchQuery);
+    // this.props.setSearchQuery(searchQuery);
     this.props.initializeListing(customQuery);
   }
 

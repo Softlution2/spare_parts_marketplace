@@ -22,9 +22,11 @@ export class SellerInfo extends Component {
               </NavLink>
             </div>
             <div className="atbd_name_location">
+              <NavLink to={`/seller-details/${seller._id}`}>
               <h4>
                 {seller.details.company_name}{" "}
               </h4>
+              </NavLink>
               <p>
                 <i className="la la-map-marker"></i>
                 {seller.details.company_address}
