@@ -1864,6 +1864,14 @@ p {
   background: rgba(47, 38, 57, 0.8);
 }
 
+.text-ellipse {
+  width: 100%;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 #login_modal .modal-header {
   background-color: #193554;
   -webkit-border-radius: 0;

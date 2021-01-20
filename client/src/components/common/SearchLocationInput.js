@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function SearchLocationInput({setAddress}) {
-  const [query, setQuery] = useState("");
+function SearchLocationInput({setAddress, defaultValue}) {
+  const [query, setQuery] = useState(defaultValue);
   const autoCompleteRef = useRef(null);
   let autoComplete;
 

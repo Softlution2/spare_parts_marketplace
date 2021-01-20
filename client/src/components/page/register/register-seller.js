@@ -174,7 +174,7 @@ class RegisterSeller extends Component {
                         <label htmlFor="company-address" className="form-label">
                           Company Address
                         </label>
-                        <SearchLocationInput setAddress={this.setAddress} />
+                        <SearchLocationInput setAddress={this.setAddress} defaultValue={""} />
                         <div className="text-danger">
                           {this.validator.message(
                             "company_address",

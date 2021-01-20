@@ -31,7 +31,6 @@
         $(".bg_image_holder").each(function(){
             var $this = $(this);
             var imgLink = $this.children().attr("src");
-            console.log(imgLink);
             $this.css({
                 "background-image": "url(" + imgLink + ")",
                 "opacity": "1"

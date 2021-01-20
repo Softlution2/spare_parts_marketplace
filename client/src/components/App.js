@@ -75,12 +75,8 @@ class App extends Component {
           <Route path="/register/verify-email" component={VerifyEmail} />
           <Route path="/register/verify-phone" component={VerifyPhone} />
           <Route path="/register/password" component={PasswordForm} />
-          
-          <PrivateRoute
-            path="/sell-your-parts"
-            component={AddParts}
-          />
-          
+
+          <PrivateRoute path="/sell-your-parts" component={AddParts} />
           <Route path="/all-listings" component={AllListing} />
           <Route path="/buy-spare-parts/:info" component={ListingDetails} />
 
@@ -91,7 +87,7 @@ class App extends Component {
           <Route path="/news" component={News} />
           <Route path="/news-details:id" component={NewsDetails} />
           <Route path="/sellers" component={Sellers} />
-          <Route path="/seller-details" component={SellerDetails} />
+          <Route path="/seller-details/:id" component={SellerDetails} />
 
           <Route path="/my-profile" component={MyProfile} />
           <Route path="/my-listing" component={MyListing} />

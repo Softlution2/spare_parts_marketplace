@@ -6,10 +6,10 @@ const keys = require("../../config/keys");
 const formidable = require("formidable");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const AWS = require('aws-sdk');
-const fs = require('fs');
+const AWS = require("aws-sdk");
+const fs = require("fs");
 const crypto = require("crypto");
-const path = require('path');
+const path = require("path");
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -20,6 +20,7 @@ const twilioClient = require("twilio")(accountSid, authToken);
 
 // Load User model
 const User = require("../../models/User");
+const Listing = require('../../models/Listing');
 
 router.post("/get-otp-by-email", (req, res) => {
   let email = req.body.email;
@@ -68,28 +69,20 @@ router.post("/verify-otp", (req, res) => {
           ? "This phone number is already used."
           : "This email address is already used.";
         User.findOne(query).then((user) => {
-          if (user)
-            return res
-              .status(400)
-              .json({ message: errMsg });
+          if (user) return res.status(400).json({ message: errMsg });
           return res.json({ message: "success" });
         });
       } else {
-        return res
-          .status(400)
-          .json({
-            message:
-              "Verification Failed. Please enter the code from your email",
-          });
+        return res.status(400).json({
+          message: "Verification Failed. Please enter the code from your email",
+        });
       }
     })
     .catch((error) => {
       console.log(error);
-      return res
-        .status(400)
-        .json({
-          message: "Verification Failed. Please enter the code from your email",
-        });
+      return res.status(400).json({
+        message: "Verification Failed. Please enter the code from your email",
+      });
     });
 });
 
@@ -120,11 +113,12 @@ router.post("/signup", async (req, res) => {
     for (const key in files) {
       const file = fs.readFileSync("uploads/" + files[key]);
       const rawBytes = await crypto.pseudoRandomBytes(16);
-      const fileName = rawBytes.toString('hex') + Date.now() + path.extname(files[key]);
+      const fileName =
+        rawBytes.toString("hex") + Date.now() + path.extname(files[key]);
       const params = {
-        Bucket: 'spare-parts-marketplace',
+        Bucket: "spare-parts-marketplace",
         Key: fileName,
-        Body: file
+        Body: file,
       };
       const data = await s3.upload(params).promise();
       fs.unlinkSync("uploads/" + files[key]);
@@ -134,7 +128,7 @@ router.post("/signup", async (req, res) => {
     details = JSON.parse(details);
     details = { ...details, ...files };
 
-    User.findOne({email}).then((user) => {
+    User.findOne({ email }).then((user) => {
       if (user) {
         return res.status(400).json({ message: "User Already Exists" });
       } else {
@@ -144,7 +138,7 @@ router.post("/signup", async (req, res) => {
           details,
           // avatar: avatar,
           password: password,
-          role
+          role,
         });
         // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -193,7 +187,9 @@ router.post("/login", (req, res) => {
             expiresIn: 9000, // 15 mins in seconds
           },
           async (err, token) => {
-            await User.findByIdAndUpdate(user.id, { $set : { 'last_login_date' : Date.now() } });
+            await User.findByIdAndUpdate(user.id, {
+              $set: { last_login_date: Date.now() },
+            });
             res.json({
               user,
               token: "Bearer " + token,
@@ -217,14 +213,17 @@ router.post("/check-account", (req, res) => {
 });
 
 router.post("/update", (req, res) => {
-  let obj = null;
+  let files = {};
+  let s3Files = {};
   let avatar = null;
+  let obj = null;
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
     obj = fields;
   });
 
   form.on("fileBegin", function (name, file) {
+    // console.log(name, file);
     let currentTime = new Date().getTime();
     file.path =
       __dirname +
@@ -232,42 +231,60 @@ router.post("/update", (req, res) => {
       currentTime +
       "." +
       file.name.split(".")[1];
-    avatar = currentTime + "." + file.name.split(".")[1];
+    files[name] = currentTime + "." + file.name.split(".")[1];
   });
 
   form.on("file", function (name, file) {});
 
-  form.on("end", function () {
-    let { user_id, email, name, location, phone } = obj;
-    phone = JSON.parse(phone);
+  form.on("end", async function () {
+    for (const key in files) {
+      const file = fs.readFileSync("uploads/" + files[key]);
+      const rawBytes = await crypto.pseudoRandomBytes(16);
+      const fileName =
+        rawBytes.toString("hex") + Date.now() + path.extname(files[key]);
+      const params = {
+        Bucket: "spare-parts-marketplace",
+        Key: fileName,
+        Body: file,
+      };
+      const data = await s3.upload(params).promise();
+      fs.unlinkSync("uploads/" + files[key]);
+      if (key === "avatar") avatar = data.Location;
+      s3Files[key] = data.Location;
+    }
+    let { details, user_id } = obj;
+    details = JSON.parse(details);
+    details = { ...details, ...s3Files };
     let setQuery = {
       $set: {
-        email,
-        name,
-        location,
-        phone,
-      }
+        details,
+        avatar: obj["avatar"] ? obj.avatar : avatar,
+      },
     };
-    if (avatar) {
-      setQuery = {
-        $set: {
-          email,
-          name,
-          location,
-          phone,
-          avatar
-        }
-      };
-    }
     User.findByIdAndUpdate(
       { _id: user_id },
       setQuery,
       async function (err, doc) {
+        if (err) {
+          console.log(err);
+          return res.status(400).json({ message: "Something went wrong!" });
+        }
         let user = await User.findOne({ _id: user_id });
         return res.json(user);
       }
     );
   });
+});
+
+router.get("/get-seller", async (req, res) => {
+  try {
+    const seller = await User.findById(req.query.id);
+    const sellerListings = await Listing.find({user: req.query.id});
+    return res.json({seller, sellerListings});
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({message: "Something went wrong!"});
+  }
 });
 
 module.exports = router;

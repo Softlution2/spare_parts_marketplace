@@ -5,12 +5,13 @@ const noAction = (e) => e.preventDefault();
 
 export class SellerInfo extends Component {
   render() {
-    const { seller,postDate } = this.props;
+    const { seller } = this.props;
     return (
       <Fragment>
         <div className="widget-body atbd_author_info_widget seller_info_widget">
           <div className="atbd_avatar_wrapper">
             <div className="atbd_review_avatar">
+              <NavLink to={`/seller-details/${seller._id}`}>
               {
                 seller.avatar ? (
                   <img src={seller.avatar} alt="AvatarImage" width="60" />
@@ -18,6 +19,7 @@ export class SellerInfo extends Component {
                   <img src="/assets/img/avatar.png" alt="AvatarImage" width="60" />
                 )
               }
+              </NavLink>
             </div>
             <div className="atbd_name_location">
               <h4>
