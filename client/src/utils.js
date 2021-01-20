@@ -9,7 +9,7 @@ export const numberWithCommas = (x) => {
 
 export const stringToUrl = (str) => {
   if (str)
-    return str.toString().toLowerCase().replaceAll(" ", "-");
+    return str.toString().toLowerCase().replaceAll(" ", "-").replaceAll("/", "-");
   else
     return null;
 };

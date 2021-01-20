@@ -36,7 +36,13 @@ class BrowseByCategory extends Component {
             return (
               <div className="category-card-wrapper" key={index}>
                 <div className="category-card">
-                  <img src={category.img} />
+                  <NavLink
+                    to={`/spare-parts/${category.name
+                      .toLowerCase()
+                      .replaceAll(" ", "-")}`}
+                  >
+                    <img src={category.img} alt={category.name} width="100%" />
+                  </NavLink>
                   <NavLink
                     to={`/spare-parts/${category.name
                       .toLowerCase()

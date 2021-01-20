@@ -286,4 +286,24 @@ router.get("/get-seller", async (req, res) => {
   }
 });
 
+router.get("/get-seller-list", (req, res) => {
+  User.aggregate([
+    { "$match": {"role": "SELLER"} },
+    {
+      "$lookup": {
+          "from": "listings",
+          "localField": "_id",
+          "foreignField": "user",
+          "as": "listings"
+      },
+    },
+  ]).exec(function (err, docs) {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({message: "Something went wrong!"});
+    }
+    return res.json(docs);
+  })
+});
+
 module.exports = router;

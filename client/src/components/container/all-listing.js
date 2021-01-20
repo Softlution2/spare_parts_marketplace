@@ -142,41 +142,6 @@ class Listing extends Component {
         <section className="all-listing-wrapper">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-12">
-                <div className="atbd_generic_header">
-                  <div className="atbd_generic_header_search">
-                    <span className="icon-left" id="basic-addon9">
-                      <i className="la la-search"></i>
-                    </span>
-                    <form action="/" onSubmit={this.searchAction}>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Find spare part SKU or vehicle VIN..."
-                        autoComplete="off"
-                        value={searchQuery.string || ""}
-                        onChange={this.handleSearchChange}
-                      />
-                    </form>
-                  </div>
-                  {/*<!-- ends: .atbd_generic_header_title -->*/}
-                  <div
-                    className="atbd_listing_go_btn btn-toolbar"
-                    role="toolbar"
-                  >
-                    <button
-                      className="btn btn-primary btn_search"
-                      onClick={this.searchAction}
-                    >
-                      <i className="las la-search"></i>
-                      FIND PARTS
-                    </button>
-                    {/* <!-- Orderby dropdown --> */}
-                  </div>
-                  {/*<!-- ends: .atbd_listing_action_btn -->*/}
-                </div>
-                {/*<!-- ends: .atbd_generic_header -->*/}
-              </div>{" "}
               {/*<!-- ends: .col-lg-12 -->*/}
               <div className="col-lg-12 listing-items">
                 <div className="row">

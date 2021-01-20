@@ -9125,12 +9125,18 @@ p {
 }
 
 .intro-wrapper {
-  height: 50vh;
+  height: 450px;
   padding: 3rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .directory_content_area {
-  height: 85%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

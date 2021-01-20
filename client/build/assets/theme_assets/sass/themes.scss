@@ -14,13 +14,15 @@
 
 //intro area
 .intro-wrapper{
-  height: 50vh;
+  height: 450px;
   padding: 3rem 0;
+  display: flex;
+  align-items: center;;
 }
 
 //Intro search area
 .directory_content_area{
-  height: 85%;
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;

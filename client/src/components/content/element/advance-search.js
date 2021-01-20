@@ -20,8 +20,9 @@ class AdvSearch extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, make } = this.props;
     const { search } = this.state;
+    const makeStr = make ? make.replaceAll("-", " ").toString() : "";
     return (
       <Fragment>
         <div className="directory_content_area">
@@ -29,7 +30,14 @@ class AdvSearch extends Component {
             <div className="row">
               <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <div className="search_title_area">
-                  <h2 className="title">{t("home_banner_text")}</h2>
+                  {
+                    make && (
+                      <img src={`/assets/img/make-logos/${make}.png`} alt="" width={100} style={{borderRadius: "15px"}} />
+                    )
+                  }
+                  <h2 className="title">
+                    Find {make ? makeStr.charAt(0).toUpperCase() + makeStr.slice(1) : "Spare"} Parts in the UAE
+                  </h2>
                 </div>
                 <form action={`/all-listings`} className="search_form">
                   <input
@@ -49,9 +57,13 @@ class AdvSearch extends Component {
                     </button>
                   </div>
                 </form>
-                <p className="search-bottom-text">
-                  Search by <a href="#!">vehicle make and mode</a>, or by <a href="#!">VIN number</a>
-                </p>
+                {
+                  !make && (
+                    <p className="search-bottom-text">
+                      Search by <a href="#!">vehicle make and mode</a>, or by <a href="#!">VIN number</a>
+                    </p>
+                  )
+                }
               </div>
             </div>
           </div>
