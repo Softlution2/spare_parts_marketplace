@@ -20,7 +20,7 @@ class BrowseByMake extends Component {
           makeList.map((make, index) => {
             return (
               <div className="category-card-wrapper" key={index}>
-                <NavLink className="category-card" to={`/buy-spare-parts-${make}`} style={{boxShadow: "none"}}>
+                <NavLink className="category-card" to={`/car-parts/${make.toLocaleLowerCase().replace(" ", "-")}`} style={{boxShadow: "none"}}>
                   <img src={`/assets/img/make-logos/${make.toLowerCase().replace(" ", "-")}.png`} alt="" />
                 </NavLink>
               </div>

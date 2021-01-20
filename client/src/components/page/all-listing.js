@@ -10,6 +10,8 @@ import Listing from "../container/all-listing";
 
 import { Initialize, FilterListing, SetSearchQuery } from "../../Store/action/listingActions";
 
+import { categories } from "../../constants";
+
 class AllListing extends Component {
   
   constructor(props) {
@@ -36,24 +38,19 @@ class AllListing extends Component {
 
   initialize() {
     const params = queryString.parse(this.props.location.search, { ignoreQueryPrefix: true });
-    let searchQuery = {
-      string: "",
-      priceRange: null,
-      make: [],
-      model: [],
-      sortBy: {date: -1}
-    };
-    let customQuery = { search: "" };
-    if (params.search) {
-      customQuery.search = params.search;
-      // searchQuery.string = params.search;
+    let filterQuery = { search: "" };
+    if (params.search)
+      filterQuery.search = params.search;
+
+    if (this.props.match.path === "/spare-parts/:category" && this.props.match.params.category) {
+      const cat = categories.filter(e => e.name.toLowerCase().replaceAll(" ", "-") === this.props.match.params.category);
+      filterQuery.category = cat[0];
     }
-    if (this.props.match.params.make) {
-      customQuery.make = this.props.match.params.make;
-      // searchQuery.make = [this.props.match.params.make.replace("-", " ")];
-    }
-    // this.props.setSearchQuery(searchQuery);
-    this.props.initializeListing(customQuery);
+
+    if (this.props.match.path === "/car-parts/:make" && this.props.match.params.make)
+      filterQuery.make = this.props.match.params.make.replace("-", " ");
+    console.log(filterQuery);
+    this.props.initializeListing(filterQuery);
   }
 
   handleFilter(query) {

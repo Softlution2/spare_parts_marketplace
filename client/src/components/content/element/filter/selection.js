@@ -16,17 +16,15 @@ export class OptionSelection extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!equal(prevProps.activeOptions, this.props.activeOptions) || !equal(prevProps.options, this.props.options)) {
+    if (!equal(prevProps.activeOptions, this.props.activeOptions) || !equal(prevProps.options, this.props.options)) 
       this.setState({currentOptions: this.props.activeOptions});
-    }
   }
 
   handleClickOption(e, option) {
     e.preventDefault();
     let { currentOptions } = this.state;
-    if (currentOptions.includes(option)) {
-      currentOptions = currentOptions.filter((e) => e !== option);
-    }
+    if (currentOptions.some(e => e._id === option._id))
+      currentOptions = currentOptions.filter(e => e._id !== option._id);
     else currentOptions.push(option);
     this.setState({currentOptions});
     this.props.onChange(currentOptions, this.props.name);
@@ -43,7 +41,7 @@ export class OptionSelection extends Component {
               <div
                 key={index}
                 className={
-                  currentOptions.includes(option)
+                  currentOptions.some(e => e._id === option._id)
                     ? "atbd_selection__item active"
                     : "atbd_selection__item"
                 }

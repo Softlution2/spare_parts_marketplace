@@ -11,17 +11,21 @@ const initState = {
   searchQuery: {
     string: "",
     priceRange: null,
+    category: null,
     make: null,
+    model: null,
+    year: null,
+    brand: null,
+    sortBy: {date: -1}
   },
 };
 
 const listingReducer = (state = initState, action) => {
   switch (action.type) {
     case "INITIALIZE_SUCCESS":
-      console.log(action.searchQuery);
       return {
         ...state,
-        searchQuery: action.searchQuery,
+        searchQuery: { ...initState.searchQuery, ...action.searchQuery },
         listing: action.listings,
         maxPrice: action.maxPrice,
         minPrice: action.minPrice,

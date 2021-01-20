@@ -15,31 +15,28 @@ const Listing = require("../../models/Listing");
 const CarMake = require("../../models/CarMake");
 const CarModel = require("../../models/CarModel");
 
-const { ObjectId } = require("mongodb"); // or ObjectID
-
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
-  let searchQuery = {
-    string: "",
-    priceRange: null,
-    make: [],
-    model: [],
-    sortBy: {date: -1}
-  }
-  const { search, make } = req.body;
+  let searchQuery = {}
+  const { search, make, category } = req.body;
   if (search && search !== null) {
-    searchQuery.string = search;
+    searchQuery["string"] = search;
     findQuery["$text"] = {
       $search: search,
     };
   }
   if (make && make !== null) {
-    let makeStr = make.replace("-", "");
-    const re = new RegExp(`\^${makeStr}$`, 'i');
+    const re = new RegExp(`\^${make}$`, 'i');
     const makeDoc = await CarMake.findOne({name: re});
     searchQuery.make = [makeDoc];
     findQuery['makes'] = { $in: [makeDoc._id] };
+    searchQuery["make"] = [makeDoc];
   }
+  if (category && category !== null) {
+    findQuery['category'] = { $in: [category.name] };
+    searchQuery['category'] = [category];
+  }
+
   let listings, maxPrice, minPrice, makeList, modelList, brandList;
   try {
     listings = await Listing.find(findQuery).sort("-date").populate("user_id");
@@ -212,6 +209,12 @@ router.post("/search", async (req, res) => {
       $in: brands,
     };
   }
+  if (query.category && query.category.length !== 0) {
+    const categories = query.category.map((b) => b.name);
+    findQuery["category"] = {
+      $in: categories,
+    };
+  }
   if (query.string) {
     findQuery["$text"] = {
       $search: query.string,
@@ -231,7 +234,6 @@ router.post("/search", async (req, res) => {
 
 router.get("/get", async (req, res) => {
   try {
-    
     const sku = req.query.sku;
     const reSKU = new RegExp(`\^${sku}$`, 'i');
     let listing = await Listing.findOne({ partSKU: reSKU }).populate(

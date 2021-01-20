@@ -78,6 +78,9 @@ class App extends Component {
 
           <PrivateRoute path="/sell-your-parts" component={AddParts} />
           <Route path="/all-listings" component={AllListing} />
+          <Route path="/spare-parts/:category" component={AllListing} />
+          <Route path="/car-parts/:make" component={AllListing} />
+
           <Route path="/buy-spare-parts:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
           

@@ -36,7 +36,7 @@ class NavItem extends Component {
                           this.handleCategoryHover(e, cat.value)
                         }
                       >
-                        {cat.label}
+                        {cat.name}
                       </li>
                     );
                   })}

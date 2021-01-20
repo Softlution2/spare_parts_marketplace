@@ -232,7 +232,7 @@ export class BreadcrumbCategory extends Component {
                   <p className="text-white mb-0">
                     <span className="mr-2">NEED HELP? ASK OUR SUPPORT</span>
                     <a href="#!">
-                      <img src="/assets/img/support-icon.png"></img>
+                      <img src="/assets/img/support-icon.svg" height={20}></img>
                     </a>
                   </p>
                 </div>

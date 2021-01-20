@@ -1,20 +1,96 @@
 export const categories = [
-  { img: "/assets/img/category/icon-service-parts.svg", value: "Service Parts" , label:  "Service Parts" },
-  { img: "/assets/img/category/icon-engine-parts.svg", value: "Engine Parts" , label:  "Engine Parts" },
-  { img: "/assets/img/category/icon-engine-cooling.svg", value: "Engine Cooling" , label:  "Engine Cooling" },
-  { img: "/assets/img/category/icon-fuel-parts.svg", value: "Fuel Parts" , label:  "Fuel Parts" },
-  { img: "/assets/img/category/icon-transmission-parts.svg", value: "Transmission Parts" , label:  "Transmission Parts" },
-  { img: "/assets/img/category/icon-clutch-parts.svg", value: "Clutch Parts" , label:  "Clutch Parts" },
-  { img: "/assets/img/category/icon-lamp-parts.svg", value: "Lamp Items" , label:  "Lamp Items" },
-  { img: "/assets/img/category/icon-electricals-parts.svg", value: "Electricals" , label:  "Electricals" },
-  { img: "/assets/img/category/icon-suspension-parts.svg", value: "Suspension Parts" , label:  "Suspension Parts" },
-  { img: "/assets/img/category/icon-steering-parts.svg", value: "Steering Parts" , label:  "Steering Parts" },
-  { img: "/assets/img/category/icon-body-parts.svg", value: "Body Parts" , label:  "Body Parts" },
-  { img: "/assets/img/category/icon-brake-parts.svg", value: "Brake Parts" , label:  "Brake Parts" },
-  { img: "/assets/img/category/icon-rubber-parts.svg", value: "Rubber Parts" , label:  "Rubber Parts" },
-  { img: "/assets/img/category/icon-batteries-parts.svg", value: "Batteries, Lubricants, Tires" , label:  "Batteries, Lubricants, Tires" },
-  { img: "/assets/img/category/icon-interior-parts.svg", value: "Interior / Exterior Accessories" , label:  "Interior / Exterior Accessories" },
+  {
+    img: "/assets/img/category/icon-service-parts.svg",
+    value: "Service Parts",
+    _id: "Service Parts",
+    name: "Service Parts",
+  },
+  {
+    img: "/assets/img/category/icon-engine-parts.svg",
+    value: "Engine Parts",
+    _id: "Engine Parts",
+    name: "Engine Parts",
+  },
+  {
+    img: "/assets/img/category/icon-engine-cooling.svg",
+    value: "Engine Cooling",
+    _id: "Engine Cooling",
+    name: "Engine Cooling",
+  },
+  {
+    img: "/assets/img/category/icon-fuel-parts.svg",
+    value: "Fuel Parts",
+    _id: "Fuel Parts",
+    name: "Fuel Parts",
+  },
+  {
+    img: "/assets/img/category/icon-transmission-parts.svg",
+    value: "Transmission Parts",
+    _id: "Transmission Parts",
+    name: "Transmission Parts",
+  },
+  {
+    img: "/assets/img/category/icon-clutch-parts.svg",
+    value: "Clutch Parts",
+    _id: "Clutch Parts",
+    name: "Clutch Parts",
+  },
+  {
+    img: "/assets/img/category/icon-lamp-parts.svg",
+    value: "Lamp Items",
+    _id: "Lamp Items",
+    name: "Lamp Items",
+  },
+  {
+    img: "/assets/img/category/icon-electricals-parts.svg",
+    value: "Electricals",
+    _id: "Electricals",
+    name: "Electricals",
+  },
+  {
+    img: "/assets/img/category/icon-suspension-parts.svg",
+    value: "Suspension Parts",
+    _id: "Suspension Parts",
+    name: "Suspension Parts",
+  },
+  {
+    img: "/assets/img/category/icon-steering-parts.svg",
+    value: "Steering Parts",
+    _id: "Steering Parts",
+    name: "Steering Parts",
+  },
+  {
+    img: "/assets/img/category/icon-body-parts.svg",
+    value: "Body Parts",
+    _id: "Body Parts",
+    name: "Body Parts",
+  },
+  {
+    img: "/assets/img/category/icon-brake-parts.svg",
+    value: "Brake Parts",
+    _id: "Brake Parts",
+    name: "Brake Parts",
+  },
+  {
+    img: "/assets/img/category/icon-rubber-parts.svg",
+    value: "Rubber Parts",
+    _id: "Rubber Parts",
+    name: "Rubber Parts",
+  },
+  {
+    img: "/assets/img/category/icon-batteries-parts.svg",
+    value: "Batteries, Lubricants, Tires",
+    _id: "Batteries, Lubricants, Tires",
+    name: "Batteries, Lubricants, Tires",
+  },
+  {
+    img: "/assets/img/category/icon-interior-parts.svg",
+    value: "Interior / Exterior Accessories",
+    _id: "Interior / Exterior Accessories",
+    name: "Interior / Exterior Accessories",
+  },
 ];
+
 const serviceParts = [
   { label: "Oil Filters", value: "Oil Filters" },
   { label: "Oil", value: "Oil" },
@@ -25,7 +101,7 @@ const serviceParts = [
   { label: "Drive Belt", value: "Drive Belt" },
   { label: "Brake Parts", value: "Brake Parts" },
   { label: "Cabin Filters", value: "Cabin Filters" },
-  { label: "Glow plugs", value: "Glow plugs" }
+  { label: "Glow plugs", value: "Glow plugs" },
 ];
 const engineParts = [
   { label: "Gasket Kit Engine", value: "Gasket Kit Engine" },
@@ -37,26 +113,32 @@ const engineParts = [
   { label: "Cam Shaft", value: "Cam Shaft" },
   { label: "Thrust Washer", value: "Thrust Washer" },
   { label: "Timing Chain & Belt", value: "Timing Chain & Belt" },
-  { label: "Idler", value: "Idler" }
+  { label: "Idler", value: "Idler" },
 ];
 const engineCooling = [
   { label: "Exapnsion Tanks", value: "Exapnsion Tanks" },
   { label: "Intercoolers", value: "Intercoolers" },
   { label: "Thermostats", value: "Thermostats" },
   { label: "Fans & Parts", value: "Fans & Parts" },
-  { label: "Thermostat - Housing & Gaskets", value: "Thermostat - Housing & Gaskets" },
-  { label: "Oil Coolers & Car Oil Pipes", value: "Oil Coolers & Car Oil Pipes" },
+  {
+    label: "Thermostat - Housing & Gaskets",
+    value: "Thermostat - Housing & Gaskets",
+  },
+  {
+    label: "Oil Coolers & Car Oil Pipes",
+    value: "Oil Coolers & Car Oil Pipes",
+  },
   { label: "Fan Clutches", value: "Fan Clutches" },
   { label: "Radiator Caps", value: "Radiator Caps" },
   { label: "Water Hoses & Clips", value: "Water Hoses & Clips" },
-  { label: "Water Pumps & Gaskets", value: "Water Pumps & Gaskets" }
+  { label: "Water Pumps & Gaskets", value: "Water Pumps & Gaskets" },
 ];
 const fuelParts = [
   { label: "Fuel Pump", value: "Fuel Pump" },
   { label: "Injection System", value: "Injection System" },
   { label: "Carburetor", value: "Carburetor" },
   { label: "Fuel lines", value: "Fuel lines" },
-  { label: "Fuel tank", value: "Fuel tank" }
+  { label: "Fuel tank", value: "Fuel tank" },
 ];
 const transmissionParts = [
   { label: "Clutch Kits", value: "Clutch Kits" },
@@ -68,7 +150,7 @@ const transmissionParts = [
   { label: "Driveshafts", value: "Driveshafts" },
   { label: "Wheel Bearings & Hubs", value: "Wheel Bearings & Hubs" },
   { label: "Seals", value: "Seals" },
-  { label: "Transmission Oil", value: "Transmission Oil" }
+  { label: "Transmission Oil", value: "Transmission Oil" },
 ];
 const clutchParts = [
   { label: "Clutch Cover", value: "Clutch Cover" },
@@ -76,7 +158,7 @@ const clutchParts = [
   { label: "Clutch Bearing", value: "Clutch Bearing" },
   { label: "Pilot Bearing", value: "Pilot Bearing" },
   { label: "Clutch Cylinder UP/LW", value: "Clutch Cylinder UP/LW" },
-  { label: "Clutch Cylinder Kit", value: "Clutch Cylinder Kit" }
+  { label: "Clutch Cylinder Kit", value: "Clutch Cylinder Kit" },
 ];
 const lampItems = [
   { label: "Head lamp", value: "Head lamp" },
@@ -88,7 +170,7 @@ const lampItems = [
   { label: "Rear Lights", value: "Rear Lights" },
   { label: "Indicators", value: "Indicators" },
   { label: "Driving & Fog Lamps", value: "Driving & Fog Lamps" },
-  { label: "Lenses & Other Parts", value: "Lenses & Other Parts" }
+  { label: "Lenses & Other Parts", value: "Lenses & Other Parts" },
 ];
 const electricals = [
   { label: "Starter", value: "Starter" },
@@ -100,7 +182,7 @@ const electricals = [
   { label: "Tire Pressure Sensors", value: "Tire Pressure Sensors" },
   { label: "Starter Motors", value: "Starter Motors" },
   { label: "Alternators", value: "Alternators" },
-  { label: "Switches & Sensors", value: "Switches & Sensors" }
+  { label: "Switches & Sensors", value: "Switches & Sensors" },
 ];
 const suspensionParts = [
   { label: "Lower Arm", value: "Lower Arm" },
@@ -112,16 +194,15 @@ const suspensionParts = [
   { label: "Stabilizer Link RR", value: "Stabilizer Link RR" },
   { label: "Arm RR", value: "Arm RR" },
   { label: "Shock Absorbers", value: "Shock Absorbers" },
-  { label: "Bushes", value: "Bushes" }
+  { label: "Bushes", value: "Bushes" },
 ];
 const steeringParts = [
   { label: "Steering Box", value: "Steering Box" },
   { label: "Steering Column", value: "Steering Column" },
   { label: "Steering Wheel", value: "Steering Wheel" },
   { label: "Steering Tie Rod", value: "Steering Tie Rod" },
-  { label: "Steering Box Seal Kit", value: "Steering Box Seal Kit" }
+  { label: "Steering Box Seal Kit", value: "Steering Box Seal Kit" },
 ];
-
 const bodyParts = [
   { label: "FR/RR Bumper parts", value: "FR/RR Bumper parts" },
   { label: "Grill Parts", value: "Grill Parts" },
@@ -132,19 +213,19 @@ const bodyParts = [
   { label: "Roof", value: "Roof" },
   { label: "Spoiler", value: "Spoiler" },
   { label: "Quarter Panel", value: "Quarter Panel" },
-  { label: "Body Moldings", value: "Body Moldings" }
+  { label: "Body Moldings", value: "Body Moldings" },
 ];
 
 export const subCategories = {
-  'Service Parts': serviceParts,
-  'Engine Parts': engineParts,
-  'Engine Cooling': engineCooling,
-  'Fuel Parts': fuelParts,
-  'Lamp Items': lampItems,
-  'Clutch Parts': clutchParts,
-  'Transmission Parts': transmissionParts,
-  'Electricals': electricals,
-  'Body Parts': bodyParts,
-  'Steering Parts': steeringParts,
-  'Suspension Parts': suspensionParts,
+  "Service Parts": serviceParts,
+  "Engine Parts": engineParts,
+  "Engine Cooling": engineCooling,
+  "Fuel Parts": fuelParts,
+  "Lamp Items": lampItems,
+  "Clutch Parts": clutchParts,
+  "Transmission Parts": transmissionParts,
+  "Electricals": electricals,
+  "Body Parts": bodyParts,
+  "Steering Parts": steeringParts,
+  "Suspension Parts": suspensionParts,
 };

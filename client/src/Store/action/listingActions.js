@@ -24,14 +24,14 @@ export const GetHomeListing = () => {
   };
 };
 
-export const Initialize = (data) => {
+export const Initialize = (filterQuery) => {
   return (dispatch, getState) => {
     dispatch({
       type: "SET_LOADING",
       data: true,
     });
     axios
-      .post(`/api/listing/initialize`, {...data})
+      .post(`/api/listing/initialize`, {...filterQuery})
       .then((res) => {
         const {
           searchQuery,
@@ -42,7 +42,7 @@ export const Initialize = (data) => {
           modelList,
           brandList
         } = res.data;
-        let newBrandList = brandList.map((b) => { return { name: b } });
+        let newBrandList = brandList.map((b) => { return { name: b, _id: b } });
         dispatch({
           type: "INITIALIZE_SUCCESS",
           searchQuery,

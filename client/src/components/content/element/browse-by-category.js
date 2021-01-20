@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { withTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { withTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 
@@ -12,17 +12,18 @@ class BrowseByCategory extends Component {
     this.state = {
       isLoading: false,
       countsPerCategory: {},
-    }
+    };
   }
   componentDidMount() {
-    this.setState({isLoading: true});
-    axios.get("/api/listing/get-count-by-category")
+    this.setState({ isLoading: true });
+    axios
+      .get("/api/listing/get-count-by-category")
       .then((res) => {
-        this.setState({isLoading: false, countsPerCategory: res.data});
+        this.setState({ isLoading: false, countsPerCategory: res.data });
       })
       .catch((err) => {
         console.log(err);
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
       });
   }
   render() {
@@ -31,30 +32,37 @@ class BrowseByCategory extends Component {
     return (
       <Fragment>
         <div className="category-list">
-        {
-          categories.map((category, index) => {
+          {categories.map((category, index) => {
             return (
               <div className="category-card-wrapper" key={index}>
                 <div className="category-card">
                   <img src={category.img} />
-                  <NavLink to="/">{category.label}</NavLink>
+                  <NavLink
+                    to={`/spare-parts/${category.name
+                      .toLowerCase()
+                      .replaceAll(" ", "-")}`}
+                  >
+                    {category.name}
+                  </NavLink>
                   <span className="text-muted small text-center mt-3">
-                    {
-                      isLoading ? ( <Skeleton width={150} height={15} /> ) : (
-                        <>
-                          {countsPerCategory[category.value] ? countsPerCategory[category.value] : 0} car parts for sale
-                        </>
-                      )
-                    }
+                    {isLoading ? (
+                      <Skeleton width={150} height={15} />
+                    ) : (
+                      <>
+                        {countsPerCategory[category.value]
+                          ? countsPerCategory[category.value]
+                          : 0}{" "}
+                        car parts for sale
+                      </>
+                    )}
                   </span>
                 </div>
               </div>
-            )
-          })
-        }
+            );
+          })}
         </div>
       </Fragment>
-    )
+    );
   }
 }
 

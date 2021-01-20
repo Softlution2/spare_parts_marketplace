@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
-import equal from 'fast-deep-equal';
-import { withTranslation } from 'react-i18next';
+import equal from "fast-deep-equal";
+import { withTranslation } from "react-i18next";
 
 import ListingCardGrid from "../content/element/card/card-listing-grid";
-import {
-  OptionSelection,
-} from "../content/element/filter/selection";
+import { OptionSelection } from "../content/element/filter/selection";
 import { numberWithCommas } from "../../utils";
+import { categories } from "../../constants";
 
 class Listing extends Component {
   constructor(props) {
@@ -24,11 +23,12 @@ class Listing extends Component {
       searchQuery: {
         string: "",
         priceRange: null,
+        category: null,
         make: null,
         model: null,
         year: null,
         brand: null,
-        sortBy: {date: -1}
+        sortBy: { date: -1 },
       },
     };
     this.handleSliderChange = this.handleSliderChange.bind(this);
@@ -40,13 +40,12 @@ class Listing extends Component {
   }
 
   componentDidMount() {
-    this.setState({searchQuery: this.props.list.searchQuery});
+    this.setState({ searchQuery: this.props.list.searchQuery });
   }
 
-  componentDidUpdate(prevProps) {
-    if (!equal(prevProps.list.searchQuery, this.props.list.searchQuery)) {
-      console.log(this.props.list.searchQuery);
-      this.setState({searchQuery: this.props.list.searchQuery});
+  componentDidUpdate() {
+    if (!equal(this.state.searchQuery, this.props.list.searchQuery)) {
+      this.setState({ searchQuery: this.props.list.searchQuery });
     }
   }
 
@@ -87,7 +86,8 @@ class Listing extends Component {
       priceRange: null,
       make: null,
       model: null,
-      sortBy: {date: -1}
+      category: null,
+      sortBy: { date: -1 },
     };
     this.setState({ searchQuery: initQuery });
     this.props.handleFilter(initQuery);
@@ -104,23 +104,23 @@ class Listing extends Component {
       e.preventDefault();
 
       let { searchQuery } = this.state;
-      
+
       switch (e.target.getAttribute("href")) {
         case "lowest-price":
-          searchQuery['sortBy'] = {price: 1};
-          this.setState({orderText: "Lowest Price"});
+          searchQuery["sortBy"] = { price: 1 };
+          this.setState({ orderText: "Lowest Price" });
           break;
         case "highest-price":
-          searchQuery['sortBy'] = {price: -1};
-          this.setState({orderText: "Highest Price"});
+          searchQuery["sortBy"] = { price: -1 };
+          this.setState({ orderText: "Highest Price" });
           break;
         case "new":
-          searchQuery['sortBy'] = {date: -1};
-          this.setState({orderText: "New To Old"});
+          searchQuery["sortBy"] = { date: -1 };
+          this.setState({ orderText: "New To Old" });
           break;
         default:
-          searchQuery['sortBy'] = {date: -1};
-          this.setState({orderText: "New To Old"});
+          searchQuery["sortBy"] = { date: -1 };
+          this.setState({ orderText: "New To Old" });
           break;
       }
       this.setState({ searchQuery });
@@ -129,7 +129,13 @@ class Listing extends Component {
     // sorting end
     const { searchQuery, orderText } = this.state;
     const { listing } = this.props.list;
-    const { maxPrice, minPrice, makeList, modelList, brandList } = this.props.list;
+    const {
+      maxPrice,
+      minPrice,
+      makeList,
+      modelList,
+      brandList,
+    } = this.props.list;
     const { t } = this.props;
     return (
       <Fragment>
@@ -179,7 +185,12 @@ class Listing extends Component {
                       <div className="search-area default-ad-search">
                         <div className="search-area-header">
                           {t("all_listings_filters")}
-                          <button className="btn btn-primary" onClick={this.resetFilters}>RESET FILTERS</button>
+                          <button
+                            className="btn btn-primary"
+                            onClick={this.resetFilters}
+                          >
+                            RESET FILTERS
+                          </button>
                         </div>
                         <div
                           className="accordion"
@@ -187,6 +198,49 @@ class Listing extends Component {
                           role="tablist"
                           aria-multiselectable="true"
                         >
+                          <div className="card">
+                            <div
+                              className="card-header"
+                              role="tab"
+                              id="headingOne6"
+                            >
+                              <a
+                                data-toggle="collapse"
+                                data-parent="#filterAccordion"
+                                href="#collapseOne6"
+                                aria-expanded="true"
+                                aria-controls="collapseOne6"
+                                className="collapsed"
+                              >
+                                <span className="mb-0">Category</span>
+                                <i className="la la-angle-down"></i>
+                              </a>
+                            </div>
+                            <div
+                              id="collapseOne6"
+                              className="collapse"
+                              role="tabpanel"
+                              aria-labelledby="headingOne6"
+                              data-parent="#filterAccordion"
+                            >
+                              <div className="card-body">
+                                <div className="form-group p-bottom-10">
+                                  <OptionSelection
+                                    options={categories}
+                                    name="category"
+                                    activeOptions={
+                                      searchQuery.category
+                                        ? searchQuery.category
+                                        : []
+                                    }
+                                    onChange={this.handleSelectionChange}
+                                  />
+                                </div>
+                                {/*<!-- ends: .form-group -->*/}
+                              </div>
+                            </div>
+                          </div>
+                          
                           <div className="card">
                             <div
                               className="card-header"
@@ -218,8 +272,16 @@ class Listing extends Component {
                                     <p className="d-flex justify-content-between">
                                       <span className="amount">
                                         {searchQuery.priceRange
-                                          ? `${numberWithCommas(searchQuery.priceRange[0])}AED - ${numberWithCommas(searchQuery.priceRange[1])}AED`
-                                          : `${numberWithCommas(minPrice)}AED - ${numberWithCommas(maxPrice)}AED`}
+                                          ? `${numberWithCommas(
+                                              searchQuery.priceRange[0]
+                                            )}AED - ${numberWithCommas(
+                                              searchQuery.priceRange[1]
+                                            )}AED`
+                                          : `${numberWithCommas(
+                                              minPrice
+                                            )}AED - ${numberWithCommas(
+                                              maxPrice
+                                            )}AED`}
                                       </span>
                                     </p>
                                     <Range
@@ -289,7 +351,7 @@ class Listing extends Component {
                               </div>
                             </div>
                           </div>
-                          
+
                           <div className="card">
                             <div
                               className="card-header"
@@ -330,6 +392,7 @@ class Listing extends Component {
                               </div>
                             </div>
                           </div>
+
                           <div className="card">
                             <div
                               className="card-header"
@@ -348,6 +411,7 @@ class Listing extends Component {
                                 <i className="la la-angle-down"></i>
                               </a>
                             </div>
+
                             <div
                               id="collapseOne5"
                               className="collapse"
@@ -370,7 +434,7 @@ class Listing extends Component {
                               </div>
                             </div>
                           </div>
-
+                        
                         </div>
                       </div>
                     </div>
@@ -431,8 +495,18 @@ class Listing extends Component {
                         </Fragment>
                       ) : (
                         <div className="col-lg-12 text-center">
-                          <p className="display-4"><span className="text-primary display-3 font-weight-bolder">Sorry</span>, we can't find <br />any spare parts for your search</p>
-                          <img src="/assets/img/no_results.jpg" width="60%" className="mt-4"></img>
+                          <p className="display-4">
+                            <span className="text-primary display-3 font-weight-bolder">
+                              Sorry
+                            </span>
+                            , we can't find <br />
+                            any spare parts for your search
+                          </p>
+                          <img
+                            src="/assets/img/no_results.jpg"
+                            width="60%"
+                            className="mt-4"
+                          ></img>
                         </div>
                       )}
                     </div>
@@ -455,9 +529,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProp = (dispatch) => {
-  return {
-    // getAllListing: () => dispatch(GetAllListing()),
-  };
+  return {};
 };
 
-export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProp))(Listing);
+export default compose(
+  withTranslation(),
+  connect(mapStateToProps, mapDispatchToProp)
+)(Listing);
