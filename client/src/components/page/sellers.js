@@ -66,7 +66,7 @@ class Sellers extends Component {
         <PreHeader />
         <Header />
         {/* Header section end */}
-        <PageBanner title="Seller List" />
+        <PageBanner title="Spare Parts Stores in the UAE" />
         <section className="seller-area section-padding-strict section-bg pb-5">
           <div className="container">
             <div className="row">
@@ -83,6 +83,7 @@ class Sellers extends Component {
                               seller.avatar || "/assets/img/author-profile.jpg"
                             }
                             alt="AuthorImage"
+                            width={120}
                           />
                           <div className="atbd_auth_nd">
                             <h2>{seller.details.company_name}</h2>

@@ -14,6 +14,7 @@ const s3 = new AWS.S3({
 const Listing = require("../../models/Listing");
 const CarMake = require("../../models/CarMake");
 const CarModel = require("../../models/CarModel");
+const { UserBindingContext } = require("twilio/lib/rest/chat/v2/service/user/userBinding");
 
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
@@ -270,5 +271,26 @@ router.get("/get-count-by-category", (req, res) => {
     return res.json(results);
   });
 });
+
+router.get("/get-featured-sellers", async (req, res) => {
+  User.aggregate([
+    { "$match": {"role": "SELLER"} },
+    {
+      "$lookup": {
+          "from": "listings",
+          "localField": "_id",
+          "foreignField": "user",
+          "as": "listings"
+      },
+    },
+    { "$limit": 4 }
+  ]).exec(function (err, docs) {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({message: "Something went wrong!"});
+    }
+    return res.json(docs);
+  })
+})
 
 module.exports = router;

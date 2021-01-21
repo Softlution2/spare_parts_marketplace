@@ -89,6 +89,12 @@ class AllListing extends Component {
                   ? this.props.match.params.make
                   : null
               }
+              category={
+                this.props.match.path === "/spare-parts/:category" &&
+                this.props.match.params.category
+                  ? this.props.match.params.category
+                  : null
+              }
             />
           </section>
           <Listing handleFilter={this.handleFilter} />

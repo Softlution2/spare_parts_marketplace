@@ -69,7 +69,7 @@ class NavItem extends Component {
             <NavLink to="/sell-your-parts">{t("menu_sell_parts")}</NavLink>
           </li>
           <li>
-            <NavLink to="/sellers">{t("menu_sellers")}</NavLink>
+            <NavLink to="/stores">{t("menu_sellers")}</NavLink>
           </li>
           <li>
             <NavLink to="/news">{t("menu_news")}</NavLink>

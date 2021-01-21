@@ -8,6 +8,7 @@ import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import AdvSearch from "../content/element/advance-search";
 import HomeListingGrid from "../content/element/card/home-listing-grid";
+import FeaturedSellers from "../content/element/featured-sellers.js";
 import Promise from "../content/element/promise";
 import BrowseByCategory from "../content/element/browse-by-category";
 import BrowseByMake from "../content/element/browse-by-make";
@@ -57,6 +58,24 @@ class Index extends Component {
           </div>
         </section>
         {/* Listing section end */}
+
+        {/* Featured Sellers section start */}
+        <section className="browse-category-wrapper section-padding">
+          <div className="container">
+            <SectionTitle
+              title="FEATURED SELLERS"
+              content="Certified and verified trustworthy car parts sellers in the UAE"
+            />
+            <div className="row">
+              <div className="listing-cards-wrapper col-lg-12">
+                <div className="row">
+                  <FeaturedSellers />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* Featured Sellers section end */}
 
         {/* Browse By Type section start */}
         <section className="browse-category-wrapper section-padding">

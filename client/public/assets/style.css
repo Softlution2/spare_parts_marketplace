@@ -10163,13 +10163,12 @@ p {
 }
 
 .author-rating {
-  line-height: 2.66667rem;
   color: #fff;
   -webkit-border-radius: 3px;
           border-radius: 3px;
   margin-right: .66667rem;
   background: #32cc6f;
-  padding: .5rem .7rem;
+  padding: .6rem .7rem;
 }
 
 /* Responsive CSS */
