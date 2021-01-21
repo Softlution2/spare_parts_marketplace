@@ -111,8 +111,8 @@ class AddParts extends Component {
     this.setState({pic});
   }
 
-  handleChangeCategory(option) {
-    this.setState({category: option.value});
+  handleChangeCategory(e) {
+    this.setState({category: e.target.value});
   }
 
   handleChangeSubCategory(option) {
@@ -204,14 +204,18 @@ class AddParts extends Component {
               <div className="form-group row">
                 <div className="col-md-6">
                   <label>Category</label>
-                  <Select
-                    className={`react-select`}
-                    classNamePrefix="react-select"
-                    name="make"
-                    placeholder="Choose..."
-                    onChange={(option) => this.handleChangeCategory(option)}
-                    options={categories}
-                  />
+                  <select className="form-control" defaultValue={""} name="category" id="category" onChange={this.handleChangeCategory}>
+                    <option value="" disabled>Select Category</option>
+                    {
+                      categories.map((cat, index) => {
+                        return (
+                          <option value={cat.value} key={index}>
+                            {cat.value}
+                          </option>
+                        )
+                      })
+                    }
+                  </select>
                   <div className="text-danger">
                     {this.validator.message(
                       "category",

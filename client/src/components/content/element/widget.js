@@ -5,7 +5,7 @@ const noAction = (e) => e.preventDefault();
 
 export class SellerInfo extends Component {
   render() {
-    const { seller } = this.props;
+    const { seller, listingCount } = this.props;
     return (
       <Fragment>
         <div className="widget-body atbd_author_info_widget seller_info_widget">
@@ -31,36 +31,11 @@ export class SellerInfo extends Component {
                 <i className="la la-map-marker"></i>
                 {seller.details.company_address}
               </p>
-              <p>239 spare parts</p>
+              <p>{listingCount} spare parts</p>
               <span className="author-rating">4.5<i className="la la-star"></i></span>
-              {/* <span className="review_time">Posted {postDate} ago</span> */}
             </div>
           </div>
           {/* <!-- ends: .atbd_avatar_wrapper --> */}
-          {/* <div className="atbd_widget_contact_info">
-            <ul>
-              <li>
-                <span className="la la-map-marker"></span>
-                <span className="atbd_info">{seller.details.company_address}</span>
-              </li>
-              <li>
-                <span className="la la-phone"></span>
-                <span className="atbd_info">{seller.phone}</span>
-              </li>
-              <li>
-                <span className="la la-envelope"></span>
-                <span className="atbd_info">{seller.email}</span>
-              </li>
-            </ul>
-          </div> */}
-          {/* <!-- ends: .atbd_widget_contact_info --> */}
-          {/* <div className="atbd_social_wrap">
-            <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-facebook-f"></span></NavLink></p>
-            <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-twitter"></span></NavLink></p>
-            <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-google-plus-g"></span></NavLink></p>
-            <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-linkedin-in"></span></NavLink></p>
-            <p><NavLink to="/at_demo" onClick={noAction}><span className="fab fa-dribbble"></span></NavLink></p>
-          </div> */}
         </div>
       </Fragment>
     );

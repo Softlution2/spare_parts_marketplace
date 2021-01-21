@@ -240,8 +240,8 @@ router.get("/get", async (req, res) => {
       "user"
     );
     // let similarListing = await Car.find({ make: doc.make, _id: {'$ne':doc._id } }).populate("user_id").sort("-date").limit(6);
-    // let userListings = await Car.count({ user_id: doc.user_id })
-    return res.json({ listing });
+    let sellerListingCount = await Listing.count({ user: listing.user })
+    return res.json({ listing, sellerListingCount });
   } catch (err) {
     console.log(err);
     return res.status(400).json({ message: "Something went wrong!" });

@@ -31,6 +31,7 @@ class ListingDetails extends Component {
     this.state = {
       listing: null,
       listing_user: null,
+      seller_listing: 0,
     };
     this.validator = new SimpleReactValidator();
     this.getListing = this.getListing.bind(this);
@@ -60,9 +61,9 @@ class ListingDetails extends Component {
     axios
       .get(`/api/listing/get?sku=${sku}`)
       .then((res) => {
-        const { listing } = res.data;
+        const { listing, sellerListingCount } = res.data;
         let listing_user = listing.user;
-        this.setState({ listing, listing_user }, () => {
+        this.setState({ listing, listing_user, seller_listing: sellerListingCount }, () => {
           this.props.setLoading(false);
         });
       })
@@ -73,7 +74,7 @@ class ListingDetails extends Component {
   }
 
   render() {
-    const { listing, listing_user } = this.state;
+    const { listing, listing_user, seller_listing } = this.state;
     const { isLoading } = this.props.list;
     const { t } = this.props;
     return (
@@ -139,7 +140,7 @@ class ListingDetails extends Component {
                       {/* <!-- ends: .atbd_widget_title --> */}
                       <SellerInfo
                         seller={listing_user}
-                        postDate={getTimeSince(moment(listing.date))}
+                        listingCount={seller_listing}
                       />
                     </div>
 

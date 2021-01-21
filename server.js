@@ -8,7 +8,7 @@ const socketio = require('socket.io');
 const onlineUsers = {};
 
 require('dotenv').config();
-
+console.log();
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
@@ -37,7 +37,8 @@ app.use(cors());
 // Bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/client/build/'));
+
 
 
 // DB Config
@@ -46,8 +47,10 @@ const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
 mongoose
   .connect(
-    db,
-    { useNewUrlParser: true }
+    process.env.DB_CONN,
+    {
+      auth: { user: process.env.DB_USER, password: process.env.DB_PW }, useNewUrlParser: true
+    }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
