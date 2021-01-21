@@ -75,14 +75,14 @@ class FeaturedSellers extends Component {
                 <article className="atbd_single_listing_wrapper">
                   <figure className="atbd_listing_thumbnail_area" style={{height: "150px", padding: "1rem 1rem 0 1rem"}}>
                     <div className="atbd_listing_image text-center" style={{height: '100%'}}>
-                      <NavLink to={``}>
+                      <NavLink to={`/seller-details/${seller._id}`}>
                         <img src={seller.avatar || "/assets/img/avatar.png"} alt="Seller Image" style={{height: "100%", objectFit: "contain"}} />
                       </NavLink>
                     </div>
                   </figure>
                   <div className="atbd_listing_info text-center" style={{border: 0}}>
                     <h4 className="atbd_listing_title mb-2" style={{fontSize: "1.2rem"}}>
-                      <NavLink to="">{seller.details.company_name}</NavLink>
+                      <NavLink to={`/seller-details/${seller._id}`}>{seller.details.company_name}</NavLink>
                     </h4>
                     <p className="my-0 font-weight-bold">
                       <i className="la la-map-marker"></i>

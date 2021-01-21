@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import Skeleton from "react-loading-skeleton";
+import StarRatingComponent from 'react-star-rating-component';
 
 import { GetHomeListing } from "../../../../Store/action/listingActions";
 
@@ -89,14 +90,33 @@ class HomeListingGrid extends Component {
                       </div>
                     </figure>
                     <div className="atbd_listing_info">
-                      <h4 className="atbd_listing_title">
+                      <h4 className="atbd_listing_title mb-2">
                         <NavLink to={`/buy-spare-parts/${link}`}>
                           {title}
                         </NavLink>
                       </h4>
+                      <div className="rating-group">
+                        <StarRatingComponent 
+                          name="rate2" 
+                          editing={false}
+                          renderStarIcon={() => ( <i className='la la-star' /> )}
+                          renderStarIconHalf={() => ( <i className="la la-star-half-alt" style={{color: "#ffb400"}} /> )}
+                          starColor="#ffb400"
+                          emptyStarColor={"#cecece"}
+                          starCount={5}
+                          value={3.5}
+                        />
+                        <span className="rating-value">3.5</span>
+                        <span className="review-value text-muted">760 Reviews</span>
+                      </div>
                       <div className="price-group">
-                        <span className="symbol mr-1">AED</span>
-                        <span className="price">{numberWithCommas(price)}</span>
+                        <p className="symbol mr-1">
+                          AED<span className="price">{numberWithCommas(price)}</span>
+                        </p>
+                        <button className="btn cart-btn">
+                          <i className="la la-shopping-bag"></i>
+                          Add To Cart
+                        </button>
                       </div>
                     </div>
                   </article>

@@ -88,7 +88,7 @@ class Sellers extends Component {
                           <div className="atbd_auth_nd">
                             <h2>{seller.details.company_name}</h2>
                             <p>
-                              Joined in {moment(seller.date).format("MMM YYYY")}
+                              Registered in {moment(seller.date).format("MMM YYYY")}
                             </p>
                           </div>
                         </div>

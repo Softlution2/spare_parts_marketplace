@@ -2452,7 +2452,7 @@ p {
 
 .atbd_listing_info .price-group {
   color: #ed0103;
-  margin: 0.5rem 0 0.8rem 0;
+  margin: 0;
 }
 
 .atbd_listing_info .price-group .symbol {
@@ -2464,6 +2464,58 @@ p {
   font-weight: 600;
   font-size: 1.3rem;
   margin-right: 5px;
+}
+
+.atbd_listing_info .price-group .cart-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-color: #ced4da;
+  color: #343a40;
+  line-height: 2.5rem;
+}
+
+.atbd_listing_info .price-group .cart-btn i {
+  margin-right: 0.2rem;
+  font-size: 1.5rem;
+}
+
+.atbd_listing_info .price-group .cart-btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.atbd_listing_info .price-group .cart-btn:hover {
+  background-color: #ed0103;
+  color: white;
+  border-color: #ed0103;
+}
+
+.atbd_listing_info .rating-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.atbd_listing_info .rating-group span {
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.atbd_listing_info .rating-group span.rating-value {
+  color: #272b41;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-weight: bolder;
 }
 
 .atbd_listing_info .listing-meta {

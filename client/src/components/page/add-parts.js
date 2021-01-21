@@ -15,7 +15,7 @@ import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
 import { PageBanner } from "../content/element/page-banner";
 import InputDropdown from "../content/element/input-dropdown";
-import { categories, subCategories } from "../../constants";
+import { categories, subCategories, countrList } from "../../constants";
 
 class AddParts extends Component {
   constructor(props) {
@@ -30,26 +30,36 @@ class AddParts extends Component {
       category: null,
       subCategory: null,
       partName: null,
-      shortDescription: null,
+      partHSCode: null,
       partBrand: null,
       partSKU: null,
+      type: null,
+      fittingPosition: null,
       description: null,
       submitLoading: false,
       makes: [],
       models: [],
+      heightDimension: 0,
+      widthDimension: 0,
+      depthDimension: 0,
+      weight: 0,
+      countryOrigin: null,
+      clickCollect: false,
+      delivery: false,
     };
     this.validator = new SimpleReactValidator();
     this.handleChangeNumeric = this.handleChangeNumeric.bind(this);
     this.handleUnitOptionChange = this.handleUnitOptionChange.bind(this);
     this.openFileDlg = this.openFileDlg.bind(this);
     this.uploadPic = this.uploadPic.bind(this);
-    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleChangeSelect = this.handleChangeSelect.bind(this);
     this.handleChangeSubCategory = this.handleChangeSubCategory.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleChangeMake = this.handleChangeMake.bind(this);
     this.handleChangeModel = this.handleChangeModel.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
   }
 
   componentDidMount() {
@@ -111,10 +121,14 @@ class AddParts extends Component {
     this.setState({pic});
   }
 
-  handleChangeCategory(e) {
-    this.setState({category: e.target.value});
+  handleChangeSelect(e) {
+    this.setState({[e.target.name]: e.target.value});
   }
 
+  handleChangeCheckbox(e) {
+    this.setState({[e.target.name]: e.target.checked});
+  }
+  
   handleChangeSubCategory(option) {
     this.setState({subCategory: option.value});
   }
@@ -142,13 +156,23 @@ class AddParts extends Component {
       formData.append("category", this.state.category);
       formData.append("subCategory", this.state.subCategory);
       formData.append("partName", this.state.partName);
-      formData.append("shortDescription", this.state.shortDescription);
+      formData.append("partHSCode", this.state.partHSCode);
       formData.append("partSKU", this.state.partSKU);
       formData.append("partBrand", this.state.partBrand);
+      formData.append("type", this.state.type);
       formData.append("description", this.state.description);
-      formData.append("user", this.props.login._id);
+      formData.append("fittingPosition", this.state.fittingPosition);
       formData.append("makes", JSON.stringify(this.state.makes));
       formData.append("models", JSON.stringify(this.state.models));
+      formData.append("heightDimension", this.state.heightDimension);
+      formData.append("widthDimension", this.state.widthDimension);
+      formData.append("depthDimension", this.state.depthDimension);
+      formData.append("weight", this.state.weight);
+      formData.append("countryOrigin", this.state.countryOrigin);
+      formData.append("clickCollect", this.state.clickCollect);
+      formData.append("delivery", this.state.delivery);
+      
+      formData.append("user", this.props.login._id);
       axios.post(`/api/listing/new`, formData)
       .then((res) => {
         this.setState({submitLoading: false});
@@ -173,217 +197,378 @@ class AddParts extends Component {
         <PreHeader />
         <Header />
         <PageBanner title="Sell your spare part" />
-        <section className="sell-part-wrapper">
+        <section className="sell-part-wrapper section-bg">
           <div className="container">
             <SectionTitle title="Spare Parts Details & Description" />
-            <form className="form-vertical">
-              <div className="form-group text-center">
-                  {
-                    this.state.pic && (
-                      <img src={this.state.pic.preview} onClick={this.openFileDlg}  width="300" />
-                    )
-                  }
-                  <div className="custom-file-upload">
-                    <input
-                      id="customUpload"
-                      type="file"
-                      ref={(ref) => (this.upload = ref)}
-                      style={{ display: "none" }}
-                      onChange={this.uploadPic}
-                    />
-                    <label htmlFor="customUpload" className="btn btn-sm btn-primary mt-3" onClick={this.openFileDlg}>Upload Picture</label>
-                  </div>
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "pic",
-                      this.state.pic,
-                      `required`
-                    )}
-                  </div>
+            
+            <div className="atbd_content_module">
+              <div className="atbd_content_module__tittle_area">
+                <div className="atbd_area_title">
+                  <h4><span className="la la-user"></span>General Information</h4>
+                </div>
               </div>
-              <div className="form-group row">
-                <div className="col-md-6">
-                  <label>Category</label>
-                  <select className="form-control" defaultValue={""} name="category" id="category" onChange={this.handleChangeCategory}>
-                    <option value="" disabled>Select Category</option>
-                    {
-                      categories.map((cat, index) => {
-                        return (
-                          <option value={cat.value} key={index}>
-                            {cat.value}
-                          </option>
+              <div className="atbdb_content_module_contents">
+                <form className="form-vertical">
+                  <div className="form-group text-center">
+                      {
+                        this.state.pic && (
+                          <img src={this.state.pic.preview} onClick={this.openFileDlg}  width="300" />
                         )
-                      })
-                    }
-                  </select>
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "category",
-                      this.state.category,
-                      `required`
-                    )}
+                      }
+                      <div className="custom-file-upload">
+                        <input
+                          id="customUpload"
+                          type="file"
+                          ref={(ref) => (this.upload = ref)}
+                          style={{ display: "none" }}
+                          onChange={this.uploadPic}
+                        />
+                        <label htmlFor="customUpload" className="btn btn-sm btn-primary mt-3" onClick={this.openFileDlg}>Upload Picture</label>
+                      </div>
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "pic",
+                          this.state.pic,
+                          `required`
+                        )}
+                      </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <label>SubCategory</label>
-                  <Select
-                    className={`react-select`}
-                    classNamePrefix="react-select"
-                    name="make"
-                    placeholder="Choose..."
-                    onChange={(option) => this.handleChangeSubCategory(option)}
-                    options={this.state.category && subCategories[this.state.category] ? subCategories[this.state.category] : []}
-                  />
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Part Name:</label>
+                      <input type="text" name="partName" className="form-control" onChange={this.handleInput} />
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "partName",
+                          this.state.partName,
+                          `required`
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <label>Part Brand:</label>
+                      <input type="text" name="partBrand" className="form-control" onChange={this.handleInput} />
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "partBrand",
+                          this.state.partBrand,
+                          `required`
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Category</label>
+                      <select className="form-control" defaultValue={""} name="category" id="category" onChange={this.handleChangeSelect}>
+                        <option value="" disabled>Select Category</option>
+                        {
+                          categories.map((cat, index) => {
+                            return (
+                              <option value={cat.value} key={index}>
+                                {cat.value}
+                              </option>
+                            )
+                          })
+                        }
+                      </select>
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "category",
+                          this.state.category,
+                          `required`
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <label>SubCategory</label>
+                      <Select
+                        className={`react-select`}
+                        classNamePrefix="react-select"
+                        name="make"
+                        placeholder="Choose..."
+                        onChange={(option) => this.handleChangeSubCategory(option)}
+                        options={this.state.category && subCategories[this.state.category] ? subCategories[this.state.category] : []}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Part HS Code:</label>
+                      <input type="text" name="partHSCode" className="form-control" onChange={this.handleInput} />
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "partHSCode",
+                          this.state.partHSCode,
+                          `required`
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <label>Part SKU:</label>
+                      <input type="text" name="partSKU" className="form-control" onChange={this.handleInput} />
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "partSKU",
+                          this.state.partSKU,
+                          `required`
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Type:</label>
+                    <select name="type" defaultValue={""} className="form-control" onChange={this.handleChangeSelect}>
+                      <option value="" disabled>Select Type</option>
+                      <option value="Genuine">Genuine</option>
+                      <option value="Alternative">Alternative</option>
+                    </select>
+                    <div className="text-danger">
+                      {this.validator.message(
+                        "type",
+                        this.state.type,
+                        `required`
+                      )}
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <ReactQuill theme="snow" value={this.state.description} onChange={this.handleDescriptionChange}/>
+                    <div className="text-danger">
+                      {this.validator.message(
+                        "description",
+                        this.state.description,
+                        `required`
+                      )}
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="atbd_content_module">
+              <div className="atbd_content_module__tittle_area">
+                <div className="atbd_area_title">
+                  <h4><span className="la la-user"></span>Pricing & Availability (required)</h4>
                 </div>
               </div>
-              <div className="form-group row">
-                <div className="col-md-6">
-                  <label>Part Name:</label>
-                  <input type="text" name="partName" className="form-control" onChange={this.handleInput} />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "partName",
-                      this.state.partName,
-                      `required`
-                    )}
+              <div className="atbdb_content_module_contents">
+                <form className="form-vertical">
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Price:</label>
+                      <InputDropdown
+                        m_name="price"
+                        o_name="currency"
+                        handleChangeNumeric={this.handleChangeNumeric}
+                        handleOptionChange={this.handleUnitOptionChange}
+                        defaultOption="AED"
+                        value={this.state.price}
+                      />
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "price",
+                          this.state.price,
+                          `required`
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <label>Quantity Available:</label>
+                      <NumberFormat 
+                        value={this.state.quantity}
+                        className={`form-control`}
+                        thousandSeparator={true}
+                        onValueChange={(values) => this.setState({quantity: values.floatValue}) }
+                      />
+                      <div className="text-danger">
+                        {this.validator.message(
+                          "quantity",
+                          this.state.quantity,
+                          `required`
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <label>Short Description:</label>
-                  <input type="text" name="shortDescription" className="form-control" onChange={this.handleInput} />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "shortDescription",
-                      this.state.shortDescription,
-                      `required`
-                    )}
-                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="atbd_content_module">
+              <div className="atbd_content_module__tittle_area">
+                <div className="atbd_area_title">
+                  <h4><span className="la la-user"></span>Fitting & Compatibility (optional)</h4>
                 </div>
               </div>
-              <div className="form-group row">
-                <div className="col-md-6">
-                  <label>Part Brand:</label>
-                  <input type="text" name="partBrand" className="form-control" onChange={this.handleInput} />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "partBrand",
-                      this.state.partBrand,
-                      `required`
-                    )}
+              <div className="atbdb_content_module_contents">
+                <form className="form-vertical">
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Make:</label>
+                      <Select
+                        className={`react-select`}
+                        classNamePrefix="react-select"
+                        placeholder="Choose..."
+                        name="make"
+                        onChange={this.handleChangeMake}
+                        options={this.state.makeList}
+                        isMulti={true}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label>Model:</label>
+                      <Select
+                        className={`react-select`}
+                        classNamePrefix="react-select"
+                        placeholder="Choose..."
+                        name="model"
+                        onChange={this.handleChangeModel}
+                        options={this.state.modelList}
+                        isMulti={true}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <label>Part SKU:</label>
-                  <input type="text" name="partSKU" className="form-control" onChange={this.handleInput} />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "partSKU",
-                      this.state.partSKU,
-                      `required`
-                    )}
+                  <div className="form-group">
+                    <label>Fitting Position:</label>
+                    <select name="fittingPosition" className="form-control" defaultValue={""} onChange={this.handleChangeSelect}>
+                      <option value="" disabled>Select Fitting Position</option>
+                      <option value="Front">Front</option>
+                      <option value="Rear">Rear</option>
+                    </select>
                   </div>
+                </form>
+              </div>
+            </div>
+            <div className="atbd_content_module">
+              <div className="atbd_content_module__tittle_area">
+                <div className="atbd_area_title">
+                  <h4><span className="la la-user"></span>Details (optional)</h4>
                 </div>
               </div>
-              <div className="form-group row">
-                <div className="col-md-6">
-                  <label>Make:</label>
-                  <Select
-                    className={`react-select`}
-                    classNamePrefix="react-select"
-                    placeholder="Choose..."
-                    name="make"
-                    onChange={this.handleChangeMake}
-                    options={this.state.makeList}
-                    isMulti={true}
-                  />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "makes",
-                      this.state.makes,
-                      `required`
-                    )}
+              <div className="atbdb_content_module_contents">
+                <form className="form-vertical">
+                  <div className="form-group">
+                    <label>Country of Origin:</label>
+                    <select className="form-control" name="country" defaultValue={""} onChange={this.handleChangeSelect}>
+                      <option value="" disabled>Select Country of Origin</option>
+                      {
+                        countrList.map((country, index) => {
+                          return (
+                            <option key={index} value={country.label}>{country.label}</option>
+                          )
+                        })
+                      }
+                    </select>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <label>Model:</label>
-                  <Select
-                    className={`react-select`}
-                    classNamePrefix="react-select"
-                    placeholder="Choose..."
-                    name="model"
-                    onChange={this.handleChangeModel}
-                    options={this.state.modelList}
-                    isMulti={true}
-                  />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "models",
-                      this.state.models,
-                      `required`
-                    )}
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Height Dimension:</label>
+                      <InputDropdown
+                        m_name="heightDimension"
+                        o_name="unit"
+                        handleChangeNumeric={this.handleChangeNumeric}
+                        handleOptionChange={this.handleUnitOptionChange}
+                        defaultOption="MM"
+                        value={this.state.heightDimension}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label>Width Dimension:</label>
+                      <InputDropdown
+                        m_name="widthDimension"
+                        o_name="unit"
+                        handleChangeNumeric={this.handleChangeNumeric}
+                        handleOptionChange={this.handleUnitOptionChange}
+                        defaultOption="MM"
+                        value={this.state.widthDimension}
+                      />
+                    </div>
                   </div>
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <label>Depth Dimension:</label>
+                      <InputDropdown
+                        m_name="depthDimension"
+                        o_name="unit"
+                        handleChangeNumeric={this.handleChangeNumeric}
+                        handleOptionChange={this.handleUnitOptionChange}
+                        defaultOption="MM"
+                        value={this.state.depthDimension}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label>Weight:</label>
+                      <InputDropdown
+                        m_name="weight"
+                        o_name="unit"
+                        handleChangeNumeric={this.handleChangeNumeric}
+                        handleOptionChange={this.handleUnitOptionChange}
+                        defaultOption="Grams"
+                        value={this.state.weight}
+                      />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="atbd_content_module">
+              <div className="atbd_content_module__tittle_area">
+                <div className="atbd_area_title">
+                  <h4><span className="la la-shopping-cart"></span>Shipping Options</h4>
                 </div>
               </div>
-              <div className="form-group row">
-                <div className="col-md-6">
-                  <label>Price:</label>
-                  <InputDropdown
-                    // options={}
-                    m_name="price"
-                    o_name="currency"
-                    handleChangeNumeric={this.handleChangeNumeric}
-                    handleOptionChange={this.handleUnitOptionChange}
-                    defaultOption="AED"
-                    value={this.state.price}
-                  />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "price",
-                      this.state.price,
-                      `required`
-                    )}
+              <div className="atbdb_content_module_contents">
+                <form className="form-vertical">
+                  <div className="form-group row">
+                    <div className="col-md-6">
+                      <div className="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          name="clickCollect"
+                          value="1"
+                          id="clickCollect"
+                          onChange={this.handleChangeCheckbox}
+                        />
+                        <label
+                          htmlFor="clickCollect"
+                          className="not_empty custom-control-label"
+                        >
+                          Click & Collect
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="custom-control custom-checkbox checkbox-outline checkbox-outline-primary">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          name="delivery"
+                          value="1"
+                          id="delivery"
+                          onChange={this.handleChangeCheckbox}
+                        />
+                        <label
+                          htmlFor="delivery"
+                          className="not_empty custom-control-label"
+                        >
+                          Delivery
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <label>Quantity Available:</label>
-                  <NumberFormat 
-                    value={this.state.quantity}
-                    className={`form-control`}
-                    thousandSeparator={true}
-                    onValueChange={(values) => this.setState({quantity: values.floatValue}) }
-                  />
-                  <div className="text-danger">
-                    {this.validator.message(
-                      "quantity",
-                      this.state.quantity,
-                      `required`
-                    )}
+                  <div className="form-group mt-5 text-center">
+                    <button
+                      className="btn btn-primary" 
+                      disabled={this.state.submitLoading === false ? false : true}
+                      className="btn btn-primary btn-lg listing_submit_btn"
+                      onClick={this.handleSubmit}
+                    >
+                      {this.state.submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
+                      Add your listing
+                    </button>
                   </div>
-                </div>
+                </form>
               </div>
-              <div className="form-group">
-                <label>Description:</label>
-                <ReactQuill theme="snow" value={this.state.description} onChange={this.handleDescriptionChange}/>
-                <div className="text-danger">
-                  {this.validator.message(
-                    "description",
-                    this.state.description,
-                    `required`
-                  )}
-                </div>
-              </div>
-              <div className="form-group mt-5 text-center">
-                <button
-                  className="btn btn-primary" 
-                  disabled={this.state.submitLoading === false ? false : true}
-                  className="btn btn-primary btn-lg listing_submit_btn"
-                  onClick={this.handleSubmit}
-                >
-                  {this.state.submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
-                  Add your listing
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
         </section>
         <Footer />

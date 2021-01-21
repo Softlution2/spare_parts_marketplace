@@ -24,7 +24,7 @@ const ListingSchema = new Schema({
     type: String,
     required: true,
   },
-  shortDescription: {
+  partHSCode: {
     type: String,
     required: true,
   },
@@ -58,6 +58,30 @@ const ListingSchema = new Schema({
   models: [
     { type : Schema.Types.ObjectId, ref: 'car_models' },
   ],
+  fittingPosition: {
+    type: String
+  },
+  heightDimension: {
+    type: Number,
+  },
+  widthDimension: {
+    type: Number,
+  },
+  depthDimension: {
+    type: Number,
+  },
+  weight: {
+    type: Number,
+  },
+  clickCollect: {
+    type: Boolean,
+  },
+  delivery: {
+    type: Boolean,
+  },
+  countryOrigin: {
+    type: String
+  },
   date: {
     type: Date,
     default: Date.now,

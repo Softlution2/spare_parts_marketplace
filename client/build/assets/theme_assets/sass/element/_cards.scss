@@ -168,7 +168,7 @@
   }
   .price-group {
     color: $primary;
-    margin: 0.5rem 0 0.8rem 0;
+    margin: 0;
     .symbol {
       font-size: .8rem;
       font-weight: bolder;
@@ -177,6 +177,41 @@
       font-weight: 600;
       font-size: 1.3rem;
       margin-right: 5px;
+    }
+    .cart-btn {
+      display: flex;
+      align-items: center;
+      border-color: $gray-400;
+      color: $gray-800;
+      line-height: 2.5rem;
+      i {
+        margin-right: 0.2rem;
+        font-size: 1.5rem;
+      }
+      &:focus {
+        outline: 0;
+        box-shadow: none !important;
+      }
+      &:hover {
+        background-color: $primary;
+        color: white;
+        border-color: $primary;
+      }
+    }
+  }
+  .rating-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    span {
+      font-size: 14px;
+      margin-bottom: 0.5rem;
+      &.rating-value {
+        color: #272b41;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        font-weight: bolder;
+      }
     }
   }
   .listing-meta {
