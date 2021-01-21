@@ -37,7 +37,8 @@ app.use(cors());
 // Bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/client/build/'));
+app.use(express.static(__dirname + '/'));
+// app.use(express.static(__dirname + '/client/build/'));
 
 
 
@@ -45,15 +46,24 @@ app.use(express.static(__dirname + '/client/build/'));
 const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
+
 mongoose
   .connect(
-    process.env.DB_CONN,
-    {
-      auth: { user: process.env.DB_USER, password: process.env.DB_PW }, useNewUrlParser: true
-    }
+    db,
+    { useNewUrlParser: true }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
+
+// mongoose
+//   .connect(
+//     process.env.DB_CONN,
+//     {
+//       auth: { user: process.env.DB_USER, password: process.env.DB_PW }, useNewUrlParser: true
+//     }
+//   )
+//   .then(() => console.log("MongoDB successfully connected"))
+//   .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
