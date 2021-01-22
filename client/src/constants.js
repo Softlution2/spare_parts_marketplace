@@ -215,6 +215,55 @@ const bodyParts = [
   { label: "Quarter Panel", value: "Quarter Panel" },
   { label: "Body Moldings", value: "Body Moldings" },
 ];
+const brakeParts = [
+  { label: "Brake Pads FR/RR", value: "Brake Pads FR/RR" },
+  { label: "Brake Disc", value: "Brake Disc" },
+  { label: "Caplipers FR/RR", value: "Caplipers FR/RR" },
+  { label: "Brake Master Cylinder & Kit", value: "Brake Master Cylinder & Kit" },
+  { label: "Brake Lines", value: "Brake Lines" },
+  { label: "Speed Sensors", value: "Speed Sensors" },
+  { label: "Brake Hose", value: "Brake Hose" },
+  { label: "Brake Pad Wear Sensors", value: "Brake Pad Wear Sensors" },
+  { label: "Brake Drum", value: "Brake Drum" },
+  { label: "Brake Shoe", value: "Brake Shoe" },
+  { label: "Accessories & Fitting Kits", value: "Accessories & Fitting Kits" },
+  { label: "ABS Sensors", value: "ABS Sensors" },
+  { label: "Ptjer Jpses & Pipes", value: "Ptjer Jpses & Pipes" },
+];
+const rubberParts = [
+  { label: "Bushes for Suspension", value: "Bushes for Suspension" },
+];
+const batteriesParts = [
+  { label: "Lubricants & Fluids", value: "Lubricants & Fluids" },
+  { label: "Additives", value: "Additives" },
+  { label: "Batteries & Components", value: "Batteries & Components" },
+  { label: "Starter Batteries", value: "Starter Batteries" },
+  { label: "60 Amp To 66 Amp", value: "60 Amp To 66 Amp" },
+  { label: "70 Amp To 75 Amp", value: "70 Amp To 75 Amp" },
+  { label: "80 Amp To 95 Amp", value: "80 Amp To 95 Amp" },
+  { label: "100 Amp To 120 Amp", value: "100 Amp To 120 Amp" },
+  { label: "Battery Chargers", value: "Battery Chargers" },
+  { label: "Battery Maintenance", value: "Battery Maintenance" },
+  { label: "Booster Cables", value: "Booster Cables" },
+  { label: "Charger Accessories", value: "Charger Accessories" },
+  { label: "Diagnostic Station", value: "Diagnostic Station" },
+  { label: "Jump Starter", value: "Jump Starter" },
+];
+const interiorAccessories = [
+  { label: "Floor Mat", value: "Floor Mat" },
+  { label: "Cargo Net", value: "Cargo Net" },
+  { label: "Door Handle", value: "Door Handle" },
+  { label: "Cup Holder", value: "Cup Holder" },
+  { label: "Running Board & Step Bars", value: "Running Board & Step Bars" },
+  { label: "Molding", value: "Molding" },
+  { label: "Mud Flap", value: "Mud Flap" },
+  { label: "Spare Tire Cover", value: "Spare Tire Cover" },
+  { label: "Roof Rack", value: "Roof Rack" },
+  { label: "Horn", value: "Horn" },
+  { label: "Side Decal", value: "Side Decal" },
+  { label: "Wiper Arm Cover", value: "Wiper Arm Cover" },
+  { label: "Pull Bars", value: "Pull Bars" },  
+]
 
 export const subCategories = {
   "Service Parts": serviceParts,
@@ -228,6 +277,10 @@ export const subCategories = {
   "Body Parts": bodyParts,
   "Steering Parts": steeringParts,
   "Suspension Parts": suspensionParts,
+  "Brake Parts": brakeParts,
+  "Rubber Parts": rubberParts,
+  "Batteries, Lubricants, Tires": batteriesParts,
+  "Interior & Exterior Accessories": interiorAccessories
 };
 
 export const countrList = [

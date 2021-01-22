@@ -69,7 +69,7 @@ class SellerDetails extends Component {
                     {/*  */}
                     <div className="atbd_auth_nd">
                       <h2>{this.state.seller ? this.state.seller.details.company_name : <Skeleton width={150} height={30} /> }</h2>
-                      <p>{this.state.seller ? `Registered in ${moment(this.state.seller.date).format("MMM YYYY")}` : <Skeleton width={150} height={30} /> }</p>
+                      <p>{this.state.seller ? `Registered in ${moment(this.state.seller.date).format("MMMM YYYY")}` : <Skeleton width={150} height={30} /> }</p>
                     </div>
                   </div>
                   {/*<!-- ends: .atbd_author_avatar -->*/}

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from "react-i18next";
@@ -85,8 +86,8 @@ class AdvSearch extends Component {
                 </form>
                 {!make && (
                   <p className="search-bottom-text">
-                    Search by <a href="#!">vehicle make and mode</a>, or by{" "}
-                    <a href="#!">VIN number</a>
+                    Search by <NavLink to="/parts-search-vin">vehicle make and mode</NavLink>, or by{" "}
+                    <NavLink to="/parts-search-vin">VIN number</NavLink>
                   </p>
                 )}
               </div>

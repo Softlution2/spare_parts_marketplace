@@ -36,6 +36,7 @@ import Sellers from "./page/sellers";
 import SellerDetails from "./page/seller-details";
 import BecomeBuyer from "./page/become-buyer";
 import BecomeSeller from "./page/become-seller";
+import SearchVin from "./page/search-vin";
 
 import "../i18n";
 
@@ -80,9 +81,8 @@ class App extends Component {
           <Route path="/all-listings" component={AllListing} />
           <Route path="/spare-parts/:category" component={AllListing} />
           <Route path="/car-parts/:make" component={AllListing} />
-
-          <Route path="/buy-spare-parts:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
+          <Route path="/parts-search-vin" component={SearchVin} />
           
 
           <Route path="/seller-listings/:id" component={SellerListings} />
