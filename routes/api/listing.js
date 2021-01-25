@@ -88,6 +88,21 @@ router.post("/initialize", async (req, res) => {
   });
 });
 
+
+router.get("/get-my-listing", async (req, res) => {
+  const { user_id } = req.query;
+  let listings;
+  try {
+    listings = await Listing.find({ user: user_id }).sort("-date").populate("user");
+  } catch (err) {
+    listing = [];
+  }
+
+  return res.json({
+    listings,
+  });
+});
+
 router.post("/new", async (req, res) => {
   let pic = null;
   let obj = null;

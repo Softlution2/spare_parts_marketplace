@@ -8,6 +8,7 @@ const initState = {
   modelList: [],
   brandList: [],
   isLoading: false,
+  itemsInCart: [],
   searchQuery: {
     string: "",
     priceRange: null,
@@ -53,21 +54,24 @@ const listingReducer = (state = initState, action) => {
       return {
         ...state,
         listing: action.listings,
-        maxPrice: action.maxPrice,
-        minPrice: action.minPrice,
-        maxMileage: action.maxMileage,
-        minMileage: action.minMileage,
-        maxYear: action.maxYear,
-        minYear: action.minYear,
-        transmissionList: action.transmissionList,
-        makeList: action.makeList,
-        colorList: action.colorList,
         isLoading: false,
       };
     case "GET_MY_LISTING_FAILED":
       return {
         ...initState,
       };
+    case "ADD_TO_CART":
+      const { itemsInCart } = state;
+      const index = itemsInCart.findIndex(x => x==action.data)
+      if (index === -1)
+        itemsInCart.push(action.data);
+      else 
+        itemsInCart.splice(index, 1);
+      return {
+        ...state,
+        itemsInCart
+      }
+
     case "GET_MY_FAVORITES_SUCCESS":
       return {
         ...state,

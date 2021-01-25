@@ -140,6 +140,9 @@ class Header extends Component {
                               <i className="la la-user"></i>
                             )}
                           </a>
+                          <a href="#!" className="offcanvas-menu__cart">
+                              <img src="/assets/img/cart-icon.svg"  alt="Cart"/> {this.props.list.itemsInCart.length}
+                          </a>
                           <div className="offcanvas-menu__contents">
                             <a href=" " className="offcanvas-menu__close">
                               <i className="la la-times-circle"></i>
@@ -189,7 +192,7 @@ class Header extends Component {
                               </li>
                               <li className="group-title">Your Inventory</li>
                               <li>
-                                <NavLink to="/all-listing">Listings</NavLink>
+                                <NavLink to="/my-listings">Listings</NavLink>
                               </li>
                               <li>
                                 <NavLink to="/sell-your-parts">Add New</NavLink>
@@ -240,6 +243,7 @@ const mapStateToProps = (state) => {
   return {
     login: state.login,
     chat: state.chat,
+    list: state.list,
   };
 };
 const mapDispatchToProp = (dispatch) => {

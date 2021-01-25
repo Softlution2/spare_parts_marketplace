@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 import moment from 'moment';
 import StarRatingComponent from 'react-star-rating-component';
 
-import { SetFavouriteListing } from "../../../../Store/action/listingActions";
+import { AddToCart, SetFavouriteListing } from "../../../../Store/action/listingActions";
 import { numberWithCommas, stringToUrl } from "../../../../utils";
 
 class CardListingGrid extends Component {
   render() {
-    const { login, size } = this.props;
+    const { size } = this.props;
     const listings = this.props.list.listing;
     const { isLoading } = this.props.list;
     const className = size === 3 ? "col-lg-6 col-xl-3 col-sm-6 col-md-4" : "col-lg-4 col-sm-6";
@@ -79,7 +79,7 @@ class CardListingGrid extends Component {
                       <p className="symbol mr-1">
                         AED<span className="price">{numberWithCommas(price)}</span>
                       </p>
-                      <button className="btn cart-btn">
+                      <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
                         <i className="la la-shopping-bag"></i>
                         Add To Cart
                       </button>
@@ -105,6 +105,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProp = (dispatch) => {
   return {
     setFavouriteListing: (e, id) => dispatch(SetFavouriteListing(e, id)),
+    addToCart: (data) => dispatch(AddToCart(data)),
   };
 };
 

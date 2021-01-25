@@ -73,30 +73,10 @@ export const GetMyListings = () => {
     axios
       .get(`/api/listing/get-my-listing?user_id=${login._id}`)
       .then((res) => {
-        const {
-          listings,
-          maxPrice,
-          minPrice,
-          maxMileage,
-          minMileage,
-          maxYear,
-          minYear,
-          makeList,
-          transmissionList,
-          colorList,
-        } = res.data;
+        const { listings } = res.data;
         dispatch({
           type: "GET_MY_LISTING_SUCCESS",
           listings,
-          maxPrice,
-          minPrice,
-          maxMileage,
-          minMileage,
-          maxYear,
-          minYear,
-          makeList,
-          transmissionList,
-          colorList,
         });
       })
       .catch((err) => {
@@ -107,6 +87,16 @@ export const GetMyListings = () => {
       });
   };
 };
+
+export const AddToCart = (data) => {
+  
+  return (dispatch, getState) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      data,
+    });
+  };
+}
 
 export const GetMyFavorites = () => {
   return (dispatch, getState) => {

@@ -5,7 +5,7 @@ import moment from "moment";
 import Skeleton from "react-loading-skeleton";
 import StarRatingComponent from 'react-star-rating-component';
 
-import { GetHomeListing } from "../../../../Store/action/listingActions";
+import { AddToCart, GetHomeListing } from "../../../../Store/action/listingActions";
 
 import { numberWithCommas, stringToUrl } from "../../../../utils";
 const skeletonNumbers = [1, 2, 3, 4];
@@ -114,7 +114,7 @@ class SellerListingGrid extends Component {
                         <p className="symbol mr-1">
                           AED<span className="price">{numberWithCommas(price)}</span>
                         </p>
-                        <button className="btn cart-btn">
+                        <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
                           <i className="la la-shopping-bag"></i>
                           Add To Cart
                         </button>
@@ -141,6 +141,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProp = (dispatch) => {
   return {
     getHomeListing: () => dispatch(GetHomeListing()),
+    addToCart: (data) => dispatch(AddToCart(data)),
   };
 };
 

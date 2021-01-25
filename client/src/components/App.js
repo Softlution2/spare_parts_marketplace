@@ -92,7 +92,7 @@ class App extends Component {
           <Route path="/seller-details/:id" component={SellerDetails} />
 
           <Route path="/my-profile" component={MyProfile} />
-          <Route path="/my-listing" component={MyListing} />
+          <Route path="/my-listings" component={MyListing} />
           <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-callbacks" component={MyCallbacks} />
           <Route path="/chats" component={Chats} />

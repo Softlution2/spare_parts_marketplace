@@ -27,7 +27,7 @@
     }
   }
   .offcanvas-menu{
-    display: block !important;
+    display: flex !important;
   }
   .category-place-single{
     width: 49%;
@@ -79,7 +79,7 @@
     }
   }
   .offcanvas-menu{
-    display: block !important;
+    display: flex !important;
   }
   .mainmenu__menu{
     .navbar-nav {
@@ -303,6 +303,9 @@
   }
   .offcanvas-menu .offcanvas-menu__user{
     margin-right: 0;
+  }
+  .offcanvas-menu .offcanvas-menu__cart{
+    display: none;
   }
 
   .directory_content_area .search_form .atbd_seach_fields_wrapper .single_search_field,
