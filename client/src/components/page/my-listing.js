@@ -8,7 +8,7 @@ import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
 import { PageBanner } from "../content/element/page-banner";
-import ListingCardGrid from "../content/element/card/card-listing-grid";
+import ListingCardGrid from "../content/element/card/card-listing-grid-my";
 
 import { GetMyListings } from "../../Store/action/listingActions";
 

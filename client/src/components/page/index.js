@@ -116,6 +116,24 @@ class Index extends Component {
           </div>
         </section>
         {/* Newsletter section end */}
+
+        <section className="section-padding mb-5">
+          <div className="container">
+            <h4>Basobaas - Buy, Rent, Sell and Lease Property</h4>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <a href="#demo" className="" data-toggle="collapse">Read More</a>
+              <div id="demo" className="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <a href="#demo" className="" data-toggle="collapse">Read Less</a>
+              </div>
+            </div>
+          </div>
+        </section>
         <Footer />
         
       </Fragment>
