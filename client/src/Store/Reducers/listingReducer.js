@@ -62,11 +62,7 @@ const listingReducer = (state = initState, action) => {
       };
     case "ADD_TO_CART":
       const { itemsInCart } = state;
-      const index = itemsInCart.findIndex(x => x==action.data)
-      if (index === -1)
-        itemsInCart.push(action.data);
-      else 
-        itemsInCart.splice(index, 1);
+      itemsInCart.push(action.data);
       return {
         ...state,
         itemsInCart

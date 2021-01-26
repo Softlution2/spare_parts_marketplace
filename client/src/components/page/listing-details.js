@@ -7,6 +7,7 @@ import moment from "moment";
 import { withTranslation } from "react-i18next";
 import SimpleReactValidator from "simple-react-validator";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
+import Modal from "react-awesome-modal";
 
 import PreHeader from "../layout/pre-header";
 import Header from "../layout/header";
@@ -15,6 +16,7 @@ import Footer from "../layout/footer";
 import { BreadcrumbCategory } from "../content/element/breadcrumb";
 import { ListingFetures } from "../content/element/listing-features";
 import { SellerInfo } from "../content/element/widget";
+import CallbackDetails from "../content/element/modal/callback-details";
 // import VehicleFeatures from "../content/element/vehicle-features";
 // import Gallery from "../content/element/carousel/gallery";
 // import CardListingGrid from "../content/element/card/card-listing-grid-similar";
@@ -32,9 +34,11 @@ class ListingDetails extends Component {
       listing: null,
       listing_user: null,
       seller_listing: 0,
+      modalIsOpen: false,
     };
     this.validator = new SimpleReactValidator();
     this.getListing = this.getListing.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   getListingSKU() {
@@ -72,9 +76,17 @@ class ListingDetails extends Component {
         console.log(err);
       });
   }
+  
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
 
   render() {
-    const { listing, listing_user, seller_listing } = this.state;
+    const { modalIsOpen, listing, listing_user, seller_listing } = this.state;
     const { isLoading } = this.props.list;
     const { t } = this.props;
     return (
@@ -186,6 +198,7 @@ class ListingDetails extends Component {
                               : false
                           }
                           style={{ borderColor: "#7a82a6", color: "#7a82a6" }}
+                          onClick={this.openModal}
                         >
                           Request Seller to Call Back
                         </button>
@@ -265,6 +278,9 @@ class ListingDetails extends Component {
               </div>
             )}
           </section>
+          <Modal visible={modalIsOpen} width="600" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+            <CallbackDetails />
+          </Modal>
           <Footer />
         </LoadingOverlay>
       </Fragment>

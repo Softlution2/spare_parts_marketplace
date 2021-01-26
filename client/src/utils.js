@@ -1,6 +1,3 @@
-import jwt_decode from "jwt-decode";
-import { countryCodes } from "./constants";
-
 export const numberWithCommas = (x) => {
   if (x)
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -14,20 +11,15 @@ export const stringToUrl = (str) => {
     return null;
 };
 
-export const getDomain = () => {
-  const url = window.location.href;
-  const arr = url.split("/");
-  const domain = arr[0] + "//" + arr[2];
-  return domain;
-}
 
-export const checkAuthenticated = token => {
-  if (!token) return;
-  const date = new Date().getTime() / 1000;
-  const data = jwt_decode(token);
-  return date < data.exp;
+export const getCartLength = (items, value) => {
+  let count = 0;
+  for(let i = 0; i < items.length; ++i){
+    if(items[i] == value)
+      count++;
+  }
+  return count;
 }
-
 
 export const getTimeSince = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000);

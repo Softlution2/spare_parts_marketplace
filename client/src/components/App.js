@@ -37,6 +37,7 @@ import SellerDetails from "./page/seller-details";
 import BecomeBuyer from "./page/become-buyer";
 import BecomeSeller from "./page/become-seller";
 import SearchVin from "./page/search-vin";
+import Checkout from "./page/checkout";
 
 import "../i18n";
 
@@ -90,6 +91,8 @@ class App extends Component {
           <Route path="/news" component={News} />
           <Route path="/news-details:id" component={NewsDetails} />
           <Route path="/seller-details/:id" component={SellerDetails} />
+
+          <Route path="/checkout" component={Checkout} />
 
           <Route path="/my-profile" component={MyProfile} />
           <Route path="/my-listings" component={MyListing} />

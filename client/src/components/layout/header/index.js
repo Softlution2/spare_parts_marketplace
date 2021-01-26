@@ -140,9 +140,13 @@ class Header extends Component {
                               <i className="la la-user"></i>
                             )}
                           </a>
-                          <a href="#!" className="offcanvas-menu__cart">
-                              <img src="/assets/img/cart-icon.svg"  alt="Cart"/> {this.props.list.itemsInCart.length}
-                          </a>
+                          {
+                            this.props.list.itemsInCart && this.props.list.itemsInCart.length > 0 && (
+                              <NavLink to="/checkout" className="offcanvas-menu__cart">
+                                <img src="/assets/img/cart-icon.svg"  alt="Cart"/> {this.props.list.itemsInCart.length}
+                              </NavLink>
+                            )
+                          }
                           <div className="offcanvas-menu__contents">
                             <a href=" " className="offcanvas-menu__close">
                               <i className="la la-times-circle"></i>
