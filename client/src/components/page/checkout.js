@@ -81,7 +81,7 @@ class Checkout extends Component {
                                   </td>
                                   <td>
                                     <h4>{listing.partName}</h4>
-                                    <div dangerouslySetInnerHTML={{ __html: listing.description }} />
+                                    <p className="text-muted">{listing.partSKU}</p>
                                   </td>
                                   <td>{getCartLength(this.props.list.itemsInCart, listing._id)}</td>
                                   <td>{"AED" + listing.price}</td>

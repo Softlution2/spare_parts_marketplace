@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import moment from 'moment';
 import StarRatingComponent from 'react-star-rating-component';
 
-import { AddToCart, SetFavouriteListing } from "../../../../Store/action/listingActions";
+import { AddToCart, SetVisibility } from "../../../../Store/action/listingActions";
 import { numberWithCommas, stringToUrl } from "../../../../utils";
 
 class CardListingGrid extends Component {
@@ -23,6 +23,7 @@ class CardListingGrid extends Component {
             price,
             _id,
             date,
+            hide
           } = value;
           const title = `${partName}`;
           const badge = moment.duration(moment().diff(moment(date))).asHours() <= 48 ? "new listing" : "";
@@ -80,12 +81,12 @@ class CardListingGrid extends Component {
                         AED<span className="price">{numberWithCommas(price)}</span>
                       </p>
                       <p className="d-flex align-items-center">
-                        <button className="btn cart-btn mr-2">
+                        <NavLink className="btn cart-btn mr-2" to={`/edit-parts/${_id}`}>
                           <i className="la la-pencil"></i>
                           Edit
-                        </button>
-                        <button className="btn cart-btn">
-                          Hide
+                        </NavLink>
+                        <button className="btn cart-btn" onClick={(e) => this.props.setVisibility(_id, hide && hide === true ? true : false)}>
+                          {hide && hide === true ? "Unhide" : "Hide"}
                         </button>
                       </p>
                     </div>
@@ -109,7 +110,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProp = (dispatch) => {
   return {
-    setFavouriteListing: (e, id) => dispatch(SetFavouriteListing(e, id)),
+    setVisibility: (id, visibility) => dispatch(SetVisibility(id, visibility)),
     addToCart: (data) => dispatch(AddToCart(data)),
   };
 };

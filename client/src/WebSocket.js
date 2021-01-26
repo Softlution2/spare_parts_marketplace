@@ -39,7 +39,7 @@ export default ({ children }) => {
       //   transports: ["websocket"],
       // });
       
-      socket = io(`http://13.55.69.149?userId=${user._id}`, {
+      socket = io(`http://sparepartsmarketplace.com?userId=${user._id}`, {
         transports: ["websocket"],
       });
 

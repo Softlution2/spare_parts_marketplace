@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import axios from "axios";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 const SkeletonComponent = () => {
   const rows = [];
@@ -78,15 +79,19 @@ class Sellers extends Component {
                     <div className="col-md-12" key={index}>
                       <div className="atbd_auhor_profile_area">
                         <div className="atbd_author_avatar">
-                          <img
-                            src={
-                              seller.avatar || "/assets/img/author-profile.jpg"
-                            }
-                            alt="AuthorImage"
-                            width={120}
-                          />
+                          <NavLink to={`/seller-details/${seller._id}`}>
+                            <img
+                              src={
+                                seller.avatar || "/assets/img/author-profile.jpg"
+                              }
+                              alt="AuthorImage"
+                              width={120}
+                            />
+                          </NavLink>
                           <div className="atbd_auth_nd">
-                            <h2>{seller.details.company_name}</h2>
+                            <NavLink to={`/seller-details/${seller._id}`}>
+                              <h2>{seller.details.company_name}</h2>
+                            </NavLink>
                             <p>
                               Registered in {moment(seller.date).format("MMMM YYYY")}
                             </p>

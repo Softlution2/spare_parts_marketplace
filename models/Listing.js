@@ -12,6 +12,10 @@ const ListingSchema = new Schema({
     ref: "users",
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
   category: {
     type: String,
     required: true,
@@ -81,6 +85,10 @@ const ListingSchema = new Schema({
   },
   countryOrigin: {
     type: String
+  },
+  hide: {
+    type: Boolean,
+    default: false,
   },
   date: {
     type: Date,

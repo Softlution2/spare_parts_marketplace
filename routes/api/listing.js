@@ -162,6 +162,66 @@ router.post("/new", async (req, res) => {
   });
 });
 
+
+router.post("/update", async (req, res) => {
+  let pic = null;
+  let obj = null;
+  const form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    obj = fields;
+  });
+
+  form.on("fileBegin", function (name, file) {
+    // console.log(name, file);
+    let currentTime = new Date().getTime();
+    file.path =
+      __dirname +
+      "/../../uploads/" +
+      currentTime +
+      "." +
+      file.name.split(".")[1];
+    pic = currentTime + "." + file.name.split(".")[1];
+  });
+
+  form.on("file", function (name, file) {});
+
+  form.on("end", async function () {
+    if (pic) {
+
+      const file = fs.readFileSync("uploads/" + pic);
+      const rawBytes = await crypto.pseudoRandomBytes(16);
+      const fileName = rawBytes.toString("hex") + Date.now() + path.extname(pic);
+      const params = {
+        Bucket: "spare-parts-marketplace",
+        Key: fileName,
+        Body: file,
+      };
+      let data = null;
+      try {
+        data = await s3.upload(params).promise();
+      } catch (err) {
+        console.log(err);
+        return res.status(400).json({ message: "Something went wrong!" });
+      }
+      fs.unlinkSync("uploads/" + pic);
+      pic = data.Location;
+    }
+    else pic = obj.pic;
+    Listing.findOneAndUpdate({_id: obj.list_id}, {
+      $set: {
+        ...obj,
+        pic,
+        makes: JSON.parse(obj.makes),
+        models: JSON.parse(obj.models),
+      }
+    }, function (err, doc) {
+      if (err) return res.status(400).json({message: "Something went wrong!"});
+      return res.json({message: "Success"});
+    })
+  });
+});
+
+
 router.get("/get-home", (req, res) => {
   Listing.find({})
     .populate("user")
@@ -264,6 +324,17 @@ router.get("/get", async (req, res) => {
   }
 });
 
+router.get("/get-by-id", (req, res) => {
+  Listing.findOne({_id: req.query.id}, async function (err, doc) {
+    if (err) return res.status(400).json({message: "Something went wrong!"});
+    const makeList = await CarMake.find();
+    const makeObj = await CarMake.find({_id: {$in: doc.makes}});
+    const makeIds = makeObj.map(m => m.id_car_make);
+    const modelList = await CarModel.find({id_car_make: {$in: makeIds}});
+    return res.json({...doc._doc, makeList, modelList});
+  })
+});
+
 router.get("/get-count-by-category", (req, res) => {
   const aggregatorOpts = [
     {
@@ -316,6 +387,13 @@ router.post("/cart-listings", (req, res) => {
     }
     return res.json(docs);
   })
-})
+});
+
+router.get("/set-visibility", (req, res) => {
+  Listing.updateOne({_id: req.query.id}, {$set: {hide: req.query.visibility}}, (err, doc) => {
+    if (err) return res.status(400).json({message: "Something went wrong!"});
+    return res.json({message: "Success"});
+  })
+});
 
 module.exports = router;

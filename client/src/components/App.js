@@ -24,6 +24,7 @@ import VerifyEmail from "./page/register/verify-email";
 import VerifyPhone from "./page/register/verify-phone";
 import PasswordForm from "./page/register/password-form";
 import AddParts from "./page/add-parts";
+import EditParts from "./page/edit-parts";
 import HowItWorks from "./page/how-it-works";
 import AboutUs from "./page/about-us";
 import ContactUs from "./page/contact-us";
@@ -79,6 +80,7 @@ class App extends Component {
           <Route path="/register/password" component={PasswordForm} />
 
           <PrivateRoute path="/sell-your-parts" component={AddParts} />
+          <Route path="/edit-parts/:id" component={EditParts} />
           <Route path="/all-listings" component={AllListing} />
           <Route path="/spare-parts/:category" component={AllListing} />
           <Route path="/car-parts/:make" component={AllListing} />

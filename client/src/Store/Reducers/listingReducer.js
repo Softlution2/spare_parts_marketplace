@@ -67,6 +67,15 @@ const listingReducer = (state = initState, action) => {
         ...state,
         itemsInCart
       }
+    case "SET_VISIBILITY_SUCCESS":
+      const { listing_id, visibility } = action;
+      const { listing } = state;
+      const index = listing.findIndex(x => x._id === listing_id);
+      listing[index]["hide"] = visibility;
+      return {
+        ...state,
+        listing
+      };
 
     case "GET_MY_FAVORITES_SUCCESS":
       return {
@@ -98,27 +107,27 @@ const listingReducer = (state = initState, action) => {
         listing: [],
         isLoading: false,
       };
-    case "SET_FAVOURITE_LISTING_SUCCESS":
-      const data = action.data;
-      const {similarListing, listing, favoriteListing} = state;
-      let foundIndex = listing.findIndex((v) => v._id === data._id);
-      if (foundIndex !== -1) {
-        listing[foundIndex].favourite_users = data.favourite_users;
-      }
-      foundIndex = favoriteListing.findIndex((v) => v._id === data._id);
-      if (foundIndex !== -1) {
-        favoriteListing[foundIndex].favourite_users = data.favourite_users;
-      }
-      foundIndex = similarListing.findIndex((v) => v._id === data._id);
-      if (foundIndex !== -1) {
-        similarListing[foundIndex].favourite_users = data.favourite_users;
-      }
-      return {
-        ...state,
-        listing: listing,
-        favoriteListing: favoriteListing,
-        similarListing: similarListing
-      };
+    // case "SET_FAVOURITE_LISTING_SUCCESS":
+    //   const data = action.data;
+    //   const {similarListing, listing, favoriteListing} = state;
+    //   let foundIndex = listing.findIndex((v) => v._id === data._id);
+    //   if (foundIndex !== -1) {
+    //     listing[foundIndex].favourite_users = data.favourite_users;
+    //   }
+    //   foundIndex = favoriteListing.findIndex((v) => v._id === data._id);
+    //   if (foundIndex !== -1) {
+    //     favoriteListing[foundIndex].favourite_users = data.favourite_users;
+    //   }
+    //   foundIndex = similarListing.findIndex((v) => v._id === data._id);
+    //   if (foundIndex !== -1) {
+    //     similarListing[foundIndex].favourite_users = data.favourite_users;
+    //   }
+    //   return {
+    //     ...state,
+    //     listing: listing,
+    //     favoriteListing: favoriteListing,
+    //     similarListing: similarListing
+    //   };
     case "SET_SIMILAR_LISTING":
       return {
         ...state,

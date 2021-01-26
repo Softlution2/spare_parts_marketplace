@@ -98,6 +98,26 @@ export const AddToCart = (data) => {
   };
 }
 
+export const SetVisibility = (id, visibility) => {
+  return (dispatch, getState) => {
+    axios
+      .get(`/api/listing/set-visibility?id=${id}&visibility=${!visibility}`)
+      .then((res) => {
+        dispatch({
+          type: "SET_VISIBILITY_SUCCESS",
+          listing_id: id,
+          visibility: !visibility
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: "SET_VISIBILITY_FAILED",
+        });
+      });
+  };
+}
+
 export const GetMyFavorites = () => {
   return (dispatch, getState) => {
     dispatch({
