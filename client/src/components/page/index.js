@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { withTranslation } from 'react-i18next'
+import { withTranslation } from "react-i18next";
 
 import { SectionTitle } from "../content/element/section-title";
 import Header from "../layout/header";
@@ -16,7 +16,18 @@ import Newsletter from "../content/element/newsletter";
 import Footer from "../layout/footer";
 
 class Index extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      seoTextExpand: false,
+    };
+    this.toggleSeoText = this.toggleSeoText.bind(this);
+  }
+  componentDidMount() {}
+  toggleSeoText(e) {
+    e.preventDefault();
+    const { seoTextExpand } = this.state;
+    this.setState({ seoTextExpand: !seoTextExpand });
   }
   render() {
     const { t } = this.props;
@@ -81,20 +92,20 @@ class Index extends Component {
         <section className="browse-category-wrapper section-padding">
           <div className="container">
             <SectionTitle
-              title={t("home_browse_by_category_title")} 
-              content={t("home_browse_by_category_content")} 
+              title={t("home_browse_by_category_title")}
+              content={t("home_browse_by_category_content")}
             />
             <BrowseByCategory />
           </div>
         </section>
         {/* Browse By Type section end */}
-        
+
         {/* Browse By Make section start */}
         <section className="browse-category-wrapper section-padding">
           <div className="container">
             <SectionTitle
-              title={t("home_browse_by_make_title")} 
-              content={t("home_browse_by_make_content")} 
+              title={t("home_browse_by_make_title")}
+              content={t("home_browse_by_make_content")}
             />
             <div className="row">
               <BrowseByMake />
@@ -119,23 +130,76 @@ class Index extends Component {
 
         <section className="section-padding mb-5">
           <div className="container">
-            <h4>Basobaas - Buy, Rent, Sell and Lease Property</h4>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              <a href="#demo" className="" data-toggle="collapse">Read More</a>
-              <div id="demo" className="collapse">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                <a href="#demo" className="" data-toggle="collapse">Read Less</a>
-              </div>
+            <h1 className="mb-4">Basobaas - Buy, Rent, Sell and Lease Property</h1>
+            <div
+              className={`home-seo-text ${
+                this.state.seoTextExpand ? "expanded" : ""
+              }`}
+            >
+              <a
+                href="#"
+                className="read-more-less"
+                onClick={this.toggleSeoText}
+              >
+                {this.state.seoTextExpand ? "Read Less" : "Read More"}
+              </a>
+              <h4>Autodistribution, votre spécialiste de la pièce auto</h4>
+              <p>
+                Depuis sa création, Autodistribution s’est imposé comme le
+                leader de la vente de pièces auto. Avec plus de 5500
+                collaborateurs en France, Autodistribution met au service de ses
+                clients son expérience et son savoir-faire de la pièce
+                multimarque automobile. Vous êtes un particulier ou un
+                professionnel à la recherche d’une pièce automobile ? Grâce à
+                notre site internet et fort de notre catalogue de plus de 300
+                000 pièces auto, vous avez la possibilité de commander une pièce
+                auto en ligne et de venir la récupérer immédiatement dans l’un
+                de nos 350 points de vente.
+              </p>
+              <h4>Votre 1er magasin de pièce auto en ligne</h4>
+              <p>
+                Avec plus de 350 points de vente partout en France et un site
+                internet dédié, vous pouvez commander n’importe quelle pièce
+                automobile 24h/24 et 7j/7 et venir la récupérer immédiatement
+                dans l’un de nos points de vente. Sélectionnez le magasin le
+                plus proche de chez vous et découvrez si la pièce auto que vous
+                recherchez est disponible. N’attendez plus pour acheter des
+                pièces auto en ligne sur autodistribution.fr
+              </p>
+              <h4>Votre 1er magasin de pièce auto en ligne</h4>
+              <p>
+                Avec plus de 350 points de vente partout en France et un site
+                internet dédié, vous pouvez commander n’importe quelle pièce
+                automobile 24h/24 et 7j/7 et venir la récupérer immédiatement
+                dans l’un de nos points de vente. Sélectionnez le magasin le
+                plus proche de chez vous et découvrez si la pièce auto que vous
+                recherchez est disponible. N’attendez plus pour acheter des
+                pièces auto en ligne sur autodistribution.fr
+              </p>
+              <h4>Votre 1er magasin de pièce auto en ligne</h4>
+              <p>
+                Avec plus de 350 points de vente partout en France et un site
+                internet dédié, vous pouvez commander n’importe quelle pièce
+                automobile 24h/24 et 7j/7 et venir la récupérer immédiatement
+                dans l’un de nos points de vente. Sélectionnez le magasin le
+                plus proche de chez vous et découvrez si la pièce auto que vous
+                recherchez est disponible. N’attendez plus pour acheter des
+                pièces auto en ligne sur autodistribution.fr
+              </p>
+              <h4>Votre 1er magasin de pièce auto en ligne</h4>
+              <p>
+                Avec plus de 350 points de vente partout en France et un site
+                internet dédié, vous pouvez commander n’importe quelle pièce
+                automobile 24h/24 et 7j/7 et venir la récupérer immédiatement
+                dans l’un de nos points de vente. Sélectionnez le magasin le
+                plus proche de chez vous et découvrez si la pièce auto que vous
+                recherchez est disponible. N’attendez plus pour acheter des
+                pièces auto en ligne sur autodistribution.fr
+              </p>
             </div>
           </div>
         </section>
         <Footer />
-        
       </Fragment>
     );
   }
@@ -148,8 +212,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProp = (dispatch) => {
-  return {
-  };
+  return {};
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProp), withTranslation())(Index);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProp),
+  withTranslation()
+)(Index);

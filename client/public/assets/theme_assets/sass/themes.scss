@@ -779,3 +779,34 @@
   background: $success;
   padding: .6rem .7rem;
 }
+
+.home-seo-text {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: height 0.15s ease-out;
+  &.expanded {
+    height: auto;
+    padding-bottom: 40px;
+    &:after {
+      display: none;
+    }
+  }
+  .read-more-less {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    z-index: 3;
+    margin-top: 30px;
+  }
+  &:after {
+    content: "";
+    background-image: linear-gradient(to bottom,rgba(255,255,255,.001) 0,#ffffff 75%,#ffffff 100%);
+    position: absolute;
+    bottom: 0;
+    height: 200px;
+    width: 100%;
+    left: 0;
+  }
+}

@@ -580,7 +580,7 @@ class EditParts extends Component {
                       onClick={this.handleSubmit}
                     >
                       {this.state.submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
-                      Add your listing
+                      Update your listing
                     </button>
                   </div>
                 </form>

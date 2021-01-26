@@ -8,7 +8,7 @@ const initState = {
   modelList: [],
   brandList: [],
   isLoading: false,
-  itemsInCart: [],
+  itemsInCart: JSON.parse(localStorage.getItem("itemsInCart")) || [],
   searchQuery: {
     string: "",
     priceRange: null,
@@ -63,6 +63,7 @@ const listingReducer = (state = initState, action) => {
     case "ADD_TO_CART":
       const { itemsInCart } = state;
       itemsInCart.push(action.data);
+      localStorage.setItem("itemsInCart", JSON.stringify(itemsInCart));
       return {
         ...state,
         itemsInCart
