@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { NavLink } from "react-router-dom";
-const noAction = (e) => e.preventDefault();
 export class PageBanner extends Component {
   render() {
     return (

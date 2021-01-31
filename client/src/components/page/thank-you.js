@@ -25,7 +25,7 @@ class Thankyou extends Component {
 
             </div>
             <div className="col-lg-8">
-              <img src="/assets/img/thankyou.jpg" width="100%" />
+              <img src="/assets/img/thankyou.jpg" width="100%" alt="thankyou" />
               <div className="thankyou-text text-center mt-5">
                 <h2>YOUR CAR IS NOW LISTED ON MYCAR.AFRICA.</h2>
                 <p>Share your listing with your friends on social medias to sell it faster!</p>

@@ -28,7 +28,6 @@ class BrowseByCategory extends Component {
   }
   render() {
     const { countsPerCategory, isLoading } = this.state;
-    const { t } = this.props;
     return (
       <Fragment>
         <div className="category-list">

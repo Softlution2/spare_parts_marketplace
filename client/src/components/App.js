@@ -64,9 +64,6 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => {
 }
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>

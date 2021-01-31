@@ -17,7 +17,7 @@ class Footer extends Component {
               <div className="row">
                 <div className="col-lg-3 col-sm-6">
                   <div className="widget widget_pages">
-                    <h2 className="widget-title"> Spare Parts Marketplace</h2>
+                    <h2 className="widget-title"> BuyParts24</h2>
                     <ul className="list-unstyled">
                       <li className="page-item">
                         <NavLink to="/about-us">{t("footer_menu_about_us")}</NavLink>
@@ -48,7 +48,7 @@ class Footer extends Component {
                       <li>
                         <a href="mailto:support@mycar.africa">
                           <span>
-                            <img src="/assets/img/footer_social_icons/whatsapp.png" width="30" />
+                            <img src="/assets/img/footer_social_icons/whatsapp.png" width="30" alt="whatsapp" />
                           </span>
                           Whatsapp
                         </a>
@@ -56,7 +56,7 @@ class Footer extends Component {
                       <li>
                         <NavLink onClick={noAction} to="/twitter">
                           <span>
-                            <img src="/assets/img/footer_social_icons/facebook.png" width="30" />
+                            <img src="/assets/img/footer_social_icons/facebook.png" width="30" alt="facebook" />
                           </span>
                           Facebook
                         </NavLink>
@@ -64,7 +64,7 @@ class Footer extends Component {
                       <li>
                         <NavLink onClick={noAction} to="/facebook">
                           <span>
-                            <img src="/assets/img/footer_social_icons/instagram.png" width="30" />
+                            <img src="/assets/img/footer_social_icons/instagram.png" width="30" alt="instagram" />
                           </span>
                           Instagram
                         </NavLink>
@@ -72,7 +72,7 @@ class Footer extends Component {
                       <li>
                         <NavLink onClick={noAction} to="/instagram">
                           <span>
-                            <img src="/assets/img/footer_social_icons/twitter.png" width="30" />
+                            <img src="/assets/img/footer_social_icons/twitter.png" width="30" alt="twitter" />
                           </span>
                           Twitter
                         </NavLink>
@@ -80,7 +80,7 @@ class Footer extends Component {
                       <li>
                         <NavLink onClick={noAction} to="/gplus">
                           <span>
-                            <img src="/assets/img/footer_social_icons/telegram.png" width="30" />
+                            <img src="/assets/img/footer_social_icons/telegram.png" width="30" alt="telegram" />
                           </span>
                           Telegram
                         </NavLink>
@@ -88,7 +88,7 @@ class Footer extends Component {
                       <li>
                         <NavLink onClick={noAction} to="/gplus">
                           <span>
-                            <img src="/assets/img/footer_social_icons/wechat.png" width="30" />
+                            <img src="/assets/img/footer_social_icons/wechat.png" width="30" alt="wechat" />
                           </span>
                           Wechat
                         </NavLink>
@@ -123,7 +123,7 @@ class Footer extends Component {
                 
                 <div className="col-lg-3 col-sm-6">
                   <div className="widget widget_text">
-                    <h2 className="widget-title">Spare Parts Marketplace</h2>
+                    <h2 className="widget-title">BuyParts24</h2>
                     <div className="textwidget">
                       <p>
                         {t("footer_description")}
@@ -150,7 +150,7 @@ class Footer extends Component {
                       />
                     </NavLink>
                     <p className="m-0 copy-text">
-                    © 2021 Spare Parts Marketplace. All rights reserved.
+                    © 2021 BuyParts24. All rights reserved.
                     </p>
                   </div>
                 </div>

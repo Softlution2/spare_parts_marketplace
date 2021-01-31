@@ -2,7 +2,6 @@ import React, { Fragment, Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { NavLink } from 'react-router-dom'
 import axios from "axios";
 import Header from "../../layout/header";
 import PreHeader from "../../layout/pre-header";
@@ -107,7 +106,6 @@ class RegisterSeller extends Component {
 
 
   render() {
-    const { t } = this.props;
     return (
       <Fragment>
         <PreHeader />
@@ -264,7 +262,7 @@ class RegisterSeller extends Component {
                           className="btn btn-primary btn-lg listing_submit_btn"
                           onClick={this.handleSubmit}
                         >
-                          {this.state.  submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
+                          {this.state.submitLoading && <i className="las la-spinner la-spin mr-2"></i>}
                           Submit
                         </button>
                       </div>

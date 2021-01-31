@@ -80,7 +80,7 @@ class AllListing extends Component {
           <Header class="menu--light" />
           <section className="intro-wrapper bgimage overlay overlay--dark">
             <div className="bg_image_holder">
-              <img src="/assets/img/intro.jpg" alt="" />
+              <img src="/assets/img/intro.jpg" alt="banner" />
             </div>
             <AdvSearch
               make={

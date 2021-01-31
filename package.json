@@ -1,7 +1,7 @@
 {
   "name": "spare_parts_marketplace",
   "version": "1.0.0",
-  "description": "Spare Parts Marketplace",
+  "description": "BuyParts24",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",

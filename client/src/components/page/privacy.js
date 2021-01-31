@@ -1,11 +1,9 @@
 import React, { Fragment, Component } from "react";
-import { NavLink } from "react-router-dom";
 
 import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
 import { PageBanner } from "../content/element/page-banner";
-import { SectionTitle } from "../content/element/section-title";
 
 class Privacy extends Component {
   constructor(props) {

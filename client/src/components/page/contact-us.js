@@ -27,7 +27,7 @@ class ContactUs extends Component {
                   <div className="card-body">
                     <i className="la la-map-marker"></i>
                     <h3 className="mb-4">Visit US</h3>
-                    <p>Spare Parts Marketplace</p>
+                    <p>BuyParts24</p>
                     <p>Dubai</p>
                     <p>United Arab Emirates</p>
                   </div>

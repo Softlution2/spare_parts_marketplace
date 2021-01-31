@@ -3,7 +3,6 @@ import { PageBanner } from "../content/element/page-banner";
 import PreHeader from "../layout/pre-header";
 import Header from '../layout/header';
 import Footer from '../layout/footer';
-import { BreadcrumbWraper } from '../content/element/breadcrumb';
 import {connect} from 'react-redux';
 import NewsGrid4 from '../content/element/card/news-blog-grid4';
 

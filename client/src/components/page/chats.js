@@ -79,7 +79,7 @@ class Chats extends Component {
       noAction(e);
     let { rooms } = this.props.chat;
     const foundIndex = rooms.findIndex(
-      (x) => x.roomId == roomId
+      (x) => x.roomId === roomId
     );
     rooms[foundIndex].unreadMsgCnt = 0;
 
@@ -128,7 +128,7 @@ class Chats extends Component {
 
     let { rooms } = this.props.chat;
     const foundIndex = rooms.findIndex(
-      (x) => x.roomId == activeRoom.roomId
+      (x) => x.roomId === activeRoom.roomId
     );
     rooms[foundIndex].lastMsg = message;
 

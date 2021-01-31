@@ -66,14 +66,14 @@ const ChatReducer = (state = initState, action) => {
     case "REMOVE_TYPING_USER":
       const rInfo = action.data;
       newTypingUsers = state.typingUsers;
-      newTypingUsers.filter(function (e) { return e.sender !== rInfo.sender, e.roomId !== rInfo.roomId });
+      newTypingUsers.filter(function (e) { return e.sender !== rInfo.sender && e.roomId !== rInfo.roomId });
       return {
         ...state,
         typingUsers: newTypingUsers
       };
     case "SET_ACTIVE_ROOM":
       const foundIndex = state.rooms.findIndex(
-        (x) => x.roomId == action.roomId
+        (x) => x.roomId === action.roomId
       );
       return {
         ...state,

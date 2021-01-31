@@ -69,7 +69,6 @@ class ListingCardGrid extends Component {
             transmission,
             _id,
             reference_code,
-            user_id,
             favourite_users,
             date,
           } = value;

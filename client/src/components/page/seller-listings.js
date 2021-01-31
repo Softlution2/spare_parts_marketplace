@@ -46,7 +46,7 @@ class SellerListings extends Component {
 
           <section className="page-banner bgimage overlay overlay--dark">
             <div className="bg_image_holder">
-              <img src={`${this.props.banner ? this.props.banner : "/assets/img/intro.jpg" }`} alt="" />
+              <img src={`${this.props.banner ? this.props.banner : "/assets/img/intro.jpg" }`} alt="banner" />
             </div>
             <div className="banner-wrapper content_above">
               <div className="container">
@@ -56,7 +56,7 @@ class SellerListings extends Component {
                     <div className="col-lg-8 col-md-7 text-white">
                       <ul className="list-unstyled listing-info--meta">
                         <li>{/**/}
-                          <img src={seller.avatar} width="100" height="100" className="rounded-circle" />
+                          <img src={seller.avatar} width="100" height="100" className="rounded-circle" alt="seller" />
                         </li>
                       </ul>
                       <h1 className="text-white">{seller.name}</h1>

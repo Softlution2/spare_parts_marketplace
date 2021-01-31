@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import { Category } from "./widget";
 const noAction = (e) => e.preventDefault();
 export class BreadcrumbWraper extends Component {
   render() {
@@ -191,7 +190,7 @@ export class BreadcrumbAbout extends Component {
                 </a>
               </div>
               <div className="col-lg-6 offset-lg-1 col-md-6 offset-md-0 col-sm-8 offset-sm-2">
-                <img src="/assets/img/about-illustration.png" alt="" />
+                <img src="/assets/img/about-illustration.png" alt="about" />
               </div>
             </div>
           </div>
@@ -232,7 +231,7 @@ export class BreadcrumbCategory extends Component {
                   <p className="text-white mb-0">
                     <span className="mr-2">NEED HELP? ASK OUR SUPPORT</span>
                     <a href="#!">
-                      <img src="/assets/img/support-icon.svg" height={20}></img>
+                      <img src="/assets/img/support-icon.svg" height={20} alt="support"></img>
                     </a>
                   </p>
                 </div>

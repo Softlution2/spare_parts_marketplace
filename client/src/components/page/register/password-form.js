@@ -2,7 +2,6 @@ import React, { Fragment, Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import axios from "axios";
 import SimpleReactValidator from "simple-react-validator";
 
 import Header from "../../layout/header";

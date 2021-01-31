@@ -44,11 +44,6 @@ const ListingSkeleton = () => {
 };
 
 class SellerListingGrid extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-  }
   render() {
     const { isLoading, listings } = this.props;
     return (
@@ -72,7 +67,7 @@ class SellerListingGrid extends Component {
                     <figure className="atbd_listing_thumbnail_area">
                       <div className="atbd_listing_image">
                         <NavLink to={`/spare-part-details/${link}`}>
-                          <img src={`${pic}`} alt="Listing Image" />
+                          <img src={`${pic}`} alt="Listing" />
                         </NavLink>
                       </div>
                       <div className="atbd_thumbnail_overlay_content">

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { LogInAc } from "../../../../Store/action/loginActions";
@@ -8,8 +7,6 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import { withTranslation } from 'react-i18next';
 import axios from "axios";
-import { CrossStorageClient } from "cross-storage";
-import { getDomain } from "../../../../utils";
 
 const noAction = (e) => e.preventDefault();
 class Login extends Component {

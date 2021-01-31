@@ -471,6 +471,7 @@ class Listing extends Component {
                             src="/assets/img/no_results.jpg"
                             width="60%"
                             className="mt-4"
+                            alt="empty"
                           ></img>
                         </div>
                       )}

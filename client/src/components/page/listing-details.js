@@ -3,7 +3,6 @@ import { compose } from "redux";
 import axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
 import { connect } from "react-redux";
-import moment from "moment";
 import { withTranslation } from "react-i18next";
 import SimpleReactValidator from "simple-react-validator";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
@@ -12,20 +11,12 @@ import Modal from "react-awesome-modal";
 import PreHeader from "../layout/pre-header";
 import Header from "../layout/header";
 import Footer from "../layout/footer";
-// import { PageBanner } from "../content/element/page-banner";
 import { BreadcrumbCategory } from "../content/element/breadcrumb";
 import { ListingFetures } from "../content/element/listing-features";
 import { SellerInfo } from "../content/element/widget";
 import CallbackDetails from "../content/element/modal/callback-details";
-// import VehicleFeatures from "../content/element/vehicle-features";
-// import Gallery from "../content/element/carousel/gallery";
-// import CardListingGrid from "../content/element/card/card-listing-grid-similar";
-// import { SellerDescription } from "../content/element/seller-description";
-// import CallbackDetails from "../content/element/modal/callback-details";
 
 import { SetLoading } from "../../Store/action/listingActions";
-import { SetActiveRoom, Initialize } from "../../Store/action/chatActions";
-import { getTimeSince } from "../../utils";
 
 class ListingDetails extends Component {
   constructor(props) {
@@ -88,7 +79,6 @@ class ListingDetails extends Component {
   render() {
     const { modalIsOpen, listing, listing_user, seller_listing } = this.state;
     const { isLoading } = this.props.list;
-    const { t } = this.props;
     return (
       <Fragment>
         <LoadingOverlay active={isLoading} spinner text="Loading listing...">
@@ -117,7 +107,7 @@ class ListingDetails extends Component {
                           <img
                             src={listing.pic}
                             width="100%"
-                            alt="Listing Image"
+                            alt="Listing"
                           />
                         </div>
                       </div>
@@ -209,6 +199,7 @@ class ListingDetails extends Component {
                       <div className="d-flex align-items-center justify-content-center">
                         <a
                           target="_blank"
+                          rel="noopener noreferrer"
                           href={`https://www.facebook/com/sharer/sharer.php?u=${window.location.href}`}
                           className="mr-2"
                         >
@@ -218,14 +209,14 @@ class ListingDetails extends Component {
                             alt="facebook"
                           ></img>
                         </a>
-                        <a target="_blank" href={``} className="mr-2">
+                        <a target="_blank" rel="noopener noreferrer" href={`#!`} className="mr-2">
                           <img
                             width="40"
                             src="/assets/img/social-logos/linkedin.png"
                             alt="linkedin"
                           ></img>
                         </a>
-                        <a target="_blank" href={``} className="mr-2">
+                        <a target="_blank" rel="noopener noreferrer" href={`#!`} className="mr-2">
                           <img
                             width="40"
                             src="/assets/img/social-logos/messenger.png"
@@ -243,7 +234,7 @@ class ListingDetails extends Component {
                             alt="phone"
                           ></img>
                         </a>
-                        <a target="_blank" href={``} className="mr-2">
+                        <a target="_blank" rel="noopener noreferrer" href={`#!`} className="mr-2">
                           <img
                             width="40"
                             src="/assets/img/social-logos/telegram.png"

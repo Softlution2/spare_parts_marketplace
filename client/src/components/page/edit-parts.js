@@ -203,7 +203,6 @@ class EditParts extends Component {
   }
 
   render() {
-    const { t } = this.props;
     return (
       <Fragment>
         <PreHeader />
@@ -224,7 +223,7 @@ class EditParts extends Component {
                   <div className="form-group text-center">
                       {
                         this.state.pic && (
-                          <img src={typeof this.state.pic === "string" ? this.state.pic : this.state.pic.preview} onClick={this.openFileDlg}  width="300" />
+                          <img src={typeof this.state.pic === "string" ? this.state.pic : this.state.pic.preview} onClick={this.openFileDlg}  width="300" alt="pic" />
                         )
                       }
                       <div className="custom-file-upload">

@@ -2,14 +2,11 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { CrossStorageClient } from "cross-storage";
 import { withTranslation } from "react-i18next";
-import equal from "fast-deep-equal";
 import NavItem from "../navbar/navItem";
 
 import { LogOut } from "../../../Store/action/logoutAction";
 import { LogInAc } from "../../../Store/action/loginActions";
-import { getDomain } from "../../../utils";
 
 class Header extends Component {
   constructor(props) {

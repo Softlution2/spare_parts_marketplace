@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 class Newsletter extends Component {
 
   render() {
-    const { t } = this.props;
     return (
       <Fragment>
         <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">

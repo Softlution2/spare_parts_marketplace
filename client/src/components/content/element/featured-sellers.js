@@ -62,7 +62,6 @@ class FeaturedSellers extends Component {
   }
   render() {
     const { featuredSellers, isLoading } = this.state;
-    const { t } = this.props;
     if (isLoading) {
       return ( <ListingSkeleton /> );
     }
@@ -76,7 +75,7 @@ class FeaturedSellers extends Component {
                   <figure className="atbd_listing_thumbnail_area" style={{height: "150px", padding: "1rem 1rem 0 1rem"}}>
                     <div className="atbd_listing_image text-center" style={{height: '100%'}}>
                       <NavLink to={`/seller-details/${seller._id}`}>
-                        <img src={seller.avatar || "/assets/img/avatar.png"} alt="Seller Image" style={{height: "100%", objectFit: "contain"}} />
+                        <img src={seller.avatar || "/assets/img/avatar.png"} alt="Seller" style={{height: "100%", objectFit: "contain"}} />
                       </NavLink>
                     </div>
                   </figure>

@@ -1,7 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import equal from 'fast-deep-equal';
-
-const noAction = (e) => e.preventDefault();
 
 export class OptionSelection extends Component {
   constructor(props) {
@@ -92,7 +90,7 @@ export class ThumbOptionSelection extends Component {
                 }
                 onClick={(e) => this.handleClickOption(e, option.value)}
               >
-                <img src={`/assets/img/car-types/${option.value}.png`} />
+                <img src={`/assets/img/car-types/${option.value}.png`} alt="cartype" />
                 <span>{option.label}</span>
               </div>
             );

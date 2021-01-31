@@ -40,7 +40,7 @@ class CardListingGrid extends Component {
                       <NavLink to={`/spare-part-details/${link}`}>
                         <img
                           src={`${pic}`}
-                          alt="Listing Image"
+                          alt="Listing"
                         />
                       </NavLink>
                     </div>
