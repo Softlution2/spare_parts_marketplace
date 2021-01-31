@@ -144,7 +144,7 @@ class Footer extends Component {
                   <div className="footer-bottom--content">
                     <NavLink to="/" className="footer-logo">
                       <img
-                        src="/assets/img/logo.svg"
+                        src="/assets/img/logo-footer.svg"
                         alt="logoImage"
                         width="200"
                       />

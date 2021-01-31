@@ -254,6 +254,7 @@
     margin: 0 auto;
     font-size: remy(18px);
     width: remy(700px);
+    color: $yellow;
   }
 }
 
@@ -773,9 +774,10 @@
 }
 .author-rating {
   // line-height: 2.66667rem;
+  display: inline-block;
   color: #fff;
   border-radius: 3px;
-  margin-right: .66667rem;
+  margin: 0 .66667rem;
   background: $success;
   padding: .6rem .7rem;
 }
