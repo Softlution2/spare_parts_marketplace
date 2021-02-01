@@ -812,3 +812,29 @@
     left: 0;
   }
 }
+
+.checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+
+  .btn.checkout-qty {
+    line-height: initial;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    outline: 0;
+    border: 2px solid $danger;
+    color: $danger;
+    margin: 0 3px;
+    &:focus {
+      outline: 0;
+    }
+  }
+  a {
+    text-decoration: underline;
+    color: $danger;
+    font-size: 12px;
+    margin: 0 3px;
+  }
+}

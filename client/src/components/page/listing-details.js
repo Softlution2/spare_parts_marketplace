@@ -15,6 +15,7 @@ import { BreadcrumbCategory } from "../content/element/breadcrumb";
 import { ListingFetures } from "../content/element/listing-features";
 import { SellerInfo } from "../content/element/widget";
 import CallbackDetails from "../content/element/modal/callback-details";
+import ListingStickyFooter from "../content/element/listing-sticky-footer";
 
 import { SetLoading } from "../../Store/action/listingActions";
 import { SetActiveRoom, Initialize } from "../../Store/action/chatActions";
@@ -304,6 +305,7 @@ class ListingDetails extends Component {
             <CallbackDetails />
           </Modal>
           <Footer />
+          <ListingStickyFooter listing={listing} />
         </LoadingOverlay>
       </Fragment>
     );

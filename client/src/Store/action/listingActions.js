@@ -98,6 +98,16 @@ export const AddToCart = (data) => {
   };
 }
 
+export const UpdateCart = (data) => {
+  
+  return (dispatch, getState) => {
+    dispatch({
+      type: "UPDATE_CART",
+      data,
+    });
+  };
+}
+
 export const SetVisibility = (id, visibility) => {
   return (dispatch, getState) => {
     axios

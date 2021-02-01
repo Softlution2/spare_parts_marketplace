@@ -68,6 +68,12 @@ const listingReducer = (state = initState, action) => {
         ...state,
         itemsInCart
       }
+    case "UPDATE_CART":
+      localStorage.setItem("itemsInCart", JSON.stringify(action.data));
+      return {
+        ...state,
+        itemsInCart: action.data
+      }
     case "SET_VISIBILITY_SUCCESS":
       const { listing_id, visibility } = action;
       const { listing } = state;

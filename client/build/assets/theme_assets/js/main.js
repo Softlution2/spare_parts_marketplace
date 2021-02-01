@@ -300,4 +300,14 @@
         /* END OF ON LOAD FUNCTION */        
     }, 100);
 
+    window.onscroll = function() {
+        if (window.scrollY > 200) {
+            $(".mainmenu-wrapper").addClass("sticky-menu")
+            $(".sticky-addtocart").addClass("show");
+        } else {
+            $(".mainmenu-wrapper").removeClass("sticky-menu")
+            $(".sticky-addtocart").removeClass("show");
+        }
+    }
+
 })(jQuery);

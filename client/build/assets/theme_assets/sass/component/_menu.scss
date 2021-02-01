@@ -70,6 +70,12 @@
 .mainmenu-wrapper{
   position: relative;
   z-index: 3;
+  &.sticky-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+  }
 }
 
 .menu-area{
