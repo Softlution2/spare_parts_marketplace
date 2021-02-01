@@ -83,7 +83,7 @@ class App extends Component {
           <Route path="/car-parts/:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
           <Route path="/parts-search-vin" component={SearchVin} />
-          <Route path="/chats" component={Chats} />
+          <Route path="/messages" component={Chats} />
           
 
           <Route path="/seller-listings/:id" component={SellerListings} />
@@ -98,7 +98,6 @@ class App extends Component {
           <Route path="/my-listings" component={MyListing} />
           <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-callbacks" component={MyCallbacks} />
-          <Route path="/chats" component={Chats} />
 
           <Route path="/how-it-works" component={HowItWorks} />
           <Route path="/about-us" component={AboutUs} />

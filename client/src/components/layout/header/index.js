@@ -198,7 +198,7 @@ class Header extends Component {
                                 <NavLink to="/sell-your-parts">Add New</NavLink>
                               </li>
                               <li>
-                                <NavLink to="/discussion">Discussion</NavLink>
+                                <NavLink to="/messages">Discussion</NavLink>
                               </li>
                               <li>
                                 <NavLink to="/my-callbacks">Callbacks</NavLink>
