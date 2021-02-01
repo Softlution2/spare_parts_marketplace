@@ -35,13 +35,13 @@ export default ({ children }) => {
       const user = JSON.parse(login);
 
       // Connect Socket Server
-      socket = io(`http://localhost:5000?userId=${user._id}`, {
-        transports: ["websocket"],
-      });
-      
-      // socket = io(`http://sparepartsmarketplace.com?userId=${user._id}`, {
+      // socket = io(`http://localhost:5000?userId=${user._id}`, {
       //   transports: ["websocket"],
       // });
+      
+      socket = io(`http://sparepartsmarketplace.com?userId=${user._id}`, {
+        transports: ["websocket"],
+      });
 
       // Get online users
       socket.on("init", (onlineUsers) => {
