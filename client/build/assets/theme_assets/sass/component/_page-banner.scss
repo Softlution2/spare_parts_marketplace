@@ -5,10 +5,9 @@
     text-transform: uppercase;
   }
   .line {
-    background-color: $primary;
     width: 40px;
     height: 4px;
-    background: #ed0103;
+    background: $orange;
     margin: 0 auto;
     margin-top: 1rem;
   }
