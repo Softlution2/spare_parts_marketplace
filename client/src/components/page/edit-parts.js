@@ -573,7 +573,6 @@ class EditParts extends Component {
                   </div>
                   <div className="form-group mt-5 text-center">
                     <button
-                      className="btn btn-primary" 
                       disabled={this.state.submitLoading === false ? false : true}
                       className="btn btn-primary btn-lg listing_submit_btn"
                       onClick={this.handleSubmit}

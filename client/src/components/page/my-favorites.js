@@ -13,11 +13,6 @@ import { PageBanner } from "../content/element/page-banner";
 import { GetMyFavorites } from "../../Store/action/listingActions";
 
 class MyFavorites extends Component {
-  
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getMyFavorites();
   }

@@ -17,6 +17,7 @@ import { SellerInfo } from "../content/element/widget";
 import CallbackDetails from "../content/element/modal/callback-details";
 
 import { SetLoading } from "../../Store/action/listingActions";
+import { SetActiveRoom, Initialize } from "../../Store/action/chatActions";
 
 class ListingDetails extends Component {
   constructor(props) {
@@ -29,7 +30,32 @@ class ListingDetails extends Component {
     };
     this.validator = new SimpleReactValidator();
     this.getListing = this.getListing.bind(this);
+    this.startChat = this.startChat.bind(this);
     this.openModal = this.openModal.bind(this);
+  }
+
+  startChat(e) {
+    e.preventDefault();
+    const { listing, listing_user } = this.state;
+    if (this.props.login._id === listing_user._id) return;
+    axios
+      .post("/api/chat-rooms/add", {
+        buyer_id: this.props.login._id,
+        listing_id: listing._id,
+        seller_id: listing_user._id,
+      })
+      .then((res) => {
+        const { activeRoomId } = res.data;
+        this.props.chatRoomInitialize().then(() => {
+          this.props.setChatRoom(activeRoomId).then(() => {
+            this.props.history.push("/chats");
+          })
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   }
 
   getListingSKU() {
@@ -160,6 +186,7 @@ class ListingDetails extends Component {
                             href={`https://api.whatsapp.com/send?phone=${listing_user.phone}`}
                             className="btn btn-success btn-block"
                             target="blank"
+                            rel="noopener noreferrer"
                           >
                             <i className="la la-whatsapp" />
                             Contact on Whatsapp
@@ -174,6 +201,7 @@ class ListingDetails extends Component {
                               ? true
                               : false
                           }
+                          onClick={this.startChat}
                         >
                           <i className="lab la-rocketchat" />
                           Start Chat
@@ -225,6 +253,7 @@ class ListingDetails extends Component {
                         </a>
                         <a
                           target="_blank"
+                          rel="noopener noreferrer"
                           href={`viber://pa?chatURI=${window.location.href}&text=Share`}
                           className="mr-2"
                         >
@@ -245,6 +274,7 @@ class ListingDetails extends Component {
                           target="_blank"
                           href={`https://twitter.com/intent/tweet?url=${window.location.href}`}
                           className="mr-2"
+                          rel="noopener noreferrer"
                         >
                           <img
                             width="40"
@@ -255,6 +285,7 @@ class ListingDetails extends Component {
                         <a
                           target="_blank"
                           href={`whatsapp://send?text=${window.location.href}`}
+                          rel="noopener noreferrer"
                         >
                           <img
                             width="40"
@@ -288,6 +319,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProp = (dispatch) => {
   return {
     setLoading: (data) => dispatch(SetLoading(data)),
+    setChatRoom: (data) => dispatch(SetActiveRoom(data)),
+    chatRoomInitialize: () => dispatch(Initialize()),
   };
 };
 

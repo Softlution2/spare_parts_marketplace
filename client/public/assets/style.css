@@ -2463,7 +2463,7 @@ p {
 .atbd_listing_info .price-group .price {
   font-weight: 600;
   font-size: 1.3rem;
-  margin-right: 5px;
+  margin: 0 5px;
 }
 
 .atbd_listing_info .price-group .cart-btn {
@@ -8130,7 +8130,7 @@ p {
 
 .offcanvas-menu .offcanvas-menu__user {
   background: white;
-  z-index: 1001;
+  z-index: 3;
   color: black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8150,7 +8150,8 @@ p {
   position: absolute;
   background-color: #ed0103;
   top: -7px;
-  right: 25px;
+  right: 63px;
+  z-index: 1;
   -webkit-border-radius: 50%;
           border-radius: 50%;
   border: 3px solid white;
@@ -8187,7 +8188,7 @@ p {
       -ms-flex-align: center;
           align-items: center;
   background: #4F71A9;
-  z-index: 1000;
+  z-index: 2;
   -webkit-border-radius: 50px;
           border-radius: 50px;
   margin-left: -70px;

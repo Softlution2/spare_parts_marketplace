@@ -15,7 +15,7 @@ export const stringToUrl = (str) => {
 export const getCartLength = (items, value) => {
   let count = 0;
   for(let i = 0; i < items.length; ++i){
-    if(items[i] == value)
+    if(items[i] === value)
       count++;
   }
   return count;

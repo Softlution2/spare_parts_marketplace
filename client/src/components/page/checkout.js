@@ -8,9 +8,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { Transection } from "../content/element/transection";
 import { getCartLength } from "../../utils";
-
-const noAction = (e) => e.preventDefault();
-
 class Checkout extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +47,7 @@ class Checkout extends Component {
                       >
                         <thead>
                           <tr>
-                            <th colSpan="2">Details</th>
+                            <th>Details</th>
                             <th>Quantity</th>
                             <th>
                               <strong>Price</strong>
@@ -64,34 +61,31 @@ class Checkout extends Component {
                               return (
                                 <tr key={index}>
                                   <td>
-                                    <div className="custom-control custom-checkbox checkbox-outline checkbox-outline-primary custom-control-inline">
-                                      <input
-                                        type="checkbox"
-                                        className="custom-control-input"
-                                        id="select_one"
-                                        value="one"
-                                        checked
-                                        onChange={noAction}
-                                      />
-                                      <label
-                                        className="custom-control-label"
-                                        htmlFor="select_one"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
                                     <h4>{listing.partName}</h4>
                                     <p className="text-muted">{listing.partSKU}</p>
                                   </td>
-                                  <td>{getCartLength(this.props.list.itemsInCart, listing._id)}</td>
-                                  <td>{"AED" + listing.price}</td>
+                                  <td>
+                                    <span>
+                                      {getCartLength(this.props.list.itemsInCart, listing._id)}
+                                    </span>
+                                    <div>
+                                      <button className="btn checkout-qty">
+                                        +
+                                      </button>
+                                      <button className="btn checkout-qty">
+                                        -
+                                      </button>
+                                    </div>
+                                    
+                                  </td>
+                                  <td>{"AED " + listing.price}</td>
                                 </tr>
                               )
                             })
                           }
                           <tr>
                             <td
-                              colSpan="3"
+                              colSpan="2"
                               className="text-right vertical-middle"
                             >
                               <strong>Total amount</strong>

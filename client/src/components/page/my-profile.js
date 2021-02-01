@@ -8,8 +8,6 @@ import { PageBanner } from "../content/element/page-banner";
 import BuyerProfile from "../content/element/my-profile/buyer-profile";
 import SellerProfile from "../content/element/my-profile/seller-profile";
 
-const noAction = (e) => e.preventDefault();
-
 class AuthProfile extends Component {
   constructor(props) {
     super(props);

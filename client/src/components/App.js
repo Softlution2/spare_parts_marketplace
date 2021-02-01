@@ -13,7 +13,6 @@ import MyProfile from "./page/my-profile";
 import MyListing from "./page/my-listing";
 import MyFavorites from "./page/my-favorites";
 import MyCallbacks from "./page/my-callbacks";
-import Chats from "./page/chats";
 
 import Index from "./page/index";
 import AllListing from "./page/all-listing";
@@ -39,6 +38,7 @@ import BecomeBuyer from "./page/become-buyer";
 import BecomeSeller from "./page/become-seller";
 import SearchVin from "./page/search-vin";
 import Checkout from "./page/checkout";
+import Chats from "./page/chats";
 
 import "../i18n";
 
@@ -83,6 +83,7 @@ class App extends Component {
           <Route path="/car-parts/:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
           <Route path="/parts-search-vin" component={SearchVin} />
+          <Route path="/chats" component={Chats} />
           
 
           <Route path="/seller-listings/:id" component={SellerListings} />

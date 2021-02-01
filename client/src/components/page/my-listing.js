@@ -13,11 +13,6 @@ import ListingCardGrid from "../content/element/card/card-listing-grid-my";
 import { GetMyListings } from "../../Store/action/listingActions";
 
 class MyListing extends Component {
-  
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getMyListing();
   }

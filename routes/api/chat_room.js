@@ -58,7 +58,7 @@ router.get("/get-user-rooms", async (req, res) => {
       return {
         roomId: room._id,
         userId: m_user._id,
-        userName: m_user.name,
+        userName: m_user.role === 'SELLER' ? m_user.details.company_name : m_user.details.garage_name,
         userAvatar: m_user.avatar,
         userPhone: m_user.phone ? m_user.phone[0] : null,
         lastMsg,

@@ -122,7 +122,6 @@ class RegisterBuyer extends Component {
 
 
   render() {
-    const { t } = this.props;
     return (
       <Fragment>
         <PreHeader />

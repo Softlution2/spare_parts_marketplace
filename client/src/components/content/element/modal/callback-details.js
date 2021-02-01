@@ -10,7 +10,6 @@ import "react-phone-input-2/lib/material.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const noAction = (e) => e.preventDefault();
 class CallbackDetails extends Component {
   constructor(props) {
     super(props);

@@ -8,7 +8,6 @@ const socketio = require('socket.io');
 const onlineUsers = {};
 
 require('dotenv').config();
-console.log();
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {

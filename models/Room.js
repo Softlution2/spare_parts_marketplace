@@ -14,7 +14,7 @@ const RoomSchema = new Schema({
   },
   listing: {
     type: Schema.Types.ObjectId,
-    ref: "cars",
+    ref: "listings",
     required: true,
   }
 }, {

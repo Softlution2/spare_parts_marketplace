@@ -10,7 +10,7 @@ function SearchLocationInput({setAddress, defaultValue}) {
       `https://maps.googleapis.com/maps/api/js?key=AIzaSyDZRChI54_YSUb241Os5Hka8OeqqQ9A_VE&libraries=places`,
       () => handleScriptLoad()
     );
-  }, []);
+  });
 
   const loadScript = (url, callback) => {
     let script = document.createElement("script");

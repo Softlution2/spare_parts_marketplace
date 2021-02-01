@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import NumberFormat from 'react-number-format';
 
 const noAction = (e) => e.preventDefault();

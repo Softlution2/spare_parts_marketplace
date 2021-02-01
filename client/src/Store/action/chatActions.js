@@ -123,7 +123,7 @@ export const ReceiveNewMessage = data => {
         });
         let newRooms = getState().chat.rooms;
         const foundIndex = newRooms.findIndex(
-          (x) => x.roomId == room
+          (x) => x.roomId === room
         );
         newRooms[foundIndex].lastMsg = message;
         newRooms[foundIndex].unreadMsgCnt = 0;
@@ -145,7 +145,7 @@ export const ReceiveNewMessage = data => {
     else {
       let newRooms = getState().chat.rooms;
       const foundIndex = newRooms.findIndex(
-        (x) => x.roomId == room
+        (x) => x.roomId === room
       );
       newRooms[foundIndex]['lastMsg'] = message;
       newRooms[foundIndex]['unreadMsgCnt'] = newRooms[foundIndex]['unreadMsgCnt'] + 1;

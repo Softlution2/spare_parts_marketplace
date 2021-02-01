@@ -158,11 +158,13 @@ class BuyerProfile extends Component {
                 <img
                   src={avatar.preview || avatar}
                   onClick={this.openFileDlg}
+                  alt="avatar"
                 />
               ) : (
                 <img
                   src={`/assets/img/avatar.png`}
                   onClick={this.openFileDlg}
+                  alt="avatar"
                 />
               )}
               <div className="image-info">

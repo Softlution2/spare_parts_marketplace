@@ -21,7 +21,6 @@ class Header extends Component {
       window.location.href = "/";
     };
     const { t } = this.props;
-
     return (
       <section className="mainmenu-wrapper">
         <div className="menu-area menu--light">
@@ -164,7 +163,7 @@ class Header extends Component {
                               )}
                               <span className="d-inline-block w-100 font-weight-bold mb-1">
                                 <i className="la la-map-marker"></i>{" "}
-                                { this.props.login.details.emirate }
+                                { this.props.login && this.props.login.details.emirate }
                               </span>
                               {
                                 this.props.login.role === "SELLER" && (

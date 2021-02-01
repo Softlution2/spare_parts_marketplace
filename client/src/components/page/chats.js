@@ -8,9 +8,9 @@ import $ from "jquery";
 import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import { WebSocketContext } from '../../WebSocket';
-import { UpdateRooms, UpdateActiveRoom, AddMessage, GetConversations } from "../../Store/action/chatActions"
+import { UpdateRooms, UpdateActiveRoom, AddMessage, GetConversations, Initialize } from "../../Store/action/chatActions"
 
-import { numberWithCommas, stringToUrl } from "../../utils";
+import { numberWithCommas } from "../../utils";
 
 const noAction = (e) => e.preventDefault();
 const getChatTime = (momentDate) => {
@@ -49,6 +49,7 @@ class Chats extends Component {
   }
 
   componentDidMount() {
+    // this.props.chatRoomInitialize();
     if (this.props.chat.activeRoom)
       this.handleChatRoom(null, this.props.chat.activeRoom.roomId);
   }
@@ -82,7 +83,6 @@ class Chats extends Component {
       (x) => x.roomId === roomId
     );
     rooms[foundIndex].unreadMsgCnt = 0;
-
     this.props.updateChatRooms(rooms);
     this.props.updateActiveChatRoom(rooms[foundIndex]);
     this.props.getRoomConversations(rooms[foundIndex].roomId).then(() => {
@@ -184,7 +184,7 @@ class Chats extends Component {
                         {rooms.map((room, index) => {
                           return (
                             <a
-                              href="#"
+                              href="#!"
                               className={`media ${
                                 activeRoom &&
                                 activeRoom.roomId === room.roomId
@@ -204,7 +204,7 @@ class Chats extends Component {
                                 >
                                   <img
                                     src={room.userAvatar ? `${room.userAvatar}` : '/assets/img/avatar.png'}
-                                    alt="User Image"
+                                    alt="UserImage"
                                     className="avatar-img rounded-circle"
                                   />
                                 </div>
@@ -216,11 +216,8 @@ class Chats extends Component {
                                   </div>
                                   <div className="user-last-chat">
                                     <span className={`text-primary ${room.unreadMsgCnt > 0 ? "font-weight-bolder" : ""}`}>
-                                      {`${room.listing.make} ${room.listing.model} ${room.listing.year} ${room.listing.version}`}{" "}
-                                      - {numberWithCommas(room.listing.price)}{" "}
+                                      {room.listing.partName} - {numberWithCommas(room.listing.price)}{" "}
                                     </span>
-
-                                    {/* {room.lastMsg && room.lastMsg} */}
                                   </div>
                                 </div>
                                 <div>
@@ -266,7 +263,7 @@ class Chats extends Component {
                             >
                               <img
                                 src={activeRoom.userAvatar ? `${activeRoom.userAvatar}` : '/assets/img/avatar.png'}
-                                alt="User Image"
+                                alt="UserImage"
                                 className="avatar-img rounded-circle"
                               />
                             </div>
@@ -296,40 +293,16 @@ class Chats extends Component {
                           }
                           <NavLink
                             to={
-                              "/listing-details/buy-car-" +
-                              stringToUrl(activeRoom.listing.make) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.model) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.year) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.version) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.user_id.location) +
-                              "-" +
-                              activeRoom.listing.reference_code
+                              "/listing-details/buy-car-"
                             }
                             className="btn btn-primary go-listing"
                           >
-                            {`${activeRoom.listing.make} ${activeRoom.listing.model} ${activeRoom.listing.year} ${activeRoom.listing.version}`}{" "}
-                            - {numberWithCommas(activeRoom.listing.price)}{" "}
-                            {activeRoom.listing.currency}
+                            {activeRoom.listing.partName} - {numberWithCommas(activeRoom.listing.price)}{" AED "} 
                           </NavLink>
                           
                           <NavLink
                             to={
-                              "/listing-details/buy-car-" +
-                              stringToUrl(activeRoom.listing.make) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.model) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.year) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.version) +
-                              "-" +
-                              stringToUrl(activeRoom.listing.user_id.location) +
-                              "-" +
-                              activeRoom.listing.reference_code
+                              "/listing-details/buy-car-"
                             }
                             className="btn btn-primary go-listing--responsive"
                           >
@@ -365,7 +338,7 @@ class Chats extends Component {
                                     <div className="avatar">
                                       <img
                                         src={activeRoom.userAvatar ? `${activeRoom.userAvatar}` : '/assets/img/avatar.png'}
-                                        alt="User Image"
+                                        alt="UserImage"
                                         className="avatar-img rounded-circle"
                                       />
                                     </div>
@@ -472,6 +445,7 @@ const mapDispatchToProp = (dispatch) => {
     updateActiveChatRoom: (data) => dispatch(UpdateActiveRoom(data)),
     addNewMessage: (data) => dispatch(AddMessage(data)),
     getRoomConversations: (roomId) => dispatch(GetConversations(roomId)),
+    chatRoomInitialize: () => dispatch(Initialize()),
   };
 };
 

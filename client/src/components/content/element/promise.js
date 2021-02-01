@@ -10,6 +10,7 @@ class Promise extends Component {
             <div className="icon-img">
               <img
                 src={`/assets/img/icons/icon1.png`}
+                alt="promise"
               ></img>
             </div>
             <div className="title mt-2">
@@ -25,6 +26,7 @@ class Promise extends Component {
             <div className="icon-img">
               <img
                 src={`/assets/img/icons/icon2.png`}
+                alt="promise"
               ></img>
             </div>
             <div className="title mt-2">
@@ -40,6 +42,7 @@ class Promise extends Component {
             <div className="icon-img">
               <img
                 src={`/assets/img/icons/icon3.png`}
+                alt="promise"
               ></img>
             </div>
             <div className="title mt-2">
@@ -55,6 +58,7 @@ class Promise extends Component {
             <div className="icon-img">
               <img
                 src={`/assets/img/icons/icon4.png`}
+                alt="promise"
               ></img>
             </div>
             <div className="title mt-2">

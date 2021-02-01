@@ -137,7 +137,7 @@ class Index extends Component {
               }`}
             >
               <a
-                href="#"
+                href="#!"
                 className="read-more-less"
                 onClick={this.toggleSeoText}
               >

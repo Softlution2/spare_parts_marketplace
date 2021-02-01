@@ -675,7 +675,7 @@
   .offcanvas-menu__user{
     // @extend .bg-primary;
     background: white;
-    z-index: 1001;
+    z-index: 3;
     color: black;
     display: flex;
     font-size: remy(20px);
@@ -688,7 +688,8 @@
       position: absolute;
       background-color: #ed0103;
       top: -7px;
-      right: 25px;
+      right: 63px;
+      z-index: 1;
       border-radius: 50%;
       border: 3px solid white;
       padding: 0;
@@ -716,7 +717,7 @@
     display: flex;
     align-items: center;
     background: $primary;
-    z-index: 1000;
+    z-index: 2;
     border-radius: 50px;
     margin-left: -70px;
     padding: 12px 22px 12px 50px;

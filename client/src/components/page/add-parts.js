@@ -191,7 +191,6 @@ class AddParts extends Component {
   }
 
   render() {
-    const { t } = this.props;
     return (
       <Fragment>
         <PreHeader />
@@ -212,7 +211,7 @@ class AddParts extends Component {
                   <div className="form-group text-center">
                       {
                         this.state.pic && (
-                          <img src={this.state.pic.preview} onClick={this.openFileDlg}  width="300" />
+                          <img src={this.state.pic.preview} onClick={this.openFileDlg}  width="300" alt="pic" />
                         )
                       }
                       <div className="custom-file-upload">
@@ -557,7 +556,6 @@ class AddParts extends Component {
                   </div>
                   <div className="form-group mt-5 text-center">
                     <button
-                      className="btn btn-primary" 
                       disabled={this.state.submitLoading === false ? false : true}
                       className="btn btn-primary btn-lg listing_submit_btn"
                       onClick={this.handleSubmit}
