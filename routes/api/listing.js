@@ -41,6 +41,8 @@ router.post("/initialize", async (req, res) => {
     findQuery['subCategory'] = { $in: [subcategory.value] };
   }
 
+  findQuery['hide'] = false;
+
   let listings, maxPrice, minPrice, makeList, modelList, brandList;
   try {
     listings = await Listing.find(findQuery).sort("-date").populate("user_id");
@@ -96,7 +98,7 @@ router.get("/get-my-listing", async (req, res) => {
   const { user_id } = req.query;
   let listings;
   try {
-    listings = await Listing.find({ user: user_id }).sort("-date").populate("user");
+    listings = await Listing.find({ user: user_id, hide: false }).sort("-date").populate("user");
   } catch (err) {
     listing = [];
   }
@@ -226,7 +228,7 @@ router.post("/update", async (req, res) => {
 
 
 router.get("/get-home", (req, res) => {
-  Listing.find({})
+  Listing.find({ hide: true })
     .populate("user")
     .exec(function (err, docs) {
       if (err) {
@@ -299,6 +301,7 @@ router.post("/search", async (req, res) => {
       $search: query.string,
     };
   }
+  findQuery["hide"] = false;
   const { sortBy } = query;
   try {
     const listings = await Listing.find(findQuery)

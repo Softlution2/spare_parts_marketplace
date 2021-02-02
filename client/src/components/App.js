@@ -40,6 +40,7 @@ import SearchVin from "./page/search-vin";
 import Checkout from "./page/checkout";
 import Chats from "./page/chats";
 import RequestPart from "./page/request-part";
+import Settings from "./page/settings";
 
 import "../i18n";
 
@@ -95,8 +96,9 @@ class App extends Component {
           <Route path="/seller-details/:id" component={SellerDetails} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/request-part" component={RequestPart} />
-
           <Route path="/my-profile" component={MyProfile} />
+          <Route path="/settings" component={Settings} />
+
           <Route path="/my-listings" component={MyListing} />
           <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-callbacks" component={MyCallbacks} />
