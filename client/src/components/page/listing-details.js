@@ -49,7 +49,7 @@ class ListingDetails extends Component {
         const { activeRoomId } = res.data;
         this.props.chatRoomInitialize().then(() => {
           this.props.setChatRoom(activeRoomId).then(() => {
-            this.props.history.push("/chats");
+            this.props.history.push("/messages");
           })
         });
       })
