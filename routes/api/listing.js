@@ -14,7 +14,6 @@ const s3 = new AWS.S3({
 const Listing = require("../../models/Listing");
 const CarMake = require("../../models/CarMake");
 const CarModel = require("../../models/CarModel");
-const { UserBindingContext } = require("twilio/lib/rest/chat/v2/service/user/userBinding");
 
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
@@ -98,7 +97,8 @@ router.get("/get-my-listing", async (req, res) => {
   const { user_id } = req.query;
   let listings;
   try {
-    listings = await Listing.find({ user: user_id, hide: false }).sort("-date").populate("user");
+    listings = await Listing.find({ user: user_id }).sort("-date").populate("user");
+    console.log(listings);
   } catch (err) {
     listing = [];
   }
