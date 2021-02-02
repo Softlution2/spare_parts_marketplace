@@ -98,7 +98,6 @@ router.get("/get-my-listing", async (req, res) => {
   let listings;
   try {
     listings = await Listing.find({ user: user_id }).sort("-date").populate("user");
-    console.log(listings);
   } catch (err) {
     listing = [];
   }
@@ -228,7 +227,7 @@ router.post("/update", async (req, res) => {
 
 
 router.get("/get-home", (req, res) => {
-  Listing.find({ hide: true })
+  Listing.find({ hide: false })
     .populate("user")
     .exec(function (err, docs) {
       if (err) {
@@ -344,6 +343,9 @@ router.get("/get-by-id", (req, res) => {
 router.get("/get-count-by-category", (req, res) => {
   const aggregatorOpts = [
     {
+      $match: { hide: false }
+    },
+    {
       $group: {
         _id: "$category",
         count: { $sum: 1 },
@@ -396,7 +398,7 @@ router.post("/cart-listings", (req, res) => {
 });
 
 router.get("/set-visibility", (req, res) => {
-  Listing.updateOne({_id: req.query.id}, {$set: {hide: req.query.visibility}}, (err, doc) => {
+  Listing.updateOne({ _id: req.query.id }, { $set: { hide: req.query.visibility } }, (err, doc) => {
     if (err) return res.status(400).json({message: "Something went wrong!"});
     return res.json({message: "Success"});
   })
