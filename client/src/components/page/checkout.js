@@ -109,7 +109,7 @@ class Checkout extends Component {
                                       </div>
                                     </div>
                                   </td>
-                                  <td>{"AED " + listing.price}</td>
+                                  <td>{"AED " + listing.price * getCartLength(this.props.list.itemsInCart, listing._id)}</td>
                                 </tr>
                               )
                             })
