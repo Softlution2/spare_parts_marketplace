@@ -189,16 +189,6 @@
             }
         });
 
-        // social information in add listing page
-        $(".copy-btn").on("click", function (e) {
-            var $el = $("#social-form-fields");
-            $el.clone(true).appendTo(".atbdp_social_field_wrapper");
-            e.preventDefault();
-        });
-        $("#removeSocial").on("click", function () {
-            $(this).parents("#social-form-fields:not(:first-child)").remove();
-        });
-
         //map coordinate
         var menual_cor = $("#hide_if_no_manual_cor").hide();
         $("#manual_coordinate").on("click", function () {

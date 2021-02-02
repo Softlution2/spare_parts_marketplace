@@ -25,11 +25,10 @@ const io = socketio(server, {
 
 
 const users = require("./routes/api/users");
-const selling = require("./routes/api/selling");
-const info = require("./routes/api/info");
 const listing = require("./routes/api/listing");
 const message = require("./routes/api/message");
 const chat_room = require("./routes/api/chat_room");
+const store = require("./routes/api/store");
 
 app.use(cors());
 
@@ -72,11 +71,10 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
-app.use("/api/selling", selling);
-app.use("/api/info", info);
 app.use("/api/listing", listing);
 app.use("/api/message", message);
 app.use("/api/chat-rooms", chat_room);
+app.use("/api/store", store);
 
 // Load User model
 const User = require("./models/User");

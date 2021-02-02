@@ -19,6 +19,7 @@ class NavItem extends Component {
   }
   render() {
     const { t } = this.props;
+    const { activeCategory } = this.state;
     return (
       <Fragment>
         <ul className="navbar-nav">
@@ -46,19 +47,28 @@ class NavItem extends Component {
                 <div className="row">
                   <div className="col-md-12">
                     <ul className="category-list">
-                      {this.state.activeCategory &&
-                        subCategories[this.state.activeCategory] &&
-                        subCategories[this.state.activeCategory].map(
+                      {activeCategory &&
+                        subCategories[activeCategory] &&
+                        subCategories[activeCategory].map(
                           (item, index) => {
                             return (
                               <li key={index}>
-                                <NavLink to={`/spare-parts/${this.state.activeCategory.toLowerCase().replaceAll(" ", "-")}/${item.value.toLowerCase().replaceAll(" ", "-")}`}>
+                                <NavLink to={`/spare-parts/${activeCategory.toLowerCase().replaceAll(" ", "-")}/${item.value.toLowerCase().replaceAll(" ", "-")}`}>
                                   {item.label}
                                 </NavLink>
                               </li>
                             );
                           }
                         )}
+                        {
+                          activeCategory && (
+                            <li >
+                              <NavLink to={`/spare-parts/${activeCategory.toLocaleLowerCase().replaceAll(" ", "-")}`} className="text-warning">
+                                All {activeCategory}
+                              </NavLink>
+                            </li>   
+                          )
+                        }
                     </ul>
                   </div>
                 </div>

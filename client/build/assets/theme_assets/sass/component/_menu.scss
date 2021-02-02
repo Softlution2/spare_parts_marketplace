@@ -660,6 +660,14 @@
               color: #3c3c3c;
               font-size: 15px;
               transition: all ease 0.5s;
+              &.text-warning {
+                color: $warning;
+                font-weight: bold;
+                &:hover {
+                  color: $warning;
+                  border-bottom: 1px solid $warning;
+                }
+              }
               &:hover {
                 color: $primary;
                 border-bottom: 1px solid $primary;

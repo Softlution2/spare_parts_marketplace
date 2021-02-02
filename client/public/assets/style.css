@@ -1286,34 +1286,34 @@
 }
 
 .color-warning, .atbd_categorized_listings .listings > li .atbd_rated_stars ul li span.rate_active:before, .atbd_review_module #client_review_list .atbd_single_review .atbd_review_top .atbd_rated_stars ul li {
-  color: #fa8b0c;
+  color: #F39200;
 }
 
 .bg-warning, .atbd_listing_thumbnail_area .atbd_upper_badge .atbd_badge.atbd_badge_featured, .listing-info .listing-info--badges .atbd_badge.atbd_badge_featured {
-  background: #fa8b0c;
+  background: #F39200;
 }
 
 .iborder-warning {
-  color: #fa8b0c;
+  color: #F39200;
 }
 
 .outline-warning {
-  border: 1px solid #fa8b0c;
-  color: #fa8b0c;
+  border: 1px solid #F39200;
+  color: #F39200;
 }
 
 .active-color-warning label input:checked + span {
-  background: #fa8b0c;
-  border-color: #fa8b0c;
+  background: #F39200;
+  border-color: #F39200;
 }
 
 .circle-warning {
-  color: #fa8b0c;
-  background: rgba(250, 139, 12, 0.1);
+  color: #F39200;
+  background: rgba(243, 146, 0, 0.1);
 }
 
 .border-warning {
-  border: 1px solid #fa8b0c;
+  border: 1px solid #F39200;
 }
 
 .color-danger, .atbd_listing_meta .atbd_badge_close, .directory_open_hours ul li.atbd_closed span, .pricing .pricing__features ul li > span.unavailable:first-child {
@@ -1466,8 +1466,8 @@
 }
 
 .btn-shadow-warning {
-  -webkit-box-shadow: 0 10px 20px rgba(250, 139, 12, 0.2);
-  box-shadow: 0 10px 20px rgba(250, 139, 12, 0.2);
+  -webkit-box-shadow: 0 10px 20px rgba(243, 146, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(243, 146, 0, 0.2);
 }
 
 .btn-shadow-danger {
@@ -1510,9 +1510,9 @@
 }
 
 .outline-lg-warning {
-  border: 2px solid #fa8b0c;
+  border: 2px solid #F39200;
   background: none;
-  color: #fa8b0c;
+  color: #F39200;
 }
 
 .outline-lg-danger {
@@ -1586,12 +1586,12 @@
 }
 
 .checkbox-warning .custom-control-label::before {
-  background: #fa8b0c;
+  background: #F39200;
 }
 
 .checkbox-warning .custom-control-input:checked ~ .custom-control-label::before {
-  background: #fa8b0c;
-  border: 1px solid #fa8b0c;
+  background: #F39200;
+  border: 1px solid #F39200;
 }
 
 .checkbox-warning .custom-control-input:checked ~ .custom-control-label::after {
@@ -1694,8 +1694,8 @@
 }
 
 .checkbox-outline-warning .custom-control-input:checked ~ .custom-control-label::before {
-  border: 1px solid #fa8b0c;
-  background: #fa8b0c;
+  border: 1px solid #F39200;
+  background: #F39200;
 }
 
 .checkbox-outline-warning .custom-control-input:checked ~ .custom-control-label::after {
@@ -1801,13 +1801,13 @@ p {
 
 .bg-gradient-pw, .pricing.atbd_pricing_special .atbd_popular_badge {
   background: #4F71A9;
-  background: -webkit-linear-gradient(to right, #4F71A9, #fa8b0c);
-  background: -o-linear-gradient(to right, #4F71A9, #fa8b0c);
-  background: -webkit-gradient(linear, left top, right top, from(#4F71A9), to(#fa8b0c));
-  background: -webkit-linear-gradient(left, #4F71A9, #fa8b0c);
-  background: -o-linear-gradient(left, #4F71A9, #fa8b0c);
-  background: linear-gradient(to right, #4F71A9, #fa8b0c);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#4F71A9, endColorstr=#fa8b0c);
+  background: -webkit-linear-gradient(to right, #4F71A9, #F39200);
+  background: -o-linear-gradient(to right, #4F71A9, #F39200);
+  background: -webkit-gradient(linear, left top, right top, from(#4F71A9), to(#F39200));
+  background: -webkit-linear-gradient(left, #4F71A9, #F39200);
+  background: -o-linear-gradient(left, #4F71A9, #F39200);
+  background: linear-gradient(to right, #4F71A9, #F39200);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#4F71A9, endColorstr=#F39200);
 }
 
 /* Background Image */
@@ -7462,6 +7462,29 @@ p {
   margin: 0 0 0 10px;
 }
 
+.edit-store-wrapper {
+  padding-bottom: 5rem;
+}
+
+.edit-store-wrapper .form-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #272b41;
+}
+
+.edit-store-wrapper .removeSocialField {
+  padding: .46667rem .66667rem;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  display: inline-block;
+  margin: 0 .33333rem;
+  cursor: pointer;
+}
+
+.edit-store-wrapper .atbd_mark_as_closed {
+  margin-top: .66667rem;
+}
+
 /*****************************
 	--- MENU
 *****************************/
@@ -8268,6 +8291,16 @@ p {
   transition: all ease 0.5s;
 }
 
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li a.text-warning {
+  color: #F39200;
+  font-weight: bold;
+}
+
+.mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li a.text-warning:hover {
+  color: #F39200;
+  border-bottom: 1px solid #F39200;
+}
+
 .mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li a:hover {
   color: #4F71A9;
   border-bottom: 1px solid #4F71A9;
@@ -8533,17 +8566,17 @@ p {
 }
 
 .btn-gradient.btn-gradient-two {
-  background: -webkit-gradient(linear, left top, right top, from(#4F71A9), to(#fa8b0c));
-  background: -webkit-linear-gradient(left, #4F71A9, #fa8b0c);
-  background: -o-linear-gradient(left, #4F71A9, #fa8b0c);
-  background: linear-gradient(to right, #4F71A9, #fa8b0c);
+  background: -webkit-gradient(linear, left top, right top, from(#4F71A9), to(#F39200));
+  background: -webkit-linear-gradient(left, #4F71A9, #F39200);
+  background: -o-linear-gradient(left, #4F71A9, #F39200);
+  background: linear-gradient(to right, #4F71A9, #F39200);
 }
 
 .btn-gradient.btn-gradient-two:before {
-  background: -webkit-gradient(linear, left top, right top, from(#fa8b0c), to(#4F71A9));
-  background: -webkit-linear-gradient(left, #fa8b0c, #4F71A9);
-  background: -o-linear-gradient(left, #fa8b0c, #4F71A9);
-  background: linear-gradient(to right, #fa8b0c, #4F71A9);
+  background: -webkit-gradient(linear, left top, right top, from(#F39200), to(#4F71A9));
+  background: -webkit-linear-gradient(left, #F39200, #4F71A9);
+  background: -o-linear-gradient(left, #F39200, #4F71A9);
+  background: linear-gradient(to right, #F39200, #4F71A9);
 }
 
 .btn-gradient.btn-xs {
@@ -8900,13 +8933,14 @@ p {
 
 .select-basic:before {
   position: absolute;
-  content: "\f110";
+  content: "\f107";
   right: 1rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  font-family: "LineAwesome";
+  font-weight: 900;
+  font-family: 'Line Awesome Free';
   font-size: 0.8rem;
   z-index: 10;
 }

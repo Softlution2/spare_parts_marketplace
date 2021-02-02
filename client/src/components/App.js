@@ -9,10 +9,8 @@ import {
 import SellerListings from "./page/seller-listings";
 import ListingDetails from "./page/listing-details";
 import Thankyou from "./page/thank-you";
-import MyProfile from "./page/my-profile";
 import MyListing from "./page/my-listing";
-import MyFavorites from "./page/my-favorites";
-import MyCallbacks from "./page/my-callbacks";
+// import MyCallbacks from "./page/my-callbacks";
 
 import Index from "./page/index";
 import AllListing from "./page/all-listing";
@@ -40,6 +38,9 @@ import SearchVin from "./page/search-vin";
 import Checkout from "./page/checkout";
 import Chats from "./page/chats";
 import RequestPart from "./page/request-part";
+
+import MyProfile from "./page/my-profile";
+import MyStore from "./page/my-store";
 import Settings from "./page/settings";
 
 import "../i18n";
@@ -88,7 +89,7 @@ class App extends Component {
           <Route path="/car-parts/:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
           <Route path="/parts-search-vin" component={SearchVin} />
-          <Route path="/messages" component={Chats} />
+          <PrivateRoute path="/messages" component={Chats} />
           <Route path="/seller-listings/:id" component={SellerListings} />
           <Route path="/stores" component={Sellers} />
           <Route path="/news" component={News} />
@@ -96,12 +97,15 @@ class App extends Component {
           <Route path="/seller-details/:id" component={SellerDetails} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/request-part" component={RequestPart} />
-          <Route path="/my-profile" component={MyProfile} />
-          <Route path="/settings" component={Settings} />
 
-          <Route path="/my-listings" component={MyListing} />
-          <Route path="/my-favorites" component={MyFavorites} />
-          <Route path="/my-callbacks" component={MyCallbacks} />
+
+          <PrivateRoute path="/my-listings" component={MyListing} />
+          <PrivateRoute path="/my-profile" component={MyProfile} />
+          <PrivateRoute path="/settings" component={Settings} />
+          <PrivateRoute path="/my-store" component={MyStore} />
+
+          {/* <Route path="/my-favorites" component={MyFavorites} />
+          <Route path="/my-callbacks" component={MyCallbacks} /> */}
 
           <Route path="/how-it-works" component={HowItWorks} />
           <Route path="/about-us" component={AboutUs} />
