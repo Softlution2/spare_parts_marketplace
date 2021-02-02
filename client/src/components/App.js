@@ -80,7 +80,10 @@ class App extends Component {
           <PrivateRoute path="/sell-your-parts" component={AddParts} />
           <Route path="/edit-parts/:id" component={EditParts} />
           <Route path="/all-listings" component={AllListing} />
-          <Route path="/spare-parts/:category" component={AllListing} />
+          <Route path="/spare-parts/:category">
+            <Route path="/spare-parts/:category" component={AllListing} />
+            <Route path="/spare-parts/:category/:subcategory" component={AllListing} />
+          </Route>
           <Route path="/car-parts/:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
           <Route path="/parts-search-vin" component={SearchVin} />

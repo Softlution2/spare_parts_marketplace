@@ -19,7 +19,7 @@ const { UserBindingContext } = require("twilio/lib/rest/chat/v2/service/user/use
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
   let searchQuery = {}
-  const { search, make, category } = req.body;
+  const { search, make, category, subcategory } = req.body;
   if (search && search !== null) {
     searchQuery["string"] = search;
     findQuery["$text"] = {
@@ -36,6 +36,9 @@ router.post("/initialize", async (req, res) => {
   if (category && category !== null) {
     findQuery['category'] = { $in: [category.name] };
     searchQuery['category'] = [category];
+  }
+  if (subcategory && subcategory !== null) {
+    findQuery['subCategory'] = { $in: [subcategory.value] };
   }
 
   let listings, maxPrice, minPrice, makeList, modelList, brandList;

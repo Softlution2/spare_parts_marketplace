@@ -216,10 +216,10 @@ export class BreadcrumbCategory extends Component {
                   <nav aria-label="breadcrumb">
                     <ol className="breadcrumb justify-content-start">
                       <li className="breadcrumb-item">
-                        <NavLink to="/">{category}</NavLink>
+                        <NavLink to={`/spare-parts/${category.toLowerCase().replaceAll(" ", "-")}`}>{category}</NavLink>
                       </li>
                       <li className="breadcrumb-item">
-                        <NavLink to="/">{subCategory}</NavLink>
+                        <NavLink to={`/spare-parts/${category.toLowerCase().replaceAll(" ", "-")}/${subCategory.toLowerCase().replaceAll(" ", "-")}`}>{subCategory}</NavLink>
                       </li>
                       <li className="breadcrumb-item active" aria-current="page">
                         {title}

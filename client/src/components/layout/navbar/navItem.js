@@ -52,7 +52,7 @@ class NavItem extends Component {
                           (item, index) => {
                             return (
                               <li key={index}>
-                                <NavLink to="/all-listings">
+                                <NavLink to={`/spare-parts/${this.state.activeCategory.toLowerCase().replaceAll(" ", "-")}/${item.value.toLowerCase().replaceAll(" ", "-")}`}>
                                   {item.label}
                                 </NavLink>
                               </li>

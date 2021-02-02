@@ -15,7 +15,7 @@ import {
   SetSearchQuery,
 } from "../../Store/action/listingActions";
 
-import { categories } from "../../constants";
+import { subCategories, categories } from "../../constants";
 
 class AllListing extends Component {
   constructor(props) {
@@ -46,9 +46,8 @@ class AllListing extends Component {
     });
     let filterQuery = { search: "" };
     if (params.search) filterQuery.search = params.search;
-
     if (
-      this.props.match.path === "/spare-parts/:category" &&
+      this.props.match.path.includes("/spare-parts/:category") &&
       this.props.match.params.category
     ) {
       const cat = categories.filter(
@@ -57,6 +56,14 @@ class AllListing extends Component {
           this.props.match.params.category
       );
       filterQuery.category = cat[0];
+      if (this.props.match.params.subcategory) {
+        const subCatList = subCategories[cat[0].value];
+        const subCat = subCatList.filter(
+          (e) =>
+            e.value.toLowerCase().replaceAll(" ", "-") === this.props.match.params.subcategory
+        )
+        filterQuery.subcategory = subCat[0];
+      }
     }
 
     if (
@@ -64,6 +71,8 @@ class AllListing extends Component {
       this.props.match.params.make
     )
       filterQuery.make = this.props.match.params.make.replace("-", " ");
+    
+    console.log(filterQuery);
     this.props.initializeListing(filterQuery);
   }
 
@@ -90,7 +99,7 @@ class AllListing extends Component {
                   : null
               }
               category={
-                this.props.match.path === "/spare-parts/:category" &&
+                this.props.match.path.includes("/spare-parts/:category") &&
                 this.props.match.params.category
                   ? this.props.match.params.category
                   : null
