@@ -86,6 +86,39 @@ router.post("/verify-otp", (req, res) => {
     });
 });
 
+
+router.post("/verify-otp-for-password", (req, res) => {
+  let code = req.body.code;
+  let identify = req.body.identify;
+  twilioClient.verify
+    .services(process.env.TWILIO_SERVICE_SID)
+    .verificationChecks.create({ to: identify, code: code })
+    .then((verification_check) => {
+      if (verification_check.status === "approved") {
+        let query = identify.includes("+")
+          ? { phone: identify.replace("+", "") }
+          : { email: identify };
+        let errMsg = identify.includes("+")
+          ? "This phone number is not registered."
+          : "This email address is not registered.";
+        User.findOne(query).then((user) => {
+          if (!user) return res.status(400).json({ message: errMsg });
+          return res.json({ message: "success" });
+        });
+      } else {
+        return res.status(400).json({
+          message: "Verification Failed. Please enter the code from your email",
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(400).json({
+        message: "Verification Failed. Please enter the code from your email",
+      });
+    });
+});
+
 router.post("/signup", async (req, res) => {
   let files = {};
   let avatar = null;
@@ -272,6 +305,23 @@ router.post("/update", (req, res) => {
         return res.json(user);
       }
     );
+  });
+});
+
+router.post("/update-password", async (req, res) => {
+  const { method, identity, password } = req.body;
+  const query = method === 'email' ? { email: identity } : { phone: identity.replace("+", "") };
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) throw err;
+      User.findOneAndUpdate(query, {
+        $set: { password: hash }
+      }, function (err, doc) {
+        if (err)
+          return res.status(400).json({ message: "Something went wrong!" });
+        return res.json({ message: "Success" });
+      });
+    });
   });
 });
 

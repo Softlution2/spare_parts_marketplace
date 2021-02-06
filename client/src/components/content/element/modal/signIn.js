@@ -8,12 +8,17 @@ import "react-phone-input-2/lib/material.css";
 import { withTranslation } from 'react-i18next';
 import axios from "axios";
 
+import OTPVerification from "./otp-verification";
+import PasswordForm from "./password";
+
 const noAction = (e) => e.preventDefault();
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       signinType: null,
+      recoverType: null,
+      identity: null,
       signinStep: 0,
       email: "",
       phone: "",
@@ -25,8 +30,10 @@ class Login extends Component {
     this.validator = new SimpleReactValidator();
     this.setStateFromInput = this.setStateFromInput.bind(this);
     this.setSigninType = this.setSigninType.bind(this);
+    this.setRecoverType = this.setRecoverType.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.forgetPassword = this.forgetPassword.bind(this);
   }
 
   setStateFromInput = (event) => {
@@ -39,13 +46,26 @@ class Login extends Component {
     noAction(e);
     this.setState({ signinType: value });
   };
+
+  setRecoverType = (e, value) => {
+    noAction(e);
+    this.setState({ recoverType: value });
+  }
+
   handleContinue = (e) => {
     noAction(e);
     this.setState({ signinStep: 1 });
   };
+
   handleChangePhone = (number) => {
     this.setState({ phone: number });
   };
+
+  forgetPassword = (e) => {
+    e.preventDefault();
+    this.setState({ signinStep: 2 });
+  }
+
   handleLogin = (e) => {
     noAction(e);
     if (this.validator.allValid()) {
@@ -84,6 +104,8 @@ class Login extends Component {
       phone,
       password,
       errMsg,
+      recoverType,
+      identity
     } = this.state;
     const { t } = this.props;
 
@@ -142,6 +164,9 @@ class Login extends Component {
                         {t("auth_phone")}
                       </div>
                     </div>
+                    <p>
+                      <a href='#!' onClick={this.forgetPassword}>Forget your password?</a>
+                    </p>    
                     <button
                       type="button"
                       className="btn btn-continue"
@@ -237,6 +262,63 @@ class Login extends Component {
                     </form>
                   </React.Fragment>
                 )}
+                {
+                  signinStep === 2 && (
+                    <React.Fragment>
+                      <h2 className="welcome">{t("auth_welcome")}</h2>
+                      <p className="text-center mt-3">
+                        {t("auth_how_you_want_login")}
+                      </p>
+                      <div className="signin-types">
+                        <div
+                          className={`signin-type-email type-item ${
+                            recoverType === "email" ? "active" : ""
+                          }`}
+                          onClick={(e) => this.setRecoverType(e, "email")}
+                        >
+                          <i className="la la-envelope" />
+                          {t("auth_email")}
+                        </div>
+                        <div
+                          className={`signin-type-phone type-item ${
+                            recoverType === "phone" ? "active" : ""
+                          }`}
+                          onClick={(e) => this.setRecoverType(e, "phone")}
+                        >
+                          <i className="la la-phone" />
+                          {t("auth_phone")}
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="btn btn-continue"
+                        disabled={recoverType === null ? true : false}
+                        onClick={() => { this.setState({signinStep: 3}) }}
+                      >
+                        {t("auth_continue")}
+                      </button>
+                    </React.Fragment>
+                  )
+                }
+                {signinStep === 3 && (
+                  <OTPVerification
+                    verifyMethod={recoverType}
+                    goPrev={() => this.setState({ signinStep: 2 })}
+                    goNext={() => this.setState({ signinStep: 4 })}
+                    setIdentity={(identity) => this.setState({ identity })}
+                  />
+                )}
+                {
+                  signinStep === 4 && (
+                    <PasswordForm
+                      method={recoverType}
+                      identity={identity}
+                      goPrev={() => this.setState({ signinStep: 3 })}
+                      goNext={() => this.setState({ signinStep: 0 })}
+                    />
+                  )
+                }
+
                 <p className="footer-text">
                 By doing this, i agree to{" "}
                   <a href="/terms">Terms</a> and{" "}
