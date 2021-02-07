@@ -150,9 +150,9 @@ class OTPVerification extends Component {
     const { t } = this.props;
     return (
       <Fragment>
-        <h2 className="welcome">{t("auth_welcome")}</h2>
+        <h2 className="welcome">Forgot your password?</h2>
         <p className="text-center mt-3">
-          Please verify with your {verifyMethod}.
+          Change your password with your {verifyMethod}.
         </p>
         <form action="/" id="signup-form">
           <div className="form-group">

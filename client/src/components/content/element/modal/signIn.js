@@ -126,7 +126,12 @@ class Login extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="login_modal_label">
-                  {t("auth_sign_in")}
+                  {
+                    signinStep >= 2 ? (
+                      <>Forgot your password?</>
+                    ) : 
+                    <>{t("auth_sign_in")}</>
+                  }
                 </h5>
                 <button
                   type="button"
@@ -165,7 +170,7 @@ class Login extends Component {
                       </div>
                     </div>
                     <p>
-                      <a href='#!' onClick={this.forgetPassword}>Forget your password?</a>
+                      <a href='#!' onClick={this.forgetPassword}>Forgot your password?</a>
                     </p>    
                     <button
                       type="button"
@@ -265,9 +270,10 @@ class Login extends Component {
                 {
                   signinStep === 2 && (
                     <React.Fragment>
-                      <h2 className="welcome">{t("auth_welcome")}</h2>
+                      <h2 className="welcome">Forgot your password?</h2>
                       <p className="text-center mt-3">
-                        {t("auth_how_you_want_login")}
+                        {/* {t("auth_how_you_want_login")} */}
+                        Please choose how you want to reset your password.
                       </p>
                       <div className="signin-types">
                         <div

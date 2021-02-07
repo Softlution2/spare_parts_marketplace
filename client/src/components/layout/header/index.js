@@ -198,7 +198,15 @@ class Header extends Component {
                                 <NavLink to="/sell-your-parts">Add New</NavLink>
                               </li>
                               <li>
-                                <NavLink to="/messages">Discussion</NavLink>
+                                <NavLink to="/messages">
+                                  Discussion
+                                  
+                                {this.props.chat.unreadMsgCnt > 0 && (
+                                  <span className="ml-2 badge unread-msg">
+                                    {this.props.chat.unreadMsgCnt}
+                                  </span>
+                                )}
+                                </NavLink>
                               </li>
                               <li>
                                 <NavLink to="/my-callbacks">Callbacks</NavLink>

@@ -1872,6 +1872,20 @@ p {
   overflow: hidden;
 }
 
+.unread-msg {
+  background-color: #ed0103;
+  z-index: 1;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  border: 3px solid white;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: bolder;
+  color: white;
+}
+
 #login_modal .modal-header {
   background-color: #4F71A9;
   -webkit-border-radius: 0;

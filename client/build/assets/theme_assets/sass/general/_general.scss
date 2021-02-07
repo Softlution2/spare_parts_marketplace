@@ -89,3 +89,18 @@ p{
   white-space: nowrap;
   overflow: hidden;
 }
+.unread-msg {
+  // position: absolute;
+  background-color: $danger;
+  // top: -7px;
+  // right: 63px;
+  z-index: 1;
+  border-radius: 50%;
+  border: 3px solid white;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: bolder;
+  color: white;
+}

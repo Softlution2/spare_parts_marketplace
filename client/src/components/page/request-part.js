@@ -166,9 +166,9 @@ class RequestPart extends React.Component {
                       <table>
                         <thead>
                           <tr>
-                            <td className="form-label" width={'25%'}>Part Name</td>
-                            <td className="form-label" width={'25%'}>OEM</td>
-                            <td className="form-label" width={'25%'}>Part Image</td>
+                            <td className="form-label" width={'30%'}>Part Name</td>
+                            <td className="form-label" width={'30%'}>OEM</td>
+                            <td className="form-label" width={'30%'}>Part Image</td>
                             <td></td>
                           </tr>
                         </thead>
@@ -177,22 +177,23 @@ class RequestPart extends React.Component {
                             parts.map((part, index) => {
                               return (
                                 <tr key={index}>
-                                  <td>
+                                  <td className="pr-4">
                                     <input type="text" className="form-control" />
                                   </td>
-                                  <td>
+                                  <td className="pr-4">
                                     <input type="text" className="form-control" />
                                   </td>
-                                  <td>
-                                    <div class="custom-file-upload">
+                                  <td className="pr-4">
+                                    <div className="custom-file-upload">
                                       <input type="file" id={`customFile${index}`} style={{display: 'none'}} />
-                                      <label for={`customFile${index}`} class="btn btn-sm btn-secondary">
-                                        <i className="la la-cloud-upload-alt" />
+                                      <label htmlFor={`customFile${index}`} className="m-0 btn btn-block btn-primary d-flex align-items-center justify-content-center">
+                                        Add Part image
+                                        <i className="la la-camera ml-3 display-3" />
                                       </label>
                                     </div>
                                   </td>
-                                  <td>
-                                    <span className="removeSocialField btn-danger" onClick={(e) => this.removePart(e, index)}>
+                                  <td className="text-center pr-4">
+                                    <span className="removeSocialField btn-warning text-white" onClick={(e) => this.removePart(e, index)}>
                                       <i className="la la-times"></i>
                                     </span>
                                   </td>
@@ -202,10 +203,11 @@ class RequestPart extends React.Component {
                           }
                         </tbody>
                       </table>
-                      <div className="form-group">
-                        <button className="btn btn-sm btn-secondary" onClick={this.addPart}>
+                      <div className="form-group mt-3">
+                        <a href="#!" onClick={this.addPart} className="text-primary" style={{textDecoration: 'underline'}}>
+                          <i className="la la-plus-circle mr-2"></i>
                           Add More Parts
-                        </button>
+                        </a>
                       </div>
                     </form>
                   </div>
