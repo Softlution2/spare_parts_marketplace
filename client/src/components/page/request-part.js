@@ -229,7 +229,7 @@ class RequestPart extends React.Component {
                         // <i className="las la-spinner la-spin mr-2"></i>
                       // )
                     }
-                    Update Profile
+                    Send Request
                   </button>
                 </div>
               </div>

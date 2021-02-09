@@ -132,7 +132,7 @@ class SellerProfile extends Component {
                 />
                 <label
                   htmlFor="customUpload"
-                  className="btn btn-sm btn-secondary"
+                  className="btn btn-sm btn-secondary text-white"
                   onClick={this.openFileDlg}
                 >
                   Upload New Image

@@ -45,7 +45,8 @@ class PasswordForm extends Component {
       <Fragment>
         <h2 className="welcome">Forgot your password?</h2>
         <p className="text-center mt-3">
-          {t("auth_please_fill_password")}
+          {/* {t("auth_please_fill_password")} */}
+          Please enter a new password to access your account.
         </p>
         <form action="/" id="signup-form">
           <div className="form-group">

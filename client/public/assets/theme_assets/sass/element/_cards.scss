@@ -41,7 +41,8 @@
       border-radius: 2px;
       font-weight: 600;
       &.atbd_badge_new_listing{
-        @extend .bg-primary;
+        // @extend .bg-primary;
+        background-color: #F39200;
       }
       &.atbd_badge_featured{
         @extend .bg-warning;

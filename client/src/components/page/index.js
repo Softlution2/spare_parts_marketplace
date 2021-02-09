@@ -24,6 +24,7 @@ class Index extends Component {
     this.toggleSeoText = this.toggleSeoText.bind(this);
   }
   componentDidMount() {}
+  
   toggleSeoText(e) {
     e.preventDefault();
     const { seoTextExpand } = this.state;

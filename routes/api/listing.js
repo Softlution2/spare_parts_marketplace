@@ -227,7 +227,7 @@ router.post("/update", async (req, res) => {
 
 
 router.get("/get-home", (req, res) => {
-  Listing.find({ hide: false })
+  Listing.find({ hide: false }).sort("-date").limit(12)
     .populate("user")
     .exec(function (err, docs) {
       if (err) {
