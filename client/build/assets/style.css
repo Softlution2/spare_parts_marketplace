@@ -1193,34 +1193,34 @@
 }
 
 .color-secondary, .atbd_widget .atbd_widget_title a, .atbd_categorized_listings .listings > li .cate_title h4 a:hover, .atbd_categorized_listings .listings > li .directory_tag span a:hover, .atbd_contact_information_module .atbd_contact_info ul .atbd_info_title span, .atbd_review_module #client_review_list .atbd_single_review .review_content .reply, .atbd_review_form .atbd_give_review_area .atbd_notice a, .atbd_review_form #atbdp_review_form .atbd_upload_btn_wrap .atbd_upload_btn span, .default-ad-search .filter-checklist .show-link:hover, .price-range .amount, .price-range .amount-four {
-  color: #903af9;
+  color: #F39200;
 }
 
 .bg-secondary, .menu-area .author__notification_area ul li .notification_count.purch, .author__access_area ul li .author-info ul li a:hover, .range-slider .ui-slider-horizontal .ui-slider-range {
-  background: #903af9;
+  background: #F39200;
 }
 
 .iborder-secondary {
-  color: #903af9;
+  color: #F39200;
 }
 
 .outline-secondary {
-  border: 1px solid #903af9;
-  color: #903af9;
+  border: 1px solid #F39200;
+  color: #F39200;
 }
 
 .active-color-secondary label input:checked + span {
-  background: #903af9;
-  border-color: #903af9;
+  background: #F39200;
+  border-color: #F39200;
 }
 
 .circle-secondary {
-  color: #903af9;
-  background: rgba(144, 58, 249, 0.1);
+  color: #F39200;
+  background: rgba(243, 146, 0, 0.1);
 }
 
 .border-secondary {
-  border: 1px solid #903af9;
+  border: 1px solid #F39200;
 }
 
 .color-success, .atbd_listing_meta .atbd_badge_open, .atbd_author_info_widget .atbd_avatar_wrapper .atbd_name_time .review_time, .directory_open_hours ul li.atbd_today span, .pricing .pricing__features ul li > span.available:first-child, .pricing .pricing__features ul li .atbd_color-success {
@@ -1451,8 +1451,8 @@
 }
 
 .btn-shadow-secondary {
-  -webkit-box-shadow: 0 10px 20px rgba(144, 58, 249, 0.2);
-  box-shadow: 0 10px 20px rgba(144, 58, 249, 0.2);
+  -webkit-box-shadow: 0 10px 20px rgba(243, 146, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(243, 146, 0, 0.2);
 }
 
 .btn-shadow-success {
@@ -1492,9 +1492,9 @@
 }
 
 .outline-lg-secondary {
-  border: 2px solid #903af9;
+  border: 2px solid #F39200;
   background: none;
-  color: #903af9;
+  color: #F39200;
 }
 
 .outline-lg-success {
@@ -1547,12 +1547,12 @@
 }
 
 .checkbox-secondary .custom-control-label::before {
-  background: #903af9;
+  background: #F39200;
 }
 
 .checkbox-secondary .custom-control-input:checked ~ .custom-control-label::before {
-  background: #903af9;
-  border: 1px solid #903af9;
+  background: #F39200;
+  border: 1px solid #F39200;
 }
 
 .checkbox-secondary .custom-control-input:checked ~ .custom-control-label::after {
@@ -1655,8 +1655,8 @@
 }
 
 .checkbox-outline-secondary .custom-control-input:checked ~ .custom-control-label::before {
-  border: 1px solid #903af9;
-  background: #903af9;
+  border: 1px solid #F39200;
+  background: #F39200;
 }
 
 .checkbox-outline-secondary .custom-control-input:checked ~ .custom-control-label::after {
@@ -1789,14 +1789,14 @@ p {
 
 /* Gradient BG */
 .bg-gradient-ps {
-  background: #903af9;
-  background: -webkit-linear-gradient(to right, #903af9, #1d71b8);
-  background: -o-linear-gradient(to right, #903af9, #1d71b8);
-  background: -webkit-gradient(linear, left top, right top, from(#903af9), to(#1d71b8));
-  background: -webkit-linear-gradient(left, #903af9, #1d71b8);
-  background: -o-linear-gradient(left, #903af9, #1d71b8);
-  background: linear-gradient(to right, #903af9, #1d71b8);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#903af9, endColorstr=#1d71b8);
+  background: #F39200;
+  background: -webkit-linear-gradient(to right, #F39200, #1d71b8);
+  background: -o-linear-gradient(to right, #F39200, #1d71b8);
+  background: -webkit-gradient(linear, left top, right top, from(#F39200), to(#1d71b8));
+  background: -webkit-linear-gradient(left, #F39200, #1d71b8);
+  background: -o-linear-gradient(left, #F39200, #1d71b8);
+  background: linear-gradient(to right, #F39200, #1d71b8);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#F39200, endColorstr=#1d71b8);
 }
 
 .bg-gradient-pw, .pricing.atbd_pricing_special .atbd_popular_badge {
@@ -2971,9 +2971,9 @@ p {
   height: 100%;
   left: 0;
   top: 0;
-  background: -webkit-linear-gradient(45deg, rgba(29, 113, 184, 0.85), rgba(144, 58, 249, 0.85));
-  background: -o-linear-gradient(45deg, rgba(29, 113, 184, 0.85), rgba(144, 58, 249, 0.85));
-  background: linear-gradient(45deg, rgba(29, 113, 184, 0.85), rgba(144, 58, 249, 0.85));
+  background: -webkit-linear-gradient(45deg, rgba(29, 113, 184, 0.85), rgba(243, 146, 0, 0.85));
+  background: -o-linear-gradient(45deg, rgba(29, 113, 184, 0.85), rgba(243, 146, 0, 0.85));
+  background: linear-gradient(45deg, rgba(29, 113, 184, 0.85), rgba(243, 146, 0, 0.85));
   z-index: -1;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -7503,6 +7503,108 @@ p {
   margin-top: .66667rem;
 }
 
+.checkout-wrapper .checkout-order-steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0px 25px 0px 0px;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item.active .order-step-item-container .order-step-item-icon i {
+  color: #5f63f2;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item.active .order-step-item-container .order-step-item-content {
+  color: #5f63f2;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item.active .order-step-item-container:after {
+  background-image: url("img/progress-active.svg");
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item .order-step-item-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+  padding-left: 15px;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item .order-step-item-container .order-step-item-icon i {
+  font-size: 5rem;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item .order-step-item-container .order-step-item-content {
+  font-size: 1rem;
+  color: #000;
+  font-weight: bolder;
+  white-space: nowrap;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item .order-step-item-container:after {
+  position: absolute;
+  left: 100%;
+  top: calc(50% - 16px);
+  color: #333333;
+  background-image: url("img/progress.svg");
+  width: 114%;
+  height: 6px;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  content: "";
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item:last-child {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  padding-left: 20px;
+}
+
+.checkout-wrapper .checkout-order-steps .order-step-item:last-child .order-step-item-container:after {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .checkout-wrapper .checkout-order-steps {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+  .checkout-wrapper .checkout-order-steps .order-step-item {
+    padding: 0 20px;
+    margin: 10px 0;
+  }
+  .checkout-wrapper .checkout-order-steps .order-step-item .order-step-item-container {
+    width: 100%;
+  }
+  .checkout-wrapper .checkout-order-steps .order-step-item .order-step-item-container:after {
+    display: none;
+  }
+}
+
 /*****************************
 	--- MENU
 *****************************/
@@ -8570,17 +8672,17 @@ p {
 }
 
 .btn-gradient.btn-gradient-one {
-  background: -webkit-gradient(linear, left top, right top, from(#1d71b8), to(#903af9));
-  background: -webkit-linear-gradient(left, #1d71b8, #903af9);
-  background: -o-linear-gradient(left, #1d71b8, #903af9);
-  background: linear-gradient(to right, #1d71b8, #903af9);
+  background: -webkit-gradient(linear, left top, right top, from(#1d71b8), to(#F39200));
+  background: -webkit-linear-gradient(left, #1d71b8, #F39200);
+  background: -o-linear-gradient(left, #1d71b8, #F39200);
+  background: linear-gradient(to right, #1d71b8, #F39200);
 }
 
 .btn-gradient.btn-gradient-one:before {
-  background: -webkit-gradient(linear, left top, right top, from(#903af9), to(#1d71b8));
-  background: -webkit-linear-gradient(left, #903af9, #1d71b8);
-  background: -o-linear-gradient(left, #903af9, #1d71b8);
-  background: linear-gradient(to right, #903af9, #1d71b8);
+  background: -webkit-gradient(linear, left top, right top, from(#F39200), to(#1d71b8));
+  background: -webkit-linear-gradient(left, #F39200, #1d71b8);
+  background: -o-linear-gradient(left, #F39200, #1d71b8);
+  background: linear-gradient(to right, #F39200, #1d71b8);
 }
 
 .btn-gradient.btn-gradient-two {
@@ -9236,7 +9338,7 @@ p {
 
 .range-slider .ui-slider-horizontal .ui-slider-handle {
   background: #fff;
-  border: 0.33333rem solid #903af9;
+  border: 0.33333rem solid #F39200;
   -webkit-border-radius: 20rem;
           border-radius: 20rem;
   cursor: pointer;
@@ -9300,10 +9402,10 @@ p {
   border: 0 none;
   -webkit-border-radius: 0;
           border-radius: 0;
-  background: -webkit-gradient(linear, left top, right top, from(#1d71b8), to(#903af9));
-  background: -webkit-linear-gradient(left, #1d71b8, #903af9);
-  background: -o-linear-gradient(left, #1d71b8, #903af9);
-  background: linear-gradient(to right, #1d71b8, #903af9);
+  background: -webkit-gradient(linear, left top, right top, from(#1d71b8), to(#F39200));
+  background: -webkit-linear-gradient(left, #1d71b8, #F39200);
+  background: -o-linear-gradient(left, #1d71b8, #F39200);
+  background: linear-gradient(to right, #1d71b8, #F39200);
 }
 
 .blockquote.blockquote1 p {
@@ -9793,7 +9895,7 @@ p {
 }
 
 .promise-wrapper, .promise-wrapper--light {
-  background-color: #ffcc33;
+  background-color: #F39200;
   padding: 1.5rem 0 0 0;
 }
 

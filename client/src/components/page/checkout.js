@@ -6,7 +6,6 @@ import { PageBanner } from "../content/element/page-banner";
 
 import { connect } from "react-redux";
 import axios from "axios";
-import { Transection } from "../content/element/transection";
 import { getCartLength } from "../../utils";
 
 import { UpdateCart } from "../../Store/action/listingActions";
@@ -62,6 +61,44 @@ class Checkout extends Component {
 
         <section className="checkout-wrapper section-padding-strict section-bg pb-5">
           <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="checkout-order-steps">
+                  <div className="order-step-item active">
+                    <div className="order-step-item-container">
+                      <div className="order-step-item-icon">
+                        <i className="la la-user"></i>
+                      </div>
+                      <div className="order-step-item-content">
+                        Review Order
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="order-step-item">
+                    <div className="order-step-item-container">
+                      <div className="order-step-item-icon">
+                        <i className="la la-map-marked"></i>
+                      </div>
+                      <div className="order-step-item-content">
+                        Shipping Address
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="order-step-item">
+                    <div className="order-step-item-container">
+                      <div className="order-step-item-icon">
+                        <i className="la la-money-check"></i>
+                      </div>
+                      <div className="order-step-item-content">
+                        Payment Method
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="row">
               <div className="col-lg-12">
                 <div className="checkout-form">
@@ -133,7 +170,10 @@ class Checkout extends Component {
                     </div>
                     {/*<!-- ends: .checkout-table -->*/}
                   </form>
-                  <Transection price={this.state.price} />
+                  {/* <Transection price={this.state.price} /> */}
+                  <div className="text-center">
+                    <button className="btn btn-primary">Continue</button>
+                  </div>
                 </div>
                 {/*<!-- ends: .checkout-form -->*/}
               </div>

@@ -1,0 +1,88 @@
+.checkout-wrapper {
+    .checkout-order-steps {
+        display: flex;
+        margin-bottom: 20px;
+        .order-step-item {
+            flex: 1 1;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            padding: 0px 25px 0px 0px;
+            &.active {
+                .order-step-item-container {
+                    .order-step-item-icon {
+                        i {
+                            color: rgb(95, 99, 242);
+                        }
+                    }
+                    .order-step-item-content {
+                        color: rgb(95, 99, 242);
+                    }
+                    &:after {
+                        background-image: url('img/progress-active.svg');
+                    }
+                }
+            }
+            .order-step-item-container {
+                position: relative;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                width: 50%;
+                padding-left: 15px;
+
+                .order-step-item-icon {
+                    i {
+                        font-size: 5rem;
+                    }
+                }
+                .order-step-item-content {
+                    font-size: 1rem;
+                    color: $black;
+                    font-weight: bolder;
+                    white-space: nowrap;
+                }
+                &:after {
+                    position: absolute;
+                    left: 100%;
+                    top: calc(50% - 16px);
+                    color: rgb(51, 51, 51);
+                    background-image: url('img/progress.svg');
+                    width: 114%;
+                    height: 6px;
+                    background-size: cover;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-color: transparent !important;
+                    content: "";
+                }
+            }
+            &:last-child {
+                flex: none;
+                padding-left: 20px;
+                .order-step-item-container {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 760px) {
+    .checkout-wrapper {
+        .checkout-order-steps {
+            flex-flow: column;
+            .order-step-item {
+                padding: 0 20px;
+                margin: 10px 0;
+                .order-step-item-container {
+                    width: 100%;
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
