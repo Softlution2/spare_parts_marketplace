@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from "react-i18next";
 
-import { categories } from "../../../constants";
+import { categories, subCategories } from "../../../constants";
 
 const noAction = (e) => e.preventDefault();
 
@@ -23,7 +23,7 @@ class AdvSearch extends Component {
   }
 
   render() {
-    const { t, make, category } = this.props;
+    const { t, make, category, subCategory } = this.props;
     const { search } = this.state;
     const makeStr = make ? make.replaceAll("-", " ").toString() : null;
     const catObj = category
@@ -31,6 +31,7 @@ class AdvSearch extends Component {
           (e) => e.name.toLowerCase().replaceAll(" ", "-") === category
         )
       : null;
+    const subCatObj = category && subCategory ? subCategories[catObj[0].value].filter((e) => e.value.toLowerCase().replaceAll(" ", "-") === subCategory) : null;
     return (
       <Fragment>
         <div className="directory_content_area">
@@ -62,7 +63,7 @@ class AdvSearch extends Component {
                         Parts in the UAE
                       </>
                     )}
-                    {catObj && <>Find {catObj[0].value.replace("Parts", "")} Parts in the UAE</>}
+                    {catObj && <>Find {subCatObj && subCatObj[0].value} {catObj[0].value.replace("Parts", "")} Parts in the UAE</>}
                     {!makeStr && !catObj && <>Find Spare Parts in the UAE</>}
                   </h2>
                 </div>
@@ -86,7 +87,7 @@ class AdvSearch extends Component {
                 </form>
                 {!make && (
                   <p className="search-bottom-text">
-                    Search by <NavLink to="/parts-search-vin">vehicle make and mode</NavLink>, or by{" "}
+                    Search by <NavLink to="/parts-search-vin">vehicle make and model</NavLink>, or by{" "}
                     <NavLink to="/parts-search-vin">VIN number</NavLink>
                   </p>
                 )}

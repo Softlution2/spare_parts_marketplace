@@ -72,7 +72,6 @@ class AllListing extends Component {
     )
       filterQuery.make = this.props.match.params.make.replace("-", " ");
     
-    console.log(filterQuery);
     this.props.initializeListing(filterQuery);
   }
 
@@ -102,6 +101,12 @@ class AllListing extends Component {
                 this.props.match.path.includes("/spare-parts/:category") &&
                 this.props.match.params.category
                   ? this.props.match.params.category
+                  : null
+              }
+              subCategory={
+                this.props.match.path.includes("/spare-parts/:category/:subcategory") &&
+                this.props.match.params.subcategory
+                  ? this.props.match.params.subcategory
                   : null
               }
             />
