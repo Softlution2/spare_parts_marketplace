@@ -5,6 +5,7 @@ import Header from "../layout/header";
 import Footer from "../layout/footer";
 import { connect } from "react-redux";
 import Select from "react-select";
+import axios from "axios";
 
 class RequestPart extends React.Component {
   constructor(props) {
@@ -20,10 +21,42 @@ class RequestPart extends React.Component {
     }
     this.addPart = this.addPart.bind(this);
     this.removePart = this.removePart.bind(this);
+    this.getMakeList = this.getMakeList.bind(this);
+    this.handleMakeChange = this.handleMakeChange.bind(this);
   }
 
   componentDidMount() {
+    this.getMakeList();
+  }
 
+  getMakeList() {
+    axios.get("/api/listing/get-makes")
+    .then((res) => {
+      const makes = res.data.map((d) => {
+        return { label: d.name, value: d.id_car_make, _id: d._id }
+      })
+      this.setState({ makes })
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  handleMakeChange(options) {
+    if (!options) { this.setState({makes: null}); return; }
+    const make_ids = options.map((o) => {
+      return o.value;
+    });
+    axios.post("api/listing/get-models", { makes: make_ids })
+      .then((res) => {
+        const list = res.data.map((data) => {
+          return { label: data.name, value: data.id_car_model, _id: data._id }
+        });
+        // const makes = options.map((o) => o._id);
+        this.setState({ models: list });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   }
 
   addPart(e) {
@@ -49,7 +82,7 @@ class RequestPart extends React.Component {
 
 
   render() {
-    const { parts }  = this.state;
+    const { parts, makes, models }  = this.state;
     return (
       <Fragment>
         {/* Header section start */}
@@ -118,15 +151,16 @@ class RequestPart extends React.Component {
                         <label className="form-label">Car Make</label>
                         <Select
                           name="make"
-                          options={[]}
+                          options={makes}
                           isMulti={true}
+                          onChange={this.handleMakeChange}
                         />
                       </div>
                       <div className="form-group">
                         <label className="form-label">Car Model</label>
                         <Select
                           name="model"
-                          options={[]}
+                          options={models}
                           isMulti={true}
                         />
                       </div>

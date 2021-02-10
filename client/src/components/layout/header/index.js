@@ -176,58 +176,111 @@ class Header extends Component {
                                 4.5<i className="la la-star"></i>
                               </span>
                             </div>
-                            <ul className="list-unstyled">
-                              <li className="group-title">Your Account</li>
-                              <li>
-                                <NavLink to="/">Dashboard</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/my-profile">Profile</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/settings">Settings</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/faq">Help</NavLink>
-                              </li>
-                              <li className="group-title">Your Inventory</li>
-                              <li>
-                                <NavLink to="/my-listings">Listings</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/sell-your-parts">Add New</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/messages">
-                                  Discussion
-                                  
-                                {this.props.chat.unreadMsgCnt > 0 && (
-                                  <span className="ml-2 badge unread-msg">
-                                    {this.props.chat.unreadMsgCnt}
-                                  </span>
-                                )}
-                                </NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/my-callbacks">Callbacks</NavLink>
-                              </li>
-                              <li className="group-title">Your Orders</li>
-                              <li>
-                                <NavLink to="/orders">Orders</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/deliveries">Deliveries</NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/payments">Payments</NavLink>
-                              </li>
-                              <li className="log-out">
-                                <NavLink to=" " onClick={logOut}>
-                                  <i className="la la-power-off mr-2"></i>
-                                  {t("menu_signout")}
-                                </NavLink>
-                              </li>
-                            </ul>
+                            {
+                              this.props.login.role === "SELLER" && (
+                                <ul className="list-unstyled">
+                                  <li className="group-title">Your Account</li>
+                                  <li>
+                                    <NavLink to="/">Dashboard</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/my-profile">Profile</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/settings">Settings</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/faq">Help</NavLink>
+                                  </li>
+                                  <li className="group-title">Your Inventory</li>
+                                  <li>
+                                    <NavLink to="/my-listings">Listings</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/sell-your-parts">Add New</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/messages">
+                                      Discussion
+                                      
+                                    {this.props.chat.unreadMsgCnt > 0 && (
+                                      <span className="ml-2 badge unread-msg">
+                                        {this.props.chat.unreadMsgCnt}
+                                      </span>
+                                    )}
+                                    </NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/my-callbacks">Callbacks</NavLink>
+                                  </li>
+                                  <li className="group-title">Your Orders</li>
+                                  <li>
+                                    <NavLink to="/orders">Orders</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/deliveries">Deliveries</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/payments">Payments</NavLink>
+                                  </li>
+                                  <li className="log-out">
+                                    <NavLink to=" " onClick={logOut}>
+                                      <i className="la la-power-off mr-2"></i>
+                                      {t("menu_signout")}
+                                    </NavLink>
+                                  </li>
+                                </ul>
+                              )
+                            }
+                            
+                            {
+                              this.props.login.role === "BUYER" && (
+                                <ul className="list-unstyled">
+                                  <li className="group-title">Your Account</li>
+                                  <li>
+                                    <NavLink to="/">Dashboard</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/my-profile">Profile</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/settings">Settings</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/faq">Help</NavLink>
+                                  </li>
+                                  <li className="group-title">Your Messages</li>
+                                  <li>
+                                    <NavLink to="/messages">
+                                      Discussion
+                                      
+                                    {this.props.chat.unreadMsgCnt > 0 && (
+                                      <span className="ml-2 badge unread-msg">
+                                        {this.props.chat.unreadMsgCnt}
+                                      </span>
+                                    )}
+                                    </NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/quotations">Quotations</NavLink>
+                                  </li>
+                                  <li className="group-title">Your Orders</li>
+                                  <li>
+                                    <NavLink to="/orders">Orders</NavLink>
+                                  </li>
+                                  <li>
+                                    <NavLink to="/address">Addresses</NavLink>
+                                  </li>
+                                  <li className="log-out">
+                                    <NavLink to=" " onClick={logOut}>
+                                      <i className="la la-power-off mr-2"></i>
+                                      {t("menu_signout")}
+                                    </NavLink>
+                                  </li>
+                                </ul>
+                              )
+                            }
+
                           </div>
                           {/*<!-- ends: .author-info -->*/}
                         </div>

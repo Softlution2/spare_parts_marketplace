@@ -71,7 +71,6 @@ class AllListing extends Component {
       this.props.match.params.make
     )
       filterQuery.make = this.props.match.params.make.replace("-", " ");
-    
     this.props.initializeListing(filterQuery);
   }
 

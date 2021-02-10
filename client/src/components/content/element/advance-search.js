@@ -63,7 +63,7 @@ class AdvSearch extends Component {
                         Parts in the UAE
                       </>
                     )}
-                    {catObj && <>Find {subCatObj && subCatObj[0].value} {catObj[0].value.replace("Parts", "")} Parts in the UAE</>}
+                    {catObj && <>Find {`${subCatObj && subCatObj[0].label},`} {catObj[0].value.replace("Parts", "")} Parts in the UAE</>}
                     {!makeStr && !catObj && <>Find Spare Parts in the UAE</>}
                   </h2>
                 </div>

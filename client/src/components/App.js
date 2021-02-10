@@ -83,8 +83,8 @@ class App extends Component {
           <Route path="/edit-parts/:id" component={EditParts} />
           <Route path="/all-listings" component={AllListing} />
           <Route path="/spare-parts/:category">
-            <Route path="/spare-parts/:category" component={AllListing} />
-            <Route path="/spare-parts/:category/:subcategory" component={AllListing} />
+            <Route exact path="/spare-parts/:category" component={AllListing} />
+            <Route exact path="/spare-parts/:category/:subcategory" component={AllListing} />
           </Route>
           <Route path="/car-parts/:make" component={AllListing} />
           <Route path="/spare-part-details/:info" component={ListingDetails} />
