@@ -187,6 +187,9 @@ class Header extends Component {
                                     <NavLink to="/my-profile">Profile</NavLink>
                                   </li>
                                   <li>
+                                    <NavLink to="/my-store">My Store</NavLink>
+                                  </li>
+                                  <li>
                                     <NavLink to="/settings">Settings</NavLink>
                                   </li>
                                   <li>
