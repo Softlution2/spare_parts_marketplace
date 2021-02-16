@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { withTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 import { categories, subCategories } from "../../../constants";
 
@@ -75,9 +77,13 @@ class NavItem extends Component {
               </div>
             </div>
           </li>
-          <li>
-            <NavLink to="/sell-your-parts">{t("menu_sell_parts")}</NavLink>
-          </li>
+          {
+            this.props.login.role === "SELLER" && (
+              <li>
+                <NavLink to="/sell-your-parts">{t("menu_sell_parts")}</NavLink>
+              </li>
+            )
+          }
           <li>
             <NavLink to="/stores">{t("menu_sellers")}</NavLink>
           </li>
@@ -122,4 +128,17 @@ class NavItem extends Component {
   }
 }
 
-export default withTranslation()(NavItem);
+const mapStateToProps = (state) => {
+  return {
+    login: state.login,
+  };
+};
+const mapDispatchToProp = (dispatch) => {
+  return {
+  };
+};
+
+export default compose(
+  withTranslation(),
+  connect(mapStateToProps, mapDispatchToProp)
+)(NavItem);

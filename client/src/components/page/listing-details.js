@@ -19,6 +19,7 @@ import ListingStickyFooter from "../content/element/listing-sticky-footer";
 
 import { SetLoading } from "../../Store/action/listingActions";
 import { SetActiveRoom, Initialize } from "../../Store/action/chatActions";
+import { AddToCart } from "../../Store/action/listingActions";
 
 class ListingDetails extends Component {
   constructor(props) {
@@ -159,7 +160,7 @@ class ListingDetails extends Component {
                   <div className="col-lg-4">
                     <div className="widget atbd_widget widget-card">
                       <div className="atbd_widget_title">
-                        <button className="btn btn-primary btn-block">
+                        <button className="btn btn-primary btn-block" onClick={(e) => this.props.addToCart(listing._id)}>
                           ADD TO CART
                         </button>
                         <h4>
@@ -323,6 +324,7 @@ const mapDispatchToProp = (dispatch) => {
     setLoading: (data) => dispatch(SetLoading(data)),
     setChatRoom: (data) => dispatch(SetActiveRoom(data)),
     chatRoomInitialize: () => dispatch(Initialize()),
+    addToCart: (data) => dispatch(AddToCart(data)),
   };
 };
 
