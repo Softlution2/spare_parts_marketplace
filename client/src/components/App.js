@@ -45,13 +45,34 @@ import Settings from "./page/settings";
 
 import "../i18n";
 
-const PrivateRoute = ({ component: Component, roles, ...rest }) => {
+const SellerPrivateRoute = ({ component: Component, roles, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => {
         const currentUser = JSON.parse(localStorage.getItem("login"));
         if (!currentUser || currentUser.role !== "SELLER") {
+          // localStorage.clear();
+          return (
+            <Redirect
+              to={{ pathname: "/register", state: { from: props.location } }}
+            />
+          );
+        }
+        // authorised so return component
+        return <Component {...props} />;
+      }}
+    />
+  )
+}
+
+const PrivateRoute = ({ component: Component, roles, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        const currentUser = JSON.parse(localStorage.getItem("login"));
+        if (!currentUser) {
           // localStorage.clear();
           return (
             <Redirect
@@ -79,7 +100,7 @@ class App extends Component {
           <Route path="/register/verify-phone" component={VerifyPhone} />
           <Route path="/register/password" component={PasswordForm} />
 
-          <PrivateRoute path="/sell-your-parts" component={AddParts} />
+          <SellerPrivateRoute path="/sell-your-parts" component={AddParts} />
           <Route path="/edit-parts/:id" component={EditParts} />
           <Route path="/all-listings" component={AllListing} />
           <Route path="/spare-parts/:category">
@@ -99,7 +120,7 @@ class App extends Component {
           <Route path="/request-part" component={RequestPart} />
 
 
-          <PrivateRoute path="/my-listings" component={MyListing} />
+          <SellerPrivateRoute path="/my-listings" component={MyListing} />
           <PrivateRoute path="/my-profile" component={MyProfile} />
           <PrivateRoute path="/settings" component={Settings} />
           <PrivateRoute path="/my-store" component={MyStore} />

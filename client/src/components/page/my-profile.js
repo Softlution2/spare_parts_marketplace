@@ -22,11 +22,13 @@ class AuthProfile extends Component {
         <PageBanner title="My Profile" />
         <section className="author-info-area section-padding-strict section-bg">
           <div className="container">
-            {this.props.login.role === "BUYER" ? (
-              <BuyerProfile />
-            ) : (
-              <SellerProfile />
-            )}
+            {
+              this.props.login.role === "BUYER" ? (
+                <BuyerProfile />
+              ) : (
+                <SellerProfile />
+              )
+            }
           </div>
         </section>
         <Footer />
