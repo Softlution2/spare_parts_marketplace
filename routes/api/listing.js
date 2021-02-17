@@ -14,6 +14,7 @@ const s3 = new AWS.S3({
 const Listing = require("../../models/Listing");
 const CarMake = require("../../models/CarMake");
 const CarModel = require("../../models/CarModel");
+const Callback = require("../../models/Callback");
 
 router.post("/initialize", async (req, res) => {
   let findQuery = {};
@@ -403,5 +404,14 @@ router.get("/set-visibility", (req, res) => {
     return res.json({message: "Success"});
   })
 });
+
+router.post("/add-callback", (req, res) => {
+  const newCall = new Callback({
+    ...req.body
+  });
+  newCall.save();
+  return res.json({message: "success"});
+});
+
 
 module.exports = router;

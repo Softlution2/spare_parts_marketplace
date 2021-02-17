@@ -7,6 +7,7 @@ import { withTranslation } from "react-i18next";
 import SimpleReactValidator from "simple-react-validator";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import Modal from "react-awesome-modal";
+import { ToastContainer } from 'react-toastify';
 
 import PreHeader from "../layout/pre-header";
 import Header from "../layout/header";
@@ -34,6 +35,7 @@ class ListingDetails extends Component {
     this.getListing = this.getListing.bind(this);
     this.startChat = this.startChat.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   startChat(e) {
@@ -303,11 +305,12 @@ class ListingDetails extends Component {
             )}
           </section>
           <Modal visible={modalIsOpen} width="600" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-            <CallbackDetails />
+            <CallbackDetails listing_id={listing ? listing._id : null} closeModal={this.closeModal} />
           </Modal>
           <Footer />
           <ListingStickyFooter listing={listing} />
         </LoadingOverlay>
+        <ToastContainer />
       </Fragment>
     );
   }

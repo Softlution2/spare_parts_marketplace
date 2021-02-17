@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from 'react-i18next';
 import axios from "axios";
-import { LogInAc } from "../../../../Store/action/loginActions";
 import SimpleReactValidator from "simple-react-validator";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class CallbackDetails extends Component {
@@ -24,6 +23,7 @@ class CallbackDetails extends Component {
     this.handleChangeCallName = this.handleChangeCallName.bind(this);
     this.handleChangeCallPhone = this.handleChangeCallPhone.bind(this);
     this.verifyPhoneNumber = this.verifyPhoneNumber.bind(this);
+    this.requestCallback = this.requestCallback.bind(this);
   }
 
   handleChangeCallName(e) {
@@ -38,10 +38,9 @@ class CallbackDetails extends Component {
         .post(`/api/listing/add-callback`, {
           name: this.state.callbackName,
           phone: this.state.callbackPhone,
-          listing: this.state.listing._id
+          listing: this.props.listing_id
         })
         .then((res) => {
-          this.setState({modalIsOpen: false});
           toast.success("Thanks, your details has been sent to the seller", {
             position: "top-right",
             autoClose: 5000,
@@ -51,10 +50,11 @@ class CallbackDetails extends Component {
             draggable: true,
             progress: undefined,
           });
+          this.props.closeModal();
         })
         .catch((err) => {
-          this.setState({modalIsOpen: false});
           console.log(err.response);
+          this.props.closeModal();
         });
     } else {
       this.validator.showMessages();
@@ -128,7 +128,6 @@ class CallbackDetails extends Component {
             </button>
           </div>
         </form>
-        <ToastContainer />
       </Fragment>
     );
   }
@@ -140,7 +139,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProp = (dispatch) => {
   return {
-    login: (data) => dispatch(LogInAc(data)),
   };
 };
 export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProp))(CallbackDetails);
