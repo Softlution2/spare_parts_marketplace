@@ -95,10 +95,10 @@ router.post("/verify-otp-for-password", (req, res) => {
     .verificationChecks.create({ to: identify, code: code })
     .then((verification_check) => {
       if (verification_check.status === "approved") {
-        let query = identify.includes("+")
+        let query = identify.charAt(0) === '+'
           ? { phone: identify.replace("+", "") }
           : { email: identify };
-        let errMsg = identify.includes("+")
+        let errMsg = identify.charAt(0) === '+'
           ? "This phone number is not registered."
           : "This email address is not registered.";
         User.findOne(query).then((user) => {
