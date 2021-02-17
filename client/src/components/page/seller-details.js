@@ -22,6 +22,7 @@ class SellerDetails extends Component {
       loading: true,
       seller: null,
       sellerListings: [],
+      details: null,
     };
   }
   
@@ -29,8 +30,8 @@ class SellerDetails extends Component {
     this.setState({loading: true});
     axios.get("/api/users/get-seller?id=" + this.props.match.params.id)
       .then((res) => {
-        const { seller, sellerListings } = res.data;
-        this.setState({ seller, sellerListings }, () => {
+        const { seller, sellerListings, details } = res.data;
+        this.setState({ seller, sellerListings, details }, () => {
           this.setState({ loading: false });
         });
       })
@@ -41,6 +42,7 @@ class SellerDetails extends Component {
   }
 
   render() {
+    const { details } = this.state;
     return (
       <Fragment>
         {/* Header section start */}
@@ -191,6 +193,45 @@ class SellerDetails extends Component {
                   {/*<!-- ends: .widget-body -->*/}
                 </div>
                 {/*<!-- ends: .widget -->*/}
+                <div className="widget atbd_widget widget-card">
+                  <div className="atbd_widget_title">
+                    <h4><span className="la la-clock-o"></span> Business Hours</h4>
+                  </div>
+                  <div className="directory_open_hours">
+                    <ul>
+                      {
+                        details && details.opening_hours && Object.keys(details.opening_hours).map((key, index) => {
+                          let timeClass = 'atbd_open';
+                          if (key === moment().format("dddd").toLowerCase())
+                            timeClass= 'atbd_open atbd_today';
+                          if (details.opening_hours[key].clsoed === true)
+                            timeClass = 'atbd_closed';
+                          return (
+                            <li className={`${timeClass}`} key={index}>
+                              <span className="day">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                              <div className="atbd_open_close_time">
+                                {
+                                  details.opening_hours[key].clsoed === true && (
+                                    <span>Closed</span>
+                                  )
+                                }
+                                {
+                                  details.opening_hours[key].clsoed === false && details.opening_hours[key].start_time && (
+                                    <>
+                                      <span className="time">{details.opening_hours[key].start_time}</span>
+                                        - 
+                                      <span className="time">{details.opening_hours[key].start_time}</span>
+                                    </>
+                                  )
+                                }
+                              </div>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </div>
+              </div>
               </div>
               {/*<!-- ends: .col-lg-4 -->*/}
   

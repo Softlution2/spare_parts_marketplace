@@ -21,6 +21,7 @@ const twilioClient = require("twilio")(accountSid, authToken);
 // Load User model
 const User = require("../../models/User");
 const Listing = require('../../models/Listing');
+const Store = require("../../models/Store");
 
 router.post("/get-otp-by-email", (req, res) => {
   let email = req.body.email;
@@ -329,7 +330,8 @@ router.get("/get-seller", async (req, res) => {
   try {
     const seller = await User.findById(req.query.id);
     const sellerListings = await Listing.find({user: req.query.id});
-    return res.json({seller, sellerListings});
+    const details = await Store.findOne({seller: req.query.id});
+    return res.json({seller, sellerListings, details});
   } catch (err) {
     console.log(err);
     return res.status(400).json({message: "Something went wrong!"});
