@@ -16,7 +16,7 @@
     align-items: center;
     span {
       color: white;
-      font-size: 13px;
+      font-size: remy(13px);
     }
   }
   .header-right {
@@ -500,7 +500,7 @@
       }
       .access-link{
         color: rgba($dark, 0.05);
-        font-size: 15px;
+        font-size: remy(15px);
         margin: 0 5px;
         &:hover{
           @extend .color-primary;
@@ -595,7 +595,7 @@
   > a {
     font-weight: 500;
     padding: 0;
-    font-size: 16px;
+    font-size: remy(14px);
     line-height: 42px;
     transition: $transition-base;
     text-transform: capitalize;
@@ -647,18 +647,18 @@
             display: block;
             color: $primary;
             font-weight: bolder;
-            font-size: 15px;
+            font-size: remy(15px);
             padding-bottom: 0.5rem;
           }
           li {
-            font-size: 12px;
+            font-size: remy(12px);
             padding: 12px 0;
             &:before {
               display: none;
             }
             a {
               color: #3c3c3c;
-              font-size: 15px;
+              font-size: remy(15px);
               transition: all ease 0.5s;
               &.text-warning {
                 color: $warning;
@@ -709,14 +709,14 @@
       padding: 0;
       width: 30px;
       height: 30px;
-      font-size: 13px;
+      font-size: remy(13px);
       font-weight: bolder;
       color: white;
     }
     i {
       margin: 0 10px 0 5px;
       &.la-user {
-        font-size: 30px;
+        font-size: remy(30px);
         line-height: 30px;
         margin: 0;
       }
@@ -734,7 +734,7 @@
     z-index: 2;
     border-radius: 50px;
     margin-left: -70px;
-    padding: 12px 22px 12px 50px;
+    padding: 13.5px 22px 13.5px 50px;
     color: white;
     font-weight: bolder;
     img {

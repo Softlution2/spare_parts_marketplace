@@ -2405,7 +2405,7 @@ p {
 }
 
 .atbd_listing_info .atbd_listing_title {
-  font-size: 14px;
+  font-size: 0.93333rem;
   line-height: 20px;
   color: #1d71b8;
   cursor: pointer;
@@ -2525,7 +2525,7 @@ p {
 }
 
 .atbd_listing_info .rating-group span {
-  font-size: 14px;
+  font-size: 0.86667rem;
   margin-bottom: 0.5rem;
 }
 
@@ -3357,7 +3357,7 @@ p {
 
 /* footer widget styles */
 .widget .widget-title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0 0 2.46667rem 0;
 }
 
@@ -7638,7 +7638,7 @@ p {
 
 .pre-header-wrapper .header-left span {
   color: white;
-  font-size: 13px;
+  font-size: 0.86667rem;
 }
 
 .pre-header-wrapper .header-right {
@@ -8223,7 +8223,7 @@ p {
 
 .author__access_area ul li .access-link {
   color: rgba(39, 43, 65, 0.05);
-  font-size: 15px;
+  font-size: 1rem;
   margin: 0 5px;
 }
 
@@ -8320,7 +8320,7 @@ p {
 .mainmenu__menu .navbar-nav > li > a {
   font-weight: 500;
   padding: 0;
-  font-size: 16px;
+  font-size: 0.93333rem;
   line-height: 42px;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -8390,12 +8390,12 @@ p {
   display: block;
   color: #1d71b8;
   font-weight: bolder;
-  font-size: 15px;
+  font-size: 1rem;
   padding-bottom: 0.5rem;
 }
 
 .mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li {
-  font-size: 12px;
+  font-size: 0.8rem;
   padding: 12px 0;
 }
 
@@ -8405,7 +8405,7 @@ p {
 
 .mainmenu__menu .navbar-nav > li.drop-mega .mega-menu .sub-menu-list .category-list li a {
   color: #3c3c3c;
-  font-size: 15px;
+  font-size: 1rem;
   -webkit-transition: all ease 0.5s;
   -o-transition: all ease 0.5s;
   transition: all ease 0.5s;
@@ -8468,7 +8468,7 @@ p {
   padding: 0;
   width: 30px;
   height: 30px;
-  font-size: 13px;
+  font-size: 0.86667rem;
   font-weight: bolder;
   color: white;
 }
@@ -8478,7 +8478,7 @@ p {
 }
 
 .offcanvas-menu .offcanvas-menu__user i.la-user {
-  font-size: 30px;
+  font-size: 2rem;
   line-height: 30px;
   margin: 0;
 }
@@ -8502,7 +8502,7 @@ p {
   -webkit-border-radius: 50px;
           border-radius: 50px;
   margin-left: -70px;
-  padding: 12px 22px 12px 50px;
+  padding: 13.5px 22px 13.5px 50px;
   color: white;
   font-weight: bolder;
 }
@@ -9723,12 +9723,12 @@ p {
 .directory_content_area .search_title_area .title {
   color: #fff;
   line-height: 4.13333rem;
-  font-size: 2.66667rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
 .directory_content_area .search_title_area .sub_title {
-  font-size: 1.13333rem;
+  font-size: 0.93333rem;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
 }
@@ -9927,12 +9927,12 @@ p {
   color: #1e3255;
   text-align: center;
   font-weight: bolder;
-  font-size: 1rem;
+  font-size: 0.86667rem;
 }
 
 .promise-wrapper .item .message, .promise-wrapper--light .item .message {
   color: #1e3255;
-  font-size: 15px;
+  font-size: 0.86667rem;
   letter-spacing: -.5px;
   text-align: center;
   line-height: 24px;
@@ -10011,7 +10011,7 @@ p {
 .section-title h2 {
   text-transform: uppercase;
   margin: 0 0 0.86667rem;
-  font-size: 2rem;
+  font-size: 1.66667rem;
   font-weight: 700;
   line-height: 2.93333rem;
   color: #1d71b8;
@@ -10023,7 +10023,7 @@ p {
 
 .section-title p {
   margin: 0 auto;
-  font-size: 1.2rem;
+  font-size: 0.93333rem;
   width: 46.66667rem;
   color: #F39200;
 }
@@ -10218,7 +10218,7 @@ p {
       -ms-flex-pack: justify;
           justify-content: space-between;
   color: #303133;
-  font-size: 1rem;
+  font-size: .9rem;
   font-weight: 500;
   text-transform: uppercase;
 }

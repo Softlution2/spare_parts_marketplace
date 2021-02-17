@@ -78,7 +78,7 @@ class NavItem extends Component {
             </div>
           </li>
           {
-            this.props.login.role === "SELLER" && (
+            this.props.login && this.props.login.role === "SELLER" && (
               <li>
                 <NavLink to="/sell-your-parts">{t("menu_sell_parts")}</NavLink>
               </li>

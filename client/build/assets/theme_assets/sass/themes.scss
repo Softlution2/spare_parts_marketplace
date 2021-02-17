@@ -33,11 +33,11 @@
     .title{
       color: #fff;
       line-height: remy(62px);
-      font-size: remy(40px);
+      font-size: remy(30px);
       font-weight: 700;
     }
     .sub_title{
-      font-size: remy(17px);
+      font-size: remy(14px);
       color: rgba(#fff, 0.8);
       margin: 0;
     }
@@ -174,11 +174,11 @@
       color: #1e3255;
       text-align: center;
       font-weight: bolder;
-      font-size: remy(15px);
+      font-size: remy(13px);
     }
     .message {
       color: #1e3255;
-      font-size: 15px;
+      font-size: remy(13px);
       letter-spacing: -.5px;
       text-align: center;
       line-height: 24px;
@@ -242,7 +242,7 @@
   h2{
     text-transform: uppercase;
     margin: 0 0 remy(13px);
-    font-size: remy(30px);
+    font-size: remy(25px);
     font-weight: 700;
     line-height: remy(44px);
     color: $dark-blue;
@@ -252,7 +252,7 @@
   }
   p{
     margin: 0 auto;
-    font-size: remy(18px);
+    font-size: remy(14px);
     width: remy(700px);
     color: $yellow;
   }
@@ -394,7 +394,7 @@
               display: flex;
               justify-content: space-between;
               color: #303133;
-              font-size: 1rem;
+              font-size: .9rem;
               font-weight: 500;
               text-transform: uppercase;
               i {

@@ -118,7 +118,7 @@
   border: 1px solid $border-color;
   padding: remy(24px) remy(20px) remy(16px);
   .atbd_listing_title {
-    font-size: 14px;
+    font-size: remy(14px);
     line-height: 20px;
     color: $dark-blue;
     cursor: pointer;
@@ -205,7 +205,7 @@
     align-items: center;
     flex-wrap: wrap;
     span {
-      font-size: 14px;
+      font-size: remy(13px);
       margin-bottom: 0.5rem;
       &.rating-value {
         color: #272b41;
