@@ -17,6 +17,7 @@ import { ListingFetures } from "../content/element/listing-features";
 import { SellerInfo } from "../content/element/widget";
 import CallbackDetails from "../content/element/modal/callback-details";
 import ListingStickyFooter from "../content/element/listing-sticky-footer";
+import CardListingGrid from "../content/element/card/card-listing-grid";
 
 import { SetLoading } from "../../Store/action/listingActions";
 import { SetActiveRoom, Initialize } from "../../Store/action/chatActions";
@@ -30,6 +31,7 @@ class ListingDetails extends Component {
       listing_user: null,
       seller_listing: 0,
       modalIsOpen: false,
+      similarListings: null,
     };
     this.validator = new SimpleReactValidator();
     this.getListing = this.getListing.bind(this);
@@ -86,9 +88,9 @@ class ListingDetails extends Component {
     axios
       .get(`/api/listing/get?sku=${sku}`)
       .then((res) => {
-        const { listing, sellerListingCount } = res.data;
+        const { listing, sellerListingCount, similarListings } = res.data;
         let listing_user = listing.user;
-        this.setState({ listing, listing_user, seller_listing: sellerListingCount }, () => {
+        this.setState({ listing, listing_user, seller_listing: sellerListingCount, similarListings }, () => {
           this.props.setLoading(false);
         });
       })
@@ -300,6 +302,12 @@ class ListingDetails extends Component {
                       </div>
                     </div>
                   </div>
+                </div>
+                <div className="row mt-5">
+                  <div className="col-lg-12 mb-5">
+                    <h2 className="text-warning">We think you might find these products interesting</h2>
+                  </div>
+                  <CardListingGrid listings={this.state.similarListings} />
                 </div>
               </div>
             )}

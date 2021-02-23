@@ -9,8 +9,7 @@ import { numberWithCommas, stringToUrl } from "../../../../utils";
 
 class CardListingGrid extends Component {
   render() {
-    const { size } = this.props;
-    const listings = this.props.list.listing;
+    const { size, listings } = this.props;
     const { isLoading } = this.props.list;
     const className = size === 3 ? "col-lg-6 col-xl-3 col-sm-6 col-md-4" : "col-lg-4 col-sm-6";
     return (

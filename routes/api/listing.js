@@ -321,9 +321,16 @@ router.get("/get", async (req, res) => {
     let listing = await Listing.findOne({ partSKU: reSKU }).populate(
       "user"
     );
+    let similarListings = [];
+    if (listing.subCategory)
+      similarListings = await Listing.find({ _id: {'$ne': listing._id }, subCategory: listing.subCategory }).populate("user").limit(5);
+    else if (listing.category)
+      similarListings = await Listing.find({ _id: {'$ne': listing._id }, category: listing.category }).populate("user").limit(5);
+    else
+      similarListings = await Listing.find({ _id: {'$ne': listing._id }}).populate("user").limit(5);
     // let similarListing = await Car.find({ make: doc.make, _id: {'$ne':doc._id } }).populate("user_id").sort("-date").limit(6);
     let sellerListingCount = await Listing.count({ user: listing.user })
-    return res.json({ listing, sellerListingCount });
+    return res.json({ listing, sellerListingCount, similarListings });
   } catch (err) {
     console.log(err);
     return res.status(400).json({ message: "Something went wrong!" });
