@@ -69,7 +69,7 @@ class ListingStickyFooter extends Component {
             <input type="text" className="form-control qty-value" readOnly value={this.state.qty} />
             <button className="qty-btn btn" onClick={this.decrement}>-</button>
           </div>
-          <button className="btn btn-block btn-danger" onClick={this.addToCart}>
+          <button className="btn btn-block btn-warning" onClick={this.addToCart} style={{backgroundColor: '#f39200', color: 'white'}}>
             <i className="la la-shopping-cart"></i>
             Add To Cart
           </button>

@@ -125,7 +125,7 @@ class ListingDetails extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="d-flex align-items-center justify-content-between mb-5 px-5">
+                    <div className="d-flex align-items-center justify-content-around mb-5">
                       <h1>{listing.partName}</h1>
                       <h1 className="text-primary">{listing.price}AED</h1>
                     </div>

@@ -61,7 +61,7 @@ class Index extends Component {
               content={`${t("home_spare_parts_best_sellers_desc")}`}
             />
             <div className="row">
-              <div className="listing-cards-wrapper col-lg-12">
+              <div className="home-listing-cards-wrapper col-lg-12">
                 <div className="row">
                   <HomeListingGrid size={3} />
                 </div>

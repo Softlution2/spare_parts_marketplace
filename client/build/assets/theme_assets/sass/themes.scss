@@ -838,3 +838,13 @@
     margin: 0 3px;
   }
 }
+
+.home-listing-cards-wrapper {
+  .row {
+    display: flex;
+    .home-listing-grid {
+      width: 20%;
+      padding: 10px;
+    }
+  }
+}

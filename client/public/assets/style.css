@@ -5522,7 +5522,7 @@ p {
 
 .sticky-addtocart .left-content .listing-price {
   margin-right: 10px;
-  color: #ed0103;
+  color: #F39200;
   font-weight: bolder;
 }
 
@@ -5992,7 +5992,6 @@ p {
   left: 0;
   max-width: 35%;
   position: relative;
-  z-index: 4;
 }
 
 .chat-cont-left .chat-header {
@@ -8478,6 +8477,7 @@ p {
 }
 
 .offcanvas-menu .offcanvas-menu__user i.la-user {
+  padding: 0.26667rem 0;
   font-size: 2rem;
   line-height: 30px;
   margin: 0;
@@ -10813,6 +10813,17 @@ p {
   margin: 0 3px;
 }
 
+.home-listing-cards-wrapper .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.home-listing-cards-wrapper .row .home-listing-grid {
+  width: 20%;
+  padding: 10px;
+}
+
 /* Responsive CSS */
 @media (min-width: 1199px) and (max-width: 1480px) {
   .search-wrapper {
@@ -11323,6 +11334,30 @@ p {
 @media only screen and (max-width: 479px) {
   .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-name, .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-last-chat {
     max-width: 160px;
+  }
+}
+
+@media only screen and (max-width: 1198px) {
+  .home-listing-cards-wrapper .row .home-listing-grid {
+    width: 25%;
+  }
+}
+
+@media only screen and (max-width: 905px) {
+  .home-listing-cards-wrapper .row .home-listing-grid {
+    width: calc(100% / 3);
+  }
+}
+
+@media only screen and (max-width: 615px) {
+  .home-listing-cards-wrapper .row .home-listing-grid {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .home-listing-cards-wrapper .row .home-listing-grid {
+    width: 100%;
   }
 }
 
