@@ -248,3 +248,13 @@ export const SetSearchQuery = (data) => {
     return Promise.resolve();
   };
 }
+
+export const SetListings = (data) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "SET_LISTINGS",
+      data,
+    });
+    return Promise.resolve();
+  };
+}

@@ -17,7 +17,7 @@ import { ListingFetures } from "../content/element/listing-features";
 import { SellerInfo } from "../content/element/widget";
 import CallbackDetails from "../content/element/modal/callback-details";
 import ListingStickyFooter from "../content/element/listing-sticky-footer";
-import CardListingGrid from "../content/element/card/card-listing-grid";
+import CardListingGridSimilar from "../content/element/card/card-listing-grid-similar";
 
 import { SetLoading } from "../../Store/action/listingActions";
 import { SetActiveRoom, Initialize } from "../../Store/action/chatActions";
@@ -127,7 +127,7 @@ class ListingDetails extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="d-flex align-items-center justify-content-around mb-5">
+                    <div className="d-flex align-items-center justify-content-between mb-5">
                       <h1>{listing.partName}</h1>
                       <h1 className="text-primary">{listing.price}AED</h1>
                     </div>
@@ -307,7 +307,7 @@ class ListingDetails extends Component {
                   <div className="col-lg-12 mb-5">
                     <h2 className="text-warning">We think you might find these products interesting</h2>
                   </div>
-                  <CardListingGrid listings={this.state.similarListings} />
+                  <CardListingGridSimilar listings={this.state.similarListings} />
                 </div>
               </div>
             )}

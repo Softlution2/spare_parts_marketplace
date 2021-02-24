@@ -114,27 +114,6 @@ const listingReducer = (state = initState, action) => {
         listing: [],
         isLoading: false,
       };
-    // case "SET_FAVOURITE_LISTING_SUCCESS":
-    //   const data = action.data;
-    //   const {similarListing, listing, favoriteListing} = state;
-    //   let foundIndex = listing.findIndex((v) => v._id === data._id);
-    //   if (foundIndex !== -1) {
-    //     listing[foundIndex].favourite_users = data.favourite_users;
-    //   }
-    //   foundIndex = favoriteListing.findIndex((v) => v._id === data._id);
-    //   if (foundIndex !== -1) {
-    //     favoriteListing[foundIndex].favourite_users = data.favourite_users;
-    //   }
-    //   foundIndex = similarListing.findIndex((v) => v._id === data._id);
-    //   if (foundIndex !== -1) {
-    //     similarListing[foundIndex].favourite_users = data.favourite_users;
-    //   }
-    //   return {
-    //     ...state,
-    //     listing: listing,
-    //     favoriteListing: favoriteListing,
-    //     similarListing: similarListing
-    //   };
     case "SET_SIMILAR_LISTING":
       return {
         ...state,
@@ -144,6 +123,11 @@ const listingReducer = (state = initState, action) => {
       return {
         ...state,
         searchQuery: action.data
+      };
+    case "SET_LISTINGS":
+      return {
+        ...state,
+        listing: action.data
       };
     case "SET_LOADING":
       return {

@@ -41,6 +41,7 @@ import RequestPart from "./page/request-part";
 
 import MyProfile from "./page/my-profile";
 import MyStore from "./page/my-store";
+import MyDashboard from './page/my-dashboard';
 import Settings from "./page/settings";
 
 import "../i18n";
@@ -124,6 +125,7 @@ class App extends Component {
           <PrivateRoute path="/my-profile" component={MyProfile} />
           <PrivateRoute path="/settings" component={Settings} />
           <PrivateRoute path="/my-store" component={MyStore} />
+          <PrivateRoute path="/my-dashboard" component={MyDashboard} />
 
           {/* <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-callbacks" component={MyCallbacks} /> */}

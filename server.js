@@ -29,6 +29,7 @@ const listing = require("./routes/api/listing");
 const message = require("./routes/api/message");
 const chat_room = require("./routes/api/chat_room");
 const store = require("./routes/api/store");
+const info = require("./routes/api/info");
 
 app.use(cors());
 
@@ -75,6 +76,7 @@ app.use("/api/listing", listing);
 app.use("/api/message", message);
 app.use("/api/chat-rooms", chat_room);
 app.use("/api/store", store);
+app.use("/api/info", info);
 
 // Load User model
 const User = require("./models/User");

@@ -28,9 +28,14 @@ class AllListing extends Component {
   }
 
   componentDidMount() {
-    this.setState({ locationPath: this.props.location.pathname }, () => {
-      this.initialize();
+    const params = queryString.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
     });
+    if (params.api !== 'true') {
+      this.setState({ locationPath: this.props.location.pathname }, () => {
+        this.initialize();
+      });
+    }
   }
 
   componentDidUpdate() {
