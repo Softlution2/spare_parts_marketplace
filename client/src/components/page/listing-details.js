@@ -122,14 +122,14 @@ class ListingDetails extends Component {
             subCategory={listing ? listing.subCategory : ""}
           />
           {/* <PageBanner title="Listing Details"/> */}
-          <section className="directory_listiing_detail_area single_area section-bg section-padding-strict pb-5">
+          <section className="directory_listiing_detail_area single_area section-bg pt-4 pb-5">
             {listing && (
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="d-flex align-items-center justify-content-between mb-5">
+                    <div className="d-flex align-items-center justify-content-between mb-4">
                       <h1>{listing.partName}</h1>
-                      <h1 className="text-primary">{listing.price}AED</h1>
+                      <h1 className="text-warning"><small style={{fontSize: '70%'}}>AED </small>{listing.price}</h1>
                     </div>
                   </div>
                   <div className="col-lg-8">

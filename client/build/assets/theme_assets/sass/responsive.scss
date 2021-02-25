@@ -531,42 +531,32 @@
 
 @media only screen and (max-width: 1198px) {
   
-  .home-listing-cards-wrapper {
-    .row {
-      .home-listing-grid {
-        width: 25%;
-      }
+  .listing-5cards-wrapper {
+    .listing-card-grid {
+      width: 25%;
     }
   }
 }
 
 @media only screen and (max-width: 905px) {
   
-  .home-listing-cards-wrapper {
-    .row {
-      .home-listing-grid {
-        width: calc(100% / 3);
-      }
+  .listing-5cards-wrapper {
+    .listing-card-grid {
+      width: calc(100% / 3);
     }
   }
 }
 @media only screen and (max-width: 615px) {
-  
-  .home-listing-cards-wrapper {
-    .row {
-      .home-listing-grid {
-        width: 50%;
-      }
+  .listing-5cards-wrapper {
+    .listing-card-grid {
+      width: 50%;
     }
   }
 }
 @media only screen and (max-width: 420px) {
-  
-  .home-listing-cards-wrapper {
-    .row {
-      .home-listing-grid {
-        width: 100%;
-      }
+  .listing-5cards-wrapper {
+    .listing-card-grid {
+      width: 100%;
     }
   }
 }

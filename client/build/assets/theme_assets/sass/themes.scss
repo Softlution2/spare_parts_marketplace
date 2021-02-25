@@ -839,12 +839,10 @@
   }
 }
 
-.home-listing-cards-wrapper {
-  .row {
-    display: flex;
-    .home-listing-grid {
-      width: 20%;
-      padding: 10px;
-    }
+.listing-5cards-wrapper {
+  display: flex;
+  .listing-card-grid {
+    width: 20%;
+    padding: 10px;
   }
 }

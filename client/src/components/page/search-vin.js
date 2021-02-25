@@ -146,7 +146,7 @@ class SearchVin extends Component {
                   <section className="search-vin-col">
                     <h2>Find car parts for your car</h2>
                     <p>
-                      If you do not have or ifind the VIN number, then fill the
+                      If you do not have or can't find the VIN number, please fill the
                       details below
                     </p>
                     <form className="form-horizontal">
@@ -199,8 +199,9 @@ class SearchVin extends Component {
                       <button
                         className="btn btn-primary btn-block"
                         onClick={this.showCars}
+                        style={{fontSize: '1rem'}}
                       >
-                        Show Cars
+                        Show Spare Parts
                       </button>
                     </fieldset>
                   </section>

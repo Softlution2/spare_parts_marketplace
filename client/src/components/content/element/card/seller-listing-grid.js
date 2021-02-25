@@ -92,26 +92,27 @@ class SellerListingGrid extends Component {
                         </NavLink>
                       </h4>
                       <div className="rating-group">
-                        <StarRatingComponent 
-                          name="rate2" 
-                          editing={false}
-                          renderStarIcon={() => ( <i className='la la-star' /> )}
-                          renderStarIconHalf={() => ( <i className="la la-star-half-alt" style={{color: "#ffb400"}} /> )}
-                          starColor="#ffb400"
-                          emptyStarColor={"#cecece"}
-                          starCount={5}
-                          value={3.5}
-                        />
-                        <span className="rating-value">3.5</span>
-                        <span className="review-value text-muted">760 Reviews</span>
+                        <div className="d-flex">
+                          <StarRatingComponent 
+                            name="rate2" 
+                            editing={false}
+                            renderStarIcon={() => ( <i className='la la-star' /> )}
+                            renderStarIconHalf={() => ( <i className="la la-star-half-alt" style={{color: "#ffb400"}} /> )}
+                            starColor="#ffb400"
+                            emptyStarColor={"#cecece"}
+                            starCount={5}
+                            value={3.5}
+                          />
+                          <span className="rating-value">3.5</span>
+                        </div>
+                        <span className="review-value text-muted">760</span>
                       </div>
                       <div className="price-group">
                         <p className="symbol mr-1">
                           AED<span className="price">{numberWithCommas(price)}</span>
                         </p>
                         <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
-                          <i className="la la-shopping-bag"></i>
-                          Add To Cart
+                          Add
                         </button>
                       </div>
                     </div>

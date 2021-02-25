@@ -2471,11 +2471,21 @@ p {
 .atbd_listing_info .price-group {
   color: #F39200;
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .atbd_listing_info .price-group .symbol {
   font-size: .8rem;
   font-weight: bolder;
+  margin: 0;
 }
 
 .atbd_listing_info .price-group .price {
@@ -2491,9 +2501,10 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-color: #ced4da;
-  color: #343a40;
+  color: white;
   line-height: 2.5rem;
+  background-color: #F39200;
+  text-transform: uppercase;
 }
 
 .atbd_listing_info .price-group .cart-btn i {
@@ -2508,9 +2519,7 @@ p {
 }
 
 .atbd_listing_info .price-group .cart-btn:hover {
-  background-color: #1d71b8;
   color: white;
-  border-color: #1d71b8;
 }
 
 .atbd_listing_info .rating-group {
@@ -2522,6 +2531,9 @@ p {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .atbd_listing_info .rating-group span {
@@ -10813,13 +10825,13 @@ p {
   margin: 0 3px;
 }
 
-.home-listing-cards-wrapper .row {
+.listing-5cards-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.home-listing-cards-wrapper .row .home-listing-grid {
+.listing-5cards-wrapper .listing-card-grid {
   width: 20%;
   padding: 10px;
 }
@@ -11338,25 +11350,25 @@ p {
 }
 
 @media only screen and (max-width: 1198px) {
-  .home-listing-cards-wrapper .row .home-listing-grid {
+  .listing-5cards-wrapper .listing-card-grid {
     width: 25%;
   }
 }
 
 @media only screen and (max-width: 905px) {
-  .home-listing-cards-wrapper .row .home-listing-grid {
+  .listing-5cards-wrapper .listing-card-grid {
     width: calc(100% / 3);
   }
 }
 
 @media only screen and (max-width: 615px) {
-  .home-listing-cards-wrapper .row .home-listing-grid {
+  .listing-5cards-wrapper .listing-card-grid {
     width: 50%;
   }
 }
 
 @media only screen and (max-width: 420px) {
-  .home-listing-cards-wrapper .row .home-listing-grid {
+  .listing-5cards-wrapper .listing-card-grid {
     width: 100%;
   }
 }

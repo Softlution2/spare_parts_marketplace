@@ -453,7 +453,7 @@ class Listing extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="row">
+                    <div className="row listing-5cards-wrapper">
                       {listing.length ? (
                         <Fragment>
                           <ListingCardGrid size={3} />
