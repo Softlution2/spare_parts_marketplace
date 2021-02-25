@@ -2410,6 +2410,7 @@ p {
   color: #1d71b8;
   cursor: pointer;
   display: -webkit-box;
+  min-height: 40px;
 }
 
 .atbd_listing_info .vehicle-group {

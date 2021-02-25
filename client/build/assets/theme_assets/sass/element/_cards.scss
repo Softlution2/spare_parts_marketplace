@@ -123,6 +123,7 @@
     color: $dark-blue;
     cursor: pointer;
     display: -webkit-box;
+    min-height: 40px;
     a{
       @extend .color-dark;
       &:hover{
