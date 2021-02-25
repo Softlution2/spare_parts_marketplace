@@ -2410,12 +2410,6 @@ p {
   color: #1d71b8;
   cursor: pointer;
   display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .atbd_listing_info .vehicle-group {

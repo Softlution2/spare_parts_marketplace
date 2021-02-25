@@ -123,11 +123,6 @@
     color: $dark-blue;
     cursor: pointer;
     display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     a{
       @extend .color-dark;
       &:hover{
