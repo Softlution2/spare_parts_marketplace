@@ -2,3 +2,6 @@
 package-lock.json
 /uploads
 .env
+/.idea
+style.css.map
+.gitignore
