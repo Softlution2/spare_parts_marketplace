@@ -23,11 +23,19 @@ class SearchVin extends Component {
       selectedModel: null,
       selectedEngine: null,
       isLoading: false,
+      vinCode: "",
+      carIdentified: false,
+      makeFromVIN: null,
+      modelFromVIN: null,
+      engineFromVIN: null
     };
     this.handleChangeMake = this.handleChangeMake.bind(this);
     this.handleChangeModel = this.handleChangeModel.bind(this);
     this.handleChangeEngine = this.handleChangeEngine.bind(this);
     this.showCars = this.showCars.bind(this);
+    this.handleChangeVINCode = this.handleChangeVINCode.bind(this);
+    this.getVehiclesByVIN = this.getVehiclesByVIN.bind(this);
+    this.showSpareParts = this.showSpareParts.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +52,10 @@ class SearchVin extends Component {
         this.setState({ isLoading: false });
         console.log(err.response.data);
       });
+  }
+
+  handleChangeVINCode(e) {
+    this.setState({ vinCode: e.target.value });
   }
 
   handleChangeMake(option) {
@@ -108,8 +120,46 @@ class SearchVin extends Component {
       });
   }
 
+  showSpareParts() {
+    axios
+      .get(`/api/info/get-articles?carId=${this.state.engineFromVIN.carId}`)
+      .then((res) => {
+        const newListings = res.data.map((d) => {
+          return {
+            partName: `${d.mfrName} ${d.genericArticles[0].genericArticleDescription}`,
+            partSKU: "",
+            date: new Date(),
+            price: 0,
+            _id: d.mfrId,
+            pic: d.images[0].imageURL800,
+          };
+        });
+        this.props.setListings(newListings);
+        this.props.history.push("/all-listings?api=true");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  }
+  getVehiclesByVIN() {    
+    this.setState({ isLoading: true });
+    axios
+      .get(`/api/info/get-vehicles-by-vin?vinCode=${this.state.vinCode}`)
+      .then((res) => {
+        this.setState({ carIdentified: true });
+        this.setState({ makeFromVIN: res.data.matchingManufacturers.array[0] });
+        this.setState({ modelFromVIN: res.data.matchingModels.array[0] });
+        this.setState({ engineFromVIN: res.data.matchingVehicles.array[0] });
+        this.setState({ isLoading: false });
+      })
+      .catch((err) => {
+        this.setState({ isLoading: false });
+        console.log(err.response.data);
+      });
+  }
+
   render() {
-    const { makes, models, engines, isLoading } = this.state;
+    const { makes, models, engines, isLoading, makeFromVIN, modelFromVIN, engineFromVIN, carIdentified } = this.state;
     return (
       <Fragment>
         <LoadingOverlay active={isLoading} spinner text={`Loading...`}>
@@ -134,11 +184,45 @@ class SearchVin extends Component {
                         className="form-control"
                         autoComplete="off"
                         placeholder="VIN or FRAME"
+                        onChange={this.handleChangeVINCode}
                       />
                     </div>
                     <p className="ex-text">
                       For example: VIN XW8AN2NE3JH035743 or FRAME KZN185-9023353
                     </p>
+                    <button type="button" className="btn btn-block btn-primary" onClick={this.getVehiclesByVIN}>Find Car with VIN</button>
+                    {
+                      carIdentified && 
+                      (
+                        <div className="car-identified-wrap">
+                          <div className="p-3 bg-success w-100 text-light text-center h2 my-4 border-top">
+                            <i className="las la-check-square mr-1"></i>
+                            Car identified!
+                          </div>
+                          <div className="row">
+                            <div className="col-lg-3 mb-4">
+                              <span className="mr-2">Make:</span>
+                            </div>
+                            <div className="col-lg-9 mb-4">
+                              <span className="h2">{makeFromVIN?.manuName}</span>
+                            </div>
+                            <div className="col-lg-3 mb-4">
+                              <span className="mr-2">Model:</span>
+                            </div>
+                            <div className="col-lg-9 mb-4">
+                              <span className="h2">{modelFromVIN?.modelName}</span>
+                            </div>
+                            <div className="col-lg-3 mb-4">
+                              <span className="mr-2">Engine:</span>
+                            </div>
+                            <div className="col-lg-9 mb-4">
+                              <span className="h2">{engineFromVIN?.carName}</span>
+                            </div>
+                          </div>
+                          <button type="button" className="btn btn-block btn-primary" onClick={this.showSpareParts}>Show Spare Parts</button>
+                        </div>
+                      )
+                    }
                   </section>
                   <div className="separator-line">
                     <span>or</span>

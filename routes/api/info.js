@@ -65,6 +65,24 @@ router.get("/get-engines", async (req, res) => {
     });
 });
 
+router.get("/get-vehicles-by-vin", async (req, res) => {
+    request({
+        url: "https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FCW3dkknqHpPEgM3Kpt5bFq3ttZiwZJa3BhdYvx8dLk9p",
+        method: "POST",
+        body: {
+            "getVehiclesByVIN": {
+                "lang": "en",
+                "vin": req.query.vinCode,
+                "provider": 22610
+            }
+        },
+        json: true,
+      }, function (err, resp, data) {
+        if (err)
+            return res.status(400).json({message: "Something went wrong!"});
+        return res.json(data.data);
+    });
+});
 router.get("/get-articles", async (req, res) => {
     request({
         url: "https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FCW3dkknqHpPEgM3Kpt5bFq3ttZiwZJa3BhdYvx8dLk9p",
@@ -86,4 +104,6 @@ router.get("/get-articles", async (req, res) => {
         return res.json(data.articles);
     });
 });
+
+
 module.exports = router;
