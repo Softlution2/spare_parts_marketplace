@@ -60,6 +60,7 @@ class Checkout extends Component {
             }
             newListings[ind].listings.push(listing);
           }
+          console.log(listing)
           return true;
         })
         console.log(newListings);

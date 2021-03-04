@@ -73,28 +73,6 @@ class Header extends Component {
                       </div>
                     </div>
                     <div className="menu-right order-lg-2 order-sm-2 pt-5">
-                      {window.location.pathname !== "/" && (
-                        <div className="search-wrapper">
-                          <div className="nav_right_module search_module">
-                            <span className="icon-left" id="basic-addon9">
-                              <i className="la la-search"></i>
-                            </span>
-                            <div className="search_area">
-                              <form action="/all-listings">
-                                <div className="input-group input-group-light">
-                                  <input
-                                    type="text"
-                                    name="search"
-                                    className="form-control search_field top-search-field"
-                                    placeholder="What are you looking for?"
-                                    autoComplete="off"
-                                  />
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      )}
                       {this.props.login === null && (
                         <div className="author-area">
                           <div className="author__access_area">
