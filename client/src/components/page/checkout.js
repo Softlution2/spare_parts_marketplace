@@ -59,6 +59,7 @@ class Checkout extends Component {
           }
           return true;
         })
+        console.log(newListings);
         this.setState({listings: newListings});
       })
       .catch((err) => {
@@ -239,7 +240,7 @@ class Checkout extends Component {
                                   <tr>
                                     <th colSpan="6" className="p-0 transparent border-0 pb-2 pl-2">
                                       <i className="las la-store-alt mr-2"></i>
-                                      Seller: {userListings.user.details.company_name} 
+                                      Seller: {userListings.user.details?.company_name} 
                                     </th>
                                   </tr>
                                 </thead>
@@ -314,8 +315,8 @@ class Checkout extends Component {
                                           <div className="custom-control custom-checkbox">
                                             <input type="checkbox" className="custom-control-input" id="collectCheckbox" />
                                             <label className="custom-control-label" htmlFor="collectCheckbox">
-                                              <h6>{userListings.user.details.company_address}</h6>
-                                            <p className="m-0">{userListings.user.details.company_name}</p>
+                                              <h6>{userListings.user.details?.company_address}</h6>
+                                            <p className="m-0">{userListings.user.details?.company_name}</p>
                                             </label>
                                           </div>
                                           <div className="stock-status text-right text-success">
