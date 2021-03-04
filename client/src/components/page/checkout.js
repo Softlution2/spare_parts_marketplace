@@ -41,9 +41,9 @@ class Checkout extends Component {
         let newListings = new Array([]);
         let ind = 0;
         res.data.map((listing, index) => {
-          if (newListings.length > 1)
+          if (newListings.length > 0 && newListings[0].user)
           {
-            if (newListings[ind].user._id === listing.user_id) {
+            if (newListings[ind].user._id === listing.user._id) {
               newListings[ind].listings.push(listing);
             } else {
               ind++;
@@ -60,7 +60,6 @@ class Checkout extends Component {
             }
             newListings[ind].listings.push(listing);
           }
-          console.log(listing)
           return true;
         })
         console.log(newListings);
