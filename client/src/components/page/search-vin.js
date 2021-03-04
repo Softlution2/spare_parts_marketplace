@@ -102,6 +102,7 @@ class SearchVin extends Component {
     axios
       .get(`/api/info/get-articles?carId=${this.state.selectedEngine.value}`)
       .then((res) => {
+        console.log(res.data)
         const newListings = res.data.map((d) => {
           return {
             partName: `${d.mfrName} ${d.genericArticles[0].genericArticleDescription}`,
@@ -109,14 +110,14 @@ class SearchVin extends Component {
             date: new Date(),
             price: 0,
             _id: d.mfrId,
-            pic: d.images[0].imageURL800,
+            pic: d.images[0]?.imageURL800,
           };
         });
         this.props.setListings(newListings);
         this.props.history.push("/all-listings?api=true");
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   }
 

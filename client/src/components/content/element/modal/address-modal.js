@@ -4,20 +4,44 @@ import { compose } from "redux";
 import { withTranslation } from 'react-i18next';
 import axios from "axios";
 import SimpleReactValidator from "simple-react-validator";
-import PhoneInput from "react-phone-input-2";
+// import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class AddressModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: this.props.login._id
     };
+    this.validator = new SimpleReactValidator();
+    this.addNewAddress = this.addNewAddress.bind(this);
+    this.changeInputValue = this.changeInputValue.bind(this);
+    this.changeDefaultAddress = this.changeDefaultAddress.bind(this);
+  }
+  changeInputValue(e) {
+    this.setState({[e.target.name]: e.target.value});
+  }
+  changeDefaultAddress(e) {
+    this.setState({[e.target.name]: e.target.checked});
+  }
+  addNewAddress() {
+    if (!this.validator.allValid()) {
+      this.validator.showMessages();
+      this.forceUpdate();
+    }
+    axios.post("/api/address/create-user-address", this.state )
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   render() {
-    const {} = this.state;
+    // const {} = this.state;
     return (
       <Fragment>
         <form style={{padding: '2rem'}}>
@@ -26,55 +50,66 @@ class AddressModal extends Component {
           <div className="row">
             <div className="col">
               <div className="form-group">
-                <label for="firstName">First Name*</label>
-                <input type="text" className="form-control" id="firstName" placeholder="First Name" />
+                <label htmlFor="firstName">First Name*</label>
+                <input type="text" className="required form-control" id="firstName" onChange={this.changeInputValue} value={this.state.first_name} name="first_name" placeholder="First Name" />
+                {this.validator.message('first_name', this.state.first_name, 'required', { className: 'text-danger' })}
               </div>
             </div>
             <div className="col">
               <div className="form-group">
-                <label for="lastName">Last Name*</label>
-                <input type="text" className="form-control" id="lastName" placeholder="Last Name" />
+                <label htmlFor="lastName">Last Name*</label>
+                <input type="text" className="required form-control" id="lastName" onChange={this.changeInputValue} value={this.state.last_name} name="last_name" placeholder="Last Name" />
+                {this.validator.message('last_name', this.state.last_name, 'required', { className: 'text-danger' })}
               </div>
             </div>
           </div>
           <div className="form-group">
-            <label for="address">Address*</label>
-            <input type="text" className="form-control" id="address" placeholder="Address" />
+            <label htmlFor="address">Address*</label>
+            <input type="text" className="required form-control" id="address" onChange={this.changeInputValue} value={this.state.address} name="address" placeholder="Address" />
+            {this.validator.message('address', this.state.address, 'required', { className: 'text-danger' })}
           </div>
           <div className="row">
             <div className="col">
               <div className="form-group">
-                <label for="suburb">Suburb*</label>
-                <input type="text" className="form-control" id="suburb" placeholder="Suburb" />
+                <label htmlFor="suburb">Suburb*</label>
+                <input type="text" className="required form-control" id="suburb" onChange={this.changeInputValue} value={this.state.suburb} name="suburb" placeholder="Suburb" />
+                {this.validator.message('suburb', this.state.suburb, 'required', { className: 'text-danger' })}
               </div>
             </div>
             <div className="col">
               <div className="form-group">
-                <label for="state">State*</label>
-                <input type="text" className="form-control" id="state" placeholder="State" />
+                <label htmlFor="state">State*</label>
+                <input type="text" className="required form-control" id="state" onChange={this.changeInputValue} value={this.state.state} name="state" placeholder="State" />
+                {this.validator.message('state', this.state.state, 'required', { className: 'text-danger' })}
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col">
               <div className="form-group">
-                <label for="postcode">Postcode*</label>
-                <input type="text" className="form-control" id="postcode" placeholder="Postcode" />
+                <label htmlFor="postcode">Postcode*</label>
+                <input type="text" className="required form-control" id="postcode" onChange={this.changeInputValue} value={this.state.postcode} name="postcode" placeholder="Postcode" />
+                {this.validator.message('postcode', this.state.postcode, 'required', { className: 'text-danger' })}
               </div>
             </div>
             <div className="col">
               <div className="form-group">
-                <label for="country">Country</label>
-                <input type="text" className="form-control" id="country" placeholder="Country" />
+                <label htmlFor="country">Country*</label>
+                <input type="text" className="required form-control" id="country" onChange={this.changeInputValue} value={this.state.country} name="country" placeholder="Country" />
+                {this.validator.message('country', this.state.country, 'required', { className: 'text-danger' })}
               </div>
             </div>
           </div>
           <div className="custom-control custom-checkbox">
-            <input type="checkbox" className="custom-control-input" id="defaultShippingAddress" />
-            <label className="custom-control-label" for="defaultShippingAddress">Use this as the default shipping address</label>
+            <input type="checkbox" className="required custom-control-input" onChange={this.changeDefaultAddress} name="default_address" id="defaultShippingAddress" />
+            <label className="custom-control-label" htmlFor="defaultShippingAddress">Use this as the default shipping address</label>
           </div>
           <div className="form-group text-right">
-            <button className="btn btn-primary" >
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={this.addNewAddress}
+              >
               Save
             </button>
           </div>

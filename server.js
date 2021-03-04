@@ -30,6 +30,9 @@ const message = require("./routes/api/message");
 const chat_room = require("./routes/api/chat_room");
 const store = require("./routes/api/store");
 const info = require("./routes/api/info");
+const address = require("./routes/api/address");
+const order = require("./routes/api/order");
+const payment = require("./routes/api/payment");
 
 app.use(cors());
 
@@ -77,6 +80,9 @@ app.use("/api/message", message);
 app.use("/api/chat-rooms", chat_room);
 app.use("/api/store", store);
 app.use("/api/info", info);
+app.use("/api/address", address);
+app.use("/api/order", order);
+app.use("/api/payment", payment);
 
 // Load User model
 const User = require("./models/User");

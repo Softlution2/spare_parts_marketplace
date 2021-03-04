@@ -396,7 +396,10 @@ router.get("/get-featured-sellers", async (req, res) => {
 })
 
 router.post("/cart-listings", (req, res) => {
-  Listing.find({_id: {$in: req.body.listings}}, function (err, docs)  {
+  Listing.find({_id: {$in: req.body.listings}})
+  .populate(['user'])
+  .sort('user')
+  .exec(function (err, docs)  {
     if (err) {
       console.log(err);
       return res.status(400).json({message: "Something went wrong!"});

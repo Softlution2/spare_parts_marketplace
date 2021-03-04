@@ -21,21 +21,50 @@ class Checkout extends Component {
       step: 1,
       deliveryItem: 0,      
       modalIsOpen: false,
+      addresses: [],
+      deliveryAddress: null,
+      payOnCard: 0,
     };
     this.qtyDecrement = this.qtyDecrement.bind(this);
     this.qtyIncrement = this.qtyIncrement.bind(this);
     this.removeCartItem = this.removeCartItem.bind(this);
+    this.changeDeliveryAddress = this.changeDeliveryAddress.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
   componentDidMount() {
     axios.post("/api/listing/cart-listings", {listings: this.props.list.itemsInCart} )
       .then((res) => {
-        this.setState({listings: res.data});
+        let newListings = new Array([]);
+        let ind = 0;
+        res.data.map((listing, index) => {
+          if (newListings.length > 1)
+          {
+            if (newListings[ind].user._id === listing.user_id) {
+              newListings[ind].listings.push(listing);
+            } else {
+              ind++;
+              newListings[ind] = {
+                user: listing.user,
+                listings: []
+              }
+              newListings[ind].listings.push(listing);
+            }
+          } else {
+            newListings[ind] = {
+              user: listing.user,
+              listings: []
+            }
+            newListings[ind].listings.push(listing);
+          }
+          return true;
+        })
+        this.setState({listings: newListings});
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
+    this.fetchAddress()
   }
   qtyIncrement(e, id) {
     e.preventDefault();
@@ -60,10 +89,59 @@ class Checkout extends Component {
   stepForward(e, i) {
     this.setState({step: i})
   }
-  chooseDeliveryItem(e, i) {
+  fetchAddress() {
+    axios.get("/api/address/get-user-address?user_id=" + this.props.login._id)
+    .then((res) => {
+      this.setState({addresses: res.data.addresses});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  setDeliveryAddress(address) {
+    this.setState({deliveryAddress: address});
+    this.setState({deliveryItem: 1})
+  }
+  changeDeliveryAddress() {
+    this.setState({deliveryAddress: null});
+    this.setState({deliveryItem: 0})
+  }
+  chooseDeliveryItem(i) {
     this.setState({deliveryItem: i})
   }
-  
+  setPayment(pay_on_card) {
+    this.setState({payOnCard: pay_on_card})
+  }
+  placeOrder(e) {
+    let order = [];
+    this.state.listings.map((userListings, listingIndex) => {
+      let listingIDs = [];
+      userListings.listings.map((listing, index) => {
+          listingIDs.push(listing._id)
+      });
+      order.push({
+        status: "PENDING",
+        seller: userListings.user._id,
+        currency: "AED",
+        listings: listingIDs,
+        delivery_option: this.state.deliveryItem,
+        delivery_address: this.state.deliveryAddress._id,
+        pay_on_card: this.state.payOnCard,
+        payment: this.state.payOnCard ? this.state.payment._id : null,
+        total_price: this.state.price,
+        user: this.props.login._id
+      });
+      return true;
+    })
+    console.log(order)
+    axios.post("/api/order/place-an-order", order )
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   openModal() {
     this.setState({modalIsOpen: true});
   }
@@ -72,7 +150,7 @@ class Checkout extends Component {
     this.setState({modalIsOpen: false});
   }
   render() {
-    const { listings, step, deliveryItem, modalIsOpen } = this.state;
+    const { listings, step, deliveryItem, modalIsOpen, addresses, deliveryAddress } = this.state;
     let totalAmount = 0;
     return (
       <Fragment>
@@ -149,56 +227,63 @@ class Checkout extends Component {
                     (
                       <div className="checkout-table table-responsive order-review-step">
                         <h3 className="mb-4">Cart</h3>
-                        <table
-                          id="directorist-checkout-table"
-                          className="table bg-transparent"
-                        >
-                          <thead>
-                            <tr>
-                              <th colSpan="6" className="p-0 transparent border-0 pb-2 pl-2">
-                                <i className="las la-store-alt mr-2"></i>
-                                Shop: Tommy A Car Parts 
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody className="bg-white">
-                            {
-                              listings.length > 0 && listings.map((listing, index) => {
-                                totalAmount += listing.price * getCartLength(this.props.list.itemsInCart, listing._id);
-                                if (getCartLength(this.props.list.itemsInCart, listing._id) === 0) return false;
-
-                                return (
-                                  <tr key={index}>
-                                    <td width="75">
-                                      <img src={listing.pic} className="item-image" alt={listing.partName} />
-                                    </td>
-                                    <td>
-                                      <h4>{listing.partName}</h4>
-                                      <p className="text-muted"><span>item SKU</span> {listing.partSKU}</p>
-                                    </td>
-                                    <td>
-                                      <div className="d-flex justify-content-between">
-                                        <button className="btn checkout-qty" onClick={(e) => this.qtyDecrement(e, listing._id)}>-</button>
-                                        <span>
-                                          {getCartLength(this.props.list.itemsInCart, listing._id)}
-                                        </span>
-                                        <button className="btn checkout-qty" onClick={(e) => this.qtyIncrement(e, listing._id)}>+</button>
-                                        <span className="text-danger">X {listing.price}</span>
-                                      </div>
-                                    </td>
-                                    <td>{"AED " + listing.price * getCartLength(this.props.list.itemsInCart, listing._id)}</td>
-                                    <td>
-                                        <a href="#!" onClick={(e) => this.removeCartItem(e, listing._id)}>
-                                          <i className="las la-times mr-1"></i>
-                                          Remove
-                                        </a>
-                                    </td>
+                        {
+                          listings.length > 0 && listings.map((userListings, sellerIndex) => {
+                            return (
+                              <table
+                                id="directorist-checkout-table"
+                                className="table bg-transparent"
+                                key={sellerIndex}
+                              >
+                                <thead>
+                                  <tr>
+                                    <th colSpan="6" className="p-0 transparent border-0 pb-2 pl-2">
+                                      <i className="las la-store-alt mr-2"></i>
+                                      Seller: {userListings.user.details.company_name} 
+                                    </th>
                                   </tr>
-                                )
-                              })
-                            }
-                          </tbody>
-                        </table>
+                                </thead>
+                                <tbody className="bg-white">
+                                  {
+                                    userListings.listings.length > 0 && userListings.listings.map((listing, index) => {
+                                      totalAmount += listing.price * getCartLength(this.props.list.itemsInCart, listing._id);
+                                      if (getCartLength(this.props.list.itemsInCart, listing._id) === 0) return false;
+
+                                      return (
+                                        <tr key={index}>
+                                          <td width="75">
+                                            <img src={listing.pic} className="item-image" alt={listing.partName} />
+                                          </td>
+                                          <td>
+                                            <h4>{listing.partName}</h4>
+                                            <p className="text-muted"><span>item SKU</span> {listing.partSKU}</p>
+                                          </td>
+                                          <td>
+                                            <div className="d-flex justify-content-between">
+                                              <button className="btn checkout-qty" onClick={(e) => this.qtyDecrement(e, listing._id)}>-</button>
+                                              <span>
+                                                {getCartLength(this.props.list.itemsInCart, listing._id)}
+                                              </span>
+                                              <button className="btn checkout-qty" onClick={(e) => this.qtyIncrement(e, listing._id)}>+</button>
+                                              <span className="text-danger">X {listing.price}</span>
+                                            </div>
+                                          </td>
+                                          <td>{"AED " + listing.price * getCartLength(this.props.list.itemsInCart, listing._id)}</td>
+                                          <td>
+                                              <a href="#!" onClick={(e) => this.removeCartItem(e, listing._id)}>
+                                                <i className="las la-times mr-1"></i>
+                                                Remove
+                                              </a>
+                                          </td>
+                                        </tr>
+                                      )
+                                    })
+                                  }
+                                </tbody>
+                              </table>
+                            )
+                          })
+                        }
                       </div>
                     )
                   }
@@ -208,63 +293,86 @@ class Checkout extends Component {
                       <div className="shipping-step">
                         <h3>Shipping</h3>
                         <p>*indicates required fields.</p>
-                        <div className="shipping-container bg-white p-3">
-                          <h4 className="mb-4">Choose delivery or collection method</h4>
-                          <div className="shipping-content d-flex justify-content-between">
-                            <div className="shipping-box collect-box border w-50 mr-1 p-3">
-                              <h5 className="mb-4">
-                                <i className="las la-map-marker"></i>
-                                Click & Collect
-                              </h5>
-                              <div className="collect-item d-flex justify-content-between border-bottom pb-1">
-                                <div className="custom-control custom-checkbox">
-                                  <input type="checkbox" className="custom-control-input" id="collectCheckbox" />
-                                  <label className="custom-control-label" htmlFor="collectCheckbox">
-                                    <h6>55 Bond St, Sydney</h6>
-                                    <p className="m-0">NSW 2000</p>
-                                  </label>
+                        {
+                          deliveryItem === 0 &&
+                          (
+                            <div className="shipping-container bg-white p-3">
+                              <h4 className="mb-4">Choose delivery or collection method</h4>
+                              <div className="shipping-content d-flex justify-content-between">
+                                <div className="shipping-box collect-box border w-50 mr-1 p-3">
+                                  <h5 className="mb-4">
+                                    <i className="las la-map-marker"></i>
+                                    Click & Collect
+                                  </h5>
+                                  {
+                                    listings.length > 0 && listings.map((userListings, sellerIndex) => {
+                                      return (
+                                        <div
+                                          className="collect-item d-flex justify-content-between border-bottom pb-1"
+                                          key={sellerIndex}
+                                        >
+                                          <div className="custom-control custom-checkbox">
+                                            <input type="checkbox" className="custom-control-input" id="collectCheckbox" />
+                                            <label className="custom-control-label" htmlFor="collectCheckbox">
+                                              <h6>{userListings.user.details.company_address}</h6>
+                                            <p className="m-0">{userListings.user.details.company_name}</p>
+                                            </label>
+                                          </div>
+                                          <div className="stock-status text-right text-success">
+                                            <span className="d-block w-100">Instock</span>
+                                            <i className="las la-check"></i>
+                                          </div>
+                                        </div>
+                                      )
+                                    })
+                                  }
                                 </div>
-                                <div className="stock-status text-right text-success">
-                                  <span className="d-block w-100">Instock</span>
-                                  <i className="las la-check"></i>
+                                <div className="shipping-box address-box border w-50 ml-1 p-3">
+                                  <h5 className="mb-2">
+                                    <i className="las la-truck"></i>
+                                    Delivery
+                                  </h5>
+                                  <div className="address-list d-flex">
+                                  {
+                                    addresses.length > 0 && addresses.map((address, addressIndex) => {
+                                      return (
+                                        <div
+                                          className="address-item border p-3 w-50 mr-2"
+                                          key={addressIndex}
+                                        >
+                                          <span className="default-badge badge badge-light">{address.default_address && "Default"}</span>
+                                          <div className="address-row">
+                                            <div className="custom-control custom-checkbox">
+                                              <input type="checkbox" className="custom-control-input" id="deliveryAddress" onClick={(e) => this.setDeliveryAddress(address)} />
+                                              <label className="custom-control-label" htmlFor="deliveryAddress">
+                                                <p className="m-0"><small>{address.address}</small></p>
+                                                <p className="m-0"><small>{address.suburb}</small></p>
+                                                <p className="m-0"><small>{address.state} {address.postcode}</small></p>
+                                                <p className="m-0"><small>{address.country}</small></p>
+                                              </label>
+                                            </div>
+                                          </div>
+                                          <div className="address-row text-right">
+                                            <a href="#!">Edit</a>
+                                          </div>
+                                        </div>
+                                      )
+                                    })
+                                  }			 	
+                                  </div>
+                                  <div className="address-actions mt-3">
+                                    <button 
+                                      type="button" 
+                                      className="btn btn-outline-primary btn-sm" 
+                                      onClick={this.openModal}>
+                                      + Add new address
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div className="shipping-box address-box border w-50 ml-1 p-3">
-                              <h5 className="mb-2">
-                                <i className="las la-truck"></i>
-                                Delivery
-                              </h5>
-                              <div className="address-list d-flex">				 	
-                                <div className="address-item border p-3 w-50 mr-2">
-                                  <span className="default-badge badge badge-light">Default</span>
-                                  <div className="address-row">                                
-                                    <div className="custom-control custom-checkbox">
-                                      <input type="checkbox" className="custom-control-input" id="addressCheckbox" />
-                                      <label className="custom-control-label" htmlFor="addressCheckbox">
-                                        <p className="m-0"><small>Mary McDonald</small></p>
-                                        <p className="m-0"><small>101/90 Mary St, Surry Hills</small></p>
-                                        <p className="m-0"><small>New South Wales 2000</small></p>
-                                        <p className="m-0"><small>Australia</small></p>
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div className="address-row text-right">
-                                    <a href="#!">Edit</a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="address-actions mt-3">
-                                <button 
-                                  type="button" 
-                                  className="btn btn-outline-primary btn-sm" 
-                                  onClick={this.openModal}>
-                                  + Add new address
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          )
+                        }
                         {
                           deliveryItem !== 0 &&
                           (
@@ -274,39 +382,39 @@ class Checkout extends Component {
                                 <div className="delivery-item d-flex align-items-center">
                                   <div className="delivery-item-content mr-5">
                                     <h4>Delivery to:</h4>
-                                    <p className="m-0"><small>Mary McDonald</small></p>
-                                    <p className="m-0"><small>101/90 Mary St, Surry Hills</small></p>
-                                    <p className="m-0"><small>New South Wales 2000</small></p>
-                                    <p className="m-0"><small>Australia</small></p>
+                                    <p className="m-0"><small>{deliveryAddress && deliveryAddress.address}</small></p>
+                                    <p className="m-0"><small>{deliveryAddress && deliveryAddress.suburb}</small></p>
+                                    <p className="m-0"><small>{deliveryAddress && deliveryAddress.state} {deliveryAddress && deliveryAddress.postcode}</small></p>
+                                    <p className="m-0"><small>{deliveryAddress && deliveryAddress.country}</small></p>
                                   </div>
-                                  <button type="button" className="btn btn-outline-primary btn-sm h-25">Change</button>
+                                  <button type="button" className="btn btn-outline-primary btn-sm h-25" onClick={this.changeDeliveryAddress}>Change</button>
                                 </div> 
                               </div>
                               <div className="delivery-options bg-white p-4">
                                 <h4>Collection or delivery method</h4>
-                                <div className="delivery-option py-3 border-bottom d-flex">
+                                <div className="delivery-option py-3 border-bottom d-flex" onClick={(e) => this.chooseDeliveryItem(1)}>
                                   <div className="delivery-price w-25">$12.99</div>
                                   <div className="delivery-content w-75">
                                     <div className="d-flex justify-content-between">
                                       <label htmlFor="delivery-today-option">
                                       Deliver today
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-today-option" className="mr-4" value="option1" />
+                                      <input type="radio" name="delivery-option" id="delivery-today-option" className="mr-4" value={deliveryItem} />
                                     </div>
                                   </div>
                                 </div>
-                                <div className="delivery-option py-3 border-bottom d-flex">
+                                <div className="delivery-option py-3 border-bottom d-flex" onClick={(e) => this.chooseDeliveryItem(2)}>
                                   <div className="delivery-price w-25">$7.99</div>
                                   <div className="delivery-content w-75">
                                     <div className="d-flex justify-content-between">
                                       <label htmlFor="delivery-next-day-option">
                                       Deliver next day
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-next-day-option" className="mr-4" value="option1" />
+                                      <input type="radio" name="delivery-option" id="delivery-next-day-option" className="mr-4" value={deliveryItem} />
                                     </div>
                                   </div>
                                 </div>
-                                <div className="delivery-option py-3 d-flex">
+                                <div className="delivery-option py-3 d-flex" onClick={(e) => this.chooseDeliveryItem(3)}>
                                   <div className="delivery-price w-25">$5.99</div>
                                   <div className="delivery-content w-75">
                                     <div className="d-flex justify-content-between">
@@ -315,7 +423,7 @@ class Checkout extends Component {
                                         <p className="mb-1">Delivered on or before Monday, 8 March 2021</p>
                                         <p className="mb-0"><i className="las la-info-circle mr-1"></i>No shipping on Public holiday</p>
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-regular-option" className="mr-4" value="option1" />
+                                      <input type="radio" name="delivery-option" id="delivery-regular-option" className="mr-4" value={deliveryItem} />
                                     </div>
                                   </div>
                                 </div>
@@ -334,7 +442,7 @@ class Checkout extends Component {
                         <div className="payment-container bg-white p-3">
                           <h4 className="mb-4">How would you like to pay? </h4>
                           <div className="shipping-content d-flex justify-content-between">
-                            <div className="payment-method d-flex flex-column justify-content-between text-center border w-50 mr-1 p-3">                          
+                            <div className="payment-method d-flex flex-column justify-content-between text-center border w-50 mr-1 p-3" onClick={(e) => this.setPayment(0)}>
                               <div className="d-flex align-items-center justify-content-center">                          
                                 <img
                                   src="/assets/img/payment-icons/cash-on-delivery.png"
@@ -407,6 +515,10 @@ class Checkout extends Component {
                   {
                     step === 2 && 
                     ( <button className="btn btn-primary w-100 text-center mt-2" type="button" onClick={(e) => this.stepForward(e, 3)}>Make a payment</button> )
+                  }
+                  {
+                    step === 3 &&
+                    ( <button className="btn btn-primary w-100 text-center mt-2" type="button" onClick={(e) => this.placeOrder(e)}>Place an order</button> )
                   }
                 </div>
                 <div className="free-shipping-info d-flex justify-content-between p-2">
@@ -559,6 +671,7 @@ class Checkout extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    login: state.login,
     list: state.list,
   };
 };
