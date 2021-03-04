@@ -16,16 +16,36 @@ const Address = require("../../models/Address");
 router.post("/create-user-address", async (req, res) => {
     const data = req.body;
     let address
+    
     try {
         address = data;
-        address = await Address.create(address);
+        if (address.default_address) {
+          await Address.updateMany({default_address: false});
+        }
+
+        newAddress = await Address.findOne({ _id: address.id })
+        
+        if (newAddress) {          
+          newAddress.first_name = address.first_name;
+          newAddress.last_name = address.last_name;
+          newAddress.address = address.address;
+          newAddress.suburb = address.suburb;
+          newAddress.state = address.state;
+          newAddress.postcode = address.postcode;
+          newAddress.country = address.country;
+          newAddress.default_address = address.default_address;
+          newAddress.user = address.user;
+          await newAddress.save();
+        } else {
+          newAddress = await Address.create(address);
+        }
     } catch (err) {
         address = null;
         return res.status(400).json({message: 'Something went wrong!', error: err});
     }
 
     return res.json({
-        address,
+        newAddress,
     });
 })
 router.get("/get-user-address", async (req, res) => {

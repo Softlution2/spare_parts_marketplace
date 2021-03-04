@@ -38,35 +38,6 @@ class AdvSearch extends Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                <div className="search_title_area">
-                  {make && (
-                    <img
-                      src={`/assets/img/make-logos/${make}.png`}
-                      alt=""
-                      width={100}
-                      style={{ borderRadius: "15px" }}
-                    />
-                  )}
-                  {catObj && (
-                    <img
-                      src={catObj[0].img}
-                      alt="Category Icon"
-                      width={100}
-                      style={{ borderRadius: "15px", background: "white" }}
-                    />
-                  )}
-                  <h2 className="title">
-                    {makeStr && (
-                      <>
-                        Find{" "}
-                        {makeStr.charAt(0).toUpperCase() + makeStr.slice(1)}{" "}
-                        Parts in the UAE
-                      </>
-                    )}
-                    {catObj && <>Find {`${subCatObj ? subCatObj[0].label + "," : ""}`} {catObj[0].value.replace("Parts", "")} Parts in the UAE</>}
-                    {!makeStr && !catObj && <>Find Spare Parts in the UAE</>}
-                  </h2>
-                </div>
                 <form action={`/all-listings`} className="search_form">
                   <input
                     type="text"
@@ -78,10 +49,9 @@ class AdvSearch extends Component {
                   <div className="atbd_seach_button_wrapper">
                     <button
                       type="submit"
-                      className="btn btn-md btn-primary btn_search"
+                      className="btn btn-md btn-primary btn_search d-flex p-2"
                     >
                       <i className="las la-search" />
-                      {t("home_search_button_text")}
                     </button>
                   </div>
                 </form>

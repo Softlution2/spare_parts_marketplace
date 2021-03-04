@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from 'react-i18next';
-import axios from "axios";
+
 import SimpleReactValidator from "simple-react-validator";
 // import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
@@ -13,8 +13,18 @@ class AddressModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.address._id,
+      first_name: this.props.address.first_name,
+      last_name: this.props.address.last_name,
+      address: this.props.address.address,
+      suburb: this.props.address.suburb,
+      state: this.props.address.state,
+      postcode: this.props.address.postcode,
+      country: this.props.address.country,
+      default_address: this.props.address.default_address,
       user: this.props.login._id
     };
+    
     this.validator = new SimpleReactValidator();
     this.addNewAddress = this.addNewAddress.bind(this);
     this.changeInputValue = this.changeInputValue.bind(this);
@@ -30,14 +40,9 @@ class AddressModal extends Component {
     if (!this.validator.allValid()) {
       this.validator.showMessages();
       this.forceUpdate();
+      return false;
     }
-    axios.post("/api/address/create-user-address", this.state )
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    this.props.addAddress(this.state)
   }
 
   render() {
@@ -101,7 +106,7 @@ class AddressModal extends Component {
             </div>
           </div>
           <div className="custom-control custom-checkbox">
-            <input type="checkbox" className="required custom-control-input" onChange={this.changeDefaultAddress} name="default_address" id="defaultShippingAddress" />
+            <input type="checkbox" className="required custom-control-input" onChange={this.changeDefaultAddress} checked={this.state.default_address?"checked":""} name="default_address" id="defaultShippingAddress" />
             <label className="custom-control-label" htmlFor="defaultShippingAddress">Use this as the default shipping address</label>
           </div>
           <div className="form-group text-right">

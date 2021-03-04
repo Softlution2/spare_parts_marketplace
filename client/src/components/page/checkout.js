@@ -24,6 +24,9 @@ class Checkout extends Component {
       addresses: [],
       deliveryAddress: null,
       payOnCard: 0,
+      payment: {},
+      address: null,
+      order: {},
     };
     this.qtyDecrement = this.qtyDecrement.bind(this);
     this.qtyIncrement = this.qtyIncrement.bind(this);
@@ -87,8 +90,14 @@ class Checkout extends Component {
     items = items.filter((e) => e !== id);
     this.props.updateCart(items);
   }
-  stepForward(e, i) {
-    this.setState({step: i})
+  stepForward(e, i, rightStep = false) {
+    console.log(i)
+    if (!this.state.deliveryAddress && this.state.step === 2 && i > this.state.step) {
+      return false;
+    }
+    if (rightStep || this.state.step > i) {
+      this.setState({step: i});
+    }
   }
   fetchAddress() {
     axios.get("/api/address/get-user-address?user_id=" + this.props.login._id)
@@ -110,15 +119,17 @@ class Checkout extends Component {
   chooseDeliveryItem(i) {
     this.setState({deliveryItem: i})
   }
-  setPayment(pay_on_card) {
+  setPayment(e, pay_on_card) {
     this.setState({payOnCard: pay_on_card})
+    console.log(pay_on_card)
   }
   placeOrder(e) {
     let order = [];
     this.state.listings.map((userListings, listingIndex) => {
       let listingIDs = [];
       userListings.listings.map((listing, index) => {
-          listingIDs.push(listing._id)
+        listingIDs.push(listing._id)
+        return false;
       });
       order.push({
         status: "PENDING",
@@ -130,18 +141,48 @@ class Checkout extends Component {
         pay_on_card: this.state.payOnCard,
         payment: this.state.payOnCard ? this.state.payment._id : null,
         total_price: this.state.price,
-        user: this.props.login._id
+        user: this.props.login._id,
+        order_date: new Date()
       });
       return true;
     })
     console.log(order)
     axios.post("/api/order/place-an-order", order )
     .then((res) => {
+      this.setState({order: res.data.order})
+      this.stepForward(e, 4, true)
       console.log(res)
     })
     .catch((err) => {
       console.log(err);
     });
+  }
+  savePayment(payment) {
+    let newPayment = null
+    axios.post("/api/payment/save-payment", payment)
+    .then((res) => {
+      newPayment = res.data.payment;
+      this.setState({payment: newPayment})
+      this.closeModal()
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  addAddress(address) {
+    axios.post("/api/address/create-user-address", address )
+    .then((res) => {
+      console.log(res);
+      this.closeModal();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  updateAddress(address) {
+    this.setState({address: address})
+    this.setState({modalIsOpen: true});
   }
   openModal() {
     this.setState({modalIsOpen: true});
@@ -151,7 +192,11 @@ class Checkout extends Component {
     this.setState({modalIsOpen: false});
   }
   render() {
-    const { listings, step, deliveryItem, modalIsOpen, addresses, deliveryAddress } = this.state;
+    const { listings, step, deliveryItem, modalIsOpen, addresses, deliveryAddress, payOnCard, address, payment, order } = this.state;
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
+today.toUTCString();
+console.log(today);
     let totalAmount = 0;
     return (
       <Fragment>
@@ -333,19 +378,19 @@ class Checkout extends Component {
                                     <i className="las la-truck"></i>
                                     Delivery
                                   </h5>
-                                  <div className="address-list d-flex">
+                                  <div className="address-list d-flex flex-wrap">
                                   {
                                     addresses.length > 0 && addresses.map((address, addressIndex) => {
                                       return (
                                         <div
-                                          className="address-item border p-3 w-50 mr-2"
+                                          className="address-item border p-3 w-50 mr-2 mb-2"
                                           key={addressIndex}
                                         >
                                           <span className="default-badge badge badge-light">{address.default_address && "Default"}</span>
                                           <div className="address-row">
                                             <div className="custom-control custom-checkbox">
-                                              <input type="checkbox" className="custom-control-input" id="deliveryAddress" onClick={(e) => this.setDeliveryAddress(address)} />
-                                              <label className="custom-control-label" htmlFor="deliveryAddress">
+                                              <input type="checkbox" className="custom-control-input" id={"deliveryAddress"+addressIndex} onClick={(e) => this.setDeliveryAddress(address)} />
+                                              <label className="custom-control-label" htmlFor={"deliveryAddress"+addressIndex}>
                                                 <p className="m-0"><small>{address.address}</small></p>
                                                 <p className="m-0"><small>{address.suburb}</small></p>
                                                 <p className="m-0"><small>{address.state} {address.postcode}</small></p>
@@ -354,7 +399,7 @@ class Checkout extends Component {
                                             </div>
                                           </div>
                                           <div className="address-row text-right">
-                                            <a href="#!">Edit</a>
+                                            <a href="#!" onClick={(e) => this.updateAddress(address)}>Edit</a>
                                           </div>
                                         </div>
                                       )
@@ -400,7 +445,7 @@ class Checkout extends Component {
                                       <label htmlFor="delivery-today-option">
                                       Deliver today
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-today-option" className="mr-4" value={deliveryItem} />
+                                      <input type="radio" name="delivery-option" id="delivery-today-option" className="mr-4" checked={deliveryItem === 1 ? "checked" : ""} />
                                     </div>
                                   </div>
                                 </div>
@@ -411,7 +456,7 @@ class Checkout extends Component {
                                       <label htmlFor="delivery-next-day-option">
                                       Deliver next day
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-next-day-option" className="mr-4" value={deliveryItem} />
+                                      <input type="radio" name="delivery-option" id="delivery-next-day-option" className="mr-4" checked={deliveryItem === 2 ? "checked" : ""} />
                                     </div>
                                   </div>
                                 </div>
@@ -424,7 +469,7 @@ class Checkout extends Component {
                                         <p className="mb-1">Delivered on or before Monday, 8 March 2021</p>
                                         <p className="mb-0"><i className="las la-info-circle mr-1"></i>No shipping on Public holiday</p>
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-regular-option" className="mr-4" value={deliveryItem} />
+                                      <input type="radio" name="delivery-option" id="delivery-regular-option" className="mr-4" checked={deliveryItem === 3 ? "checked" : ""} />
                                     </div>
                                   </div>
                                 </div>
@@ -443,7 +488,7 @@ class Checkout extends Component {
                         <div className="payment-container bg-white p-3">
                           <h4 className="mb-4">How would you like to pay? </h4>
                           <div className="shipping-content d-flex justify-content-between">
-                            <div className="payment-method d-flex flex-column justify-content-between text-center border w-50 mr-1 p-3" onClick={(e) => this.setPayment(0)}>
+                            <div className="payment-method d-flex flex-column justify-content-between text-center border w-50 mr-1 p-3" onClick={(e) => this.setPayment(e, 0)}>
                               <div className="d-flex align-items-center justify-content-center">                          
                                 <img
                                   src="/assets/img/payment-icons/cash-on-delivery.png"
@@ -484,20 +529,25 @@ class Checkout extends Component {
                   <h3 className="mb-4">Order Summary</h3>
                   <div className="subtotal-row d-flex justify-content-between mb-3">
                     <span className="font-weight-bold">Subtotal</span>
-                    <span>$76.98</span>
+                    <span>{"AED" + totalAmount}</span>
                   </div>
                   <div className="discount-row d-flex justify-content-between mb-3">
                     <span className="font-weight-bold">Discount</span>
-                    <span className="text-danger">-$36.00</span>	
+                    <span className="text-danger">0</span>	
                   </div>
                   <div className="tax-row d-flex justify-content-between mb-3">
                     <span className="font-weight-bold">Tax</span>
-                    <span className="text-secondary">$1.52</span>	
+                    <span className="text-secondary">0</span>	
                   </div>
                   <div className="shopping d-flex flex-column pb-3 border-bottom">
                     <span className="font-weight-bold mb-3">Shipping</span>
-                    <span>Tommy A Car Parts</span>
-                    <span>Tommy B Car Parts</span>
+                    {
+                      listings.length > 0 && listings.map((userListings, sellerIndex) => {
+                          return (
+                            <span key={sellerIndex}>{userListings.user.details?.company_name}</span>
+                          )
+                      })
+                    }
                   </div>
                   <div className="input-group input-group-sm py-3 border-bottom">
                     <input type="text" className="form-control" placeholder="Gift card/Discount code" />
@@ -511,11 +561,11 @@ class Checkout extends Component {
                   </div>
                   {
                     step === 1 && 
-                    ( <button className="btn btn-primary w-100 text-center mt-2" type="button" onClick={(e) => this.stepForward(e, 2)}>Enter shipping details</button> )
+                    ( <button className="btn btn-primary w-100 text-center mt-2" type="button" onClick={(e) => this.stepForward(e, 2, true)}>Enter shipping details</button> )
                   }
                   {
                     step === 2 && 
-                    ( <button className="btn btn-primary w-100 text-center mt-2" type="button" onClick={(e) => this.stepForward(e, 3)}>Make a payment</button> )
+                    ( <button className="btn btn-primary w-100 text-center mt-2" type="button" onClick={(e) => this.stepForward(e, 3, true)}>Make a payment</button> )
                   }
                   {
                     step === 3 &&
@@ -546,74 +596,94 @@ class Checkout extends Component {
                       <div className="d-flex order-detail border-bottom p-4">
                         <div className="order-detail-box w-25">
                           <h5>Order Number</h5>
-                          <p>700194246651-1</p>
-                          <p>700194246651-2</p>
+                          {
+                            order.length && order.map((o, index) => {
+                              return (
+                                <p key={index}>{o._id}</p>
+                              )
+                            })
+                          }
                         </div>
                         <div className="order-detail-box w-25">
                           <h5>Order Date</h5>
-                          <p>202-02-24</p>
+                          <p>{order.order_date}</p>
                         </div>
                         <div className="order-detail-box w-25">
                           <h5>Shipping details Details</h5>
-                          <p>Mary McDonald</p>
-                          <p>101/90 Mary St, Surry Hills </p>
-                          <p>New South Wales 2000</p>
-                          <p>Australia </p>
-                          <p>Deliver today</p>
+                          <p className="m-0"><small>{deliveryAddress && deliveryAddress.address}</small></p>
+                          <p className="m-0"><small>{deliveryAddress && deliveryAddress.suburb}</small></p>
+                          <p className="m-0"><small>{deliveryAddress && deliveryAddress.state} {deliveryAddress && deliveryAddress.postcode}</small></p>
+                          <p className="m-0"><small>{deliveryAddress && deliveryAddress.country}</small></p>
+                          <p>{deliveryItem === 1 ? "Deliver today" : deliveryItem === 2 ? "Deliver next day" : deliveryItem === 3 ? "Regular shipping" : "nothing"}</p>
                         </div>
                         <div className="order-detail-box w-25">
                           <h5>Payment Type</h5>
-                          <p>VISA</p>
-                          <p>XXXXXXXXXXXX0206</p>
+                          <p>{!payOnCard ? "Cash on delivery" : payment.card_name}</p>
+                          <p>{payOnCard && payment.card_number}</p>
                         </div>
                       </div>
                       <div className="order-summary border-bottom p-4">
                         <h5 className="mb-4">Order summary</h5>                    
                         <div className="checkout-form">
                           <form action="/">
-                            <div className="checkout-table table-responsive order-review-step">
-                              <table
-                                id="directorist-checkout-table"
-                                className="table bg-transparent"
-                              >
-                                <thead>
-                                  <tr>
-                                    <th colSpan="6" className="p-0 transparent border-0 pb-2 pl-2">
-                                      <i className="las la-store-alt mr-2"></i>
-                                      Shop: Tommy A Car Parts 
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody className="bg-white">
-                                  {
-                                    listings.length > 0 && listings.map((listing, index) => {
-                                      totalAmount += listing.price * getCartLength(this.props.list.itemsInCart, listing._id);
-                                      if (getCartLength(this.props.list.itemsInCart, listing._id) === 0) return false;
-                                      console.log(listing)
-                                      return (
-                                        <tr key={index}>
-                                          <td width="75">
-                                            <img src={listing.pic} className="item-image" alt={listing.partName} />
-                                          </td>
-                                          <td>
-                                            <h4>{listing.partName}</h4>
-                                            <p className="text-muted"><span>item SKU</span> {listing.partSKU}</p>
-                                          </td>
-                                          <td>
-                                            <div className="d-flex justify-content-between">
-                                              <span>
-                                                {getCartLength(this.props.list.itemsInCart, listing._id)}
-                                              </span>
-                                              <span className="text-danger">X {listing.price}</span>
-                                            </div>
-                                          </td>
-                                          <td>{"AED " + listing.price * getCartLength(this.props.list.itemsInCart, listing._id)}</td>
+                            <div className="checkout-table table-responsive order-review-step">                              
+                              {
+                                listings.length > 0 && listings.map((userListings, sellerIndex) => {
+                                  return (
+                                    <table
+                                      id="directorist-checkout-table"
+                                      className="table bg-transparent"
+                                      key={sellerIndex}
+                                    >
+                                      <thead>
+                                        <tr>
+                                          <th colSpan="6" className="p-0 transparent border-0 pb-2 pl-2">
+                                            <i className="las la-store-alt mr-2"></i>
+                                            Seller: {userListings.user.details?.company_name} 
+                                          </th>
                                         </tr>
-                                      )
-                                    })
-                                  }
-                                </tbody>
-                              </table>
+                                      </thead>
+                                      <tbody className="bg-white">
+                                        {
+                                          userListings.listings.length > 0 && userListings.listings.map((listing, index) => {
+                                            totalAmount += listing.price * getCartLength(this.props.list.itemsInCart, listing._id);
+                                            if (getCartLength(this.props.list.itemsInCart, listing._id) === 0) return false;
+
+                                            return (
+                                              <tr key={index}>
+                                                <td width="75">
+                                                  <img src={listing.pic} className="item-image" alt={listing.partName} />
+                                                </td>
+                                                <td>
+                                                  <h4>{listing.partName}</h4>
+                                                  <p className="text-muted"><span>item SKU</span> {listing.partSKU}</p>
+                                                </td>
+                                                <td>
+                                                  <div className="d-flex justify-content-between">
+                                                    <button className="btn checkout-qty" onClick={(e) => this.qtyDecrement(e, listing._id)}>-</button>
+                                                    <span>
+                                                      {getCartLength(this.props.list.itemsInCart, listing._id)}
+                                                    </span>
+                                                    <button className="btn checkout-qty" onClick={(e) => this.qtyIncrement(e, listing._id)}>+</button>
+                                                    <span className="text-danger">X {listing.price}</span>
+                                                  </div>
+                                                </td>
+                                                <td>{"AED " + listing.price * getCartLength(this.props.list.itemsInCart, listing._id)}</td>
+                                                <td>
+                                                    <a href="#!" onClick={(e) => this.removeCartItem(e, listing._id)}>
+                                                      <i className="las la-times mr-1"></i>
+                                                      Remove
+                                                    </a>
+                                                </td>
+                                              </tr>
+                                            )
+                                          })
+                                        }
+                                      </tbody>
+                                    </table>
+                                  )
+                                })
+                              }
                             </div>
                           </form>
                           {/* <Transection price={this.state.price} /> */}
@@ -623,30 +693,32 @@ class Checkout extends Component {
                         <div className="price-detail w-50">
                           <div className="d-flex align-items-center justify-content-between mb-2">
                             <h6>Subtotal: </h6>
-                            <p>$76.98</p>
+                            <p>{"AED" + totalAmount}</p>
                           </div>
                           <div className="d-flex align-items-center justify-content-between mb-2">
                             <h6>Discount: </h6>
-                            <p>-$36.00</p>
+                            <p>0</p>
                           </div>
                           <div className="d-flex align-items-center justify-content-between mb-2">
                             <h6>Tax: </h6>
-                            <p>$1.98</p>
+                            <p>0</p>
                           </div>
                           <div className="d-flex flex-column">
                             <h6>Shipping: </h6>
-                            <div className="d-flex justify-content-between">
-                              <p>Tommy A Car Parts</p>
-                              <p>$12.99</p>
-                            </div>
-                            <div className="d-flex justify-content-between">
-                              <p>Tommy B Car Parts</p>
-                              <p>$12.99</p>
-                            </div>
+                            {
+                              listings.length > 0 && listings.map((userListings, sellerIndex) => {
+                                  return (
+                                    <div className="d-flex justify-content-between" key={sellerIndex}>
+                                      <p>{userListings.user.details?.company_name}</p>
+                                      <p>$12.99</p>
+                                    </div>
+                                  )
+                              })
+                            }
                           </div>
                         </div>
                         <div className="total-price w-50 d-flex justify-content-center align-items-center">
-                          <span className="h4">Total: $52.98</span>
+                          <span className="h4">Total: {"AED" + totalAmount}</span>
                         </div>
                       </div>
                     </div>
@@ -659,9 +731,10 @@ class Checkout extends Component {
         {/*<!-- ends: .checkout-wrapper -->*/}
         <Modal visible={modalIsOpen} width="600" effect="fadeInUp" onClickAway={() => this.closeModal()}>
           {
-            step === 2 ?
-            ( <AddressModal closeModal={this.closeModal} /> ) :
-            ( <PaymentMethodModal closeModal={this.closeModal} />  )
+            step === 2 && address ?
+            ( <AddressModal closeModal={this.closeModal} addAddress={this.addAddress} address={address} /> ) :
+            step === 3 &&
+            ( <PaymentMethodModal closeModal={this.closeModal} savePayment={this.savePayment} payment={payment} />  )
           }
         </Modal>
         <Footer />

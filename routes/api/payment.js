@@ -17,7 +17,7 @@ router.post("/save-payment", async (req, res) => {
     const data = req.body;
     
     try {
-        payment = await Payment.insertMany(data);
+        payment = await Payment.create(data);
     } catch (err) {
         payment = null;
         return res.status(400).json({message: 'Something went wrong!', error: err});

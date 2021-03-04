@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from "react-i18next";
+import AdvSearch from "../../content/element/advance-search";
 import NavItem from "../navbar/navItem";
 
 import { LogOut } from "../../../Store/action/logoutAction";
@@ -25,7 +26,7 @@ class Header extends Component {
       <section className="mainmenu-wrapper">
         <div className="menu-area menu--light">
           <div className="top-menu-area">
-            <div className="container-fluid">
+            <div className="container">
               <div className="row">
                 <div className="col-lg-12">
                   <div className="menu-fullwidth">
@@ -42,8 +43,10 @@ class Header extends Component {
                       </div>
                     </div>
                     {/*<!-- ends: .logo-wrapper -->*/}
-                    <div className="menu-container order-lg-1 order-sm-0">
+                    <div className="menu-container order-lg-1 order-sm-0 pt-5">
                       <div className="d_menu">
+                      
+                        <AdvSearch />
                         <nav className="navbar navbar-expand-lg mainmenu__menu">
                           <button
                             className="navbar-toggler"
@@ -60,7 +63,7 @@ class Header extends Component {
                           </button>
                           {/*<!-- Collect the nav links, forms, and other content for toggling -->*/}
                           <div
-                            className="collapse navbar-collapse"
+                            className="collapse navbar-collapse justify-content-center"
                             id="direo-navbar-collapse"
                           >
                             <NavItem />
@@ -69,7 +72,7 @@ class Header extends Component {
                         </nav>
                       </div>
                     </div>
-                    <div className="menu-right order-lg-2 order-sm-2">
+                    <div className="menu-right order-lg-2 order-sm-2 pt-5">
                       {window.location.pathname !== "/" && (
                         <div className="search-wrapper">
                           <div className="nav_right_module search_module">
@@ -96,6 +99,7 @@ class Header extends Component {
                         <div className="author-area">
                           <div className="author__access_area">
                             <ul className="d-flex list-unstyled align-items-center">
+                              <i className="las la-user"></i>
                               <li>
                                 <a
                                   href=" "

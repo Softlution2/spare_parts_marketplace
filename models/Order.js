@@ -40,6 +40,9 @@ const OrderSchema = new Schema({
   total_price: {
     type: Number,
   },
+  order_date: {
+    type: Date,
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: "users",

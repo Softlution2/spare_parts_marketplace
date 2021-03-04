@@ -42,25 +42,27 @@ class BrowseByCategory extends Component {
                   >
                     <img src={category.img} alt={category.name} width="100%" />
                   </NavLink>
-                  <NavLink
-                    to={`/spare-parts/${category.name
-                      .toLowerCase()
-                      .replaceAll(" ", "-")}`}
-                  >
-                    {category.name}
-                  </NavLink>
-                  <span className="text-muted small text-center mt-3">
-                    {isLoading ? (
-                      <Skeleton width={150} height={15} />
-                    ) : (
-                      <>
-                        {countsPerCategory[category.value]
-                          ? countsPerCategory[category.value]
-                          : 0}{" "}
-                        car parts for sale
-                      </>
-                    )}
-                  </span>
+                  <div className="category-overlay">
+                    <NavLink
+                      to={`/spare-parts/${category.name
+                        .toLowerCase()
+                        .replaceAll(" ", "-")}`}
+                    >
+                      {category.name}
+                    </NavLink>
+                    <span className="text-muted small text-center mt-3">
+                      {isLoading ? (
+                        <Skeleton width={150} height={15} />
+                      ) : (
+                        <>
+                          {countsPerCategory[category.value]
+                            ? countsPerCategory[category.value]
+                            : 0}{" "}
+                          car parts for sale
+                        </>
+                      )}
+                    </span>
+                  </div>
                 </div>
               </div>
             );

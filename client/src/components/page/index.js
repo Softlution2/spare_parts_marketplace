@@ -6,7 +6,6 @@ import { withTranslation } from "react-i18next";
 import { SectionTitle } from "../content/element/section-title";
 import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
-import AdvSearch from "../content/element/advance-search";
 import HomeListingGrid from "../content/element/card/home-listing-grid";
 import FeaturedSellers from "../content/element/featured-sellers.js";
 import Promise from "../content/element/promise";
@@ -40,7 +39,6 @@ class Index extends Component {
           <div className="bg_image_holder">
             <img src="/assets/img/intro.jpg" alt="" />
           </div>
-          <AdvSearch />
         </section>
 
         {/* Promise section start */}

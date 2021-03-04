@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from 'react-i18next';
-import axios from "axios";
+
 import SimpleReactValidator from "simple-react-validator";
 // import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ class PaymentMethodModal extends Component {
       card_name: ''
     };
     this.validator = new SimpleReactValidator();
-    this.savePayment = this.savePayment.bind(this);
+    this.saveNewPayment = this.saveNewPayment.bind(this);
     this.changeInputValue = this.changeInputValue.bind(this);
   }
   setPaymentMethod(paymentMethod) {
@@ -24,10 +24,11 @@ class PaymentMethodModal extends Component {
     console.log(e.target.value);
     this.setState({[e.target.name]: e.target.value});
   }
-  savePayment() {
+  saveNewPayment() {
     if (!this.validator.allValid()) {
       this.validator.showMessages();
       this.forceUpdate();
+      return false;
     }
     let payment = {
       card_name: this.state.card_name,
@@ -37,13 +38,7 @@ class PaymentMethodModal extends Component {
       security_code: this.state.security_code,
       user: this.props.login._id
     };
-    axios.post("/api/payment/save-payment", payment)
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    this.props.savePayment(payment)
   }
 
   render() {
@@ -103,7 +98,7 @@ class PaymentMethodModal extends Component {
             </div>
           </div>
           <div className="form-group text-right">
-            <button className="btn btn-primary" type="button" onClick={this.savePayment} >
+            <button className="btn btn-primary" type="button" onClick={this.saveNewPayment} >
               Save
             </button>
           </div>
