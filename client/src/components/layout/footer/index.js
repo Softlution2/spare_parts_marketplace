@@ -11,8 +11,8 @@ class Footer extends Component {
     const { t } = this.props;
     return (
       <Fragment>
-        <footer className="footer-three footer-grey p-top-60">
-          <div className="footer-top p-bottom-25">
+        <footer className="footer-three footer-grey">
+          <div className="footer-top p-bottom-25 p-top-60">
             <div className="container">
               <div className="row">
                 <div className="col-lg-3 col-sm-6">

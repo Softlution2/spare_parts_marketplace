@@ -89,35 +89,38 @@ class HomeListingGrid extends Component {
                         </ul>
                       </div>
                     </figure>
-                    <div className="atbd_listing_info">
-                      <h4 className="atbd_listing_title mb-2">
-                        <NavLink to={`/buy-spare-parts/${link}`}>
-                          {title}
-                        </NavLink>
-                      </h4>
-                      <div className="rating-group">
-                        <div className="d-flex">
-                          <StarRatingComponent 
-                            name="rate2" 
-                            editing={false}
-                            renderStarIcon={() => ( <i className='la la-star' /> )}
-                            renderStarIconHalf={() => ( <i className="la la-star-half-alt" style={{color: "#ffb400"}} /> )}
-                            starColor="#ffb400"
-                            emptyStarColor={"#cecece"}
-                            starCount={5}
-                            value={3.5}
-                          />
-                          <span className="rating-value">3.5</span>
+                    <div className="atbd_listing_info d-flex flex-wrap">
+                      <div className="atbd_listing_left_side w-75">
+                        <h4 className="atbd_listing_title mb-2">
+                          <NavLink to={`/buy-spare-parts/${link}`}>
+                            {title}
+                          </NavLink>
+                        </h4>
+                        <div className="rating-group d-flex flex-column align-items-start">
+                          <div className="d-flex">
+                            <StarRatingComponent 
+                              name="rate2" 
+                              editing={false}
+                              renderStarIcon={() => ( <i className='la la-star' /> )}
+                              renderStarIconHalf={() => ( <i className="la la-star-half-alt" style={{color: "#ffb400"}} /> )}
+                              starColor="#ffb400"
+                              emptyStarColor={"#cecece"}
+                              starCount={5}
+                              value={3.5}
+                            />
+                          </div>
+                          <span className="review-value text-muted">760 reviews</span>
                         </div>
-                        <span className="review-value text-muted">760</span>
                       </div>
-                      <div className="price-group">
-                        <p className="symbol mr-1">
-                          AED<span className="price">{numberWithCommas(price)}</span>
-                        </p>
-                        <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
-                          Add
-                        </button>
+                      <div className="atbd_listing_right_side w-25">                      
+                        <div className="price-group d-flex flex-column h-100">
+                          <p className="symbol mr-1">
+                            AED<span className="price">{numberWithCommas(price)}</span>
+                          </p>
+                          <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
+                            Add
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </article>

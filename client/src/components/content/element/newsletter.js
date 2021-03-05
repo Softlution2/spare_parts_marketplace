@@ -7,7 +7,7 @@ class Newsletter extends Component {
   render() {
     return (
       <Fragment>
-        <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <div>
           <form>
             <div className="email-input">
               <input type="text" className="form-control" placeholder="Your email address" />

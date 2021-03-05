@@ -55,12 +55,6 @@ class AdvSearch extends Component {
                     </button>
                   </div>
                 </form>
-                {!make && (
-                  <p className="search-bottom-text">
-                    Search by <NavLink to="/parts-search-vin">vehicle make and model</NavLink>, or by{" "}
-                    <NavLink to="/parts-search-vin">VIN number</NavLink>
-                  </p>
-                )}
               </div>
             </div>
           </div>

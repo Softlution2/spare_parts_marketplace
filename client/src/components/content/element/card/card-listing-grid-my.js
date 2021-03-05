@@ -81,12 +81,11 @@ class CardListingGrid extends Component {
                         AED<span className="price">{numberWithCommas(price)}</span>
                       </p>
                       <p className="d-flex align-items-center">
-                        <NavLink className="btn cart-btn mr-2" to={`/edit-parts/${_id}`}>
+                        <NavLink className="btn cart-btn mr-2 p-1" to={`/edit-parts/${_id}`} title="Edit" >
                           <i className="la la-pencil"></i>
-                          Edit
                         </NavLink>
-                        <button className="btn cart-btn" onClick={(e) => this.props.setVisibility(_id, hide && hide === true ? true : false)}>
-                          {hide && hide === true ? "Unhide" : "Hide"}
+                        <button className="btn cart-btn p-1" onClick={(e) => this.props.setVisibility(_id, hide && hide === true ? true : false)} title={hide && hide === true ? "Unhide" : "Hide"}>
+                          {hide && hide === true ? (<i className="las la-eye"></i>) : (<i className="las la-eye-slash"></i>)}
                         </button>
                       </p>
                     </div>

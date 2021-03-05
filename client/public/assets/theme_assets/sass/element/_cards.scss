@@ -123,8 +123,15 @@
     color: $dark-blue;
     cursor: pointer;
     display: -webkit-box;
-    min-height: 40px;
+    min-height: remy(40px);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     a{
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       @extend .color-dark;
       &:hover{
         @extend .color-primary;

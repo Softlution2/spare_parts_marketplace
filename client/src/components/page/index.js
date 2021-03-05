@@ -70,7 +70,7 @@ class Index extends Component {
         {/* Listing section end */}
 
         {/* Featured Sellers section start */}
-        <section className="browse-category-wrapper section-padding">
+        <section className="browse-category-wrapper section-padding" style={ {backgroundColor: "#dceaf3"} }>
           <div className="container">
             <SectionTitle
               title="FEATURED SELLERS"
@@ -114,14 +114,18 @@ class Index extends Component {
         {/* Browse By Make section end */}
 
         {/* Newsletter section start */}
-        <section className="newsletter section-padding">
+        <section className="newsletter section-padding pb-4" style={ {backgroundColor: "#dceaf3"} }>
           <div className="container">
-            <SectionTitle
-              title="NEWSLETTER"
-              content="And benefit from our special offers"
-            />
             <div className="row">
-              <Newsletter />
+              <div className="col-md-6">
+                <SectionTitle
+                  title="NEWSLETTER"
+                  content="And benefit from our special offers"
+                />
+                <div className="row">
+                  <Newsletter />
+                </div>
+              </div>
             </div>
           </div>
         </section>

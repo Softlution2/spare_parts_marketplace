@@ -1719,7 +1719,15 @@ p {
     color: #1d71b8;
     cursor: pointer;
     display: -webkit-box;
-    min-height: 40px; }
+    min-height: 2.6666666667rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; }
+    .atbd_listing_info .atbd_listing_title a {
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden; }
   .atbd_listing_info .vehicle-group {
     display: flex;
     align-items: center;
@@ -2752,8 +2760,10 @@ p {
 .footer-three {
   border-top: 2px solid #ececec;
   background: #00000008; }
-  .footer-three .footer-top .widget {
-    margin-bottom: 2.6666666667rem; }
+  .footer-three .footer-top {
+    background: #dceaf3b0; }
+    .footer-three .footer-top .widget {
+      margin-bottom: 2.6666666667rem; }
   .footer-three .footer-bottom {
     padding: 0; }
     .footer-three .footer-bottom .footer-bottom--content {
@@ -4328,7 +4338,7 @@ p {
   background-color: rgba(0, 0, 0, 0.75); }
 
 .newsletter {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem; }
   .newsletter p {
     margin: 0; }
@@ -4351,12 +4361,11 @@ p {
         transform: translateY(-50%); }
       .newsletter form .email-input input {
         background: white;
-        border-radius: 10px;
+        border-radius: 10px 0 0 10px;
         display: flex;
         align-items: center; }
     .newsletter form button {
-      border-radius: 10px;
-      margin-left: 1.3rem; }
+      border-radius: 0 10px 10px 0; }
 
 .blog-area {
   padding-bottom: 5rem; }
@@ -6089,6 +6098,10 @@ p {
   padding: 3rem 0;
   display: flex;
   align-items: center; }
+  .intro-wrapper .search_title_area {
+    z-index: 1; }
+    .intro-wrapper .search_title_area h2 {
+      color: white; }
 
 .directory_content_area {
   width: 100%;
@@ -6232,46 +6245,24 @@ p {
   margin-right: -15px;
   margin-left: -15px; }
   .browse-category-wrapper .category-list .category-card-wrapper {
-    max-width: 20%;
-    flex: 0 0 20%;
-    padding: 1rem; }
+    max-width: 12.5%;
+    flex: 0 0 12.5%; }
     .browse-category-wrapper .category-list .category-card-wrapper .category-card {
       position: relative;
       height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
-      box-shadow: 0 2px 4px 0 rgba(149, 149, 149, 0.5);
-      border-radius: 50%;
+      padding: 0.5rem;
       overflow: hidden; }
       .browse-category-wrapper .category-list .category-card-wrapper .category-card a {
         color: #1d71b8;
         font-weight: bolder;
         text-align: center; }
-      .browse-category-wrapper .category-list .category-card-wrapper .category-card .category-overlay {
-        position: absolute;
-        display: flex;
-        flex-flow: column;
-        width: 100%;
-        height: 100%;
-        justify-content: flex-end;
-        align-items: center;
-        background-color: rgba(121, 121, 121, 0.3);
-        transform: translateY(200px);
-        transition: all 0.3s; }
-      .browse-category-wrapper .category-list .category-card-wrapper .category-card:hover .category-overlay {
-        transform: translateY(-1rem); }
 
 .section-title {
-  text-align: center;
+  text-align: left;
   margin-bottom: 2rem; }
-  .section-title .line {
-    width: 40px;
-    height: 4px;
-    background: #1d71b8;
-    margin: 0 auto;
-    margin-bottom: 1rem; }
   .section-title h2 {
     text-transform: uppercase;
     margin: 0 0 0.8666666667rem;
@@ -6282,10 +6273,8 @@ p {
     .section-title h2 span {
       font-weight: 700; }
   .section-title p {
-    margin: 0 auto;
     font-size: 0.9333333333rem;
-    width: 46.6666666667rem;
-    color: #F39200; }
+    color: #1d71b8; }
 
 .cta .action-btns {
   display: flex;

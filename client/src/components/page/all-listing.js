@@ -7,7 +7,6 @@ import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
 import Listing from "../container/all-listing";
-import AdvSearch from "../content/element/advance-search";
 
 import {
   Initialize,
@@ -85,6 +84,14 @@ class AllListing extends Component {
 
   render() {
     const { isLoading } = this.props.list;
+    const { make, category, subCategory } = this.props;
+    const makeStr = make ? make.replaceAll("-", " ").toString() : null;
+    const catObj = category
+      ? categories.filter(
+          (e) => e.name.toLowerCase().replaceAll(" ", "-") === category
+        )
+      : null;
+    const subCatObj = category && subCategory ? subCategories[catObj[0].value].filter((e) => e.value.toLowerCase().replaceAll(" ", "-") === subCategory) : null;
     return (
       <Fragment>
         <LoadingOverlay active={isLoading} spinner text="Loading listing...">
@@ -94,26 +101,36 @@ class AllListing extends Component {
             <div className="bg_image_holder">
               <img src="/assets/img/intro.jpg" alt="banner" />
             </div>
-            <AdvSearch
-              make={
-                this.props.match.path === "/car-parts/:make" &&
-                this.props.match.params.make
-                  ? this.props.match.params.make
-                  : null
-              }
-              category={
-                this.props.match.path.includes("/spare-parts/:category") &&
-                this.props.match.params.category
-                  ? this.props.match.params.category
-                  : null
-              }
-              subCategory={
-                this.props.match.path.includes("/spare-parts/:category/:subcategory") &&
-                this.props.match.params.subcategory
-                  ? this.props.match.params.subcategory
-                  : null
-              }
-            />
+            <div className="search_title_area w-100 text-center">
+              {make && (
+                <img
+                  src={`/assets/img/make-logos/${make}.png`}
+                  alt=""
+                  width={100}
+                  style={{ borderRadius: "15px" }}
+                />
+              )}
+              {catObj && (
+                <img
+                  src={catObj[0].img}
+                  alt="Category Icon"
+                  width={100}
+                  style={{ borderRadius: "15px", background: "white" }}
+                />
+              )}
+              <h2 className="title">
+                {makeStr && (
+                  <>
+                    Find{" "}
+                    {makeStr.charAt(0).toUpperCase() + makeStr.slice(1)}{" "}
+                    Parts in the UAE
+                  </>
+                )}
+                {catObj && <>Find {`${subCatObj ? subCatObj[0].label + "," : ""}`} {catObj[0].value.replace("Parts", "")} Parts in the UAE</>}
+                {!makeStr && !catObj && <>Find Spare Parts in the UAE</>}
+              </h2>
+            </div>
+            
           </section>
           <Listing handleFilter={this.handleFilter} />
           <Footer />

@@ -1,5 +1,5 @@
 .newsletter {
-    text-align: center;
+    text-align: left;
     margin-bottom: 3rem;
     p {
         margin: 0;
@@ -24,14 +24,13 @@
             }
             input {
                 background: white;
-                border-radius: 10px;
+                border-radius: 10px 0 0 10px;
                 display: flex;
                 align-items: center;
             }
         }
         button {
-            border-radius: 10px;
-            margin-left: 1.3rem;
+            border-radius: 0 10px 10px 0;
         }
     }
 }
