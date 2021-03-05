@@ -12,6 +12,7 @@ const s3 = new AWS.S3({
 });
 
 const Order = require("../../models/Order");
+const Listing = require("../../models/Listing");
 
 router.post("/place-an-order", async (req, res) => {
     const data = req.body;
@@ -25,6 +26,22 @@ router.post("/place-an-order", async (req, res) => {
 
     return res.json({
         order,
+    });
+})
+
+router.get("/get-my-order", async (req, res) => {
+    const { user_id } = req.query;
+    
+    let orders;
+    try {
+        orders = await Order.find({ user: user_id }).populate("user").populate("seller").populate("delivery_address").populate("listings");
+    } catch (err) {
+        orders = [];
+        return res.status(400).json({message: 'Something went wrong!', error: err});
+    }    
+    
+    return res.json({
+        orders,
     });
 })
 

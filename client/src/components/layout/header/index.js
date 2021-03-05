@@ -200,7 +200,7 @@ class Header extends Component {
                                   </li>
                                   <li className="group-title">Your Orders</li>
                                   <li>
-                                    <NavLink to="/orders">Orders</NavLink>
+                                    <NavLink to="/my-order">Orders</NavLink>
                                   </li>
                                   <li>
                                     <NavLink to="/deliveries">Deliveries</NavLink>
@@ -251,7 +251,7 @@ class Header extends Component {
                                   </li>
                                   <li className="group-title">Your Orders</li>
                                   <li>
-                                    <NavLink to="/orders">Orders</NavLink>
+                                    <NavLink to="/my-order">Orders</NavLink>
                                   </li>
                                   <li>
                                     <NavLink to="/address">Addresses</NavLink>

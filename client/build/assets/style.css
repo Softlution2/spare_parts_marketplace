@@ -4856,6 +4856,13 @@ p {
     top: 0;
     width: 100%;
     background: white; }
+    .mainmenu-wrapper.sticky-menu .menu-container {
+      padding-top: 0 !important; }
+      .mainmenu-wrapper.sticky-menu .menu-container .directory_content_area {
+        display: none; }
+    .mainmenu-wrapper.sticky-menu .menu-right {
+      padding-top: 0 !important;
+      align-self: center !important; }
 
 .menu-area .top-menu-area {
   box-shadow: 0 2px 6px 0 rgba(149, 149, 149, 0.5); }

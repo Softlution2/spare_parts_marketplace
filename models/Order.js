@@ -15,10 +15,9 @@ const OrderSchema = new Schema({
   currency: {
     type: String,
   },
-  listings: {
-    type: Array,
-    required: true
-  },
+  listings: [
+    { type : Schema.Types.ObjectId, ref: 'listings' },
+  ],
   delivery_option: {
     type: Number,
     required: true

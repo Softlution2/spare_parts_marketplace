@@ -75,6 +75,19 @@
     top: 0;
     width: 100%;
     background: white;
+
+    .menu-container {
+      padding-top: 0 !important;
+
+      .directory_content_area {
+        display: none;
+      }
+    }
+
+    .menu-right {
+      padding-top: 0 !important;
+      align-self: center !important;
+    }
   }
 }
 
