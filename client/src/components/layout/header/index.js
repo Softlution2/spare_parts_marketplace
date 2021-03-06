@@ -43,7 +43,7 @@ class Header extends Component {
                       </div>
                     </div>
                     {/*<!-- ends: .logo-wrapper -->*/}
-                    <div className="menu-container order-lg-1 order-sm-0 pt-5">
+                    <div className="menu-container order-lg-1 order-sm-0 pt-3">
                       <div className="d_menu">
                       
                         <AdvSearch />
@@ -72,7 +72,7 @@ class Header extends Component {
                         </nav>
                       </div>
                     </div>
-                    <div className="menu-right order-lg-2 order-sm-2 pt-5">
+                    <div className="menu-right order-lg-2 order-sm-2 pt-3">
                       {this.props.login === null && (
                         <div className="author-area">
                           <div className="author__access_area">

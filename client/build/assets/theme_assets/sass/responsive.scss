@@ -51,11 +51,7 @@
     padding: remy(13px) 0;
     position: relative;
     .menu-container{
-      position: absolute;
-      left: 0;
-      top: 50%;
       width: 100%;
-      transform: translateY(-50%);
       .d_menu{
         padding-right: remy(30px);
       }

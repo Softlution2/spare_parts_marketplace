@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const makeList = [
-  "toyota", "infiniti", "nissan", "mazda", "isuzu", "lexus", "honda", "subaru", "suzuki", "mitsubishi"
+  "audi", "bmw", "chevrolet", "ford", "honda", "hyundai", "infiniti", "kia", "landrover", "lexus", "mazda", "mercedes", "mitsubishi", "nissan", "toyota", "volkswagen"
 ];
 
 class BrowseByMake extends Component {
@@ -21,7 +21,7 @@ class BrowseByMake extends Component {
             return (
               <div className="category-card-wrapper" key={index}>
                 <NavLink className="category-card" to={`/car-parts/${make.toLocaleLowerCase().replace(" ", "-")}`} style={{boxShadow: "none"}}>
-                  <img src={`/assets/img/make-logos/${make.toLowerCase().replace(" ", "-")}.png`} alt="" />
+                  <img src={`/assets/img/make-logos/spare-parts-${make.toLowerCase()}.svg`} alt="" />
                 </NavLink>
               </div>
             )

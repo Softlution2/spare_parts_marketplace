@@ -75,19 +75,21 @@
     top: 0;
     width: 100%;
     background: white;
-
-    .menu-container {
-      padding-top: 0 !important;
-
-      .directory_content_area {
-        display: none;
+      .menu-container {
+        .d_menu {
+          display: flex;
+          justify-content: space-between;
+          .directory_content_area {
+            padding-top: 0 !important;
+            order: 2;
+          }
+        }
       }
-    }
 
-    .menu-right {
-      padding-top: 0 !important;
-      align-self: center !important;
-    }
+      .menu-right {
+        padding-top: 0 !important;
+        align-self: center !important;
+      }
   }
 }
 
@@ -624,6 +626,7 @@
     text-transform: capitalize;
   }
   &.drop-mega {
+    position: relative;
     &:hover {
       .mega-menu {
         display: flex;
@@ -631,12 +634,11 @@
     }
     .mega-menu {
       box-shadow: 0 2px 6px 0 hsla(0,0%,58.4%,.5);
-      top: 153px;
       background: white;
-      left: 0;
+      left: -20vw;
       margin-top: 3px;
       position: absolute;
-      width: 100%;
+      width: 80vw;
       display:none;
       transition-duration: 0.9s;
       .side-menu {

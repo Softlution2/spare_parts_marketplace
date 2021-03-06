@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import Skeleton from "react-loading-skeleton";
 
 import { categories } from "../../../constants";
 
@@ -27,7 +26,6 @@ class BrowseByCategory extends Component {
       });
   }
   render() {
-    const { countsPerCategory, isLoading } = this.state;
     return (
       <Fragment>
         <div className="category-list">

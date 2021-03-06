@@ -1,7 +1,6 @@
 /* product card */
 .atbd_single_listing_wrapper{
   background: #fff;
-  margin-bottom: remy(30px);
   box-shadow: 0 2px 6px 0 hsla(0,0%,58.4%,.5);
 }
 .atbd_listing_thumbnail_area{
@@ -121,6 +120,7 @@
     font-size: remy(14px);
     line-height: 20px;
     color: $dark-blue;
+    text-align: left;
     cursor: pointer;
     display: -webkit-box;
     min-height: remy(40px);

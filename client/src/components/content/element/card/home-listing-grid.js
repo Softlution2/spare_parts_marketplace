@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
@@ -48,6 +51,44 @@ class HomeListingGrid extends Component {
     this.props.getHomeListing();
   }
   render() {
+    const setting = {
+      arrows: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    }
     const listings = this.props.list.homeListing;
     const { isLoading } = this.props.list;
     return (
@@ -55,6 +96,8 @@ class HomeListingGrid extends Component {
         {isLoading ? (
           <ListingSkeleton />
         ) : (
+          <Slider {...setting}>
+          {
           listings.map((value, index) => {
             const { pic, partName, partSKU, price, _id, date } = value;
             const title = `${partName}`;
@@ -65,38 +108,38 @@ class HomeListingGrid extends Component {
             const link =
               stringToUrl(partName) + "-" + stringToUrl(partSKU);
             return (
-              <div className="listing-card-grid" key={index}>
-                <div className="atbd_single_listing ">
-                  <article className="atbd_single_listing_wrapper">
-                    <figure className="atbd_listing_thumbnail_area">
-                      <div className="atbd_listing_image">
-                        <NavLink to={`/spare-part-details/${link}`}>
-                          <img src={`${pic}`} alt="Listing" />
-                        </NavLink>
-                      </div>
-                      <div className="atbd_thumbnail_overlay_content">
-                        <ul className="atbd_upper_badge">
-                          <li>
-                            <span
-                              className={
-                                "text-capitalize atbd_badge atbd_badge_" +
-                                badge.replace(" ", "_")
-                              }
-                            >
-                              {badge}
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </figure>
-                    <div className="atbd_listing_info d-flex flex-wrap">
-                      <div className="atbd_listing_left_side w-75">
+              <div key={index}>
+                <div className="listing-card-grid">
+                  <div className="atbd_single_listing ">
+                    <article className="atbd_single_listing_wrapper">
+                      <figure className="atbd_listing_thumbnail_area">
+                        <div className="atbd_listing_image">
+                          <NavLink to={`/spare-part-details/${link}`}>
+                            <img src={`${pic}`} alt="Listing" />
+                          </NavLink>
+                        </div>
+                        <div className="atbd_thumbnail_overlay_content">
+                          <ul className="atbd_upper_badge">
+                            <li>
+                              <span
+                                className={
+                                  "text-capitalize atbd_badge atbd_badge_" +
+                                  badge.replace(" ", "_")
+                                }
+                              >
+                                {badge}
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </figure>
+                      <div className="atbd_listing_info">
                         <h4 className="atbd_listing_title mb-2">
-                          <NavLink to={`/buy-spare-parts/${link}`}>
+                          <NavLink to={`/spare-part-details/${link}`}>
                             {title}
                           </NavLink>
                         </h4>
-                        <div className="rating-group d-flex flex-column align-items-start">
+                        <div className="rating-group">
                           <div className="d-flex">
                             <StarRatingComponent 
                               name="rate2" 
@@ -108,12 +151,11 @@ class HomeListingGrid extends Component {
                               starCount={5}
                               value={3.5}
                             />
+                            <span className="rating-value">3.5</span>
                           </div>
-                          <span className="review-value text-muted">760 reviews</span>
+                          <span className="review-value text-muted">760</span>
                         </div>
-                      </div>
-                      <div className="atbd_listing_right_side w-25">                      
-                        <div className="price-group d-flex flex-column h-100">
+                        <div className="price-group">
                           <p className="symbol mr-1">
                             AED<span className="price">{numberWithCommas(price)}</span>
                           </p>
@@ -122,12 +164,14 @@ class HomeListingGrid extends Component {
                           </button>
                         </div>
                       </div>
-                    </div>
-                  </article>
+                    </article>
+                  </div>
                 </div>
               </div>
             );
           })
+          }
+          </Slider>
         )}
       </Fragment>
     );

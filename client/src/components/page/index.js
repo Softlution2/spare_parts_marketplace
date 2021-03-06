@@ -60,7 +60,7 @@ class Index extends Component {
             />
             <div className="row">
               <div className="home-listing-cards-wrapper col-lg-12">
-                <div className="row listing-5cards-wrapper">
+                <div>
                   <HomeListingGrid size={3} />
                 </div>
               </div>

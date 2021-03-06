@@ -1,10 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withTranslation } from "react-i18next";
-
-import { categories, subCategories } from "../../../constants";
 
 const noAction = (e) => e.preventDefault();
 
@@ -23,21 +20,14 @@ class AdvSearch extends Component {
   }
 
   render() {
-    const { t, make, category, subCategory } = this.props;
+    const { t } = this.props;
     const { search } = this.state;
-    const makeStr = make ? make.replaceAll("-", " ").toString() : null;
-    const catObj = category
-      ? categories.filter(
-          (e) => e.name.toLowerCase().replaceAll(" ", "-") === category
-        )
-      : null;
-    const subCatObj = category && subCategory ? subCategories[catObj[0].value].filter((e) => e.value.toLowerCase().replaceAll(" ", "-") === subCategory) : null;
     return (
       <Fragment>
         <div className="directory_content_area">
           <div className="container">
             <div className="row">
-              <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+              <div className="col-lg-12 d-none d-lg-block">
                 <form action={`/all-listings`} className="search_form">
                   <input
                     type="text"
