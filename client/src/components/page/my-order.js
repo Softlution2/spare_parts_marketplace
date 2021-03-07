@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
@@ -120,9 +120,9 @@ class MyOrder extends Component {
                             <p className="head-text">
                               Order placed
                             </p>                            
-                            <Moment format="YYYY/MM/DD">
+                            {/* <Moment format="YYYY/MM/DD">
                               {order.order_date}
-                            </Moment>
+                            </Moment> */}
                           </div>
                           <div className="head-item">
                             <p className="head-text">
