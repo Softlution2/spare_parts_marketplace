@@ -13,15 +13,15 @@ class AddressModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.address._id,
-      first_name: this.props.address.first_name,
-      last_name: this.props.address.last_name,
-      address: this.props.address.address,
-      suburb: this.props.address.suburb,
-      state: this.props.address.state,
-      postcode: this.props.address.postcode,
-      country: this.props.address.country,
-      default_address: this.props.address.default_address,
+      id: this.props.address?._id,
+      first_name: this.props.address?.first_name,
+      last_name: this.props.address?.last_name,
+      address: this.props.address?.address,
+      suburb: this.props.address?.suburb,
+      state: this.props.address?.state,
+      postcode: this.props.address?.postcode,
+      country: this.props.address?.country,
+      default_address: this.props.address?.default_address,
       user: this.props.login._id
     };
     

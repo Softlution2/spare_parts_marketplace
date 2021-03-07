@@ -6781,23 +6781,34 @@ p {
     width: 20%;
     padding: 10px; }
 
-.order-wrapper .order-tab {
+.order-tab {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #bdbdbd; }
-  .order-wrapper .order-tab .nav.nav-tabs {
+  .order-tab .nav.nav-tabs {
     border-bottom: 0; }
-    .order-wrapper .order-tab .nav.nav-tabs .nav-link {
+    .order-tab .nav.nav-tabs .nav-link {
       padding: 15px 25px;
       color: #1e3255;
       font-weight: 700;
       border: 0;
       border-bottom: 2px solid transparent; }
-      .order-wrapper .order-tab .nav.nav-tabs .nav-link.active, .order-wrapper .order-tab .nav.nav-tabs .nav-link:hover {
+      .order-tab .nav.nav-tabs .nav-link.active, .order-tab .nav.nav-tabs .nav-link:hover {
         border: 0;
         border-bottom: 2px solid #3572B3; }
-  .order-wrapper .order-tab .navbar-form .form-group {
+  .order-tab .navbar-form .form-group {
     margin-bottom: 0; }
+
+.nav.nav-stacked {
+  flex-flow: column; }
+  .nav.nav-stacked li {
+    padding: 8px 15px;
+    transition: all 0.3s; }
+    .nav.nav-stacked li a {
+      color: #4f4f4f; }
+    .nav.nav-stacked li.active, .nav.nav-stacked li:hover {
+      background-color: rgba(196, 196, 196, 0.3); }
+
 .order-wrapper .order-list-wrapper .order .order-head {
   display: flex;
   justify-content: space-between;
@@ -6829,6 +6840,18 @@ p {
     max-width: 60%; }
     .order-wrapper .order-list-wrapper .order .order-body .order-detail span.badge {
       width: fit-content; }
+
+.dashboard-wrapper .dashboard-head {
+  display: flex;
+  justify-content: flex-start;
+  background-color: rgba(196, 196, 196, 0.2); }
+  .dashboard-wrapper .dashboard-head .auth-wrapper .avatar img {
+    width: 32px;
+    height: 32px; }
+.dashboard-wrapper .dashboard-body {
+  background-color: #FFFFFF; }
+  .dashboard-wrapper .dashboard-body .order-list-wrapper .order-item .order-detail-item {
+    overflow: hidden; }
 
 /* Responsive CSS */
 @media (min-width: 1199px) and (max-width: 1480px) {

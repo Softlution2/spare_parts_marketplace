@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import Moment from 'react-moment';
 import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
@@ -17,6 +18,7 @@ class MyOrder extends Component {
   componentDidMount() {
     axios.get("/api/order/get-my-order?user_id=" + this.props.login._id )
       .then((res) => {
+        console.log(res.data.orders)
         this.setState({orders: res.data.orders})
       })
       .catch((err) => {
@@ -117,8 +119,10 @@ class MyOrder extends Component {
                           <div className="head-item">
                             <p className="head-text">
                               Order placed
-                            </p>
-                            {order.order_date}
+                            </p>                            
+                            <Moment format="YYYY/MM/DD">
+                              {order.order_date}
+                            </Moment>
                           </div>
                           <div className="head-item">
                             <p className="head-text">

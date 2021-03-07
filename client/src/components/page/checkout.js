@@ -3,6 +3,7 @@ import Header from "../layout/header";
 import PreHeader from "../layout/pre-header";
 import Footer from "../layout/footer";
 import Modal from "react-awesome-modal";
+import moment from 'moment';
 
 import { connect } from "react-redux";
 import axios from "axios";
@@ -40,6 +41,8 @@ class Checkout extends Component {
       .then((res) => {
         let newListings = new Array([]);
         let ind = 0;
+        let total_price = 0;
+        console.log(res.data)
         res.data.map((listing, index) => {
           if (newListings.length > 0 && newListings[0].user)
           {
@@ -60,9 +63,12 @@ class Checkout extends Component {
             }
             newListings[ind].listings.push(listing);
           }
+          
+          total_price += (listing.price * getCartLength(this.props.list.itemsInCart, listing._id))
           return true;
         })
-        console.log(newListings);
+        console.log(total_price);
+        this.setState({price: total_price});
         this.setState({listings: newListings});
       })
       .catch((err) => {
@@ -91,7 +97,6 @@ class Checkout extends Component {
     this.props.updateCart(items);
   }
   stepForward(e, i, rightStep = false) {
-    console.log(i)
     if (!this.state.deliveryAddress && this.state.step === 2 && i > this.state.step) {
       return false;
     }
@@ -125,6 +130,7 @@ class Checkout extends Component {
   }
   placeOrder(e) {
     let order = [];
+    const today = moment().format("MM/DD/YYYY");
     this.state.listings.map((userListings, listingIndex) => {
       let listingIDs = [];
       userListings.listings.map((listing, index) => {
@@ -142,7 +148,7 @@ class Checkout extends Component {
         payment: this.state.payOnCard ? this.state.payment._id : null,
         total_price: this.state.price,
         user: this.props.login._id,
-        order_date: new Date()
+        order_date: today
       });
       return true;
     })
@@ -180,7 +186,7 @@ class Checkout extends Component {
       console.log(err);
     });
   }
-  updateAddress(address) {
+  updateAddress(address = null) {
     this.setState({address: address})
     this.setState({modalIsOpen: true});
   }
@@ -193,10 +199,6 @@ class Checkout extends Component {
   }
   render() {
     const { listings, step, deliveryItem, modalIsOpen, addresses, deliveryAddress, payOnCard, address, payment, order } = this.state;
-const timeElapsed = Date.now();
-const today = new Date(timeElapsed);
-today.toUTCString();
-console.log(today);
     let totalAmount = 0;
     return (
       <Fragment>
@@ -410,7 +412,7 @@ console.log(today);
                                     <button 
                                       type="button" 
                                       className="btn btn-outline-primary btn-sm" 
-                                      onClick={this.openModal}>
+                                      onClick={(e) => this.updateAddress()}>
                                       + Add new address
                                     </button>
                                   </div>
@@ -445,7 +447,7 @@ console.log(today);
                                       <label htmlFor="delivery-today-option">
                                       Deliver today
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-today-option" className="mr-4" checked={deliveryItem === 1 ? "checked" : ""} />
+                                      <input type="radio" name="delivery-option" id="delivery-today-option" className="mr-4" defaultChecked={deliveryItem === 1 ? "checked" : ""} />
                                     </div>
                                   </div>
                                 </div>
@@ -456,7 +458,7 @@ console.log(today);
                                       <label htmlFor="delivery-next-day-option">
                                       Deliver next day
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-next-day-option" className="mr-4" checked={deliveryItem === 2 ? "checked" : ""} />
+                                      <input type="radio" name="delivery-option" id="delivery-next-day-option" className="mr-4" defaultChecked={deliveryItem === 2 ? "checked" : ""} />
                                     </div>
                                   </div>
                                 </div>
@@ -469,7 +471,7 @@ console.log(today);
                                         <p className="mb-1">Delivered on or before Monday, 8 March 2021</p>
                                         <p className="mb-0"><i className="las la-info-circle mr-1"></i>No shipping on Public holiday</p>
                                       </label>
-                                      <input type="radio" name="delivery-option" id="delivery-regular-option" className="mr-4" checked={deliveryItem === 3 ? "checked" : ""} />
+                                      <input type="radio" name="delivery-option" id="delivery-regular-option" className="mr-4" defaultChecked={deliveryItem === 3 ? "checked" : ""} />
                                     </div>
                                   </div>
                                 </div>
@@ -731,7 +733,7 @@ console.log(today);
         {/*<!-- ends: .checkout-wrapper -->*/}
         <Modal visible={modalIsOpen} width="600" effect="fadeInUp" onClickAway={() => this.closeModal()}>
           {
-            step === 2 && address ?
+            step === 2 && modalIsOpen ?
             ( <AddressModal closeModal={this.closeModal} addAddress={this.addAddress} address={address} /> ) :
             step === 3 &&
             ( <PaymentMethodModal closeModal={this.closeModal} savePayment={this.savePayment} payment={payment} />  )

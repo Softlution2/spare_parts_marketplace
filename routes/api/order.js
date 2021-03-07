@@ -34,7 +34,7 @@ router.get("/get-my-order", async (req, res) => {
     
     let orders;
     try {
-        orders = await Order.find({ user: user_id }).populate("user").populate("seller").populate("delivery_address").populate("listings");
+        orders = await Order.find({ user: user_id }).populate("user").populate("seller").populate("delivery_address").populate("listings").sort("-order_date");
     } catch (err) {
         orders = [];
         return res.status(400).json({message: 'Something went wrong!', error: err});

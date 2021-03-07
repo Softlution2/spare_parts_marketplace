@@ -137,6 +137,7 @@ class Listing extends Component {
       brandList,
     } = this.props.list;
     const { t } = this.props;
+    
     return (
       <Fragment>
         <section className="all-listing-wrapper">
@@ -456,7 +457,7 @@ class Listing extends Component {
                     <div className="row listing-5cards-wrapper">
                       {listing.length ? (
                         <Fragment>
-                          <ListingCardGrid size={3} />
+                          <ListingCardGrid size={3} api={this.props.api} />
                         </Fragment>
                       ) : (
                         <div className="col-lg-12 text-center">

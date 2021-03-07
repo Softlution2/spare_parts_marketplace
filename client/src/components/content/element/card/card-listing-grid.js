@@ -8,6 +8,10 @@ import { AddToCart, SetFavouriteListing } from "../../../../Store/action/listing
 import { numberWithCommas, stringToUrl } from "../../../../utils";
 
 class CardListingGrid extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
     // const { size } = this.props;
     const { isLoading, listing } = this.props.list;
@@ -25,10 +29,11 @@ class CardListingGrid extends Component {
           } = value;
           const title = `${partName}`;
           const badge = moment.duration(moment().diff(moment(date))).asHours() <= 48 ? "new listing" : "";
+
           const link =
-            stringToUrl(partName) +
-            "-" +
-            stringToUrl(partSKU);
+              stringToUrl(partName) +
+              "-" +
+              stringToUrl(partSKU) + (this.props.api === "true" ? "?api=true" : "");
           return (
             <div className={"listing-card-grid"} key={index}>
               <div className="atbd_single_listing ">
@@ -76,14 +81,24 @@ class CardListingGrid extends Component {
                       </div>
                       <span className="review-value text-muted">760</span>
                     </div>
-                    <div className="price-group">
-                      <p className="symbol mr-1">
-                        AED<span className="price">{numberWithCommas(price)}</span>
-                      </p>
-                      <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
-                        Add
-                      </button>
-                    </div>
+                    {
+                      this.props.api !== "true" ? (
+                        <div className="price-group">
+                          <p className="symbol mr-1">
+                            AED<span className="price">{numberWithCommas(price)}</span>
+                          </p>
+                          <button className="btn cart-btn" onClick={(e) => this.props.addToCart(_id)}>
+                            Add
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="price-group">
+                          <button className="btn cart-btn">
+                            On Request
+                          </button>
+                        </div>
+                      )
+                    }
                   </div>
                 </article>
               </div>

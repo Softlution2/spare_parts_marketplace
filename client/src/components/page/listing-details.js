@@ -8,6 +8,7 @@ import SimpleReactValidator from "simple-react-validator";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 import Modal from "react-awesome-modal";
 import { ToastContainer } from 'react-toastify';
+import queryString from "query-string";
 
 import PreHeader from "../layout/pre-header";
 import Header from "../layout/header";
@@ -71,12 +72,17 @@ class ListingDetails extends Component {
   }
 
   componentDidMount() {
-    this.getListing(this.getListingSKU());
+      this.getListing(this.getListingSKU());
   }
 
   componentDidUpdate() {
     const { listing } = this.state;
-    if (listing && listing.partSKU.toLowerCase() !== this.getListingSKU()) {
+    
+    const params = queryString.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+    
+    if (listing && listing.partSKU.toLowerCase() !== this.getListingSKU() && params.api !== 'true') {
       this.setState({ listing: null }, () => {
         this.getListing(this.getListingSKU());
       });
@@ -85,19 +91,75 @@ class ListingDetails extends Component {
 
   getListing(sku) {
     this.props.setLoading(true);
-    axios
-      .get(`/api/listing/get?sku=${sku}`)
-      .then((res) => {
-        const { listing, sellerListingCount, similarListings } = res.data;
-        let listing_user = listing.user;
-        this.setState({ listing, listing_user, seller_listing: sellerListingCount, similarListings }, () => {
+    
+    const params = queryString.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+    if (params.api !== 'true') {
+      axios
+        .get(`/api/listing/get?sku=${sku}`)
+        .then((res) => {
+          const { listing, sellerListingCount, similarListings } = res.data;
+          let listing_user = listing.user;
+          console.log(listing);
+          this.setState({ listing, listing_user, seller_listing: sellerListingCount, similarListings }, () => {
+            this.props.setLoading(false);
+          });
+        })
+        .catch((err) => {
           this.props.setLoading(false);
+          console.log(err);
         });
+    } else {      
+      const info = this.props.match.params.info.split("-");
+      const carID = info[info.length - 1];
+      const articleNumber = info[info.length - 2]
+      axios
+      .get(`/api/info/get-articles?carId=${carID}`)
+      .then((res) => {
+        
+        const newListings = res.data.filter((d) => {
+          return (d.articleNumber === articleNumber)
+        });
+        let newListing;
+        if (newListings.length > 0) {
+          newListing = {
+            category: "",
+            clickCollect: "",
+            countryOrigin: "",
+            currency: "",
+            date: "",
+            delivery: "",
+            depthDimension: "",
+            description: newListings[0].genericArticles[0].genericArticleDescription,
+            fittingPosition: "",
+            heightDimension: "",
+            hide: "",
+            makes: "",
+            models: "",
+            partBrand: newListings[0].mfrName,
+            partHSCode: "",
+            partName: `${newListings[0].mfrName} ${newListings[0].genericArticles[0].genericArticleDescription}`,
+            partSKU: "",
+            pic: newListings[0].images[0].imageURL800,
+            price: "",
+            quantity: "",
+            subCategory: "",
+            type: "",
+            user: "",
+            weight: "",
+            widthDimension: "",
+            __v: "",
+            _id: "",
+          }          
+        }
+        this.setState({ listing: newListing });
+        this.props.setLoading(false);
       })
       .catch((err) => {
-        this.props.setLoading(false);
         console.log(err);
       });
+    }
   }
   
   openModal() {
@@ -111,6 +173,10 @@ class ListingDetails extends Component {
   render() {
     const { modalIsOpen, listing, listing_user, seller_listing } = this.state;
     const { isLoading } = this.props.list;
+    
+    const params = queryString.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
     return (
       <Fragment>
         <LoadingOverlay active={isLoading} spinner text="Loading listing...">
@@ -164,9 +230,17 @@ class ListingDetails extends Component {
                   <div className="col-lg-4">
                     <div className="widget atbd_widget widget-card">
                       <div className="atbd_widget_title">
-                        <button className="btn btn-primary btn-block" onClick={(e) => this.props.addToCart(listing._id)}>
-                          ADD TO CART
-                        </button>
+                      {
+                        params.api !== "true" ? (
+                          <button className="btn btn-primary btn-block" onClick={(e) => this.props.addToCart(listing._id)}>
+                            ADD TO CART
+                          </button>
+                        ) : (
+                          <button className="btn btn-primary btn-block">
+                            On Request
+                          </button>
+                        )
+                      }
                         <h4>
                           <span className="la la-user"></span>Seller Info
                         </h4>
@@ -179,7 +253,7 @@ class ListingDetails extends Component {
                     </div>
 
                     <div className="atbd_widget_contact">
-                      {listing_user.phone && (
+                      {listing_user?.phone && (
                         <>
                           <a
                             href={`tel: ${listing_user.phone}`}
@@ -203,7 +277,7 @@ class ListingDetails extends Component {
                         <button
                           className="btn btn-block btn-outline-primary"
                           disabled={
-                            this.props.login._id === listing_user._id
+                            this.props.login._id === listing_user?._id
                               ? true
                               : false
                           }
@@ -217,7 +291,7 @@ class ListingDetails extends Component {
                         <button
                           className="btn btn-block btn-outline-light"
                           disabled={
-                            this.props.login._id === listing_user._id
+                            this.props.login._id === listing_user?._id
                               ? true
                               : false
                           }

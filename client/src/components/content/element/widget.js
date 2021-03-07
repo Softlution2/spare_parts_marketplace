@@ -11,10 +11,10 @@ export class SellerInfo extends Component {
         <div className="widget-body atbd_author_info_widget seller_info_widget">
           <div className="atbd_avatar_wrapper">
             <div className="atbd_review_avatar">
-              <NavLink to={`/seller-details/${seller._id}`}>
+              <NavLink to={`/seller-details/${seller?._id}`}>
               {
-                seller.avatar ? (
-                  <img src={seller.avatar} alt="AvatarImage" width="60" />
+                seller?.avatar ? (
+                  <img src={seller?.avatar} alt="AvatarImage" width="60" />
                 ) : (
                   <img src="/assets/img/avatar.png" alt="AvatarImage" width="60" />
                 )
@@ -22,14 +22,14 @@ export class SellerInfo extends Component {
               </NavLink>
             </div>
             <div className="atbd_name_location">
-              <NavLink to={`/seller-details/${seller._id}`}>
+              <NavLink to={`/seller-details/${seller?._id}`}>
               <h4>
-                {seller.details.company_name}{" "}
+                {seller?.details.company_name}{" "}
               </h4>
               </NavLink>
               <p>
                 <i className="la la-map-marker"></i>
-                {seller.details.company_address}
+                {seller?.details.company_address}
               </p>
               <p>{listingCount} spare parts</p>
               <span className="author-rating">4.5<i className="la la-star"></i></span>

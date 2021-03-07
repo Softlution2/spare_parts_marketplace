@@ -102,11 +102,10 @@ class SearchVin extends Component {
     axios
       .get(`/api/info/get-articles?carId=${this.state.selectedEngine.value}`)
       .then((res) => {
-        console.log(res.data)
         const newListings = res.data.map((d) => {
           return {
             partName: `${d.mfrName} ${d.genericArticles[0].genericArticleDescription}`,
-            partSKU: "",
+            partSKU: `${d.articleNumber}-${this.state.engineFromVIN.carId}`,
             date: new Date(),
             price: 0,
             _id: d.mfrId,
@@ -125,10 +124,11 @@ class SearchVin extends Component {
     axios
       .get(`/api/info/get-articles?carId=${this.state.engineFromVIN.carId}`)
       .then((res) => {
-        const newListings = res.data.map((d) => {
+        console.log(res)
+        const newListings = res.data && res.data.map((d) => {
           return {
             partName: `${d.mfrName} ${d.genericArticles[0].genericArticleDescription}`,
-            partSKU: "",
+            partSKU: `${d.articleNumber}-${this.state.engineFromVIN.carId}`,
             date: new Date(),
             price: 0,
             _id: d.mfrId,
@@ -139,7 +139,7 @@ class SearchVin extends Component {
         this.props.history.push("/all-listings?api=true");
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   }
   getVehiclesByVIN() {    
@@ -147,15 +147,16 @@ class SearchVin extends Component {
     axios
       .get(`/api/info/get-vehicles-by-vin?vinCode=${this.state.vinCode}`)
       .then((res) => {
+        console.log(res)
         this.setState({ carIdentified: true });
-        this.setState({ makeFromVIN: res.data.matchingManufacturers.array[0] });
-        this.setState({ modelFromVIN: res.data.matchingModels.array[0] });
-        this.setState({ engineFromVIN: res.data.matchingVehicles.array[0] });
+        this.setState({ makeFromVIN: res.data.matchingManufacturers.array.length > 0 ? res.data.matchingManufacturers.array[0]: "" });
+        this.setState({ modelFromVIN: res.data.matchingModels.array && res.data.matchingModels.array.length > 0 ? res.data.matchingModels.array[0]: "" });
+        this.setState({ engineFromVIN: res.data.matchingVehicles.array && res.data.matchingVehicles.array.length > 0 ? res.data.matchingVehicles.array[0]: "" });
         this.setState({ isLoading: false });
       })
       .catch((err) => {
         this.setState({ isLoading: false });
-        console.log(err.response.data);
+        console.log(err);
       });
   }
 

@@ -92,6 +92,10 @@ class AllListing extends Component {
         )
       : null;
     const subCatObj = category && subCategory ? subCategories[catObj[0].value].filter((e) => e.value.toLowerCase().replaceAll(" ", "-") === subCategory) : null;
+    
+    const params = queryString.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
     return (
       <Fragment>
         <LoadingOverlay active={isLoading} spinner text="Loading listing...">
@@ -132,7 +136,7 @@ class AllListing extends Component {
             </div>
             
           </section>
-          <Listing handleFilter={this.handleFilter} />
+          <Listing handleFilter={this.handleFilter} api={params.api} />
           <Footer />
         </LoadingOverlay>
       </Fragment>

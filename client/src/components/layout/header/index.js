@@ -163,7 +163,7 @@ class Header extends Component {
                                 <ul className="list-unstyled">
                                   <li className="group-title">Your Account</li>
                                   <li>
-                                    <NavLink to="/">Dashboard</NavLink>
+                                    <NavLink to="/my-dashboard">Dashboard</NavLink>
                                   </li>
                                   <li>
                                     <NavLink to="/my-profile">Profile</NavLink>
@@ -223,7 +223,7 @@ class Header extends Component {
                                 <ul className="list-unstyled">
                                   <li className="group-title">Your Account</li>
                                   <li>
-                                    <NavLink to="/">Dashboard</NavLink>
+                                    <NavLink to="/my-dashboard">Dashboard</NavLink>
                                   </li>
                                   <li>
                                     <NavLink to="/my-profile">Profile</NavLink>
