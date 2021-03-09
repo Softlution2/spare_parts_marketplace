@@ -119,7 +119,7 @@ class ListingDetails extends Component {
       .then((res) => {
         
         const newListings = res.data.filter((d) => {
-          return (d.articleNumber === articleNumber)
+          return (d.articleNumber.toLowerCase() === articleNumber)
         });
         let newListing;
         if (newListings.length > 0) {

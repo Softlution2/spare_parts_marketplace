@@ -33,6 +33,7 @@ class Checkout extends Component {
     this.qtyIncrement = this.qtyIncrement.bind(this);
     this.removeCartItem = this.removeCartItem.bind(this);
     this.changeDeliveryAddress = this.changeDeliveryAddress.bind(this);
+    this.addAddress = this.addAddress.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -179,7 +180,8 @@ class Checkout extends Component {
   addAddress(address) {
     axios.post("/api/address/create-user-address", address )
     .then((res) => {
-      console.log(res);
+      console.log(this.state.addresses.push(res.data.newAddress))
+      this.setState({addresses: this.state.addresses, address: res.data.address});
       this.closeModal();
     })
     .catch((err) => {
@@ -200,6 +202,8 @@ class Checkout extends Component {
   render() {
     const { listings, step, deliveryItem, modalIsOpen, addresses, deliveryAddress, payOnCard, address, payment, order } = this.state;
     let totalAmount = 0;
+
+    console.log(address)
     return (
       <Fragment>
         <PreHeader />
@@ -388,15 +392,15 @@ class Checkout extends Component {
                                           className="address-item border p-3 w-50 mr-2 mb-2"
                                           key={addressIndex}
                                         >
-                                          <span className="default-badge badge badge-light">{address.default_address && "Default"}</span>
+                                          <span className="default-badge badge badge-light">{address?.default_address && "Default"}</span>
                                           <div className="address-row">
                                             <div className="custom-control custom-checkbox">
                                               <input type="checkbox" className="custom-control-input" id={"deliveryAddress"+addressIndex} onClick={(e) => this.setDeliveryAddress(address)} />
                                               <label className="custom-control-label" htmlFor={"deliveryAddress"+addressIndex}>
-                                                <p className="m-0"><small>{address.address}</small></p>
-                                                <p className="m-0"><small>{address.suburb}</small></p>
-                                                <p className="m-0"><small>{address.state} {address.postcode}</small></p>
-                                                <p className="m-0"><small>{address.country}</small></p>
+                                                <p className="m-0"><small>{address?.address}</small></p>
+                                                <p className="m-0"><small>{address?.suburb}</small></p>
+                                                <p className="m-0"><small>{address?.state} {address?.postcode}</small></p>
+                                                <p className="m-0"><small>{address?.country}</small></p>
                                               </label>
                                             </div>
                                           </div>
