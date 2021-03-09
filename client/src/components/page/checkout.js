@@ -666,11 +666,9 @@ class Checkout extends Component {
                                                 </td>
                                                 <td>
                                                   <div className="d-flex justify-content-between">
-                                                    <button className="btn checkout-qty" onClick={(e) => this.qtyDecrement(e, listing._id)}>-</button>
                                                     <span>
                                                       {getCartLength(this.props.list.itemsInCart, listing._id)}
                                                     </span>
-                                                    <button className="btn checkout-qty" onClick={(e) => this.qtyIncrement(e, listing._id)}>+</button>
                                                     <span className="text-danger">X {listing.price}</span>
                                                   </div>
                                                 </td>

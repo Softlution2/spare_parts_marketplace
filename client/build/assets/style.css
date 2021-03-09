@@ -6840,6 +6840,23 @@ p {
     max-width: 60%; }
     .order-wrapper .order-list-wrapper .order .order-body .order-detail span.badge {
       width: fit-content; }
+.order-wrapper .seller-container .order-item .order-listing-item .badge {
+  position: absolute;
+  background-color: #979797;
+  width: 24px;
+  height: 24px;
+  top: -10px; }
+.order-wrapper .seller-container .order-list-wrapper table tr td .listing-item {
+  background-color: #FFFFFF; }
+  .order-wrapper .seller-container .order-list-wrapper table tr td .listing-item:not(:first-child) {
+    margin-left: -17px; }
+  .order-wrapper .seller-container .order-list-wrapper table tr td .listing-item img {
+    background-color: #FFFFFF; }
+.order-wrapper .seller-container .order-list-wrapper table tr .order-listings-wrapper .badge {
+  width: 28px;
+  height: 28px;
+  margin-left: -17px;
+  z-index: 2; }
 
 .dashboard-wrapper .dashboard-head {
   display: flex;

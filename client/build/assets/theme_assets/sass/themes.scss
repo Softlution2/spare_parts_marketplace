@@ -983,7 +983,49 @@
       }
     }
   }
+
+  .seller-container {
+    .order-item {
+      .order-listing-item {
+        .badge {
+          position: absolute;
+          background-color: #979797;
+          width: 24px;
+          height: 24px;
+          top: -10px;
+        }
+      }
+    }
+
+    .order-list-wrapper {
+      table {
+        tr {
+          td {
+            .listing-item {
+              background-color: #FFFFFF;
+              &:not(:first-child) {
+                margin-left: -17px;
+              }
+              img {
+                background-color: #FFFFFF;
+              }
+            }
+          }
+
+          .order-listings-wrapper {
+            .badge {
+              width: 28px;
+              height: 28px;
+              margin-left: -17px;
+              z-index: 2;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 
 .dashboard-wrapper {
   .dashboard-head {

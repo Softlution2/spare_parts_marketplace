@@ -29,12 +29,28 @@ router.post("/place-an-order", async (req, res) => {
     });
 })
 
-router.get("/get-my-order", async (req, res) => {
+router.get("/get-buyer-order", async (req, res) => {
     const { user_id } = req.query;
     
     let orders;
     try {
         orders = await Order.find({ user: user_id }).populate("user").populate("seller").populate("delivery_address").populate("listings").sort("-order_date");
+    } catch (err) {
+        orders = [];
+        return res.status(400).json({message: 'Something went wrong!', error: err});
+    }    
+    
+    return res.json({
+        orders,
+    });
+})
+
+router.get("/get-seller-order", async (req, res) => {
+    const { user_id } = req.query;
+    
+    let orders;
+    try {
+        orders = await Order.find({ seller: user_id }).populate("user").populate("seller").populate("delivery_address").populate("listings").sort("-order_date");
     } catch (err) {
         orders = [];
         return res.status(400).json({message: 'Something went wrong!', error: err});
