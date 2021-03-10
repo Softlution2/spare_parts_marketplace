@@ -1053,3 +1053,30 @@
     }
   }
 }
+
+.listing-detail-navbar {
+  background-color: #e5eff5;
+
+  .listing-detail-nav {
+    .nav {
+      .nav-item {
+        .nav-link {
+          padding: 1rem 3rem;
+        }
+
+        &.active,
+        &:hover {
+          background-color: #3572B3;
+
+          .nav-link {
+            color: white;
+          }
+        }
+
+        &:not(:first-child) {
+          border-left: 1px solid rgb(216, 216, 216);
+        }
+      }
+    }
+  }
+}

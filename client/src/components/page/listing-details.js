@@ -9,6 +9,9 @@ import { formatPhoneNumberIntl } from "react-phone-number-input";
 import Modal from "react-awesome-modal";
 import { ToastContainer } from 'react-toastify';
 import queryString from "query-string";
+import StarRatingComponent from 'react-star-rating-component';
+import { getCartLength } from "../../utils";
+import { UpdateCart } from "../../Store/action/listingActions";
 
 import PreHeader from "../layout/pre-header";
 import Header from "../layout/header";
@@ -33,12 +36,15 @@ class ListingDetails extends Component {
       seller_listing: 0,
       modalIsOpen: false,
       similarListings: null,
+      listingDetailTabIndex: 1,
     };
     this.validator = new SimpleReactValidator();
     this.getListing = this.getListing.bind(this);
     this.startChat = this.startChat.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.qtyDecrement = this.qtyDecrement.bind(this);
+    this.qtyIncrement = this.qtyIncrement.bind(this);
   }
 
   startChat(e) {
@@ -169,6 +175,24 @@ class ListingDetails extends Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
+  qtyIncrement(e, id) {
+    e.preventDefault();
+    const items =  this.props.list.itemsInCart;
+    items.push(id);
+    this.props.updateCart(items);
+  }
+  qtyDecrement(e, id) {
+    e.preventDefault();
+    const items = this.props.list.itemsInCart;
+    const index = items.indexOf(id);
+    if (index >= 0)
+      items.splice(index, 1);
+    this.props.updateCart(items);
+  }
+  chooseTab(e, index) {
+    e.preventDefault();
+    this.setState({listingDetailTabIndex: index})
+  }
 
   render() {
     const { modalIsOpen, listing, listing_user, seller_listing } = this.state;
@@ -190,198 +214,163 @@ class ListingDetails extends Component {
           {/* <PageBanner title="Listing Details"/> */}
           <section className="directory_listiing_detail_area single_area section-bg pt-4 pb-5">
             {listing && (
-              <div className="container">
-                <div className="row">
+              <div className="container-fluid">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-7">
+                      <div className="atbd_content_module atbd_listing_gallery">
+                        <div className="atbdb_content_module_contents">
+                          <div className="gallery-wrapper">
+                            <img
+                              src={listing.pic}
+                              width="100%"
+                              alt="Listing"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-5">
+                      <div className="widget">
+                        <div className="atbd_widget_title">
+                          <div className="d-flex align-items-center justify-content-between mb-4 w-100">
+                            <h1 className="text-primary w-75">{listing.partName}</h1>
+                            <h1 className="text-primary w-25 text-right"><small style={{fontSize: '70%'}}>AED </small>{listing.price}</h1>
+                          </div>
+                          <div className="rating-group text-right">
+                            <div className="d-flex justify-content-end">
+                              <StarRatingComponent 
+                                name="rate2" 
+                                editing={false}
+                                renderStarIcon={() => ( <i className='la la-star' /> )}
+                                renderStarIconHalf={() => ( <i className="la la-star-half-alt" style={{color: "#ffb400"}} /> )}
+                                starColor="#ffb400"
+                                emptyStarColor={"#cecece"}
+                                starCount={5}
+                                value={3.5}
+                              />
+                              <span className="rating-value">3.5</span>
+                            </div>
+                            <span className="review-value text-muted">760</span>
+                          </div>                 
+                          {
+                            params.api !== "true" ? (       
+                              <div className="d-flex justify-content-between mt-4">
+                                <div className="w-50 d-flex justify-content-around align-items-center p-1">
+                                  <button className="btn checkout-qty border" onClick={(e) => this.qtyDecrement(e, listing._id)}>-</button>
+                                  <span className="border h-100 w-100 justify-content-center d-flex align-items-center">
+                                    {getCartLength(this.props.list.itemsInCart, listing._id)}
+                                  </span>
+                                  <button className="btn checkout-qty border" onClick={(e) => this.qtyIncrement(e, listing._id)}>+</button>
+                                </div>
+                                <div className="w-50 p-1">
+                                  <button className="btn btn-primary btn-block" onClick={(e) => this.props.addToCart(listing._id)}>
+                                    ADD TO CART
+                                  </button>
+                                </div>
+                              </div>
+                            ) : (
+                              <button className="btn btn-primary btn-block mt-4">
+                                On Request
+                              </button>
+                            )
+                          }
+                          <div className="seller-info d-flex mt-4 border-top pt-2">
+                            <div className="seller-auth-info w-50">
+                              <p className="text-primary mb-0">
+                                <span className="la la-user"></span>Seller Info:
+                              </p>
+                              <span className="text-primary h6">{listing_user.details.company_name}</span>
+                            </div>
+                            <div className="seller-auth-rating w-50">
+                              <span className="author-rating bg-primary">4.5<i className="la la-star"></i></span>
+                            </div>
+                          </div>
+                        </div>
+                        {/* <!-- ends: .atbd_widget_title --> */}
+                      </div>
+
+                      <div className="atbd_widget_contact">
+                        {listing_user?.phone && (
+                          <div className="d-flex">
+                            <div className="w-50 p-1">
+                              <a
+                                href={`tel: ${listing_user.phone}`}
+                                className="btn btn-primary btn-sm"
+                              >
+                                <i className="la la-phone" />
+                                {formatPhoneNumberIntl("+" + listing_user.phone)}
+                              </a>
+                            </div>
+                            <div className="w-50 p-1">
+                              <a
+                                href={`https://api.whatsapp.com/send?phone=${listing_user.phone}`}
+                                className="btn btn-primary btn-sm"
+                                target="blank"
+                                rel="noopener noreferrer"
+                              >
+                                <i className="la la-whatsapp" />
+                                Contact on Whatsapp
+                              </a>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row mt-5 listing-detail-navbar">
                   <div className="col-lg-12">
-                    <div className="d-flex align-items-center justify-content-between mb-4">
-                      <h1>{listing.partName}</h1>
-                      <h1 className="text-warning"><small style={{fontSize: '70%'}}>AED </small>{listing.price}</h1>
+                    <div className="listing-detail-nav container">
+                        <ul className="nav">
+                          <li className={`nav-item ${this.state.listingDetailTabIndex === 1 ? "active" : ""}`}>
+                            <a className="nav-link" href="#!" onClick={(e) => this.chooseTab(e, 1)} >Description</a>
+                          </li>
+                          <li className={`nav-item ${this.state.listingDetailTabIndex === 2 ? "active" : ""}`}>
+                            <a className="nav-link" href="#!" onClick={(e) => this.chooseTab(e, 2)} >Specification</a>
+                          </li>
+                          <li className={`nav-item ${this.state.listingDetailTabIndex === 3 ? "active" : ""}`}>
+                            <a className="nav-link" href="#!" onClick={(e) => this.chooseTab(e, 3)} >Reviews</a>
+                          </li>
+                        </ul>
                     </div>
                   </div>
-                  <div className="col-lg-8">
-                    <div className="atbd_content_module atbd_listing_gallery">
-                      <div className="atbdb_content_module_contents">
-                        <div className="gallery-wrapper">
-                          <img
-                            src={listing.pic}
-                            width="100%"
-                            alt="Listing"
-                          />
+                </div>                    
+                <div className="row mt-5">
+                  <div className="col-lg-12">
+                    <div className="listing-detail-content container">
+                    {
+                      this.state.listingDetailTabIndex === 1 ? 
+                      (
+                      <div className="atbd_content_module atbd_listing_details">
+                        <div className="atbd_content_module__tittle_area">
+                          <div className="atbd_area_title">
+                            <h4>
+                              <span className="la la-file-text-o"></span>
+                              Description
+                            </h4>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-
-                    <div className="atbd_content_module atbd_listing_details">
-                      <div className="atbd_content_module__tittle_area">
-                        <div className="atbd_area_title">
-                          <h4>
-                            <span className="la la-file-text-o"></span>
-                            Description
-                          </h4>
+                        <div className="atbdb_content_module_contents">
+                          <div dangerouslySetInnerHTML={{ __html: listing.description }} />
                         </div>
-                      </div>
-                      <div className="atbdb_content_module_contents">
-                        <div dangerouslySetInnerHTML={{ __html: listing.description }} />
-                      </div>
-                    </div>
-
-                    <ListingFetures listing={listing} />
-                  </div>
-                  <div className="col-lg-4">
-                    <div className="widget atbd_widget widget-card">
-                      <div className="atbd_widget_title">
-                      {
-                        params.api !== "true" ? (
-                          <button className="btn btn-primary btn-block" onClick={(e) => this.props.addToCart(listing._id)}>
-                            ADD TO CART
-                          </button>
-                        ) : (
-                          <button className="btn btn-primary btn-block">
-                            On Request
-                          </button>
-                        )
-                      }
-                        <h4>
-                          <span className="la la-user"></span>Seller Info
-                        </h4>
-                      </div>
-                      {/* <!-- ends: .atbd_widget_title --> */}
-                      <SellerInfo
-                        seller={listing_user}
-                        listingCount={seller_listing}
-                      />
-                    </div>
-
-                    <div className="atbd_widget_contact">
-                      {listing_user?.phone && (
-                        <>
-                          <a
-                            href={`tel: ${listing_user.phone}`}
-                            className="btn btn-primary btn-block"
-                          >
-                            <i className="la la-phone" />
-                            {formatPhoneNumberIntl("+" + listing_user.phone)}
-                          </a>
-                          <a
-                            href={`https://api.whatsapp.com/send?phone=${listing_user.phone}`}
-                            className="btn btn-success btn-block"
-                            target="blank"
-                            rel="noopener noreferrer"
-                          >
-                            <i className="la la-whatsapp" />
-                            Contact on Whatsapp
-                          </a>
-                        </>
-                      )}
-                      {this.props.login && (
-                        <button
-                          className="btn btn-block btn-outline-primary"
-                          disabled={
-                            this.props.login._id === listing_user?._id
-                              ? true
-                              : false
-                          }
-                          onClick={this.startChat}
-                        >
-                          <i className="lab la-rocketchat" />
-                          Start Chat
-                        </button>
-                      )}
-                      {this.props.login && (
-                        <button
-                          className="btn btn-block btn-outline-light"
-                          disabled={
-                            this.props.login._id === listing_user?._id
-                              ? true
-                              : false
-                          }
-                          style={{ borderColor: "#7a82a6", color: "#7a82a6" }}
-                          onClick={this.openModal}
-                        >
-                          Request Seller to Call Back
-                        </button>
-                      )}
-                    </div>
-                    <div className="atbd_widget_social_icons mt-5">
-                      <p className="text-center">Share it with friends</p>
-                      <div className="d-flex align-items-center justify-content-center">
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={`https://www.facebook/com/sharer/sharer.php?u=${window.location.href}`}
-                          className="mr-2"
-                        >
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/facebook.png"
-                            alt="facebook"
-                          ></img>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer" href={`#!`} className="mr-2">
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/linkedin.png"
-                            alt="linkedin"
-                          ></img>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer" href={`#!`} className="mr-2">
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/messenger.png"
-                            alt="messenger"
-                          ></img>
-                        </a>
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={`viber://pa?chatURI=${window.location.href}&text=Share`}
-                          className="mr-2"
-                        >
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/phone.png"
-                            alt="phone"
-                          ></img>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer" href={`#!`} className="mr-2">
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/telegram.png"
-                            alt="telegram"
-                          ></img>
-                        </a>
-                        <a
-                          target="_blank"
-                          href={`https://twitter.com/intent/tweet?url=${window.location.href}`}
-                          className="mr-2"
-                          rel="noopener noreferrer"
-                        >
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/twitter.png"
-                            alt="twitter"
-                          ></img>
-                        </a>
-                        <a
-                          target="_blank"
-                          href={`whatsapp://send?text=${window.location.href}`}
-                          rel="noopener noreferrer"
-                        >
-                          <img
-                            width="40"
-                            src="/assets/img/social-logos/whatsapp.png"
-                            alt="whatsapp"
-                          ></img>
-                        </a>
-                      </div>
+                      </div>  
+                      ) :
+                      this.state.listingDetailTabIndex === 2 && 
+                      (
+                        <ListingFetures listing={listing} /> 
+                      )
+                    }                    
                     </div>
                   </div>
                 </div>
                 <div className="row mt-5">
                   <div className="col-lg-12 mb-5">
-                    <h2 className="text-warning">We think you might find these products interesting</h2>
+                    <div className="container">
+                      <h2 className="text-warning">We think you might find these products interesting</h2>
+                      <CardListingGridSimilar listings={this.state.similarListings} />
+                    </div>
                   </div>
-                  <CardListingGridSimilar listings={this.state.similarListings} />
                 </div>
               </div>
             )}
@@ -410,6 +399,7 @@ const mapDispatchToProp = (dispatch) => {
     setChatRoom: (data) => dispatch(SetActiveRoom(data)),
     chatRoomInitialize: () => dispatch(Initialize()),
     addToCart: (data) => dispatch(AddToCart(data)),
+    updateCart: (data) => dispatch(UpdateCart(data)),
   };
 };
 
